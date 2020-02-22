@@ -17,5 +17,7 @@ export const Button = styled.button`
   cursor: ${props => (props.disabled ? "default" : "pointer")};
   opacity: ${props => (props.disabled ? 0.4 : 1)};
   background: rgb(16, 89, 255);
-  transition: all 0.3s ease;
+  transition: all 0.15s ease;
+  :focus{
+  background: rgb(26, 35, 126);}
 `;

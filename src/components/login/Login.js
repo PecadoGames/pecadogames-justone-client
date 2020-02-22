@@ -42,6 +42,8 @@ const InputField = styled.input`
   margin-bottom: 20px;
   background: rgba(255, 255, 255, 0.2);
   color: white;
+  :focus{
+  background: rgba(2, 46, 101, 1.0)};
 `;
 
 const Label = styled.label`
@@ -75,7 +77,7 @@ class Login extends React.Component {
   constructor() {
     super();
     this.state = {
-      name: null,
+      password: null,
       username: null
     };
   }
@@ -88,7 +90,7 @@ class Login extends React.Component {
     try {
       const requestBody = JSON.stringify({
         username: this.state.username,
-        name: this.state.name
+        password: this.state.password
       });
       const response = await api.post('/users', requestBody);
 
@@ -132,27 +134,39 @@ class Login extends React.Component {
           <Form>
             <Label>Username</Label>
             <InputField
-              placeholder="Enter here.."
+              placeholder="Enter username"
               onChange={e => {
                 this.handleInputChange('username', e.target.value);
               }}
             />
-            <Label>Name</Label>
+            <Label>Password</Label>
             <InputField
-              placeholder="Enter here.."
+              placeholder="Enter password"
+              type = "password"
+
               onChange={e => {
-                this.handleInputChange('name', e.target.value);
+                this.handleInputChange('password', e.target.value);
               }}
             />
             <ButtonContainer>
               <Button
-                disabled={!this.state.username || !this.state.name}
+                disabled={!this.state.username || !this.state.password}
                 width="50%"
                 onClick={() => {
                   this.login();
                 }}
               >
                 Login
+              </Button>
+            </ButtonContainer>
+            <ButtonContainer>
+              <Button
+                  width="50%"
+                  onClick={() => {
+                    this.props.history.push(`/register`);
+                  }}
+              >
+                Register
               </Button>
             </ButtonContainer>
           </Form>
