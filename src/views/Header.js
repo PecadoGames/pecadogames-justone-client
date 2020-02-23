@@ -16,7 +16,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Title = styled.h1`
+export const Title = styled.h1`
   font-weight: bold;
   color: white;
   text-align: center;
@@ -29,7 +29,7 @@ const Title = styled.h1`
  * https://reactjs.org/docs/components-and-props.html
  * @FunctionalComponent
  */
-const Header = props => {
+export const Header = props => {
   return (
     <Container height={props.height}>
       <Title>SoPra FS20 rocks with React!</Title>

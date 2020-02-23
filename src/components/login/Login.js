@@ -5,6 +5,8 @@ import { api, handleError } from '../../helpers/api';
 import User from '../shared/models/User';
 import { withRouter } from 'react-router-dom';
 import { Button } from '../../views/design/Button';
+import {InputField} from "../../views/design/InputField";
+import {Title} from "../../views/Header"
 
 const FormContainer = styled.div`
   margin-top: 2em;
@@ -25,27 +27,11 @@ const Form = styled.div`
   font-weight: 300;
   padding-left: 37px;
   padding-right: 37px;
-  border-radius: 5px;
-  background: linear-gradient(rgb(27, 124, 186), rgb(2, 46, 101));
+  border-radius: 2px;
+  background: rgb(66 ,66 ,66);
   transition: opacity 0.5s ease, transform 0.5s ease;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
-
-const InputField = styled.input`
-  &::placeholder {
-    color: rgba(255, 255, 255, 1.0);
-  }
-  height: 35px;
-  padding-left: 15px;
-  margin-left: -4px;
-  border: none;
-  border-radius: 20px;
-  margin-bottom: 20px;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  :focus{
-  background: rgba(2, 46, 101, 1.0)};
-`;
-
 const Label = styled.label`
   color: white;
   margin-bottom: 10px;
@@ -77,8 +63,8 @@ class Login extends React.Component {
   constructor() {
     super();
     this.state = {
-      password: null,
-      username: null
+      username: null,
+      password: null
     };
   }
   /**
@@ -130,6 +116,7 @@ class Login extends React.Component {
   render() {
     return (
       <BaseContainer>
+        <Title>Login</Title>
         <FormContainer>
           <Form>
             <Label>Username</Label>
@@ -166,7 +153,7 @@ class Login extends React.Component {
                     this.props.history.push(`/register`);
                   }}
               >
-                Register
+                Sign up
               </Button>
             </ButtonContainer>
           </Form>
