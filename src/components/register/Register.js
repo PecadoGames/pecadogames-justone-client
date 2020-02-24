@@ -155,7 +155,7 @@ class Login extends React.Component {
                         />
                         <ButtonContainer>
                             <Button
-                                disabled={!this.state.username || !this.state.name || !this.state.password || !this.state.confirmation}
+                                disabled={!this.state.username || !this.state.name || !this.state.password ||!this.state.confirmation || !(this.state.password === this.state.confirmation)}
                                 width="50%"
                                 onClick={() => {
                                     this.register();
