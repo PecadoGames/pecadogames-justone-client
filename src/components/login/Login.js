@@ -130,7 +130,6 @@ class Login extends React.Component {
             <InputField
               placeholder="Enter password"
               type = "password"
-
               onChange={e => {
                 this.handleInputChange('password', e.target.value);
               }}
