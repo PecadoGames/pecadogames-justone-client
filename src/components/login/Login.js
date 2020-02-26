@@ -7,6 +7,9 @@ import { withRouter } from 'react-router-dom';
 import { Button } from '../../views/design/Button';
 import {InputField} from "../../views/design/InputField";
 import {Title} from "../../views/Header"
+import {UserWrapper} from "../../views/design/UserWrapper";
+import {LockIcon} from "../../views/design/Icon";
+import {UserIcon} from "../../views/design/Icon";
 
 const FormContainer = styled.div`
   margin-top: 2em;
@@ -31,11 +34,6 @@ const Form = styled.div`
   background: rgb(66 ,66 ,66);
   transition: opacity 0.5s ease, transform 0.5s ease;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-`;
-const Label = styled.label`
-  color: white;
-  margin-bottom: 10px;
-  text-transform: uppercase;
 `;
 
 const ButtonContainer = styled.div`
@@ -64,7 +62,8 @@ class Login extends React.Component {
     super();
     this.state = {
       username: null,
-      password: null
+      password: null,
+      changeVisibility: null
     };
   }
   /**
@@ -72,6 +71,8 @@ class Login extends React.Component {
    * If the request is successful, a new user is returned to the front-end
    * and its token is stored in the localStorage.
    */
+
+
   async login() {
     try {
       const requestBody = JSON.stringify({
@@ -119,14 +120,17 @@ class Login extends React.Component {
         <Title>Login</Title>
         <FormContainer>
           <Form>
-            <Label>Username</Label>
+            <UserWrapper>
+              <UserIcon/>
             <InputField
               placeholder="Enter username"
               onChange={e => {
                 this.handleInputChange('username', e.target.value);
               }}
             />
-            <Label>Password</Label>
+            </UserWrapper>
+            <UserWrapper>
+              <LockIcon/>
             <InputField
               placeholder="Enter password"
               type = "password"
@@ -134,6 +138,7 @@ class Login extends React.Component {
                 this.handleInputChange('password', e.target.value);
               }}
             />
+            </UserWrapper>
             <ButtonContainer>
               <Button
                 disabled={!this.state.username || !this.state.password}

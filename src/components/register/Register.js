@@ -7,6 +7,9 @@ import { withRouter } from 'react-router-dom';
 import { Button } from '../../views/design/Button';
 import {InputField} from "../../views/design/InputField";
 import {Title} from "../../views/Header";
+import {UserWrapper} from "../../views/design/UserWrapper";
+import {LockIcon} from "../../views/design/Icon";
+import {UserIcon} from "../../views/design/Icon";
 
 const FormContainer = styled.div`
   margin-top: 2em;
@@ -123,21 +126,27 @@ class Login extends React.Component {
                 <Title>Registration</Title>
                 <FormContainer>
                     <Form>
-                        <Label>Username</Label>
+                        <UserWrapper>
+                        <UserIcon/>
                         <InputField
                             placeholder="Enter username"
                             onChange={e => {
                                 this.handleInputChange('username', e.target.value);
                             }}
                         />
-                        <Label>Name</Label>
+                        </UserWrapper>
+                        <UserWrapper>
+                            <UserIcon/>
                         <InputField
+                            padding-left="100px"
                             placeholder="Enter name"
                             onChange={e => {
                                 this.handleInputChange('name', e.target.value);
                             }}
                         />
-                        <Label>Password</Label>
+                        </UserWrapper>
+                        <UserWrapper>
+                        <LockIcon/>
                         <InputField
                             placeholder="Enter password"
                             type = "password"
@@ -145,7 +154,9 @@ class Login extends React.Component {
                                 this.handleInputChange('password', e.target.value);
                             }}
                         />
-                        <Label>Confirm Password</Label>
+                        </UserWrapper>
+                        <UserWrapper>
+                            <LockIcon/>
                         <InputField
                             placeholder="Confirm password"
                             type = "password"
@@ -153,6 +164,7 @@ class Login extends React.Component {
                                 this.handleInputChange('confirmation', e.target.value);
                             }}
                         />
+                        </UserWrapper>
                         <ButtonContainer>
                             <Button
                                 disabled={!this.state.username || !this.state.name || !this.state.password ||!this.state.confirmation || !(this.state.password === this.state.confirmation)}
