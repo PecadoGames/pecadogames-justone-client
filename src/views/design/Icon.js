@@ -3,7 +3,7 @@ import {ReactComponent as UserSVG} from "../../components/login/assets/person-24
 import {ReactComponent as LockSVG} from "../../components/login/assets/lock-24px.svg";
 
 export const UserIcon = styled(UserSVG)`
-  fill: #9aa5b1;
+  fill: ${props => (props.fill || "#9aa5b1")};
   width: 1.6rem;
   height: 1.6rem;
   margin-left: 1.2rem;
@@ -12,7 +12,7 @@ export const UserIcon = styled(UserSVG)`
 `;
 
 export const LockIcon = styled(LockSVG)`
-  fill: #9aa5b1;
+  fill: ${props => (props.fill || "#9aa5b1")};
   width: 1.6rem;
   height: 1.6rem;
   margin-left: 1.2rem;

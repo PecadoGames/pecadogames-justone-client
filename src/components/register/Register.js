@@ -130,9 +130,10 @@ class Login extends React.Component {
                         />
                         </UserWrapper>
                         <UserWrapper>
-                            <UserIcon/>
+                            <UserIcon
+                                fill={"#424242"}
+                            />
                         <InputField
-                            padding-left="100px"
                             placeholder="Enter name"
                             onChange={e => {
                                 this.handleInputChange('name', e.target.value);
@@ -150,7 +151,9 @@ class Login extends React.Component {
                         />
                         </UserWrapper>
                         <UserWrapper>
-                            <LockIcon/>
+                            <LockIcon
+                                fill={"#424242"}
+                            />
                         <InputField
                             placeholder="Confirm password"
                             type = "password"
