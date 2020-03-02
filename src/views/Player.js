@@ -5,10 +5,18 @@ const Container = styled.div`
   margin: 6px 0;
   width: 280px;
   padding: 10px;
-  border-radius: 6px;
+  border-radius: 2px;
   display: flex;
   align-items: center;
-  border: 1px solid #ffffff26;
+  background: #424242;
+  cursor: ${props => (props.disabled ? "default" : "pointer")};
+  opacity: ${props => (props.disabled ? 0.4 : 1)};
+  border: none;
+  transition: all 0.15s ease;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  &:hover {
+    transform: translateY(-2px);
+  }
 `;
 
 const UserName = styled.div`
@@ -39,7 +47,7 @@ const Player = ({ user }) => {
   return (
     <Container>
       <Name>{user.name}</Name> <UserName>{user.username}</UserName>
-      <Id>Id: {user.id}</Id>
+      <Id>ID: {user.id}</Id>
     </Container>
   );
 };

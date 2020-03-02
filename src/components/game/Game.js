@@ -5,6 +5,7 @@ import { api, handleError } from '../../helpers/api';
 import Player from '../../views/Player';
 import { Spinner } from '../../views/design/Spinner';
 import { Button } from '../../views/design/Button';
+import Profile from "../ownprofile/OwnProfile";
 import { withRouter } from 'react-router-dom';
 
 const Container = styled(BaseContainer)`
@@ -28,13 +29,20 @@ class Game extends React.Component {
   constructor() {
     super();
     this.state = {
-      users: null
+      name: null,
+      username: null,
+      password: null,
     };
   }
 
   logout() {
     localStorage.removeItem('token');
     this.props.history.push('/login');
+  }
+
+  loadProfile(id){
+    let link = `/users/${id}`;
+    this.props.history.push(link);
   }
 
   async componentDidMount() {
@@ -65,16 +73,22 @@ class Game extends React.Component {
   render() {
     return (
       <Container>
-        <h2>Happy Coding! </h2>
-        <p>Get all users from secure end point:</p>
+        <h2>All users</h2>
         {!this.state.users ? (
-          <Spinner />
+          <div>
+            <Spinner/>
+            <h4>Loading</h4>
+          </div>
         ) : (
           <div>
             <Users>
               {this.state.users.map(user => {
                 return (
-                  <PlayerContainer key={user.id}>
+                  <PlayerContainer
+                      key={user.id}
+                  onClick={(key) => {
+                    this.loadProfile(key);
+                  }}>
                     <Player user={user} />
                   </PlayerContainer>
                 );
