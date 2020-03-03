@@ -5,7 +5,6 @@ import { api, handleError } from '../../helpers/api';
 import Player from '../../views/Player';
 import { Spinner } from '../../views/design/Spinner';
 import { Button } from '../../views/design/Button';
-import Profile from "../ownprofile/OwnProfile";
 import { withRouter } from 'react-router-dom';
 
 const Container = styled(BaseContainer)`
@@ -35,13 +34,24 @@ class Game extends React.Component {
     };
   }
 
-  logout() {
-    localStorage.removeItem('token');
-    this.props.history.push('/login');
+  async logout() {
+    try{
+      const requestBody = JSON.stringify({
+        id: localStorage.getItem("id"),
+        token: localStorage.getItem("token")
+      });
+      await api.put('/logout', requestBody);
+      localStorage.removeItem('token');
+      localStorage.removeItem('id');
+      this.props.history.push('/login');
+    }
+    catch(error){
+      alert(`Something went wrong during the logout \n${handleError(error)}`)
+    }
   }
 
   loadProfile(id){
-    let link = `/users/${id}`;
+    let link = `/game/users/${id}`;
     this.props.history.push(link);
   }
 
@@ -86,8 +96,8 @@ class Game extends React.Component {
                 return (
                   <PlayerContainer
                       key={user.id}
-                  onClick={(key) => {
-                    this.loadProfile(key);
+                  onClick={() => {
+                    this.loadProfile(user.id);
                   }}>
                     <Player user={user} />
                   </PlayerContainer>

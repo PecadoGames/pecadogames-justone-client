@@ -61,10 +61,9 @@ class Login extends React.Component {
     constructor() {
         super();
         this.state = {
-            name: null,
             username: null,
             password: null,
-            confirmation: null
+            confirmation: null,
         };
     }
     /**
@@ -76,16 +75,17 @@ class Login extends React.Component {
         try {
             const requestBody = JSON.stringify({
                 username: this.state.username,
-                name: this.state.name,
                 password: this.state.password
             });
-            const response = await api.post('/users', requestBody);
+            const url = await api.post('/users', requestBody);
 
             // Get the returned user and update a new object.
-            const user = new User(response.data);
+            const response = await api.get(url.headers.location);
+            const user = await new User(response.data);
 
             // Store the token into the local storage.
             localStorage.setItem('token', user.token);
+            localStorage.setItem('id', user.id);
 
             // Login successfully worked --> navigate to the route /game in the GameRouter
             this.props.history.push(`/login`);
@@ -130,17 +130,6 @@ class Login extends React.Component {
                         />
                         </UserWrapper>
                         <UserWrapper>
-                            <UserIcon
-                                fill={"#424242"}
-                            />
-                        <InputField
-                            placeholder="Enter name"
-                            onChange={e => {
-                                this.handleInputChange('name', e.target.value);
-                            }}
-                        />
-                        </UserWrapper>
-                        <UserWrapper>
                         <LockIcon/>
                         <InputField
                             placeholder="Enter password"
@@ -164,7 +153,7 @@ class Login extends React.Component {
                         </UserWrapper>
                         <ButtonContainer>
                             <Button
-                                disabled={!this.state.username || !this.state.name || !this.state.password ||!this.state.confirmation || !(this.state.password === this.state.confirmation)}
+                                disabled={!this.state.username || !this.state.password ||!this.state.confirmation || !(this.state.password === this.state.confirmation)}
                                 width="50%"
                                 onClick={() => {
                                     this.register();

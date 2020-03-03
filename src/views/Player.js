@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import {UserIcon} from "./design/Icon";
 
 const Container = styled.div`
   margin: 6px 0;
@@ -46,6 +47,11 @@ const Id = styled.div`
 const Player = ({ user }) => {
   return (
     <Container>
+        <UserIcon
+        marginLeft="none"
+        marginRight="1px"
+        marginBottom="none"
+        />
       <Name>{user.name}</Name> <UserName>{user.username}</UserName>
       <Id>ID: {user.id}</Id>
     </Container>
