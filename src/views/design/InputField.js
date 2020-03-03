@@ -8,10 +8,10 @@ export const InputField = styled.input`
   padding-left: 15px;
   margin-left: -4px;
   border: none;
-  border-bottom: 1px solid white;
+  border-bottom: ${props => props.borderBottom || "1px solid white"};
   border-radius: 0px;
-  margin-bottom: 20px;
-  background: #424242;
+  margin-bottom: 12px;
+  background: none;
   color: white;
   width: 85%
   `;

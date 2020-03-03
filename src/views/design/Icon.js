@@ -20,43 +20,43 @@ export const LockIcon = styled(LockSVG)`
   fill: ${props => (props.fill || "#9aa5b1")};
   width: 1.6rem;
   height: 1.6rem;
-  margin-left: 1.2rem;
-  margin-right 1rem;
-  margin-bottom 1rem;
+  margin-left: ${props => props.marginLeft || "1.2rem"};
+  margin-right ${props => props.marginRight || "1rem"};
+  margin-bottom ${props => props.marginBottom || "1rem"};
 `;
 
 export const OnlineIcon = styled(OnlineSVG)`
   fill: ${props => (props.fill || "#9aa5b1")};
   width: 1.6rem;
   height: 1.6rem;
-  margin-left: 1.2rem;
-  margin-right 1rem;
-  margin-bottom 1rem;
+  margin-left: ${props => props.marginLeft || "1.2rem"};
+  margin-right ${props => props.marginRight || "1rem"};
+  margin-bottom ${props => props.marginBottom || "1rem"};
 `;
 
 export const OfflineIcon = styled(OfflineSVG)`
   fill: ${props => (props.fill || "#9aa5b1")};
   width: 1.6rem;
   height: 1.6rem;
-  margin-left: 1.2rem;
-  margin-right 1rem;
-  margin-bottom 1rem;
+  margin-left: ${props => props.marginLeft || "1.2rem"};
+  margin-right ${props => props.marginRight || "1rem"};
+  margin-bottom ${props => props.marginBottom || "1rem"};
 `;
 
 export const CakeIcon = styled(BirthdaySVG)`
   fill: ${props => (props.fill || "#9aa5b1")};
   width: 1.6rem;
   height: 1.6rem;
-  margin-left: 1.2rem;
-  margin-right 1rem;
-  margin-bottom 1rem;
+  margin-left: ${props => props.marginLeft || "1.2rem"};
+  margin-right ${props => props.marginRight || "1rem"};
+  margin-bottom ${props => props.marginBottom || "1rem"};
 `;
 
 export const CreationIcon = styled(creationSVG)`
   fill: ${props => (props.fill || "#9aa5b1")};
   width: 1.6rem;
   height: 1.6rem;
-  margin-left: 1.2rem;
-  margin-right 1rem;
-  margin-bottom 1rem;
+  margin-left: ${props => props.marginLeft || "1.2rem"};
+  margin-right ${props => props.marginRight || "1rem"};
+  margin-bottom ${props => props.marginBottom || "1rem"};
 `;

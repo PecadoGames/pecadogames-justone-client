@@ -40,9 +40,15 @@ class Profile extends React.Component {
 
     checkStatus(){
         if(this.state.status){
-            return <OnlineIcon/>
+            return <OnlineIcon
+                marginLeft="1px"
+                marginBottom="1px"
+            />
         }
-        return <OfflineIcon/>
+        return <OfflineIcon
+            marginLeft="1px"
+            marginBottom="1px"
+        />
     }
 
     parseDate(){
@@ -78,9 +84,15 @@ class Profile extends React.Component {
             <Container>
                 <h2>{this.state.username}</h2>
                 <div>
-                    <UserWrapper>
-                        <UserIcon/>
+                    <UserWrapper
+                    borderRadius="3px">
+
+                        <UserIcon
+                            marginLeft="1px"
+                            marginBottom="1px"
+                        />
                         <InputField
+                            borderBottom={(!this.state.editable) ? "1px solid grey" : "1px solid white"}
                             disabled={!this.state.editable}
                             placeholder={this.state.username}
                             onChange={e => {
@@ -88,30 +100,42 @@ class Profile extends React.Component {
                             }}
                         />
                     </UserWrapper>
-                    <UserWrapper>
+                    <UserWrapper
+                        borderRadius="3px">
                         {this.checkStatus()}
                         <InputField
+                            borderBottom={(!this.state.editable) ? "1px solid grey" : "1px solid white"}
                             disabled={true}
                             placeholder={(this.state.status) ? "Online" : "Offline"}
                         />
                     </UserWrapper>
-                    <UserWrapper>
-                        <CreationIcon/>
+                    <UserWrapper
+                        borderRadius="3px">
+                        <CreationIcon
+                            marginLeft="1px"
+                            marginBottom="1px"
+                        />
                         <InputField
+                            borderBottom={(!this.state.editable) ? "1px solid grey" : "1px solid white"}
                             disabled={true}
                             placeholder={this.parseDate()}
                         />
                     </UserWrapper>
-                    <UserWrapper>
-                        <CakeIcon/>
+                    <UserWrapper
+                        borderRadius="3px">
+                        <CakeIcon
+                        marginLeft="1px"
+                        marginBottom="1px"
+                        />
                         <InputField
+                            borderBottom={(!this.state.editable) ? "1px solid grey" : "1px solid white"}
                             disabled={!this.state.editable}
                             placeholder={(!this.state.birthday) ? "Birthday" : this.state.birthday}
                         />
                     </UserWrapper>
                     <Button
                         disabled={this.state.editable}
-                        width="100%"
+                        width="75%"
                         onClick={() => {
                             this.setState(prevState => ({editable: !prevState.editable}));
                         }}
@@ -120,7 +144,7 @@ class Profile extends React.Component {
                     </Button>
 
                     <Button
-                        width="100%"
+                        width="75%"
                         onClick={() => {
                             this.backToOverview();
                         }}
