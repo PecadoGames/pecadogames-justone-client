@@ -92,6 +92,9 @@ class Profile extends React.Component {
     }
 
     parseDate(toParse){
+        if(toParse === null){
+            return null
+        }
         const milliseconds = Date.parse(toParse);
         const date = new Date(milliseconds);
         const day = date.getDate();
@@ -108,9 +111,9 @@ class Profile extends React.Component {
                 .then(data => this.setState(
                     {user: data,
                         username: data.username,
-                        birthday: data.birthday,
+                        birthday: this.parseDate(data.birthday),
                         status: data.logged_in,
-                        creationDate: data.creation_date})
+                        creationDate: this.parseDate(data.creation_date)})
                 );
         }        catch (error) {
             alert(`Something went wrong while fetching the users: \n${handleError(error)}`);
@@ -163,7 +166,7 @@ class Profile extends React.Component {
                             marginBottom="1px"
                             borderBottom={"1px solid #424242"}
                             disabled={true}
-                            placeholder={this.parseDate(this.state.creationDate)}
+                            placeholder={this.state.creationDate}
                         />
                     </UserWrapper>
                     <UserWrapper
@@ -176,9 +179,9 @@ class Profile extends React.Component {
                             marginBottom="1px"
                             borderBottom={(!this.state.editable) ? "1px solid #424242" : "1px solid white"}
                             disabled={!this.state.editable}
-                            placeholder={(!this.state.birthday) ? "Birthday" : this.parseDate(this.state.birthday)}
+                            placeholder={(!this.state.birthday) ? "Birthday" : this.state.birthday}
                             color={(this.state.editable) ? "white" : "#9e9e9e"}
-                            value={(this.state.editable) ? this.parseDate(this.state.birthday) : null}
+                            value={(this.state.editable) ? this.state.birthday : null}
                             onChange={e => {
                                 this.handleInputChange('birthday', e.target.value);
                             }}
