@@ -16,7 +16,7 @@ const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 300px;
+  min-height: 100%;
   justify-content: center;
 `;
 
@@ -24,8 +24,8 @@ const Form = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 60%;
-  height: 450px;
+  width: 55%;
+  height: 350px;
   font-size: 16px;
   font-weight: 300;
   padding-left: 37px;
@@ -121,18 +121,26 @@ class Login extends React.Component {
                 <FormContainer>
                     <Form>
                         <UserWrapper>
-                        <UserIcon/>
+                        <UserIcon
+                        marginBottom="2px"
+                        marginLeft="2px"
+                        />
                         <InputField
                             placeholder="Enter username"
+                            width="90%"
                             onChange={e => {
                                 this.handleInputChange('username', e.target.value);
                             }}
                         />
                         </UserWrapper>
                         <UserWrapper>
-                        <LockIcon/>
+                        <LockIcon
+                            marginBottom="2px"
+                            marginLeft="2px"
+                        />
                         <InputField
                             placeholder="Enter password"
+                            width="90%"
                             type = "password"
                             onChange={e => {
                                 this.handleInputChange('password', e.target.value);
@@ -141,10 +149,13 @@ class Login extends React.Component {
                         </UserWrapper>
                         <UserWrapper>
                             <LockIcon
+                                marginBottom="2px"
+                                marginLeft="2px"
                                 fill={"#424242"}
                             />
                         <InputField
                             placeholder="Confirm password"
+                            width="90%"
                             type = "password"
                             onChange={e => {
                                 this.handleInputChange('confirmation', e.target.value);

@@ -10,5 +10,5 @@ export const UserWrapper = styled.div`
   box-shadow: none;
   border-radius: ${props => props.borderRadius || "0px"};
   padding-left: 5px;
-  width: ${props => props.width || "300px"};
+  width: ${props => props.width || "100%"};
 `;

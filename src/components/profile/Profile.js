@@ -18,6 +18,7 @@ class Profile extends React.Component {
     constructor() {
         super();
         this.state = {
+            user: null,
             id: null,
             username: null,
             status: null,
@@ -27,9 +28,34 @@ class Profile extends React.Component {
         };
     }
 
-    backToOverview() {
+    async updateUser() {
+        if(this.state.user.username !== this.state.username){
+            this.state.user.username = this.state.username
+        }
+        else{
+            this.state.user.username = null
+        }
+        if(this.state.user.birthday !== this.state.birthday){
+            this.state.user.birthday = this.state.birthday
+        }
+        else{
+            this.state.user.birthday = null
+        }
+        try{
+            const requestBody = JSON.stringify({
+                username: this.state.user.username,
+                birthday: this.state.user.birthday,
+                token: localStorage.getItem('token')
+            });
+            await api.put('/users/'+this.state.id, requestBody)
+        }
+        catch(error){
+            alert(`Something went wrong during the user update: \n${handleError(error)}`);
+        }
+    }
 
-        this.props.history.push('/login');
+    backToOverview(){
+        this.props.history.push('/game/dashboard');
     }
 
     handleInputChange(key, value) {
@@ -42,19 +68,33 @@ class Profile extends React.Component {
         if(this.state.status){
             return <OnlineIcon
                 marginLeft="1px"
-                marginBottom="1px"
+                marginBottom="none"
             />
         }
         return <OfflineIcon
             marginLeft="1px"
-            marginBottom="1px"
+            marginBottom="none"
         />
     }
 
-    parseDate(){
-        const milliseconds = Date.parse(this.state.creationDate);
+    canEdit(){
+        if(localStorage.getItem('id') === this.state.id){
+            return <Button
+                disabled={this.state.editable}
+                width="75%"
+                onClick={() => {
+                    this.setState(prevState => ({editable: !prevState.editable}));
+                }}
+            >
+                Edit
+            </Button>
+        }
+    }
+
+    parseDate(toParse){
+        const milliseconds = Date.parse(toParse);
         const date = new Date(milliseconds);
-        const day = date.getDay()+1;
+        const day = date.getDate();
         const month = date.getMonth()+1;
         const year = date.getFullYear();
         return day + "." + month + "."+year
@@ -66,7 +106,8 @@ class Profile extends React.Component {
             await api.get('/users/'+this.state.id)
                 .then(response => {return new User(response.data)})
                 .then(data => this.setState(
-                    {username: data.username,
+                    {user: data,
+                        username: data.username,
                         birthday: data.birthday,
                         status: data.logged_in,
                         creationDate: data.creation_date})
@@ -82,19 +123,20 @@ class Profile extends React.Component {
     render() {
         return (
             <Container>
-                <h2>{this.state.username}</h2>
+                <h2>{(this.state.editable) ? "Editing User" : this.state.username}</h2>
                 <div>
                     <UserWrapper
                     borderRadius="3px">
-
                         <UserIcon
                             marginLeft="1px"
-                            marginBottom="1px"
+                            marginBottom="none"
                         />
                         <InputField
-                            borderBottom={(!this.state.editable) ? "1px solid grey" : "1px solid white"}
+                            marginBottom="1px"
+                            borderBottom={(!this.state.editable) ? "1px solid #424242" : "1px solid white"}
                             disabled={!this.state.editable}
                             placeholder={this.state.username}
+                            color={(this.state.editable) ? "white" : "#9e9e9e"}
                             onChange={e => {
                                 this.handleInputChange('username', e.target.value);
                             }}
@@ -104,7 +146,8 @@ class Profile extends React.Component {
                         borderRadius="3px">
                         {this.checkStatus()}
                         <InputField
-                            borderBottom={(!this.state.editable) ? "1px solid grey" : "1px solid white"}
+                            marginBottom="1px"
+                            borderBottom={"1px solid #424242"}
                             disabled={true}
                             placeholder={(this.state.status) ? "Online" : "Offline"}
                         />
@@ -113,39 +156,38 @@ class Profile extends React.Component {
                         borderRadius="3px">
                         <CreationIcon
                             marginLeft="1px"
-                            marginBottom="1px"
+                            marginBottom="none"
                         />
                         <InputField
-                            borderBottom={(!this.state.editable) ? "1px solid grey" : "1px solid white"}
+                            marginBottom="1px"
+                            borderBottom={"1px solid #424242"}
                             disabled={true}
-                            placeholder={this.parseDate()}
+                            placeholder={this.parseDate(this.state.creationDate)}
                         />
                     </UserWrapper>
                     <UserWrapper
                         borderRadius="3px">
                         <CakeIcon
                         marginLeft="1px"
-                        marginBottom="1px"
+                        marginBottom="none"
                         />
                         <InputField
-                            borderBottom={(!this.state.editable) ? "1px solid grey" : "1px solid white"}
+                            marginBottom="1px"
+                            borderBottom={(!this.state.editable) ? "1px solid #424242" : "1px solid white"}
                             disabled={!this.state.editable}
-                            placeholder={(!this.state.birthday) ? "Birthday" : this.state.birthday}
+                            placeholder={(!this.state.birthday) ? "Birthday" : this.parseDate(this.state.birthday)}
+                            color={(this.state.editable) ? "white" : "#9e9e9e"}
+                            onChange={e => {
+                                this.handleInputChange('birthday', e.target.value);
+                            }}
                         />
                     </UserWrapper>
-                    <Button
-                        disabled={this.state.editable}
-                        width="75%"
-                        onClick={() => {
-                            this.setState(prevState => ({editable: !prevState.editable}));
-                        }}
-                    >
-                        Edit
-                    </Button>
-
+                    {this.canEdit()}
                     <Button
                         width="75%"
                         onClick={() => {
+                            (localStorage.getItem('id') === this.state.id)
+                                ? this.updateUser() : this.backToOverview();
                             this.backToOverview();
                         }}
                     >

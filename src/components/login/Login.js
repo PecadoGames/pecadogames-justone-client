@@ -24,8 +24,8 @@ const Form = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 60%;
-  height: 375px;
+  width: 55%;
+  height: 350px;
   font-size: 16px;
   font-weight: 300;
   padding-left: 37px;
@@ -39,7 +39,7 @@ const Form = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 20px;
+  margin-top: none;
 `;
 
 /**
@@ -123,18 +123,26 @@ class Login extends React.Component {
         <FormContainer>
           <Form>
             <UserWrapper>
-              <UserIcon/>
+              <UserIcon
+                  marginBottom="2px"
+                  marginLeft="2px"
+              />
             <InputField
               placeholder="Enter username"
+              width="90%"
               onChange={e => {
                 this.handleInputChange('username', e.target.value);
               }}
             />
             </UserWrapper>
             <UserWrapper>
-              <LockIcon/>
+              <LockIcon
+                  marginBottom="2px"
+                  marginLeft="2px"
+              />
             <InputField
               placeholder="Enter password"
+              width="90%"
               type = "password"
               onChange={e => {
                 this.handleInputChange('password', e.target.value);
@@ -145,6 +153,7 @@ class Login extends React.Component {
               <Button
                 disabled={!this.state.username || !this.state.password}
                 width="50%"
+                marginTop="20px"
                 onClick={() => {
                   this.login();
                 }}

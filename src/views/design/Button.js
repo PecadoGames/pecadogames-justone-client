@@ -5,6 +5,7 @@ export const Button = styled.button`
     transform: translateY(-2px);
   }
   margin-bottom: 20px;
+  margin-top: ${props => props.marginTop || null}
   padding: 6px;
   font-weight: 700;
   text-transform: uppercase;
