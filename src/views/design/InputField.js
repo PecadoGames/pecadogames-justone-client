@@ -14,4 +14,5 @@ export const InputField = styled.input`
   background: none;
   color: white;
   width: ${props => props.width || "75%"};
+  value ${props => props.value || null}
   `;

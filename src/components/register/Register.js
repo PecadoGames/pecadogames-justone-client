@@ -8,7 +8,7 @@ import { Button } from '../../views/design/Button';
 import {InputField} from "../../views/design/InputField";
 import {Title} from "../../views/Header";
 import {UserWrapper} from "../../views/design/UserWrapper";
-import {LockIcon} from "../../views/design/Icon";
+import {EyeIcon, EyeStrokeIcon, LockIcon, OfflineIcon, OnlineIcon} from "../../views/design/Icon";
 import {UserIcon} from "../../views/design/Icon";
 
 const FormContainer = styled.div`
@@ -64,6 +64,7 @@ class Login extends React.Component {
             username: null,
             password: null,
             confirmation: null,
+            passwordVisibility: false,
         };
     }
     /**
@@ -132,6 +133,13 @@ class Login extends React.Component {
                                 this.handleInputChange('username', e.target.value);
                             }}
                         />
+                            <Button
+                                width="1.6rem"
+                                background="#424242"
+                                boxShadow="null"
+                                height="1rem"
+                                disabled="true"
+                            />
                         </UserWrapper>
                         <UserWrapper>
                         <LockIcon
@@ -141,30 +149,65 @@ class Login extends React.Component {
                         <InputField
                             placeholder="Enter password"
                             width="90%"
-                            type = "password"
+                            borderBottom={(this.state.password === this.state.confirmation
+                                || this.state.confirmation === null) ?
+                                "1px solid white" : "1px solid red"}
+                            type = {!this.state.passwordVisibility ? "password" : null}
                             onChange={e => {
                                 this.handleInputChange('password', e.target.value);
                             }}
                         />
+                            <Button
+                                width="1.6rem"
+                                background="#424242"
+                                boxShadow="null"
+                                height="1rem"
+                                disabled="true"
+                            />
                         </UserWrapper>
                         <UserWrapper>
-                            <LockIcon
+                            {(this.state.confirmation === this.state.password) ?
+                                <OnlineIcon
                                 marginBottom="2px"
                                 marginLeft="2px"
-                                fill={"#424242"}
-                            />
+                            /> : <OfflineIcon
+                                    marginBottom="2px"
+                                    marginLeft="2px"
+                                />}
                         <InputField
                             placeholder="Confirm password"
                             width="90%"
-                            type = "password"
+                            borderBottom={(this.state.password === this.state.confirmation
+                                || this.state.confirmation === null) ?
+                                "1px solid white" : "1px solid red"}
+                            type = {!this.state.passwordVisibility ? "password" : null}
                             onChange={e => {
                                 this.handleInputChange('confirmation', e.target.value);
                             }}
                         />
+                            <Button
+                                width="1.6rem"
+                                background="#424242"
+                                boxShadow="null"
+                                height="1rem"
+                                onClick={() => {this.setState(prevState => ({
+                                    passwordVisibility: !prevState.passwordVisibility}));}}
+                            >
+                                {(this.state.passwordVisibility) ?
+                                    <EyeStrokeIcon
+                                        marginBottom="null"
+                                        marginLeft="null"
+                                    /> : <EyeIcon
+                                        marginBottom="null"
+                                        marginLeft="null"
+                                    />}
+
+                            </Button>
                         </UserWrapper>
                         <ButtonContainer>
                             <Button
-                                disabled={!this.state.username || !this.state.password ||!this.state.confirmation || !(this.state.password === this.state.confirmation)}
+                                disabled={!this.state.username || !this.state.password ||!this.state.confirmation ||
+                                !(this.state.password === this.state.confirmation)}
                                 width="50%"
                                 onClick={() => {
                                     this.register();

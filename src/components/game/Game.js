@@ -57,11 +57,12 @@ class Game extends React.Component {
 
   async componentDidMount() {
     try {
+      await new Promise(resolve => setTimeout(resolve, 1000));
       const response = await api.get('/users');
       // delays continuous execution of an async operation for 1 second.
       // This is just a fake async call, so that the spinner can be displayed
       // feel free to remove it :)
-      await new Promise(resolve => setTimeout(resolve, 1000));
+
 
       // Get the returned users and update the state.
       this.setState({ users: response.data });

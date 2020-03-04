@@ -13,14 +13,15 @@ export const Button = styled.button`
   text-align: center;
   color: #ffffff;
   width: ${props => props.width || null};
-  height: 35px;
+  height: ${props => props.height || "35px"};
   border: none;
   border-radius: 20px;
   cursor: ${props => (props.disabled ? "default" : "pointer")};
   opacity: ${props => (props.disabled ? 0.4 : 1)};
-  background: #4CAF50;
+  background: ${props => (props.background || "#4CAF50")};
   transition: all 0.15s ease;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: ${props => (props.boxShadow 
+    || "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" || null)};
   :focus{
-  background: #388E3C;}
+  background: ${props => props.background || "#388E3C"};}
 `;

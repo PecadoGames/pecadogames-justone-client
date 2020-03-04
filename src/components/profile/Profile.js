@@ -137,6 +137,7 @@ class Profile extends React.Component {
                             disabled={!this.state.editable}
                             placeholder={this.state.username}
                             color={(this.state.editable) ? "white" : "#9e9e9e"}
+                            value={(this.state.editable) ? this.state.username : null}
                             onChange={e => {
                                 this.handleInputChange('username', e.target.value);
                             }}
@@ -177,6 +178,7 @@ class Profile extends React.Component {
                             disabled={!this.state.editable}
                             placeholder={(!this.state.birthday) ? "Birthday" : this.parseDate(this.state.birthday)}
                             color={(this.state.editable) ? "white" : "#9e9e9e"}
+                            value={(this.state.editable) ? this.parseDate(this.state.birthday) : null}
                             onChange={e => {
                                 this.handleInputChange('birthday', e.target.value);
                             }}

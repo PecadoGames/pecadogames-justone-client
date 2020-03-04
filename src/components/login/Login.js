@@ -8,8 +8,8 @@ import { Button } from '../../views/design/Button';
 import {InputField} from "../../views/design/InputField";
 import {Title} from "../../views/Header"
 import {UserWrapper} from "../../views/design/UserWrapper";
-import {LockIcon} from "../../views/design/Icon";
-import {UserIcon} from "../../views/design/Icon";
+import {LockIcon, UserIcon, EyeIcon, EyeStrokeIcon} from "../../views/design/Icon";
+
 
 const FormContainer = styled.div`
   margin-top: 2em;
@@ -63,7 +63,7 @@ class Login extends React.Component {
     this.state = {
       username: null,
       password: null,
-      changeVisibility: null
+      passwordVisibility: false
     };
   }
   /**
@@ -134,6 +134,13 @@ class Login extends React.Component {
                 this.handleInputChange('username', e.target.value);
               }}
             />
+            <Button
+                width="1.6rem"
+                background="#424242"
+                boxShadow="null"
+                height="1rem"
+                disabled="true"
+            />
             </UserWrapper>
             <UserWrapper>
               <LockIcon
@@ -143,11 +150,29 @@ class Login extends React.Component {
             <InputField
               placeholder="Enter password"
               width="90%"
-              type = "password"
+              type = {!this.state.passwordVisibility ? "password" : null}
               onChange={e => {
                 this.handleInputChange('password', e.target.value);
               }}
             />
+            <Button
+            width="1.6rem"
+            background="#424242"
+            boxShadow="null"
+            height="1rem"
+            onClick={() => {this.setState(prevState => ({
+            passwordVisibility: !prevState.passwordVisibility}));}}
+            >
+              {(this.state.passwordVisibility) ?
+                  <EyeStrokeIcon
+                  marginBottom="null"
+                  marginLeft="null"
+              /> : <EyeIcon
+                  marginBottom="null"
+                  marginLeft="null"
+              />}
+
+            </Button>
             </UserWrapper>
             <ButtonContainer>
               <Button
