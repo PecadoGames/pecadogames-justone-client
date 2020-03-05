@@ -15,7 +15,7 @@ export const Button = styled.button`
   width: ${props => props.width || null};
   height: ${props => props.height || "35px"};
   border: none;
-  border-radius: 20px;
+  border-radius: ${props => props.borderRadius || "3px"};
   cursor: ${props => (props.disabled ? "default" : "pointer")};
   opacity: ${props => (props.disabled ? 0.4 : 1)};
   background: ${props => (props.background || "#4CAF50")};

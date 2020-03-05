@@ -6,6 +6,7 @@ import Player from '../../views/Player';
 import { Spinner } from '../../views/design/Spinner';
 import { Button } from '../../views/design/Button';
 import { withRouter } from 'react-router-dom';
+import {Title} from "../../views/Header";
 
 const Container = styled(BaseContainer)`
   color: white;
@@ -22,6 +23,7 @@ const PlayerContainer = styled.li`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 50px;
 `;
 
 class Game extends React.Component {
@@ -84,7 +86,7 @@ class Game extends React.Component {
   render() {
     return (
       <Container>
-        <h2>All users</h2>
+        <Title>All users</Title>
         {!this.state.users ? (
           <div>
             <Spinner/>
@@ -106,7 +108,7 @@ class Game extends React.Component {
               })}
             </Users>
             <Button
-              width="100%"
+              width="50%"
               onClick={() => {
                 this.logout();
               }}

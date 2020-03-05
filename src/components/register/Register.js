@@ -39,7 +39,6 @@ const Form = styled.div`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
-  margin-top: 20px;
 `;
 
 /**
@@ -208,13 +207,23 @@ class Login extends React.Component {
                             <Button
                                 disabled={!this.state.username || !this.state.password ||!this.state.confirmation ||
                                 !(this.state.password === this.state.confirmation)}
-                                width="50%"
+                                width="35%"
                                 onClick={() => {
                                     this.register();
                                 }}
                             >
                                 Sign up
                             </Button>
+                        </ButtonContainer>
+                        <ButtonContainer>
+                        <Button
+                            width="25%"
+                            onClick={() => {
+                                this.props.history.push(`/login`);
+                            }}
+                            >
+                                Back
+                        </Button>
                         </ButtonContainer>
                     </Form>
                 </FormContainer>

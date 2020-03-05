@@ -177,7 +177,7 @@ class Login extends React.Component {
             <ButtonContainer>
               <Button
                 disabled={!this.state.username || !this.state.password}
-                width="50%"
+                width="35%"
                 marginTop="20px"
                 onClick={() => {
                   this.login();
@@ -188,7 +188,7 @@ class Login extends React.Component {
             </ButtonContainer>
             <ButtonContainer>
               <Button
-                  width="50%"
+                  width="25%"
                   onClick={() => {
                     this.props.history.push(`/register`);
                   }}

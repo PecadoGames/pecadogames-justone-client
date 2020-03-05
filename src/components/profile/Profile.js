@@ -8,6 +8,7 @@ import {UserWrapper} from "../../views/design/UserWrapper";
 import {CakeIcon, CreationIcon, OfflineIcon, OnlineIcon, UserIcon} from "../../views/design/Icon";
 import {InputField} from "../../views/design/InputField";
 import User from "../shared/models/User";
+import {Title} from "../../views/Header";
 
 const Container = styled(BaseContainer)`
   color: white;
@@ -79,15 +80,19 @@ class Profile extends React.Component {
 
     canEdit(){
         if(localStorage.getItem('id') === this.state.id){
-            return <Button
-                disabled={this.state.editable}
-                width="75%"
-                onClick={() => {
-                    this.setState(prevState => ({editable: !prevState.editable}));
-                }}
+            return <div>
+                <Button
+                    marginTop="20px"
+                    disabled={this.state.editable}
+                    width="35%"
+                    borderRadius="3px"
+                    onClick={() => {
+                        this.setState(prevState => ({editable: !prevState.editable}));
+                    }}
             >
                 Edit
             </Button>
+            </div>
         }
     }
 
@@ -126,10 +131,12 @@ class Profile extends React.Component {
     render() {
         return (
             <Container>
+                <Title>User Page</Title>
                 <h2>{(this.state.editable) ? "Editing User" : this.state.username}</h2>
                 <div>
                     <UserWrapper
-                    borderRadius="3px">
+                        marginTop="30px"
+                        borderRadius="3px">
                         <UserIcon
                             marginLeft="1px"
                             marginBottom="none"
@@ -189,14 +196,15 @@ class Profile extends React.Component {
                     </UserWrapper>
                     {this.canEdit()}
                     <Button
-                        width="75%"
+                        width="45%"
+                        borderRadius="3px"
                         onClick={() => {
                             (localStorage.getItem('id') === this.state.id)
                                 ? this.updateUser() : this.backToOverview();
                             this.backToOverview();
                         }}
                     >
-                        Done
+                        {(this.state.editable) ? "Done" : "Back"}
                     </Button>
                 </div>
             </Container>
