@@ -136,7 +136,7 @@ class Login extends React.Component {
             />
             <Button
                 width="1.6rem"
-                background="#424242"
+                background={"#424242"}
                 boxShadow="null"
                 height="1rem"
                 disabled="true"
@@ -157,7 +157,7 @@ class Login extends React.Component {
             />
             <Button
             width="1.6rem"
-            background="#424242"
+            background={"#424242"}
             boxShadow="null"
             height="1rem"
             onClick={() => {this.setState(prevState => ({
