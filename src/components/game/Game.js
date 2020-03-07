@@ -16,6 +16,7 @@ const Container = styled(BaseContainer)`
 const Users = styled.ul`
   list-style: none;
   padding-left: 0;
+  margin-top: 50px;
 `;
 
 const PlayerContainer = styled.li`
@@ -23,7 +24,7 @@ const PlayerContainer = styled.li`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  margin-top: 5px;
 `;
 
 class Game extends React.Component {
