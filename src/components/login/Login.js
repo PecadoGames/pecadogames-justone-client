@@ -17,11 +17,7 @@ const Container = styled.div`
   align.item: center;
   width: 100%;
   height: 100%;
-  font-size: 16px;
-  font-weight: 300;
-
- 
-
+  font-size: 30px;
 `;
 const Label = styled.label`
   color: black;

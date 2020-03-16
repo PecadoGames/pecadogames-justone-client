@@ -18,6 +18,7 @@ const Container = styled.div`
 
 export const Title = styled.h1`
   font-weight: bold;
+  font-size: 60px;
   color: white;
   text-align: center;
 `;
