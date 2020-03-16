@@ -30,7 +30,8 @@ class Profile extends React.Component {
     }
 
     async updateUser() {
-        if(this.state.user.username !== this.state.username){
+        var reWhiteSpace = new RegExp("/^\s+$/");
+        if(this.state.user.username !== this.state.username && reWhiteSpace.test(this.state.user.username)){
             this.state.user.username = this.state.username
         }
         else{

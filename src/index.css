@@ -28,3 +28,10 @@ button {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
+
+.error-message {
+  background-color: #ff7272;
+  color: white;
+  padding: 1em;
+
+}

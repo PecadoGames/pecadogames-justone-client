@@ -10,6 +10,26 @@ import {Title} from "../../views/Header"
 import {UserWrapper} from "../../views/design/UserWrapper";
 import {LockIcon, UserIcon, EyeIcon, EyeStrokeIcon} from "../../views/design/Icon";
 
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align.item: center;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  font-weight: 300;
+
+ 
+
+`;
+const Label = styled.label`
+  color: black;
+  margin-bottom: 10px;
+  font-weight: 900;
+  font-size: 40px;
+  font-family: 'Open Sans' 
+`;
 
 const FormContainer = styled.div`
   margin-top: 2em;
@@ -63,7 +83,8 @@ class Login extends React.Component {
     this.state = {
       username: null,
       password: null,
-      passwordVisibility: false
+      passwordVisibility: false,
+      showError: false
     };
   }
   /**
@@ -71,10 +92,21 @@ class Login extends React.Component {
    * If the request is successful, a new user is returned to the front-end
    * and its token is stored in the localStorage.
    */
+  toggleError = () => {
+    this.setState((prevState, props) => {return{showError: !prevState.showError}
+    })
+  };
+
+  toggleErrorFalse = () => {
+    this.setState((prevState, props) => {return{showError: false}
+    })
+  };
 
 
   async login() {
     try {
+      this.toggleErrorFalse();
+
       const requestBody = JSON.stringify({
         username: this.state.username,
         password: this.state.password
@@ -85,12 +117,15 @@ class Login extends React.Component {
       const response = await api.get(url.headers.location);
       const user = new User(response.data);
 
-      // Store the token into the local storage.
-      localStorage.setItem('token', user.token);
-      localStorage.setItem('id', user.id);
+      if (user.token != null){
+        localStorage.setItem('token', user.token);
+        localStorage.setItem('id', user.id);
+        this.props.history.push(`/game`);
+      }
 
-      // Login successfully worked --> navigate to the route /game in the GameRouter
-      this.props.history.push(`/game`);
+      if(url.status === 204){
+        this.toggleError();
+      }
     } catch (error) {
       alert(`Something went wrong during the login: \n${handleError(error)}`);
     }
@@ -119,6 +154,9 @@ class Login extends React.Component {
   render() {
     return (
       <BaseContainer>
+        <Container>
+          {this.state.showError && <Label className="error-message">User is already logged in!</Label>}
+        </Container>
         <Title>Login</Title>
         <FormContainer>
           <Form>
