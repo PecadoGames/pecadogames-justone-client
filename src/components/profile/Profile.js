@@ -30,12 +30,12 @@ class Profile extends React.Component {
     }
 
     async updateUser() {
-        var reWhiteSpace = new RegExp("/^\s+$/");
-        if(this.state.user.username !== this.state.username && reWhiteSpace.test(this.state.user.username)){
+        if(this.state.user.username !== this.state.username){
             this.state.user.username = this.state.username
         }
         else{
             this.state.user.username = null
+
         }
         if(this.state.user.birthday !== this.state.birthday){
             this.state.user.birthday = this.state.birthday
@@ -49,15 +49,28 @@ class Profile extends React.Component {
                 birthday: this.state.user.birthday,
                 token: localStorage.getItem('token')
             });
-            await api.put('/users/'+this.state.id, requestBody)
+            await api.put('/users/'+this.state.id, requestBody);
+
         }
         catch(error){
             alert(`Something went wrong during the user update: \n${handleError(error)}`);
         }
     }
 
-    backToOverview(){
-        this.props.history.push('/game/dashboard');
+    async backToOverview(){
+        if(!this.state.editable){
+            this.props.history.push(`/game`);
+        }
+        await api.get('/users/'+this.state.id)
+            .then(response => {return new User(response.data)})
+            .then(data => this.setState(
+                {user: data,
+                    username: data.username,
+                    birthday: this.parseDate(data.birthday),
+                    status: data.logged_in,
+                    creationDate: this.parseDate(data.creation_date)})
+            );
+        this.disableEdit();
     }
 
     handleInputChange(key, value) {
@@ -77,6 +90,12 @@ class Profile extends React.Component {
             marginLeft="1px"
             marginBottom="none"
         />
+    }
+
+    disableEdit(){
+
+        this.setState(prevState => ({editable: !prevState.editable}));
+
     }
 
     canEdit(){
