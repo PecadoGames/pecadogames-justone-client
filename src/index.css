@@ -13,10 +13,16 @@
 This file contains the general and shared style of your application.
  */
 body {
-  margin: 0;
-  padding: 0;
+  background-color: #000000;
   font-family: "Neue-Pixel-Sans", sans-serif;
-  background: #212121;
+  background-image: url('MafiaDoor.gif');
+  background-size: 1400px 1400px, contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  ;
+
+
 }
 
 input,
@@ -42,5 +48,6 @@ button {
   background-color: #ff7272;
   color: white;
   padding: 1em;
-
 }
+
+
