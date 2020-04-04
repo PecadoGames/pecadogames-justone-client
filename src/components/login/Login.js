@@ -9,6 +9,10 @@ import {InputField} from "../../views/design/InputField";
 import {Title} from "../../views/Header"
 import {UserWrapper} from "../../views/design/UserWrapper";
 import {LockIcon, UserIcon, EyeIcon, EyeStrokeIcon} from "../../views/design/Icon";
+import Sound from 'react-sound';
+import sample from '../login/assets/Sample.mp3'
+
+
 
 const Container = styled.div`
   display: flex;
@@ -150,6 +154,11 @@ class Login extends React.Component {
   render() {
     return (
       <BaseContainer>
+        <Sound url={sample}
+               playStatus={Sound.status.PLAYING}
+               playFromPosition={300}
+               volume={20}
+          />
         <Container>
           {this.state.showError && <Label className="error-message">User is already logged in!</Label>}
         </Container>

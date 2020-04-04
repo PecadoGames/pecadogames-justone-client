@@ -15,8 +15,8 @@ This file contains the general and shared style of your application.
 body {
   background-color: #000000;
   font-family: "Neue-Pixel-Sans", sans-serif;
-  background-image: url('MafiaDoor.gif');
-  background-size: 1400px 1400px, contain;
+  background-image: url('BrickWall3Pixalated.png');
+  background-size: auto auto, cover;
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
