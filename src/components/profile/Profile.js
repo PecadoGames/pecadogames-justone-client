@@ -10,9 +10,88 @@ import {InputField} from "../../views/design/InputField";
 import User from "../shared/models/User";
 import {Title} from "../../views/Header";
 
-const Container = styled(BaseContainer)`
-  color: white;
-  text-align: center;
+const TextContainer = styled.div`
+  background: #6e6e6e;
+  column-count: 2;
+  margin-top: 12px;
+  padding-top:8px;
+`;
+
+const TextLeft = styled.body`
+  background: #6e6e6e;
+  margin: 0px;
+  margin-left: 5px;
+  text-align: left;
+  font-size:20px;
+`;
+
+const TextRight = styled(TextLeft)`
+  margin: 5px;
+  margin-right: 5px;
+  text-align: right;
+
+`;
+
+const ProfileContainer = styled(BaseContainer)`
+  padding: 2em;
+  padding-top: 5px;
+  background: #828282;
+  width: 700px;
+`;
+
+const One = styled.div`
+    width: 30%;
+    float: left;
+`;
+
+const Two = styled.div`
+    margin-left: 35%;
+    width: 60%
+`;
+
+const ProfilePicContainer = styled(BaseContainer)`
+    border: 2px solid black;
+    width: 200px;
+    height: 200px;
+    margin-left: 5px;
+`;
+
+const PixelButton = styled.button`
+    border: 2px solid black;
+    margin-left: 5px;
+    width: 200px;
+    color: black;
+    background: #b3b3b3;
+    text-overflow: clip;
+    margin-top: 20px;
+    &:hover {
+    background: #c9c9c9;
+    }
+    
+`;
+
+const EditProfileButton = styled(PixelButton)`
+    background: #AE3C3C;
+    width: 100%;
+    margin-left:0px;
+    margin-top:38px;
+    &:hover {
+    background: #cf4e4e;
+    }
+`;
+
+const FriendsButton = styled(PixelButton)`
+    color: white;
+    background: #118f33;
+    &:hover {
+        background: #25ba4d;
+    }
+`;
+
+const Line = styled.hr`
+  border: 2px solid black;
+  margin-top: 0px;
+  margin-bottom: 10px;
 `;
 
 class Profile extends React.Component {
@@ -150,12 +229,54 @@ class Profile extends React.Component {
 
     render() {
         return (
-            <Container>
+            <ProfileContainer>
+                <Title>Profile Page</Title>
+                <Line/>
+                <One>
+                    <ProfilePicContainer>
+                        <p> profile pic </p>
+                    </ProfilePicContainer>
+                    <PixelButton>Change Picture</PixelButton>
+                    <FriendsButton>Friends</FriendsButton>
+                    <PixelButton>Back</PixelButton>
+                </One>
+                <Two>
+                    <TextContainer>
+                        <TextLeft>Username:</TextLeft>
+                        <TextRight>{this.state.username}</TextRight>
+                    </TextContainer>
+                    <TextContainer>
+                        <TextLeft>Name:</TextLeft>
+                        <TextRight>Name</TextRight>
+                    </TextContainer>
+                    <TextContainer>
+                        <TextLeft>Birthday:</TextLeft>
+                        <TextRight>01.02.1998</TextRight>
+                    </TextContainer>
+                    <TextContainer>
+                        <TextLeft>Joined on:</TextLeft>
+                        <TextRight>03.04.2020</TextRight>
+                    </TextContainer>
+                    <TextContainer>
+                        <TextLeft>Score:</TextLeft>
+                        <TextRight>420</TextRight>
+                    </TextContainer>
+                    <TextContainer>
+                        <TextLeft>Bitches fucked:</TextLeft>
+                        <TextRight>69</TextRight>
+                    </TextContainer>
+                    <EditProfileButton>Edit Profile</EditProfileButton>
+                </Two>
+
+
+            </ProfileContainer>
+            /**
+            <ProfileContainer>
                 <Title>User Page</Title>
                 <h2>{(this.state.editable) ? "Editing User" : this.state.username}</h2>
                 <div>
                     <UserWrapper
-                        marginTop="30px"
+                        marginTop="5px"
                         borderRadius="3px">
                         <UserIcon
                             marginLeft="1px"
@@ -197,7 +318,7 @@ class Profile extends React.Component {
                         />
                     </UserWrapper>
                     <UserWrapper
-                        borderRadius="3px">
+                        >
                         <CakeIcon
                         marginLeft="1px"
                         marginBottom="none"
@@ -227,7 +348,8 @@ class Profile extends React.Component {
                         {(this.state.editable) ? "Done" : "Back"}
                     </Button>
                 </div>
-            </Container>
+            </ProfileContainer>
+             */
         );
     }
 }
