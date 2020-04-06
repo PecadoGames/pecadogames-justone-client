@@ -15,11 +15,13 @@ This file contains the general and shared style of your application.
 body {
   background-color: #000000;
   font-family: "Neue-Pixel-Sans", sans-serif;
-  background-image: url('BrickWall3Pixalated.png');
+
   background-size: auto auto, cover;
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
+  align-content: center;
+
   ;
 
 
@@ -33,6 +35,7 @@ button {
   line-height: inherit;
   font-size: 24px;
   outline: none;
+  cursor: url("MafiaDoor.png"), pointer;
 }
 
 *:focus {
@@ -49,5 +52,36 @@ button {
   color: white;
   padding: 1em;
 }
+
+.backgroundLogin{
+  background-image: url("MafiaDoor.png");
+  background-size: 800px 800px, contain;
+  background-repeat: no-repeat;
+  margin-left: calc(50% - 400px);
+  margin-top: 30px;
+
+}
+.backgroundLoginGif{
+  background-image: url("MafiaDoor.gif");
+  background-size: 800px 800px, contain;
+  background-repeat: no-repeat;
+  margin-left: calc(50% - 400px);
+  margin-top: 30px;
+}
+.backgroundLoginGif2{
+  background-image: url("MafiaDoor.gif");
+  background-size: 800px 800px, contain;
+  background-repeat: no-repeat;
+  margin-left: calc(50% - 400px);
+  margin-top: 30px;
+}
+
+.buttonImage{
+  background-image: url("membercard.png");
+  background-size:  205px 85px ;
+  background-repeat: no-repeat;
+}
+
+
 
 

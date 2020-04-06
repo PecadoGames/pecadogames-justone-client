@@ -3,9 +3,8 @@ import styled from "styled-components";
 export const UserWrapper = styled.div`
   display: flex;
   align-items: center;
-  background: ${props => props.background || "#424242"};
   border: none;
-  margin-left: -4px;
+  margin-left: ${props => props.marginleft || "-30px"};
   margin-bottom: 20px;
   margin-top: ${props => props.marginTop || null};
   box-shadow: none;

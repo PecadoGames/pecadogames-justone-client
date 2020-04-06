@@ -2,20 +2,22 @@ import styled from "styled-components";
 
 export const Button = styled.button`
   &:hover {
-    transform: translateY(-2px);
+    transform: ${props => props.hover || "translateY(-2px)"}
   }
   margin-bottom: 20px;
   margin-top: ${props => props.marginTop || null}
+  margin-left: ${props => props.marginLeft || null}
   padding: 6px;
   font-size: 24px;
-  text-align: center;
-  color: #ffffff;
+  text-align: ${props => props.text || "center"};
+  color: ${props => props.color || "#ffffff"};
+ 
   width: ${props => props.width || null};
   height: ${props => props.height || "40px"};
   border: none;
   border-radius: ${props => props.borderRadius || "3px"};
   cursor: ${props => (props.disabled ? "default" : "pointer")};
-  opacity: ${props => (props.disabled ? 0.4 : 1)};
+  opacity: ${props => (props.opacity ? 0.4 : 1)};
   background: ${props => (props.background || "#4CAF50")};
   transition: all 0.15s ease;
   box-shadow: ${props => (props.boxShadow 
