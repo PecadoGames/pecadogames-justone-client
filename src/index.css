@@ -59,7 +59,6 @@ button {
   background-repeat: no-repeat;
   margin-left: calc(50% - 400px);
   margin-top: 30px;
-
 }
 .backgroundLoginGif{
   background-image: url("MafiaDoor.gif");
@@ -82,6 +81,26 @@ button {
   background-repeat: no-repeat;
 }
 
+.backgroundLogin{
+  background-image: url("MafiaDoor.png");
+  background-size: 800px 800px, contain;
+  background-repeat: no-repeat;
+  margin-left: calc(50% - 400px);
+  margin-top: 30px;
+}
 
+.backgroundMain{
+  background-image: url("main_background.png");
+  background-size: 1200px 800px, contain;
+  background-repeat: no-repeat;
+  margin:auto;
+}
+
+.handWithCard{
+  background-image:url("handCard.png");
+  background-size: 600px 700px, contain;
+  background-repeat: no-repeat;
+  margin:auto;
+}
 
 

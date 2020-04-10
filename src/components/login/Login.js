@@ -35,8 +35,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-
-  
 `;
 
 
@@ -118,7 +116,7 @@ class Login extends React.Component {
         if(url.status === 204){
             this.toggleError();
         }
-     }   catch (error) {
+     }catch (error) {
          alert(`Something went wrong during the login: \n${handleError(error)}`);
         }
 
@@ -165,7 +163,6 @@ class Login extends React.Component {
 
     render() {
     return (
-
         <FormContainer className={this.state.picture}
         >
           <Container>
