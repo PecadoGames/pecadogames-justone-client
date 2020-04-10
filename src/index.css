@@ -77,9 +77,18 @@ button {
 }
 
 .buttonImage{
-  background-image: url("membercard.png");
-  background-size:  205px 85px ;
+  background-image: url("PixleHandy.png");
+  background-size:  200px 365px, contain ;
   background-repeat: no-repeat;
+}
+
+.handyImage{
+  background-image: url("BigHandy.png");
+  background-size:  400px 730px, contain ;
+  background-repeat: no-repeat;
+  background-repeat: no-repeat;
+  margin-left: calc(50% - 200px);
+  margin-top: 30px;
 }
 
 

@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { BaseContainer } from '../../helpers/layout';
 import { api, handleError } from '../../helpers/api';
 import User from '../shared/models/User';
 import { withRouter } from 'react-router-dom';
@@ -8,19 +7,13 @@ import { Button } from '../../views/design/Button';
 import {InputField} from "../../views/design/InputField";
 import {Title} from "../../views/Header"
 import {UserWrapper} from "../../views/design/UserWrapper";
-import {LockIcon, UserIcon, EyeIcon, EyeStrokeIcon} from "../../views/design/Icon";
 import Sound from 'react-sound';
 import open_creaky_door from '../login/assets/open_creaky_door.mp3'
-import clubMusic from '../login/assets/CheckieBrown.mp3'
-import nightNoise from '../login/assets/ftus_city_ambience_night_rooftop_city_hum_distant_traffic_insects_sirens_doha_qatar_687.mp3'
 
 
-const Text = styled.div`
-      font-size: 21px;
-      color: #ffffff
-      margin-top: 100px;
-      margin-left 600px;
-`
+
+
+
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -65,11 +58,17 @@ class Login extends React.Component {
       showError: false,
       picture: "backgroundLogin",
       playStatus: Sound.status.STOPPED,
-      musicPosition: 100,
       logIn: false,
-      musicStatus: Sound.status.PLAYING
-
+      register: true
     };
+  }
+
+  _handleKeyDown = (e) => {
+      if (e.key === 'Enter'){
+          this.logging();
+          this.handleDoor();
+          this.login();
+      }
   }
 
   toggleError = () => {
@@ -88,7 +87,6 @@ class Login extends React.Component {
 
   unToggleSound(){
       this.handleInputChange('playStatus', Sound.status.STOPPED)
-      this.handleInputChange('musicStatus', Sound.status.PLAYING);
   }
 
 
@@ -151,12 +149,10 @@ class Login extends React.Component {
       this.handleInputChange('logIn', true)
   }
 
-  componentDidMount() {
 
-  }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
-      if(this.state.logIn !== nextState.logIn || this.state.playStatus !== nextState.playStatus || this.state.musicStatus !== nextState.musicStatus){
+      if(this.state.logIn !== nextState.logIn || this.state.playStatus !== nextState.playStatus ){
           return true;}
       return false;
   }
@@ -165,26 +161,13 @@ class Login extends React.Component {
 
     render() {
     return (
-
         <FormContainer className={this.state.picture}
         >
           <Container>
               <Sound url={open_creaky_door}
                      playStatus={this.state.playStatus}
-                     playFromPosition={this.state.musicPosition}
+                     playFromPosition={100}
                      volume={20}
-              />
-              <Sound url={clubMusic}
-                     playStatus={this.state.musicStatus}
-                     playFromPosition={10}
-                     volume={80}
-                     loop={true}
-              />
-              <Sound url={nightNoise}
-                     playStatus={Sound.status.PLAYING}
-                     playFromPosition={0}
-                     volume={15}
-                     loop={true}
               />
             {this.state.showError && <Label className="error-message">User is already logged in!</Label>}
           </Container>
@@ -197,6 +180,7 @@ class Login extends React.Component {
                     onChange={e =>{
                       this.handleInputChange('username', e.target.value)
                     }}
+                    onKeyDown={this._handleKeyDown}
                 />
                 <Button
                     width="1.6rem"
@@ -215,6 +199,7 @@ class Login extends React.Component {
                       this.handleInputChange('password', e.target.value);
 
                     }}
+                    onKeyDown={this._handleKeyDown}
                 />
 
               </UserWrapper>
@@ -236,17 +221,16 @@ class Login extends React.Component {
                 >
                 </Button>
               </ButtonContainer>
-            <Text> Get MemberCard</Text>
               <ButtonContainer>
                 <Button
                     marginTop = "10px"
                     marginLeft = "600px"
                     color = "red"
                     text= "left"
-                    width="150px"
+                    width="200px"
                     background= "null"
                     className= "buttonImage"
-                    height= "80px"
+                    height= "365px"
                     onClick={() => {
                       this.props.history.push(`/register`);
                     }}
@@ -256,8 +240,6 @@ class Login extends React.Component {
         </FormContainer>
 
     )
-
-
   }
 }
 
