@@ -22,8 +22,6 @@ body {
   background-attachment: fixed;
   align-content: center;
 
-  ;
-
 
 }
 
@@ -81,13 +79,6 @@ button {
   background-repeat: no-repeat;
 }
 
-.backgroundLogin{
-  background-image: url("MafiaDoor.png");
-  background-size: 800px 800px, contain;
-  background-repeat: no-repeat;
-  margin-left: calc(50% - 400px);
-  margin-top: 30px;
-}
 
 .backgroundMain{
   background-image: url("main_background.png");
@@ -99,7 +90,6 @@ button {
 .handyImage{
   background-image: url("BigHandy.png");
   background-size:  400px 730px, contain ;
-  background-repeat: no-repeat;
   background-repeat: no-repeat;
   margin-left: calc(50% - 200px);
   margin-top: 30px;

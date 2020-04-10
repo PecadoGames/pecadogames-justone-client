@@ -4,7 +4,7 @@ import {BaseContainer} from '../../helpers/layout';
 import {api, handleError} from '../../helpers/api';
 import {Button} from '../../views/design/Button';
 import {withRouter} from 'react-router-dom';
-import {CakeIcon, CreationIcon, OfflineIcon, OnlineIcon, UserIcon} from "../../views/design/Icon";
+import { OfflineIcon, OnlineIcon} from "../../views/design/Icon";
 import User from "../shared/models/User";
 import {Title} from "../../views/Header";
 

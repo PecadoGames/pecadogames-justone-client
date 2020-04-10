@@ -3,7 +3,6 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { GameGuard } from "../routeProtectors/GameGuard";
 import GameRouter from "./GameRouter";
 import { LoginGuard } from "../routeProtectors/LoginGuard";
-import Login from "../../login/Login";
 import Register from "../../login/Register";
 import LoginBase from "../../login/LoginBase";
 

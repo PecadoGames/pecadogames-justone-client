@@ -1,15 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { api, handleError } from '../../helpers/api';
-import User from '../shared/models/User';
 import { withRouter } from 'react-router-dom';
 import { Button } from '../../views/design/Button';
 import {InputField} from "../../views/design/InputField";
 import {Title} from "../../views/Header"
 import Sound from "react-sound";
 import commercial from "../login/assets/CommercialFunnyMusic.mp3"
-import nightNoise
-    from "./assets/ftus_city_ambience_night_rooftop_city_hum_distant_traffic_insects_sirens_doha_qatar_687.mp3";
+import nightNoise from "./assets/ftus_city_ambience_night_rooftop_city_hum_distant_traffic_insects_sirens_doha_qatar_687.mp3";
 
 
 
@@ -71,7 +69,7 @@ class Register extends React.Component {
 
             // Get the returned user and update a new object.
             const response = await api.get(url.headers.location);
-            const user = await new User(response.data);
+
 
 
             // Login successfully worked --> navigate to the route /game in the GameRouter

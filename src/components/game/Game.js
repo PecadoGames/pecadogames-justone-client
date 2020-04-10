@@ -5,7 +5,7 @@ import { api, handleError } from '../../helpers/api';
 import Player from '../../views/Player';
 import { Spinner } from '../../views/design/Spinner';
 import { Button } from '../../views/design/Button';
-import { withRouter, Prompt } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import {Title} from "../../views/Header";
 
 const Container = styled(BaseContainer)`

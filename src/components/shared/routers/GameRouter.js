@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { Redirect, Route  } from "react-router-dom";
-import Game from "../../game/Game";
 import Profile from "../../profile/Profile";
 import {ProfileGuard} from "../routeProtectors/ProfileGuard";
 import Main from "../../main/Main";
