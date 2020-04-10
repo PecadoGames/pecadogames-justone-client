@@ -4,9 +4,7 @@ import {BaseContainer} from '../../helpers/layout';
 import {api, handleError} from '../../helpers/api';
 import {Button} from '../../views/design/Button';
 import {withRouter} from 'react-router-dom';
-import {UserWrapper} from "../../views/design/UserWrapper";
 import {CakeIcon, CreationIcon, OfflineIcon, OnlineIcon, UserIcon} from "../../views/design/Icon";
-import {InputField} from "../../views/design/InputField";
 import User from "../shared/models/User";
 import {Title} from "../../views/Header";
 

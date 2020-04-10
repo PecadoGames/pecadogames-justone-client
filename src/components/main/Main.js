@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import {withRouter} from "react-router-dom";
-import Background from './assets/main_background.png';
 import {LogoutButton} from "../../views/design/LogoutButton"
 import {api, handleError} from "../../helpers/api";
 
