@@ -19,7 +19,7 @@ export const Button = styled.button`
   cursor: ${props => (props.disabled ? "default" : "pointer")};
   opacity: ${props => (props.opacity ? 0.4 : 1)};
   background: ${props => (props.background || "#4CAF50")};
-  transition: all 0.15s ease;
+  transition: ${props => (props.transition || "all 0.15s ease")};
   box-shadow: ${props => (props.boxShadow 
     || "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)" || null)};
   :focus{
