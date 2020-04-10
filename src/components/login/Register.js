@@ -65,12 +65,8 @@ class Register extends React.Component {
                 username: this.state.username,
                 password: this.state.password
             });
-            const url = await api.post('/users', requestBody);
 
-            // Get the returned user and update a new object.
-            const response = await api.get(url.headers.location);
-
-
+            await api.post('/users', requestBody);
 
             // Login successfully worked --> navigate to the route /game in the GameRouter
             this.props.history.push(`/login`);
