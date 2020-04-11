@@ -53,6 +53,11 @@ class Main extends React.Component {
         };
     }
 
+    componentDidMount() {
+        this.props.changeMusicToNormal()
+        this.props.stopNoise()
+    }
+
     async logout() {
         try{
             const requestBody = JSON.stringify({
@@ -82,6 +87,7 @@ class Main extends React.Component {
                 >
                     <ButtonContainer>
                         <MainMenuButton
+                            onClick={() => {this.props.history.push(`lobbies`)}}
                              borderColor="#2273f5"
                         >Join Lobby</MainMenuButton>
                         <MainMenuButton

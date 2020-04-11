@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import {withRouter} from "react-router-dom";
-import Sound from 'react-sound';
-
-import clubMusic from '../login/assets/CheckieBrown.mp3'
-import nightNoise from '../login/assets/ftus_city_ambience_night_rooftop_city_hum_distant_traffic_insects_sirens_doha_qatar_687.mp3'
 import Login from '../login/Login'
 import { Button } from '../../views/design/Button';
-
 
 
 
@@ -55,22 +50,7 @@ class LoginBase extends Component {
                 </Text>
                     </FormContainer>
         ) : (
-            <div>
-            <Login></Login>
-                <Sound url={clubMusic}
-                           playStatus={Sound.status.PLAYING}
-                           playFromPosition={10}
-                           volume={60}
-                           loop={true}
-
-            />
-                <Sound url={nightNoise}
-                       playStatus={Sound.status.PLAYING}
-                       playFromPosition={0}
-                       volume={15}
-                       loop={true}
-                />
-            </div>
+                <Login changeMusicToDim={this.props.changeMusicToDim} startNoise={this.props.startNoise}></Login>
         )}
             </div>
 

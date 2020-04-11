@@ -61,6 +61,7 @@ class Login extends React.Component {
     };
   }
 
+
   _handleKeyDown = (e) => {
       if (e.key === 'Enter'){
           this.logging();
@@ -86,7 +87,6 @@ class Login extends React.Component {
   unToggleSound(){
       this.handleInputChange('playStatus', Sound.status.STOPPED)
   }
-
 
 
   async login() {
@@ -147,9 +147,12 @@ class Login extends React.Component {
       this.handleInputChange('logIn', true)
   }
 
+  componentDidMount() {
+      this.props.changeMusicToDim()
+      this.props.startNoise();
+  }
 
-
-  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
       if(this.state.logIn !== nextState.logIn || this.state.playStatus !== nextState.playStatus ){
           return true;}
       return false;

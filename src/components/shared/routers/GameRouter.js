@@ -4,6 +4,8 @@ import { Redirect, Route  } from "react-router-dom";
 import Profile from "../../profile/Profile";
 import {ProfileGuard} from "../routeProtectors/ProfileGuard";
 import Main from "../../main/Main";
+import JoinLobby from "../../lobby/JoinLobby";
+import {JoinLobbyGuard} from "../routeProtectors/JoinLobbyGuard"
 
 const Container = styled.div`
   display: flex;
@@ -20,7 +22,7 @@ class GameRouter extends React.Component {
         <Route
           exact
           path={`${this.props.base}/main`}
-          render={() => <Main />}
+          render={() => <Main changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>}
         />
 
           <Route
@@ -28,11 +30,19 @@ class GameRouter extends React.Component {
               path={`${this.props.base}/users/:id`}
               render={() => (
                   <ProfileGuard>
-                    <Profile />
+                    <Profile changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
                   </ProfileGuard>
               )}
           />
-
+          <Route
+              exact
+              path={`${this.props.base}/lobbies`}
+              render={() => (
+                  <JoinLobbyGuard>
+                  <JoinLobby changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
+                  </JoinLobbyGuard>
+              )}
+              />
         <Route
           exact
           path={`${this.props.base}`}

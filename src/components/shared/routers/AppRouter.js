@@ -6,6 +6,7 @@ import { LoginGuard } from "../routeProtectors/LoginGuard";
 import Register from "../../login/Register";
 import LoginBase from "../../login/LoginBase";
 
+
 /**
  * Main router of your application.
  * In the following class, different routes are rendered. In our case, there is a Login Route with matches the path "/login"
@@ -16,16 +17,17 @@ import LoginBase from "../../login/LoginBase";
  * Documentation about routing in React: https://reacttraining.com/react-router/web/guides/quick-start
  */
 class AppRouter extends React.Component {
+
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter >
         <Switch>
           <div>
             <Route
               path="/game"
               render={() => (
                 <GameGuard>
-                  <GameRouter base={"/game"} />
+                  <GameRouter base={"/game"} changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
                 </GameGuard>
               )}
             />
@@ -34,7 +36,7 @@ class AppRouter extends React.Component {
               exact
               render={() => (
                 <LoginGuard>
-                  <LoginBase />
+                  <LoginBase changeMusicToDim={this.props.changeMusicToDim} startNoise={this.props.startNoise}/>
                 </LoginGuard>
               )}
             />
@@ -42,7 +44,7 @@ class AppRouter extends React.Component {
               path="/register"
               exact
               render={() => (
-                  <Register />
+                  <Register changeMusicToDim={this.props.changeMusicToDim} startNoise={this.props.startNoise}/>
               )}
           />
             <Route path="/" exact render={() => <Redirect to={"/game"} />} />
@@ -52,6 +54,8 @@ class AppRouter extends React.Component {
     );
   }
 }
+
+
 /*
 * Don't forget to export your component!
  */

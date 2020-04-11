@@ -7,7 +7,7 @@ import {InputField} from "../../views/design/InputField";
 import {Title} from "../../views/Header"
 import Sound from "react-sound";
 import commercial from "../login/assets/CommercialFunnyMusic.mp3"
-import nightNoise from "./assets/ftus_city_ambience_night_rooftop_city_hum_distant_traffic_insects_sirens_doha_qatar_687.mp3";
+
 
 
 
@@ -87,6 +87,12 @@ class Register extends React.Component {
         this.setState({ [key]: value });
     }
 
+    componentDidMount() {
+        this.props.changeMusicToDim();
+        this.props.startNoise();
+
+    }
+
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         if(this.state.username !== nextState.username || this.state.password !== nextState.password || this.state.confirmation !== nextState.confirmation){
             return false;}
@@ -104,12 +110,6 @@ class Register extends React.Component {
                            playStatus={Sound.status.PLAYING}
                            playFromPosition={800}
                            volume={30}
-                           loop={true}
-                    />
-                    <Sound url={nightNoise}
-                           playStatus={Sound.status.PLAYING}
-                           playFromPosition={100}
-                           volume={15}
                            loop={true}
                     />
                     <Label>Username</Label>

@@ -102,4 +102,17 @@ button {
   margin:auto;
 }
 
+.blankNewsPaper{
+  background-image:url("BlankNewsPaper.png");
+  background-size: 848px 807px, contain;
+  background-repeat: no-repeat;
+  margin:auto;
+}
+
+.backArrow{
+  background-image:url("BackArrow.png");
+  background-size: 40px 27px, contain;
+  background-repeat: no-repeat;
+  margin:auto;
+}
 
