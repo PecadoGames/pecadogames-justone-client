@@ -105,11 +105,7 @@ const FriendsButton = styled(PixelButton)`
     }
 `;
 
-const Line = styled.hr`
-  border: 2px solid black;
-  margin-top: 0px;
-  margin-bottom: 10px;
-`;
+
 
 class Profile extends React.Component {
     constructor() {
@@ -221,6 +217,15 @@ class Profile extends React.Component {
         return day + "." + month + "."+year
     }
 
+    parseStatus(toParse){
+        if(this.state.status === true){
+            return "Online"
+        }
+        else{
+            return "Offline"
+        }
+    }
+
     async componentDidMount() {
         this.props.changeMusicToNormal()
         this.props.stopNoise()
@@ -234,6 +239,7 @@ class Profile extends React.Component {
                         birthday: this.parseDate(data.birthday),
                         status: data.logged_in,
                         creation_date: this.parseDate(data.creation_date)})
+
                 );
         }        catch (error) {
             alert(`Something went wrong while fetching the users: \n${handleError(error)}`);
@@ -253,7 +259,7 @@ class Profile extends React.Component {
                         <FriendsButton>Friends</FriendsButton>
                         <PixelButton
                             onClick={() => {
-                                window.location.href = "../main";
+                                this.props.history.push(`/game`);
                             }}
                         >Back</PixelButton>
                     </One>
@@ -276,7 +282,7 @@ class Profile extends React.Component {
                         </TextContainer>
                         <TextContainer>
                             <TextLeft>Status:</TextLeft>
-                            <TextRight>{this.state.status}</TextRight>
+                            <TextRight>{this.parseStatus(this.state.status)}</TextRight>
                         </TextContainer>
                         {this.canEdit()}
                     </Two>

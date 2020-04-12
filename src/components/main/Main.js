@@ -92,6 +92,9 @@ class Main extends React.Component {
                         >Join Lobby</MainMenuButton>
                         <MainMenuButton
                             borderColor="#0bb845"
+                            onClick={() => {
+                                this.props.history.push(`createLobby`)
+                            }}
                         >Create Lobby</MainMenuButton>
                         <MainMenuButton
                             borderColor="#c73110"

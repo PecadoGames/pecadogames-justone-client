@@ -123,3 +123,17 @@ button {
   margin:auto;
 }
 
+.lobbyCreation{
+  background-image:url("table_with_whiskey.png");
+  background-size: 1290px 860px, contain;
+  background-repeat: no-repeat;
+  margin:auto;
+}
+
+.paperLobby{
+  background-image: url("paper_joinLobby.png");
+  background-size: 900px 900px, contain;
+  background-repeat: no-repeat;
+  margin:auto;
+}
+

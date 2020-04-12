@@ -6,6 +6,7 @@ import {ProfileGuard} from "../routeProtectors/ProfileGuard";
 import Main from "../../main/Main";
 import JoinLobby from "../../lobby/JoinLobby";
 import {JoinLobbyGuard} from "../routeProtectors/JoinLobbyGuard"
+import CreateLobby from "../../lobby/CreateLobby";
 
 const Container = styled.div`
   display: flex;
@@ -43,6 +44,15 @@ class GameRouter extends React.Component {
                   </JoinLobbyGuard>
               )}
               />
+          <Route
+              exact
+              path={`${this.props.base}/createLobby`}
+              render={() => (
+                  <JoinLobbyGuard>
+                      <CreateLobby changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
+                  </JoinLobbyGuard>
+              )}
+          />
         <Route
           exact
           path={`${this.props.base}`}
