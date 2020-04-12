@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import AppRouter from "./components/shared/routers/AppRouter";
 import Sound from "react-sound";
-import clubMusic from "./components/login/assets/CheckieBrown.mp3";
-import nightNoise
-  from "./components/login/assets/ftus_city_ambience_night_rooftop_city_hum_distant_traffic_insects_sirens_doha_qatar_687.mp3";
-import clubMusicNormal from "./components/login/assets/Checkie Brown Normal.mp3";
+import nightNoise from "./Music/ftus_city_ambience_night_rooftop_city_hum_distant_traffic_insects_sirens_doha_qatar_687.mp3";
+import Songs from "./Music/AllSongs.mp3"
+import DimmedSongs from "./Music/AllSongsDimmed.mp3"
 
 /**
  * Happy coding!
@@ -12,11 +11,14 @@ import clubMusicNormal from "./components/login/assets/Checkie Brown Normal.mp3"
  */
 class App extends Component {
   constructor() {
-    super();
-    this.state = {
-      musicUrl: clubMusic,
-      position: 0,
-      nightNoise: Sound.status.PLAYING
+      const min=0;
+      const max=1800000;
+      const random = Math.floor(Math.random() * (+max - +min)) + +min;
+      super();
+      this.state = {
+          musicUrl: Songs,
+          position: random,
+          nightNoise: Sound.status.PLAYING
     }
   }
 
@@ -29,11 +31,11 @@ class App extends Component {
   }
 
   changeMusicToNormal=()=>{
-    this.setState({ musicUrl: clubMusicNormal });
+    this.setState({ musicUrl: Songs });
   }
 
   changeMusicToDim=()=>{
-      this.setState({musicUrl: clubMusic})
+      this.setState({musicUrl: DimmedSongs})
   }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -48,7 +50,7 @@ class App extends Component {
         <AppRouter changeMusicToNormal={this.changeMusicToNormal} changeMusicToDim={this.changeMusicToDim} stopNoise={this.stopNoise} startNoise={this.startNoise}/>
         <Sound url={this.state.musicUrl}
                playStatus={Sound.status.PLAYING}
-               volume={40}
+               volume={24}
                loop={true}
                position={this.state.position}
                onPlaying={({position}) => this.setState({position})}
@@ -57,7 +59,7 @@ class App extends Component {
         <Sound url={nightNoise}
                playStatus={this.state.nightNoise}
                playFromPosition={this.state.position}
-               volume={15}
+               volume={10}
                loop={true}
         />
       </div>
