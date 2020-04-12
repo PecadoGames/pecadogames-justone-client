@@ -6,73 +6,92 @@ import {Button} from '../../views/design/Button';
 import {withRouter} from 'react-router-dom';
 import { OfflineIcon, OnlineIcon} from "../../views/design/Icon";
 import User from "../shared/models/User";
+import {BackgroundContainer} from "../main/Main";
+import {Redirect} from "react-router-dom";
 import {Title} from "../../views/Header";
+
+
+const PhoneContainer = styled.div`
+    margin-top: 10em;
+    display: flex;
+    flex-direction: column;
+    height: 438px;
+    width: 800px;
+    border-radius: 20px;
+    align-items: flex-start;  
+    padding-left: 20px;
+`;
 
 const TextContainer = styled.div`
   background: #6e6e6e;
   column-count: 2;
-  margin-top: 12px;
-  padding-top:8px;
+  margin-top: 0px;
+  margin-bottom: 15px;
+  padding-top:0px;
+  width: 350px;
+  float: left;
+  margin-left: 0px;
 `;
 
 const TextLeft = styled.body`
   background: #6e6e6e;
   margin: 0px;
-  margin-left: 5px;
   text-align: left;
-  font-size:20px;
+  font-size:25px;
 `;
 
 const TextRight = styled(TextLeft)`
-  margin: 5px;
   margin-right: 5px;
   text-align: right;
-
 `;
 
-const ProfileContainer = styled(BaseContainer)`
-  padding: 2em;
-  padding-top: 5px;
+const ProfileContainer = styled.div`
+  margin-top: 65px;
+  margin-bottom: 70px;
+  margin-left: 96px;
+  width: 575px;
+  height:303px;
   background: #828282;
-  width: 700px;
+  padding: 10px;
 `;
 
 const One = styled.div`
     width: 30%;
     float: left;
+    
 `;
 
 const Two = styled.div`
-    margin-left: 35%;
-    width: 60%
+    margin-left: 32%;
 `;
 
-const ProfilePicContainer = styled(BaseContainer)`
+const ProfilePicContainer = styled.div`
     border: 2px solid black;
-    width: 200px;
-    height: 200px;
-    margin-left: 5px;
+    width: 150px;
+    height: 150px;
+    margin-left: 0px;
+    background: #ffffff;
 `;
 
 const PixelButton = styled.button`
     border: 2px solid black;
-    margin-left: 5px;
-    width: 200px;
+    margin-left: 0px;
+    width: 150px;
+    height: 50px;
     color: black;
     background: #b3b3b3;
     text-overflow: clip;
-    margin-top: 20px;
+    margin-top: 15px;
     &:hover {
     background: #c9c9c9;
     }
-    
 `;
 
 const EditProfileButton = styled(PixelButton)`
     background: #AE3C3C;
-    width: 100%;
+    width: 350px;
     margin-left:0px;
-    margin-top:38px;
+    margin-top: -8px;
     &:hover {
     background: #cf4e4e;
     }
@@ -178,17 +197,14 @@ class Profile extends React.Component {
     canEdit(){
         if(localStorage.getItem('id') === this.state.id){
             return <div>
-                <Button
-                    marginTop="20px"
+                <EditProfileButton
                     disabled={this.state.editable}
-                    width="35%"
-                    borderRadius="3px"
                     onClick={() => {
-                        this.setState(prevState => ({editable: !prevState.editable}));
+                        //TODO: add editable components
                     }}
             >
-                Edit
-            </Button>
+                Edit Profile
+            </EditProfileButton>
             </div>
         }
     }
@@ -217,7 +233,7 @@ class Profile extends React.Component {
                         username: data.username,
                         birthday: this.parseDate(data.birthday),
                         status: data.logged_in,
-                        creationDate: this.parseDate(data.creation_date)})
+                        creation_date: this.parseDate(data.creation_date)})
                 );
         }        catch (error) {
             alert(`Something went wrong while fetching the users: \n${handleError(error)}`);
@@ -229,47 +245,44 @@ class Profile extends React.Component {
 
     render() {
         return (
-            <ProfileContainer>
-                <Title>Profile Page</Title>
-                <Line/>
-                <One>
-                    <ProfilePicContainer>
-                        <p> profile pic </p>
-                    </ProfilePicContainer>
-                    <PixelButton>Change Picture</PixelButton>
-                    <FriendsButton>Friends</FriendsButton>
-                    <PixelButton>Back</PixelButton>
-                </One>
-                <Two>
-                    <TextContainer>
-                        <TextLeft>Username:</TextLeft>
-                        <TextRight>{this.state.username}</TextRight>
-                    </TextContainer>
-                    <TextContainer>
-                        <TextLeft>Name:</TextLeft>
-                        <TextRight>Name</TextRight>
-                    </TextContainer>
-                    <TextContainer>
-                        <TextLeft>Birthday:</TextLeft>
-                        <TextRight>01.02.1998</TextRight>
-                    </TextContainer>
-                    <TextContainer>
-                        <TextLeft>Joined on:</TextLeft>
-                        <TextRight>03.04.2020</TextRight>
-                    </TextContainer>
-                    <TextContainer>
-                        <TextLeft>Score:</TextLeft>
-                        <TextRight>420</TextRight>
-                    </TextContainer>
-                    <TextContainer>
-                        <TextLeft>Bitches fucked:</TextLeft>
-                        <TextRight>69</TextRight>
-                    </TextContainer>
-                    <EditProfileButton>Edit Profile</EditProfileButton>
-                </Two>
-
-
-            </ProfileContainer>
+            <BackgroundContainer className={"backgroundMain"}>
+            <PhoneContainer className={"phoneProfile"}>
+                <ProfileContainer>
+                    <One>
+                        <ProfilePicContainer><p>Profile pic</p></ProfilePicContainer>
+                        <FriendsButton>Friends</FriendsButton>
+                        <PixelButton
+                            onClick={() => {
+                                window.location.href = "../main";
+                            }}
+                        >Back</PixelButton>
+                    </One>
+                    <Two>
+                        <TextContainer>
+                            <TextLeft>Username:</TextLeft>
+                            <TextRight>{this.state.username}</TextRight>
+                        </TextContainer>
+                        <TextContainer>
+                            <TextLeft>Score:</TextLeft>
+                            <TextRight>420</TextRight>
+                        </TextContainer>
+                        <TextContainer>
+                            <TextLeft>Joined on:</TextLeft>
+                            <TextRight>{this.state.creation_date}</TextRight>
+                        </TextContainer>
+                        <TextContainer>
+                            <TextLeft>Birthday:</TextLeft>
+                            <TextRight>{this.state.birthday}</TextRight>
+                        </TextContainer>
+                        <TextContainer>
+                            <TextLeft>Status:</TextLeft>
+                            <TextRight>{this.state.status}</TextRight>
+                        </TextContainer>
+                        {this.canEdit()}
+                    </Two>
+                </ProfileContainer>
+            </PhoneContainer>
+            </BackgroundContainer>
             /**
             <ProfileContainer>
                 <Title>User Page</Title>
@@ -349,6 +362,7 @@ class Profile extends React.Component {
                     </Button>
                 </div>
             </ProfileContainer>
+
              */
         );
     }

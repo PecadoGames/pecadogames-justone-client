@@ -116,3 +116,10 @@ button {
   margin:auto;
 }
 
+.phoneProfile{
+  background-image:url("PhoneProfile.png");
+  background-size: 800px 438px, contain;
+  background-repeat: no-repeat;
+  margin:auto;
+}
+
