@@ -23,7 +23,7 @@ const PhoneContainer = styled.div`
 `;
 
 const TextContainer = styled.div`
-  background: #6e6e6e;
+  background: #bfbfbf;
   column-count: 2;
   margin-top: 0px;
   margin-bottom: 15px;
@@ -34,8 +34,9 @@ const TextContainer = styled.div`
 `;
 
 const TextLeft = styled.body`
-  background: #6e6e6e;
+  background: transparent;
   margin: 0px;
+  margin-left: 5px;
   text-align: left;
   font-size:25px;
 `;
@@ -51,7 +52,7 @@ const ProfileContainer = styled.div`
   margin-left: 96px;
   width: 575px;
   height:303px;
-  background: #828282;
+  background: #f0f0f0;
   padding: 10px;
 `;
 
