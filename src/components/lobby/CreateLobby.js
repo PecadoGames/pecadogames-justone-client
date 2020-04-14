@@ -3,6 +3,9 @@ import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import Sound from 'react-sound';
 import {BackgroundContainer} from "../main/Main";
+import {api, handleError} from "../../helpers/api";
+import User from "../shared/models/User";
+import Lobby from "../shared/models/Lobby";
 
 const MenuWrapper = styled.div`
     margin-left: 160px;
@@ -35,12 +38,13 @@ const Title = styled.div`
     margin-left: 0px;
 `;
 
-const InputWrapper = styled.input`
+const Input = styled.input`
     background: #ebd7b9;
     height: 40px;
     width: 80%;
     margin-bottom: 30px;
     margin-left: 5px;
+    padding-left: 5px;
     border: none;
     border-bottom: 2px solid black;
     font-size: 20px;
@@ -62,8 +66,13 @@ const TextWrapper = styled.div`
 const TextWrapper2 = styled(TextWrapper)`
     column-count: 2;
     width: 80px;
-    margin-right: 200px;
     margin-bottom: 20px;
+    margin-right: 20px;
+`;
+
+const InputWrapper = styled.div`
+   column-count:2;
+   width: 400px;
 `;
 
 const ButtonContainer = styled.div`
@@ -80,6 +89,8 @@ const Button = styled.button`
   &:hover {
     background: ${props => props.backgroundHover || "white"}
   }
+  cursor: ${props => (props.disabled ? "default" : "pointer")};
+  opacity: ${props => (props.disabled ? 0.4 : 1)};
 `;
 
 const Text = styled.body`
@@ -87,7 +98,6 @@ const Text = styled.body`
     margin-bottom: 5px;
     background: transparent;
     margin-left: 6px;
-    margin-right: 200px;
     float:left;
 `;
 
@@ -117,25 +127,31 @@ const SmallButton = styled.button`
   background: ${props => props.background|| "white"};
 `;
 
+const YesNoButton = styled(SmallButton)`
+    opacity: ${props => (props.disabled ? 1 : 0.4)};
+    cursor: ${props => (props.disabled ? "default" : "pointer")}
+`;
+
 class CreateLobby extends React.Component {
     constructor() {
         super();
         this.state = {
             lobbyName: null,
-            amountPlayers: 4,
+            numberOfPlayers: 4,
             voiceChat: true,
+            isPrivate:false,
         }
         ;
     }
 
     //this checks if more players can be removed, sets the value and returns the corresponding button
     removePlayers(){
-        if (this.state.amountPlayers > 3){
+        if (this.state.numberOfPlayers > 3){
             return <SmallButton
                 background={"#b03739"}
                 onClick={()=>{
-                        let newAmount = this.state.amountPlayers - 1;
-                        this.setState({amountPlayers: newAmount})
+                        let newAmount = this.state.numberOfPlayers - 1;
+                        this.setState({numberOfPlayers: newAmount})
                 }}
             >-</SmallButton>
         }
@@ -148,12 +164,12 @@ class CreateLobby extends React.Component {
 
     //this checks if more players can be added, sets the value and returns the corresponding button
     addPlayers(){
-        if (this.state.amountPlayers < 7){
+        if (this.state.numberOfPlayers < 7){
             return <SmallButton
                 background={"#5cb349"}
                 onClick={()=>{
-                    let newAmount = this.state.amountPlayers + 1;
-                    this.setState({amountPlayers: newAmount})
+                    let newAmount = this.state.numberOfPlayers + 1;
+                    this.setState({numberOfPlayers: newAmount})
                 }}
             >+</SmallButton>
         }
@@ -164,12 +180,13 @@ class CreateLobby extends React.Component {
         }
     }
 
-    voiceChatEnable(){
+    enableVoiceChat(){
         if (this.state.voiceChat){
             return <SmallButton
                 background={"#88b57f"}
+
                 onClick={()=>{
-                    this.setState({voiceChat:false})
+                    this.setState({voiceChat:true})
                 }}
             >
                 ✓
@@ -181,13 +198,12 @@ class CreateLobby extends React.Component {
         }
     }
 
-
-    voiceChatDisable(){
-        if (!this.state.voiceChat) {
+    disableVoiceChat(){
+        if (this.state.voiceChat) {
             return <SmallButton
                 background={"#cc7a7c"}
                 onClick={() => {
-                    this.setState({voiceChat: true})
+                    this.setState({voiceChat: false})
                 }}
             >
                 X
@@ -200,8 +216,29 @@ class CreateLobby extends React.Component {
         }
     }
 
-    createLobby(){
-        //TODO: create lobby
+    handleInputChange(key, value) {
+        // Example: if the key is username, this statement is the equivalent to the following one:
+        // this.setState({'username': value});
+        this.setState({ [key]: value });
+    }
+
+    async createLobby(){
+        try {
+            const requestBody = JSON.stringify({
+                lobbyName: this.state.lobbyName,
+                numberOfPlayers: this.state.numberOfPlayers,
+                userId: localStorage.getItem("id"),
+                token: localStorage.getItem("token"),
+                isPrivate: this.state.isPrivate,
+                voiceChat: this.state.voiceChat
+            })
+            const response= await api.post("lobbies", requestBody);
+            const lobby = new Lobby(response.data);
+            this.props.history.push(`/lobbies/${lobby.lobbyId}`)
+        }
+        catch(error){
+            alert(`Could not create a lobby. \n${handleError(error)}`)
+        }
     }
 
     render(){
@@ -212,22 +249,72 @@ class CreateLobby extends React.Component {
                         <Title>Create lobby</Title>
                         <Line/>
                         <Text>Lobby Name</Text>
-                        <InputWrapper></InputWrapper>
-                        <Text>Amount of players</Text>
+                        <Input
+                            placeholder={"Enter here..."}
+                            onChange={e =>{
+                                this.handleInputChange('lobbyName', e.target.value)
+                            }}
+                        />
+                        <Text>Enter number of players:     </Text>
                             <TextWrapper>
                                 {this.removePlayers()}
-                                    <Number>{this.state.amountPlayers}</Number>
+                                    <Number>{this.state.numberOfPlayers}</Number>
                                 {this.addPlayers()}
                             </TextWrapper>
-                        <Text>Voice chat?</Text>
+
+                        <InputWrapper>
+                        <div>
+                            <Text>Private lobby?</Text>
+                                <TextWrapper2>
+                                    <YesNoButton
+                                        background={"#5cb349"}
+                                        disabled={this.state.isPrivate}
+                                        onClick={()=>{
+                                            this.setState({isPrivate:true})
+                                        }}
+                                    >
+                                        ✓
+                                    </YesNoButton>
+                                    <YesNoButton
+                                        background={"#b03739"}
+                                        disabled={!this.state.isPrivate}
+                                        onClick={()=>{
+                                            this.setState({isPrivate:false})
+                                        }}
+                                    >
+                                        X
+                                    </YesNoButton>
+                                </TextWrapper2>
+                        </div>
+                        <div>
+                            <Text>Voice chat??</Text>
                             <TextWrapper2>
-                                {this.voiceChatEnable()}
-                                {this.voiceChatDisable()}
+                                <YesNoButton
+                                    background={"#5cb349"}
+                                    disabled={this.state.voiceChat}
+                                    onClick={()=>{
+                                        this.setState({voiceChat:true})
+                                    }}
+                                >
+                                    ✓
+                                </YesNoButton>
+                                <YesNoButton
+                                    background={"#b03739"}
+                                    disabled={!this.state.voiceChat}
+                                    onClick={()=>{
+                                        this.setState({voiceChat:false})
+                                    }}
+                                >
+                                    X
+                                </YesNoButton>
                             </TextWrapper2>
+                        </div>
+                        </InputWrapper>
                         <ButtonContainer>
                             <Button
                                 background={"#e3b268"}
                                 backgroundHover={"#e3bc81"}
+                                disabled={!this.state.lobbyName}
                                 onClick={()=>{
                                     this.createLobby();
                                 }}
