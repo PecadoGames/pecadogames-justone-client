@@ -8,6 +8,10 @@ import JoinLobby from "../../lobby/JoinLobby";
 import {JoinLobbyGuard} from "../routeProtectors/JoinLobbyGuard"
 import CreateLobby from "../../lobby/CreateLobby";
 import Lobby from "../../lobby/Lobby";
+import {EditGuard} from "../routeProtectors/EditGuard"
+import Edit from "../../profile/Edit";
+import {GameGuard} from "../routeProtectors/GameGuard";
+
 
 const Container = styled.div`
   display: flex;
@@ -47,11 +51,20 @@ class GameRouter extends React.Component {
               />
           <Route
               exact
-              path={`${this.props.base}/createLobby`}
+              path={`${this.props.base}/users/:id/edit`}
               render={() => (
                   <JoinLobbyGuard>
-                      <CreateLobby changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
+                      <Edit changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
                   </JoinLobbyGuard>
+              )}
+          />
+          <Route
+              exact
+              path={`${this.props.base}/createLobby`}
+              render={() => (
+                  <GameGuard>
+                      <CreateLobby changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
+                  </GameGuard>
               )}
           />
           <Route
