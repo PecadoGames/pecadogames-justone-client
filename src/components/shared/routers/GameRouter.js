@@ -24,7 +24,7 @@ class GameRouter extends React.Component {
         <Route
           exact
           path={`${this.props.base}/main`}
-          render={() => <Main changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>}
+          render={() => <Main changeMusicToNormal={this.props.changeMusicToNormal} />}
         />
 
           <Route
@@ -32,7 +32,7 @@ class GameRouter extends React.Component {
               path={`${this.props.base}/users/:id`}
               render={() => (
                   <ProfileGuard>
-                    <Profile changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
+                    <Profile changeMusicToNormal={this.props.changeMusicToNormal} />
                   </ProfileGuard>
               )}
           />
@@ -41,7 +41,7 @@ class GameRouter extends React.Component {
               path={`${this.props.base}/lobbies`}
               render={() => (
                   <JoinLobbyGuard>
-                  <JoinLobby changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
+                  <JoinLobby changeMusicToNormal={this.props.changeMusicToNormal} />
                   </JoinLobbyGuard>
               )}
               />
@@ -50,7 +50,7 @@ class GameRouter extends React.Component {
               path={`${this.props.base}/createLobby`}
               render={() => (
                   <JoinLobbyGuard>
-                      <CreateLobby changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
+                      <CreateLobby changeMusicToNormal={this.props.changeMusicToNormal}/>
                   </JoinLobbyGuard>
               )}
           />

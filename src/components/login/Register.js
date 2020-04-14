@@ -89,7 +89,7 @@ class Register extends React.Component {
 
     componentDidMount() {
         this.props.changeMusicToDim();
-        this.props.startNoise();
+
 
     }
 

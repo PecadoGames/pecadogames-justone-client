@@ -55,7 +55,7 @@ class Main extends React.Component {
 
     componentDidMount() {
         this.props.changeMusicToNormal()
-        this.props.stopNoise()
+
     }
 
     async logout() {

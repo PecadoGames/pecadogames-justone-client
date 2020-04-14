@@ -5,6 +5,9 @@ import GameRouter from "./GameRouter";
 import { LoginGuard } from "../routeProtectors/LoginGuard";
 import Register from "../../login/Register";
 import LoginBase from "../../login/LoginBase";
+import Songs from "../../../Music/AllSongs.mp3";
+import Sound from "react-sound";
+import DimmedSongs from "../../../Music/AllSongsDimmed.mp3";
 
 
 /**
@@ -17,7 +20,6 @@ import LoginBase from "../../login/LoginBase";
  * Documentation about routing in React: https://reacttraining.com/react-router/web/guides/quick-start
  */
 class AppRouter extends React.Component {
-
   render() {
     return (
       <BrowserRouter >
@@ -27,7 +29,7 @@ class AppRouter extends React.Component {
               path="/game"
               render={() => (
                 <GameGuard>
-                  <GameRouter base={"/game"} changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
+                  <GameRouter base={"/game"} changeMusicToNormal={this.props.changeMusicToNormal} />
                 </GameGuard>
               )}
             />
@@ -36,7 +38,7 @@ class AppRouter extends React.Component {
               exact
               render={() => (
                 <LoginGuard>
-                  <LoginBase changeMusicToDim={this.props.changeMusicToDim} startNoise={this.props.startNoise}/>
+                  <LoginBase changeMusicToDim={this.props.changeMusicToDim} />
                 </LoginGuard>
               )}
             />
@@ -44,7 +46,7 @@ class AppRouter extends React.Component {
               path="/register"
               exact
               render={() => (
-                  <Register changeMusicToDim={this.props.changeMusicToDim} startNoise={this.props.startNoise}/>
+                  <Register changeMusicToDim={this.props.changeMusicToDim}/>
               )}
           />
             <Route path="/" exact render={() => <Redirect to={"/game"} />} />

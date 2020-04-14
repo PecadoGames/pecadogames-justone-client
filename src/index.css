@@ -144,3 +144,9 @@ button {
   margin: auto;
 }
 
+.lobbyBackground{
+  background-image: url("table.png");
+  background-size: 704px 800px, contain;
+  background-repeat: no-repeat;
+  margin: auto
+}
