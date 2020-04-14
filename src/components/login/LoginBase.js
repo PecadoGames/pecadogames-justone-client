@@ -40,8 +40,8 @@ class LoginBase extends Component {
                     This game is a fangame of the game called "Just One".
                     This game was only made for fun. If you find any glitch, error or bug,
                     please report it via email, link in the description.
-                    <br> </br>
-                    <br> </br>
+                    <br></br>
+                    <br></br>
                     <Button onClick={() => {
                      localStorage.setItem("confirmed", "true");
                      this.forceUpdate();
