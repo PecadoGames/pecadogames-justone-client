@@ -28,6 +28,9 @@ const FormContainer = styled.div`
 
 class LoginBase extends Component {
 
+    componentDidMount() {
+        this.props.changeMusicToDim()
+    }
 
     render(){
         return(
