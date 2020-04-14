@@ -6,14 +6,30 @@ import FlipNewspaper from "../lobby/assets/FlipNewspaper.mp3"
 import {LogoutButton} from "../../views/design/LogoutButton";
 import {api, handleError} from "../../helpers/api";
 import {Button} from "../../views/design/Button";
-import Lobby from "./assets/Lobby";
+import LobbyField from "./assets/LobbyField";
 
+
+const ButtonContainer = styled.div`
+  margin-left: 10px;
+  margin-top: 30px;  
+   align-items: flex-start;  
+  display: flex;
+  flex-direction: column;
+`
 const Text = styled.div`
       font-size: 30px;
       color: #000000
-      margin-left: 90px;
-
+      margin-left: 120px;
 `;
+
+const Number = styled.div`
+      font-size: 10px;
+      color: #000000
+      margin-left: 3px;
+      margin-right: 3px;
+      margin-top: 31px;
+     
+`
 
 const FormContainer = styled.div`
     display: flex;
@@ -40,19 +56,23 @@ const Container = styled.div`
 
 const SmallContainer = styled.div`
   display: flex;
-  flex-direction: row;
-  margin-top: 10px;
+  flex-direction: column;
+  margin-top: 0px;
   margin-left: 10px;
   align-items: flex-start;  
   `
 
 const LobbyContainer = styled.li`
- 
+    
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
   height: auto;
+  width: 330px
+  border: 1px solid
+  margin-top: 5px
+  
  
 `;
 
@@ -67,8 +87,19 @@ class JoinLobby extends React.Component {
 
 
 
-    async getLobbies() {
-
+    async joinLobby(lobbyId) {
+        try {
+            const requestBody = JSON.stringify({
+                lobbyId: lobbyId,
+                userId: localStorage.getItem('id'),
+                token: localStorage.getItem('token')
+            })
+            await api.put('/lobbies/' + lobbyId + '/joins', requestBody);
+            this.props.history.push('game/lobbies/' + lobbyId);
+        }
+        catch(error){
+            alert(`Something went wrong during the joinLobby \n${handleError(error)}`)
+        }
     }
 
 
@@ -103,17 +134,14 @@ class JoinLobby extends React.Component {
             this.props.stopNoise()
             this.props.changeMusicToNormal()
             const response = await api.get('/lobbies')
-            this.setState({lobbies: response.data});
+            this.setState({lobbies: response.data})
+
+
         }
         catch(error){
             alert(`Something went wrong while fetching the users: \n${handleError(error)}`);
         }
     }
-
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-
-    }
-
 
 
     render() {
@@ -132,7 +160,7 @@ class JoinLobby extends React.Component {
                 <Container className={"blankNewsPaper"}>
                     <SmallContainer className={"backArrow"}>
                         <Button
-                        height = "30px"
+                        height = "15px"
                         width="40px"
                         background= "none"
                         opacity= "0"
@@ -145,14 +173,28 @@ class JoinLobby extends React.Component {
                         </Button>
                         <Text>Lobbies</Text>
                     </SmallContainer>
-                    {!this.state.lobbies ? (<div>Work in progress</div>):(
+                    {!this.state.lobbies ? (<div>There are no lobbies</div>):(
                         <SmallContainer>
                     {this.state.lobbies.map(lobby => {
                         return (
-                            <LobbyContainer key={lobby.id}>
-                                <Lobby
+                            <LobbyContainer key={lobby.lobbyId} >
+                                <LobbyField
                                     lobby={lobby}
                                 />
+                                <ButtonContainer className= 'phoneCall'>
+                                <Button
+                                    background = "none"
+                                    hover="none"
+                                    height= "30px"
+                                    boxShadow = "none"
+                                    transition = "none"
+                                    width = "20px"
+                                    color= "black"
+                                    fontSize="10px"
+
+                                    onClick={() => {this.joinLobby(lobby.lobbyId)}}> </Button>
+                                </ButtonContainer>
+                                <Number> *****</Number>
                             </LobbyContainer>
                         );
                     })}

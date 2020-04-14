@@ -137,3 +137,10 @@ button {
   margin:auto;
 }
 
+.phoneCall{
+  background-image: url("PhoneCall.png");
+  background-size: 20px 25px, contain;
+  background-repeat: no-repeat;
+  margin: auto;
+}
+

@@ -8,7 +8,7 @@ export const Button = styled.button`
   margin-top: ${props => props.marginTop || null}
   margin-left: ${props => props.marginLeft || null}
   padding: 6px;
-  font-size: 24px;
+  font-size: ${props => props.fontSize || "24px"}
   text-align: ${props => props.text || "center"};
   color: ${props => props.color || "#ffffff"};
  
