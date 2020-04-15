@@ -100,8 +100,10 @@ class Login extends React.Component {
         });
         const url = await api.put('/login', requestBody);
 
+        const json = JSON.parse(url.data);
+
         // Get the returned user and update a new object.
-        const response = await api.get(url.headers.location);
+        const response = await api.get('/users/' + json);
 
         const user = new User(response.data);
 
