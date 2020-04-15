@@ -1,11 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { withRouter } from 'react-router-dom';
-import Sound from 'react-sound';
-import {BackgroundContainer} from "../main/Main";
+import {withRouter} from 'react-router-dom';
 import {api, handleError} from "../../helpers/api";
-import User from "../shared/models/User";
-import Lobby from "../shared/models/Lobby";
 
 const MenuWrapper = styled.div`
     margin-left: 160px;
@@ -232,14 +228,20 @@ class CreateLobby extends React.Component {
                 isPrivate: this.state.isPrivate,
                 voiceChat: this.state.voiceChat
             })
-            const response= await api.post("lobbies", requestBody);
-            const lobby = new Lobby(response.data);
-            this.props.history.push(`/lobbies/${lobby.lobbyId}`)
+            //posts lobby
+            let response = await api.post("lobbies", requestBody);
+            let url = response.headers.location
+            //gets lobbyId from the location url
+            this.state.lobbyId = url.substring(url.lastIndexOf('/')+1)
+            alert(this.state.lobbyId)
+            //pushes user to lobby
+            this.props.history.push(`game/lobbies/${this.state.lobbyId}`)
         }
         catch(error){
             alert(`Could not create a lobby. \n${handleError(error)}`)
         }
     }
+
 
     render(){
         return (
