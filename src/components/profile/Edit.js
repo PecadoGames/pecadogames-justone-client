@@ -86,7 +86,6 @@ class Profile extends React.Component {
 
     async componentDidMount() {
         this.props.changeMusicToNormal()
-        this.props.stopNoise()
         this.state.id = this.props.match.params.id;
         try {
             await api.get('/users/'+this.state.id)

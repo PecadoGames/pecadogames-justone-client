@@ -57,7 +57,6 @@ class GameRouter extends React.Component {
               render={() => (
                   <JoinLobbyGuard>
                       <Edit changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
-                      <CreateLobby changeMusicToNormal={this.props.changeMusicToNormal}/>
                   </JoinLobbyGuard>
               )}
           />
@@ -73,11 +72,13 @@ class GameRouter extends React.Component {
           <Route
           exact
           path={`${this.props.base}/lobbies/:lobbyId`}
-          render={() =>(<Lobby></Lobby>)}/>
+          render={() =>(<Lobby></Lobby>)}
+          />
           <Route
               exact
               path={`${this.props.base}/lobbies/:lobbyId/game`}
-              render={() =>(<Game></Game>)}/>
+              render={() =>(<Game></Game>)}
+          />
         <Route
           exact
           path={`${this.props.base}`}
