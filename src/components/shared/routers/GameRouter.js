@@ -8,6 +8,7 @@ import JoinLobby from "../../lobby/JoinLobby";
 import {JoinLobbyGuard} from "../routeProtectors/JoinLobbyGuard"
 import CreateLobby from "../../lobby/CreateLobby";
 import Lobby from "../../lobby/Lobby";
+import Game from "../../game/Game"
 
 const Container = styled.div`
   display: flex;
@@ -58,6 +59,10 @@ class GameRouter extends React.Component {
           exact
           path={`${this.props.base}/lobbies/:lobbyId`}
           render={() =>(<Lobby></Lobby>)}/>
+          <Route
+              exact
+              path={`${this.props.base}/lobbies/:lobbyId/game`}
+              render={() =>(<Game></Game>)}/>
         <Route
           exact
           path={`${this.props.base}`}
