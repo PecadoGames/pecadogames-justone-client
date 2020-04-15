@@ -12,22 +12,22 @@ import LobbyField from "./assets/LobbyField";
 const ButtonContainer = styled.div`
   margin-left: 10px;
   margin-top: 30px;  
-   align-items: flex-start;  
+  align-items: flex-start;  
   display: flex;
   flex-direction: column;
 `
 const Text = styled.div`
-      font-size: 30px;
-      color: #000000
-      margin-left: 120px;
+  font-size: 30px;
+  color: #000000
+  margin-left: 120px;
 `;
 
 const Number = styled.div`
-      font-size: 10px;
-      color: #000000
-      margin-left: 3px;
-      margin-right: 3px;
-      margin-top: 31px;
+  font-size: 10px;
+  color: #000000
+  margin-left: 3px;
+  margin-right: 3px;
+  margin-top: 31px;
      
 `
 
@@ -131,7 +131,6 @@ class JoinLobby extends React.Component {
 
     async componentDidMount() {
         try {
-            this.props.stopNoise()
             this.props.changeMusicToNormal()
             const response = await api.get('/lobbies')
             this.setState({lobbies: response.data})
@@ -160,7 +159,7 @@ class JoinLobby extends React.Component {
                 <Container className={"blankNewsPaper"}>
                     <SmallContainer className={"backArrow"}>
                         <Button
-                        height = "15px"
+                        height = "18px"
                         width="40px"
                         background= "none"
                         opacity= "0"

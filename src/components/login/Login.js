@@ -149,7 +149,6 @@ class Login extends React.Component {
 
   componentDidMount() {
       this.props.changeMusicToDim()
-      this.props.startNoise();
   }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {

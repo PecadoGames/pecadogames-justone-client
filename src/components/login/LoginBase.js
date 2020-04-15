@@ -28,6 +28,9 @@ const FormContainer = styled.div`
 
 class LoginBase extends Component {
 
+    componentDidMount() {
+        this.props.changeMusicToDim()
+    }
 
     render(){
         return(
@@ -50,7 +53,7 @@ class LoginBase extends Component {
                 </Text>
                     </FormContainer>
         ) : (
-                <Login changeMusicToDim={this.props.changeMusicToDim} startNoise={this.props.startNoise}></Login>
+                <Login changeMusicToDim={this.props.changeMusicToDim} > </Login>
         )}
             </div>
 
