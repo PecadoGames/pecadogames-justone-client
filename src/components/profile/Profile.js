@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import {BaseContainer} from '../../helpers/layout';
 import {api, handleError} from '../../helpers/api';
-import {Button} from '../../views/design/Button';
 import {withRouter} from 'react-router-dom';
 import { OfflineIcon, OnlineIcon} from "../../views/design/Icon";
 import User from "../shared/models/User";
+import Requests from "./Requests";
 import {BackgroundContainer} from "../main/Main";
-import {PhoneContainer, TextRight, TextLeft, TextContainer, EditProfileButton, PixelButton, One, Two, ProfilePicContainer, ProfileContainer} from "./profileAssets";
-import {Title} from "../../views/Header";
+import {FriendRequestBanner, PhoneContainer, TextRight, TextLeft, TextContainer, EditProfileButton, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, Banner} from "./Assets/profileAssets";
+
+
 
 const FriendsButton = styled(PixelButton)`
     color: white;
@@ -30,7 +30,8 @@ class Profile extends React.Component {
             status: null,
             creationDate: null,
             birthday: null,
-            editable : false
+            editable : false,
+            friendsRequest: null
         };
     }
 
@@ -153,8 +154,15 @@ class Profile extends React.Component {
                         creation_date: this.parseDate(data.creation_date)})
 
                 );
+
+            //get requests to diplay how many are there
+            await api.get('/users/'+this.state.id+'/friendRequests')
+                .then(response => {return new Requests(response.data)})
+                .then(data => this.setState({
+
+                }))
         }        catch (error) {
-            alert(`Something went wrong while fetching the users: \n${handleError(error)}`);
+            alert(`Something went wrong while fetching the users or friends: \n${handleError(error)}`);
         }
             // See here to get more data.
 
@@ -165,10 +173,16 @@ class Profile extends React.Component {
         return (
             <BackgroundContainer className={"backgroundMain"}>
             <PhoneContainer className={"phoneProfile"}>
+                {this.state.friendsRequest ? (<Banner> </Banner>):(<FriendRequestBanner
+                onClick={() => {this.props.history.push(window.location.pathname+ `/requests`)}}>
+                    View Friend Requests
+                </FriendRequestBanner>)}
                 <ProfileContainer>
                     <One>
                         <ProfilePicContainer><p>Profile pic</p></ProfilePicContainer>
-                        <FriendsButton>Friends</FriendsButton>
+                        <FriendsButton
+                            onClick={()=> {this.props.history.push(window.location.pathname + `/friends`)}}
+                        >Friends</FriendsButton>
                         <PixelButton
                             onClick={() => {
                                 this.props.history.push(`/game`);

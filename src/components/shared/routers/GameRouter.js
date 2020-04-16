@@ -11,8 +11,10 @@ import Lobby from "../../lobby/Lobby";
 import {EditGuard} from "../routeProtectors/EditGuard"
 import Edit from "../../profile/Edit";
 import {GameGuard} from "../routeProtectors/GameGuard";
+import Requests from "../../profile/Requests";
 
 import Game from "../../game/Game"
+import Friends from "../../profile/Friends";
 
 
 const Container = styled.div`
@@ -55,9 +57,23 @@ class GameRouter extends React.Component {
               exact
               path={`${this.props.base}/users/:id/edit`}
               render={() => (
-                  <JoinLobbyGuard>
+                  <EditGuard>
                       <Edit changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
-                  </JoinLobbyGuard>
+                  </EditGuard>
+              )}
+          />
+          <Route
+              exact
+              path={`${this.props.base}/users/:id/requests`}
+              render={() => (
+                  <Requests changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
+              )}
+              />
+          <Route
+              exact
+              path={`${this.props.base}/users/:id/friends`}
+              render={() => (
+                  <Friends changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
               )}
           />
           <Route

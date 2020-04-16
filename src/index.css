@@ -118,14 +118,14 @@ button {
 
 .phoneProfile{
   background-image:url("PhoneProfile.png");
-  background-size: 800px 438px, contain;
+  background-size: 1150px 600px, contain;
   background-repeat: no-repeat;
   margin:auto;
 }
 
 .lobbyCreation{
   background-image:url("table_with_whiskey.png");
-  background-size: 1290px 860px, contain;
+  background-size: 1200px 860px, contain;
   background-repeat: no-repeat;
   margin:auto;
 }

@@ -1,16 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import {BaseContainer} from '../../helpers/layout';
 import {api, handleError} from '../../helpers/api';
-import {Button} from '../../views/design/Button';
 import {withRouter} from 'react-router-dom';
-import { OfflineIcon, OnlineIcon} from "../../views/design/Icon";
 import User from "../shared/models/User";
 import {BackgroundContainer} from "../main/Main";
-import {Redirect} from "react-router-dom";
-import {Title} from "../../views/Header";
-import {PhoneContainer, TextRight, TextLeft, TextContainer, PixelButton, One, Two, ProfilePicContainer, ProfileContainer} from "./profileAssets";
-import Lobby from "../shared/models/Lobby";
+import {FriendRequestBanner, PhoneContainer, TextRight, TextLeft, TextContainer, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, Banner} from "./Assets/profileAssets";
+
 
 const InputField = styled.input`
   background: transparent;
@@ -108,6 +103,7 @@ class Profile extends React.Component {
         return (
             <BackgroundContainer className={"backgroundMain"}>
             <PhoneContainer className={"phoneProfile"}>
+                <Banner></Banner>
                 <ProfileContainer>
                     <One>
                         <ProfilePicContainer><p>Profile pic</p></ProfilePicContainer>

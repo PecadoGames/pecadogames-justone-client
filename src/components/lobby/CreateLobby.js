@@ -233,9 +233,9 @@ class CreateLobby extends React.Component {
             let url = response.headers.location
             //gets lobbyId from the location url
             this.state.lobbyId = url.substring(url.lastIndexOf('/')+1)
-            alert(this.state.lobbyId)
             //pushes user to lobby
-            this.props.history.push(`game/lobbies/${this.state.lobbyId}`)
+
+            this.props.history.push('/game/lobbies/' + this.state.lobbyId)
         }
         catch(error){
             alert(`Could not create a lobby. \n${handleError(error)}`)
