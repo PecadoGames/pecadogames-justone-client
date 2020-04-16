@@ -79,9 +79,20 @@ class Profile extends React.Component {
         return day + "." + month + "."+year
     }
 
+    //checks if logged in user has permission to be on this page
+    userHasPermission(){
+        let pathArray = window.location.pathname.split('/');
+        let userId = pathArray[pathArray.length-2];
+        if (userId !== localStorage.getItem("id")){
+            alert("You don't have permissions to edit this profile.")
+            this.props.history.push(`/game/users/${this.state.id}`);
+        }
+    }
+
     async componentDidMount() {
         this.props.changeMusicToNormal()
         this.state.id = this.props.match.params.id;
+        this.userHasPermission()
         try {
             await api.get('/users/'+this.state.id)
                 .then(response => {return new User(response.data)})
