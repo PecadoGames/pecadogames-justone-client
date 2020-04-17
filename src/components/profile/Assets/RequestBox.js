@@ -2,6 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Link, Element, Events, animateScroll as scroll } from 'react-scroll'
 import {withRouter} from "react-router-dom";
+import {api} from "../../../helpers/api";
+import Requests from "../Requests";
 
 
 
@@ -15,7 +17,7 @@ class RequestBox extends React.Component {
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
 
         Events.scrollEvent.register('begin', function () {
             console.log("begin", arguments);
@@ -24,6 +26,10 @@ class RequestBox extends React.Component {
         Events.scrollEvent.register('end', function () {
             console.log("end", arguments);
         });
+        const response = await api.get('/users/'+localStorage.getItem('id')+'/friendRequests')
+        this.setState({['requests']: response.data})
+
+
 
     }
     scrollToTop() {
@@ -45,7 +51,7 @@ class RequestBox extends React.Component {
                 }}>
                     {/* start of messages */}
                     {this.state.requests.map(users => {return(
-                        <Element key = {users.Id} name={users.user}>
+                        <Element key = {users.id} name={users.user}>
                             message
                         </Element>);
                     })}

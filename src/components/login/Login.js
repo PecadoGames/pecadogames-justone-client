@@ -96,16 +96,12 @@ class Login extends React.Component {
 
         const requestBody = JSON.stringify({
             username: this.state.username,
-            password: this.state.password
+            password: this.state.password,
+            token: null
         });
         const url = await api.put('/login', requestBody);
 
-
-
-        // Get the returned user and update a new object.
-        const response = await api.get('/users/' + url.data);
-
-        const user = new User(response.data);
+        const user = new User(url.data);
 
         if (user.token != null){
             localStorage.setItem('token', user.token);
