@@ -13,13 +13,13 @@ export const TextFriend = styled.body`
 `;
 
 
-class FriendBox extends React.Component {
+class UsersBox extends React.Component {
 
     constructor(props) {
         super(props);
         this.scrollToTop = this.scrollToTop.bind(this);
         this.state = {
-            users: []
+            users: [{}]
         }
     }
 
@@ -32,11 +32,21 @@ class FriendBox extends React.Component {
         Events.scrollEvent.register('end', function () {
             console.log("end", arguments);
         });
-        const response = await api.get(`/users/${localStorage.getItem("id")}/friends`)
-        this.setState({['users']: response.data})
+        const response = await api.get(`/users`)
+        const parsedResponse = response.data
+        const index = parsedResponse.findIndex(x => x.id === localStorage.getItem('id'));
+        if (index !== undefined) parsedResponse.splice(index, 1);
+        this.setState({['users']: parsedResponse})
 
     }
 
+    async addUser(userId){
+        const requestBody = JSON.stringify({
+            senderID: localStorage.getItem("id"),
+            token: localStorage.getItem("token"),
+        })
+        await api.put(`/users/${userId}/friendRequests`, requestBody)
+    }
 
     scrollToTop() {
         scroll.scrollToTop();
@@ -57,9 +67,14 @@ class FriendBox extends React.Component {
                 }}>
                     {/* start of messages */}
                     {this.state.users.map(users => {return(
-                        <Element key = {users.id} name={users.user}>
-                          <TextFriend> Username: {users.username}</TextFriend>
-                            <Button onClick={()=>this.props.history.push(`/game/users/${users.id}`)}>View Profile</Button>
+                        <Element key = {users.id} name={users.user} style={{
+                            marginTop: '30px'
+                        }}>
+                            <TextFriend> Username: {users.username} </TextFriend>
+                            <TextFriend> UserID: {users.id}</TextFriend>
+                            <Button onClick={()=>this.addUser(users.id)}>Add as friend</Button>
+
+
                         </Element>);
                     })}
                     {/* end of messages */}
@@ -72,7 +87,6 @@ class FriendBox extends React.Component {
     }
 };
 
-render(<FriendBox />, document.getElementById('root'));
+render(<UsersBox />, document.getElementById('root'));
 
-export default withRouter(FriendBox)
-
+export default withRouter(UsersBox)

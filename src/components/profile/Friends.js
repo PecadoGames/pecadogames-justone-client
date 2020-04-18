@@ -6,6 +6,7 @@ import User from "../shared/models/User";
 import {BackgroundContainer} from "../main/Main";
 import {FriendRequestBanner, PhoneContainer, TextRight, TextLeft, TextContainer, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, Banner} from "./Assets/profileAssets";
 import FriendBox from "./Assets/FriendBox";
+import UsersBox from "./Assets/UsersBox";
 
 
 const InputField = styled.input`
@@ -38,7 +39,9 @@ class Friends extends React.Component {
     constructor() {
         super();
         this.state = {
-            friends: null
+            friends: null,
+            username: null,
+            addUser: false
         };
     }
 
@@ -49,6 +52,13 @@ class Friends extends React.Component {
         this.setState({ [key]: value });
     }
 
+    async addFriend(){
+        if(this.state.addUser){
+        this.handleInputChange('addUser', false)}
+        if(!this.state.addUser){
+            this.handleInputChange('addUser', true)}
+
+    }
 
 
 
@@ -81,9 +91,11 @@ class Friends extends React.Component {
                                     this.props.history.push(`/game/users/${this.state.id}`);
                                 }}
                             >Back</PixelButton>
+                            <PixelButton  onClick={() => {this.addFriend() }}>{this.state.addUser ? ('Friends'): ('Add Friends')}</PixelButton>
                         </One>
                         <Two>
-                           <FriendBox></FriendBox>
+                            {!this.state.addUser ? (<FriendBox></FriendBox>) : (<UsersBox></UsersBox>)}
+
                         </Two>
 
                     </ProfileContainer>

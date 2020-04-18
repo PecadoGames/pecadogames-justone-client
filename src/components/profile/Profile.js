@@ -31,25 +31,10 @@ class Profile extends React.Component {
             creationDate: null,
             birthday: null,
             editable : false,
-            friendsRequest: null,
             score: 0,
+            friendsRequest: [],
+            count: null
         };
-    }
-
-    async backToOverview(){
-        if(!this.state.editable){
-            this.props.history.push(`/game`);
-        }
-        await api.get('/users/'+this.state.id)
-            .then(response => {return new User(response.data)})
-            .then(data => this.setState(
-                {user: data,
-                    username: data.username,
-                    birthday: this.parseDate(data.birthday),
-                    status: data.logged_in,
-                    creationDate: this.parseDate(data.creation_date)})
-            );
-        this.disableEdit();
     }
 
     handleInputChange(key, value) {
@@ -58,27 +43,23 @@ class Profile extends React.Component {
         this.setState({ [key]: value });
     }
 
-    checkStatus(){
-        if(this.state.status){
-            return <OnlineIcon
-                marginLeft="1px"
-                marginBottom="none"
-            />
-        }
-        return <OfflineIcon
-            marginLeft="1px"
-            marginBottom="none"
-        />
-    }
 
     disableEdit(){
+        this.handleInputChange('editable', false)
 
-        this.setState(prevState => ({editable: !prevState.editable}));
+    }
 
+    back(){
+        if(this.state.editable){
+            this.props.history.push(`/game`);
+        }
+        if(!this.state.editable){
+            this.props.history.push(`/game/users/${localStorage.getItem("id")}/friends`)
+        }
     }
 
     canEdit(){
-        if(localStorage.getItem('id') === this.state.id){
+        if(this.state.editable){
             return <div>
                 <EditProfileButton
                     disabled={this.state.editable}
@@ -116,6 +97,9 @@ class Profile extends React.Component {
     async componentDidMount() {
         this.props.changeMusicToNormal()
         this.state.id = this.props.match.params.id;
+        if(localStorage.getItem('id') !== this.state.id){
+            this.disableEdit();
+        }
         try {
             await api.get('/users/'+this.state.id)
                 .then(response => {return new User(response.data)})
@@ -131,36 +115,42 @@ class Profile extends React.Component {
                 );
 
             //get requests to diplay how many are there
-            await api.get('/users/'+this.state.id+'/friendRequests')
-                .then(response => {return new Requests(response.data)})
-                .then(data => this.setState({
+            const response = await api.get('/users/'+this.state.id+'/friendRequests')
+            this.handleInputChange('friendsRequest', response.data)
 
-                }))
         }        catch (error) {
             alert(`Something went wrong while fetching the users or friends: \n${handleError(error)}`);
         }
             // See here to get more data.
+    }
 
-
+    counter(){
+        let count = 0;
+        for(let i = 0; i < this.state.friendsRequest.length; ++i){
+            if(this.state.friendsRequest[i])
+                count++;
+        }
+        this.state.count = count;
     }
 
     render() {
         return (
             <BackgroundContainer className={"backgroundMain"}>
             <PhoneContainer className={"phoneProfile"}>
-                {this.state.friendsRequest ? (<Banner> </Banner>):(<FriendRequestBanner
+                {this.counter()}
+                {!this.state.friendsRequest.length ? (<Banner> </Banner>):(<FriendRequestBanner
                 onClick={() => {this.props.history.push(window.location.pathname+ `/requests`)}}>
-                    View Friend Requests
+                    View Friend Requests ({this.state.count})
                 </FriendRequestBanner>)}
                 <ProfileContainer>
                     <One>
                         <ProfilePicContainer><p>Profile pic</p></ProfilePicContainer>
-                        <FriendsButton
+                        {this.state.editable ? (<FriendsButton
                             onClick={()=> {this.props.history.push(window.location.pathname + `/friends`)}}
-                        >Friends</FriendsButton>
+                        >Friends</FriendsButton>):(<div></div>)}
                         <PixelButton
                             onClick={() => {
-                                this.props.history.push(`/game`);
+                                this.back();
                             }}
                         >Back</PixelButton>
                     </One>
