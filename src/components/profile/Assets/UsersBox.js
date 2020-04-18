@@ -33,9 +33,15 @@ class UsersBox extends React.Component {
             console.log("end", arguments);
         });
         const response = await api.get(`/users`)
+        const friends = await api.get(`/users/${localStorage.getItem('id')}/friends`)
+        const parsedFriends = friends.data
         const parsedResponse = response.data
-        const index = parsedResponse.findIndex(x => x.id === localStorage.getItem('id'));
+        const index = parsedResponse.findIndex(x => x.id.toString() === localStorage.getItem('id'));
         if (index !== undefined) parsedResponse.splice(index, 1);
+        for (let friend in parsedFriends){
+            let indexResponse = parsedResponse.findIndex(x => x.id === parsedFriends[friend].id)
+            if (indexResponse !== undefined || indexResponse !== -1) parsedResponse.splice(indexResponse, 1);
+        }
         this.setState({['users']: parsedResponse})
 
     }

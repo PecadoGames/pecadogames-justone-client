@@ -30,7 +30,7 @@ class Profile extends React.Component {
             status: null,
             creationDate: null,
             birthday: null,
-            editable : false,
+            editable : true,
             score: 0,
             friendsRequest: [],
             count: null
@@ -62,7 +62,7 @@ class Profile extends React.Component {
         if(this.state.editable){
             return <div>
                 <EditProfileButton
-                    disabled={this.state.editable}
+                    disabled={!this.state.editable}
                     onClick={() => {
                         this.props.history.push(`${this.state.id}/edit`)
                     }}
