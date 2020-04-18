@@ -57,11 +57,6 @@ class Friends extends React.Component {
         this.handleInputChange('addUser', false)}
         if(!this.state.addUser){
             this.handleInputChange('addUser', true)}
-        const requestBody = JSON.stringify({
-            senderID: localStorage.getItem("id"),
-            token: localStorage.getItem("token"),
-        })
-        await api.put(`/users/usersid/friendRequests`, requestBody)
 
     }
 

@@ -34,12 +34,19 @@ class UsersBox extends React.Component {
         });
         const response = await api.get(`/users`)
         const parsedResponse = response.data
-        const index = parsedResponse.findIndex(x => x.id === 1);
+        const index = parsedResponse.findIndex(x => x.id === localStorage.getItem('id'));
         if (index !== undefined) parsedResponse.splice(index, 1);
         this.setState({['users']: parsedResponse})
 
     }
 
+    async addUser(userId){
+        const requestBody = JSON.stringify({
+            senderID: localStorage.getItem("id"),
+            token: localStorage.getItem("token"),
+        })
+        await api.put(`/users/${userId}/friendRequests`, requestBody)
+    }
 
     scrollToTop() {
         scroll.scrollToTop();
@@ -65,7 +72,7 @@ class UsersBox extends React.Component {
                         }}>
                             <TextFriend> Username: {users.username} </TextFriend>
                             <TextFriend> UserID: {users.id}</TextFriend>
-                            <Button>Add as friend</Button>
+                            <Button onClick={()=>this.addUser(users.id)}>Add as friend</Button>
 
 
                         </Element>);
