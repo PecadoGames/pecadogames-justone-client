@@ -4,6 +4,7 @@ import { Link, Element, Events, animateScroll as scroll } from 'react-scroll'
 import {withRouter} from "react-router-dom";
 import {api} from "../../../helpers/api";
 import styled from "styled-components";
+import {Button} from "../../../views/design/Button";
 
 export const TextFriend = styled.body`
   background: transparent;
@@ -58,6 +59,7 @@ class FriendBox extends React.Component {
                     {this.state.users.map(users => {return(
                         <Element key = {users.id} name={users.user}>
                           <TextFriend> Username: {users.username}</TextFriend>
+                            <Button onClick={()=>this.props.history.push(`/game/users/${users.id}`)}>View Profile</Button>
                         </Element>);
                     })}
                     {/* end of messages */}

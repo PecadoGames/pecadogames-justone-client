@@ -96,14 +96,6 @@ class Friends extends React.Component {
                         </One>
                         <Two>
                            <FriendBox></FriendBox>
-                            <InputField placeholder="FriendsName"
-                                        username={this.state.username}
-                                        onChange={e =>{
-                                            this.handleInputChange('username', e.target.value)
-                                        }}
-                            >
-
-                            </InputField>
                         </Two>
 
                     </ProfileContainer>

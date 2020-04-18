@@ -30,7 +30,7 @@ class Profile extends React.Component {
             status: null,
             creationDate: null,
             birthday: null,
-            editable : false,
+            editable : true,
             friendsRequest: [],
             count: null
         };
@@ -64,21 +64,6 @@ class Profile extends React.Component {
         }
     }
 
-    async backToOverview(){
-        if(!this.state.editable){
-            this.props.history.push(`/game`);
-        }
-        await api.get('/users/'+this.state.id)
-            .then(response => {return new User(response.data)})
-            .then(data => this.setState(
-                {user: data,
-                    username: data.username,
-                    birthday: this.parseDate(data.birthday),
-                    status: data.logged_in,
-                    creationDate: this.parseDate(data.creation_date)})
-            );
-        this.disableEdit();
-    }
 
     handleInputChange(key, value) {
         // Example: if the key is username, this statement is the equivalent to the following one:
@@ -100,13 +85,21 @@ class Profile extends React.Component {
     }
 
     disableEdit(){
-
-        this.setState(prevState => ({editable: !prevState.editable}));
+        this.handleInputChange('editable', false)
 
     }
 
+    back(){
+        if(this.state.editable){
+            this.props.history.push(`/game`);
+        }
+        if(!this.state.editable){
+            this.props.history.push(`/game/users/${localStorage.getItem("id")}/friends`)
+        }
+    }
+
     canEdit(){
-        if(localStorage.getItem('id') === this.state.id){
+        if(this.state.editable){
             return <div>
                 <EditProfileButton
                     disabled={this.state.editable}
@@ -144,6 +137,9 @@ class Profile extends React.Component {
     async componentDidMount() {
         this.props.changeMusicToNormal()
         this.state.id = this.props.match.params.id;
+        if(localStorage.getItem('id') !== this.state.id){
+            this.disableEdit();
+        }
         try {
             await api.get('/users/'+this.state.id)
                 .then(response => {return new User(response.data)})
@@ -187,12 +183,12 @@ class Profile extends React.Component {
                 <ProfileContainer>
                     <One>
                         <ProfilePicContainer><p>Profile pic</p></ProfilePicContainer>
-                        <FriendsButton
+                        {this.state.editable ? (<FriendsButton
                             onClick={()=> {this.props.history.push(window.location.pathname + `/friends`)}}
-                        >Friends</FriendsButton>
+                        >Friends</FriendsButton>):(<div></div>)}
                         <PixelButton
                             onClick={() => {
-                                this.props.history.push(`/game`);
+                                this.back();
                             }}
                         >Back</PixelButton>
                     </One>
