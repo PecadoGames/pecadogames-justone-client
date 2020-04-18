@@ -150,3 +150,15 @@ button {
   background-repeat: no-repeat;
   margin: auto
 }
+
+.profilePicture{
+  background-size: 150px 150px;
+}
+
+.backgroundMain .phoneProfile .profileContainer .profilePicContainer img{
+  position: relative;
+  left: 5px;
+  top: 5px;
+  height: 140px;
+  width: 140px;
+}

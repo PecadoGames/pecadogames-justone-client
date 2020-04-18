@@ -31,36 +31,9 @@ class Profile extends React.Component {
             creationDate: null,
             birthday: null,
             editable : false,
-            friendsRequest: null
+            friendsRequest: null,
+            score: 0,
         };
-    }
-
-    async updateUser() {
-        if(this.state.user.username !== this.state.username){
-            this.state.user.username = this.state.username
-        }
-        else{
-            this.state.user.username = null
-
-        }
-        if(this.state.user.birthday !== this.state.birthday){
-            this.state.user.birthday = this.state.birthday
-        }
-        else{
-            this.state.user.birthday = null
-        }
-        try{
-            const requestBody = JSON.stringify({
-                username: this.state.user.username,
-                birthday: this.state.user.birthday,
-                token: localStorage.getItem('token')
-            });
-            await api.put('/users/'+this.state.id, requestBody);
-
-        }
-        catch(error){
-            alert(`Something went wrong during the user update: \n${handleError(error)}`);
-        }
     }
 
     async backToOverview(){
@@ -151,7 +124,9 @@ class Profile extends React.Component {
                         username: data.username,
                         birthday: this.parseDate(data.birthday),
                         status: data.logged_in,
-                        creation_date: this.parseDate(data.creation_date)})
+                        creation_date: this.parseDate(data.creation_date),
+                        score: data.score
+                    })
 
                 );
 
@@ -196,7 +171,7 @@ class Profile extends React.Component {
                         </TextContainer>
                         <TextContainer>
                             <TextLeft>Score:</TextLeft>
-                            <TextRight>420</TextRight>
+                            <TextRight>{this.state.score}</TextRight>
                         </TextContainer>
                         <TextContainer>
                             <TextLeft>Joined on:</TextLeft>

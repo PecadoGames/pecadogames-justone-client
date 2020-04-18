@@ -4,25 +4,49 @@ import {api, handleError} from '../../helpers/api';
 import {withRouter} from 'react-router-dom';
 import User from "../shared/models/User";
 import {BackgroundContainer} from "../main/Main";
-import {FriendRequestBanner, PhoneContainer, TextRight, TextLeft, TextContainer, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, Banner} from "./Assets/profileAssets";
+import RedShyguy from "./Assets/ProfilePictures/red.png";
+import GreenShyguy from "./Assets/ProfilePictures/green.png";
+import BlueShyguy from "./Assets/ProfilePictures/blue.png";
+import YellowShyguy from "./Assets/ProfilePictures/yellow.png";
+import PurpleShyguy from "./Assets/ProfilePictures/purple.png";
+import PinkShyguy from "./Assets/ProfilePictures/pink.png";
 
+import {FriendRequestBanner, PhoneContainer, TextRight, TextLeft, TextContainer, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, Banner} from "./Assets/profileAssets";
 
 const InputField = styled.input`
   background: transparent;
   margin: 0px;
   margin-left: 5px;
-  text-align: right;
+  text-align: left;
   font-size:25px;
-  width: 200px;
-  float:right;
+  width: 237px;
   border: none;
   border-bottom: 1px solid black;
+`;
+
+const ColorContainer = styled(TextContainer)`
+    column-count: 1;
+    row-count: 2;
+    height: 78px;
+`;
+
+const ColorButtonContainer = styled.div`
+    background: transparent;
+    margin-left: 5px;
+    margin: 0px;
+    width: 500px;
+    float:left;
+    padding: 4px;
+`;
+
+const InputFieldDate = styled(InputField)`
+    defaultValue-color: grey;
 `;
 
 const SaveButton = styled(PixelButton)`
     cursor: ${props => (props.disabled ? "default" : "pointer")};
     opacity: ${props => (props.disabled ? 0.4 : 1)};
-    width: 350px;
+    width: 500px;
     color: white;
     background: #118f33;
     &:hover {
@@ -30,8 +54,24 @@ const SaveButton = styled(PixelButton)`
     }
 `;
 
+const Title = styled.body`
+    font-size: 40px;
+    margin: 0px;
+    background: #cccdcf;
+    border-bottom: 2px solid black;
+    text-align:center;
+`;
 
-
+const ColorButton = styled.button`
+    background: ${props => props.background|| "white"};
+    height: 25px;
+    width: 25px;
+    margin: 5px;
+    margin-left: 28px;
+    margin-right: 28px;
+    border-color: black;
+    border-width: ${props => props.borderWidth|| "1px"};
+`;
 
 class Profile extends React.Component {
     constructor() {
@@ -41,6 +81,7 @@ class Profile extends React.Component {
             id: null,
             username: null,
             birthday: null,
+            color: null,
         };
     }
 
@@ -79,6 +120,11 @@ class Profile extends React.Component {
         return day + "." + month + "."+year
     }
 
+    //method checks if state's color matches color of button
+    colorMatcher(colorToMatch) {
+        return colorToMatch === this.state.color;
+    }
+
     //checks if logged in user has permission to be on this page
     userHasPermission(){
         let pathArray = window.location.pathname.split('/');
@@ -87,6 +133,30 @@ class Profile extends React.Component {
             alert("You don't have permissions to edit this profile.")
             this.props.history.push(`/game/users/${this.state.id}`);
         }
+    }
+
+    //returns profile pic based on current state
+    getProfilePic(){
+        if (this.state.color === "green"){
+            return GreenShyguy;
+        }
+        else if (this.state.color === "blue"){
+            return BlueShyguy;
+        }
+        else if (this.state.color === "pink"){
+            return PinkShyguy;
+        }
+        else if (this.state.color === "purple"){
+            return PurpleShyguy;
+        }
+        else if (this.state.color === "yellow"){
+            return YellowShyguy;
+        }
+        //default
+        else {
+            return RedShyguy;
+        }
+
     }
 
     async componentDidMount() {
@@ -114,10 +184,10 @@ class Profile extends React.Component {
         return (
             <BackgroundContainer className={"backgroundMain"}>
             <PhoneContainer className={"phoneProfile"}>
-                <Banner></Banner>
-                <ProfileContainer>
+                <Banner><Title>Edit your profile</Title></Banner>
+                <ProfileContainer className={"profileContainer"}>
                     <One>
-                        <ProfilePicContainer><p>Profile pic</p></ProfilePicContainer>
+                        <ProfilePicContainer className={"profilePicContainer"}><img src={this.getProfilePic()} alt={"Profile picture"} className={"profilePicture"}/></ProfilePicContainer>
                         <PixelButton
                             onClick={() => {
                                 this.props.history.push(`/game/users/${this.state.id}`);
@@ -136,13 +206,61 @@ class Profile extends React.Component {
                         </TextContainer>
                         <TextContainer>
                             <TextLeft>Birthday:</TextLeft>
-                            <InputField
-                            placeholder={this.state.birthday}
+                            <InputFieldDate
+                                type="date"
+                                defaultValue={this.state.birthday}
                             onChange={e =>{
                                 this.handleInputChange('birthday', e.target.value)
                             }}
                             />
                         </TextContainer>
+                        <ColorContainer>
+                            <TextLeft>Pick a color for your profile picture:</TextLeft>
+                            <ColorButtonContainer>
+                                <ColorButton id="red"
+                                             background={"#b31a1a"}
+                                             borderWidth={(this.colorMatcher("red")) ? "2.5px" : "1px"}
+                                             onClick={()=>{
+                                                 this.setState({color: "red"})
+                                             }}
+                                />
+                                <ColorButton id="green"
+                                             background={"#008a0e"}
+                                             borderWidth={(this.colorMatcher("green")) ? "2.5px" : "1px"}
+                                             onClick={()=>{
+                                                 this.setState({color: "green"})
+                                             }}
+                                />
+                                <ColorButton id="yellow"
+                                             background={"#dece38"}
+                                             borderWidth={(this.colorMatcher("yellow")) ? "2.5px" : "1px"}
+                                             onClick={()=>{
+                                                 this.setState({color: "yellow"})
+                                             }}
+                                />
+                                <ColorButton id="blue"
+                                             background={"#2b37a8"}
+                                             borderWidth={(this.colorMatcher("blue")) ? "2.5px" : "1px"}
+                                             onClick={()=>{
+                                                 this.setState({color: "blue"})
+                                             }}
+                                />
+                                <ColorButton id="purple"
+                                             background={"#562ba8"}
+                                             borderWidth={(this.colorMatcher("purple")) ? "2.5px" : "1px"}
+                                             onClick={()=>{
+                                                 this.setState({color: "purple"})
+                                             }}
+                                />
+                                <ColorButton id="pink"
+                                             background={"#cf71dc"}
+                                             borderWidth={(this.colorMatcher("pink")) ? "2.5px" : "1px"}
+                                             onClick={()=>{
+                                                 this.setState({color: "pink"})
+                                             }}
+                                />
+                            </ColorButtonContainer>
+                        </ColorContainer>
                         <SaveButton
                             disabled={!this.state.username}
                             onClick={()=>{
@@ -150,7 +268,6 @@ class Profile extends React.Component {
                             }}
                         >Save Profile</SaveButton>
                     </Two>
-
                 </ProfileContainer>
             </PhoneContainer>
             </BackgroundContainer>
