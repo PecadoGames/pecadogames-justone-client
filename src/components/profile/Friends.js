@@ -38,7 +38,8 @@ class Friends extends React.Component {
     constructor() {
         super();
         this.state = {
-            friends: null
+            friends: null,
+            username: null
         };
     }
 
@@ -49,6 +50,16 @@ class Friends extends React.Component {
         this.setState({ [key]: value });
     }
 
+    async sendFriendRequest(){
+
+
+        const requestBody = JSON.stringify({
+            senderID: localStorage.getItem("id"),
+            token: localStorage.getItem("token"),
+        })
+        await api.put(`/users/usersid/friendRequests`, requestBody)
+
+    }
 
 
 
@@ -81,9 +92,18 @@ class Friends extends React.Component {
                                     this.props.history.push(`/game/users/${this.state.id}`);
                                 }}
                             >Back</PixelButton>
+                            <PixelButton  onClick={() => {this.sendFriendRequest() }}>Add Friend</PixelButton>
                         </One>
                         <Two>
                            <FriendBox></FriendBox>
+                            <InputField placeholder="FriendsName"
+                                        username={this.state.username}
+                                        onChange={e =>{
+                                            this.handleInputChange('username', e.target.value)
+                                        }}
+                            >
+
+                            </InputField>
                         </Two>
 
                     </ProfileContainer>

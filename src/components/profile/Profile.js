@@ -31,7 +31,8 @@ class Profile extends React.Component {
             creationDate: null,
             birthday: null,
             editable : false,
-            friendsRequest: null
+            friendsRequest: [],
+            count: null
         };
     }
 
@@ -156,26 +157,32 @@ class Profile extends React.Component {
                 );
 
             //get requests to diplay how many are there
-            await api.get('/users/'+this.state.id+'/friendRequests')
-                .then(response => {return new Requests(response.data)})
-                .then(data => this.setState({
+            const response = await api.get('/users/'+this.state.id+'/friendRequests')
+            this.handleInputChange('friendsRequest', response.data)
 
-                }))
         }        catch (error) {
             alert(`Something went wrong while fetching the users or friends: \n${handleError(error)}`);
         }
             // See here to get more data.
+    }
 
-
+    counter(){
+        let count = 0;
+        for(let i = 0; i < this.state.friendsRequest.length; ++i){
+            if(this.state.friendsRequest[i])
+                count++;
+        }
+        this.state.count = count;
     }
 
     render() {
         return (
             <BackgroundContainer className={"backgroundMain"}>
             <PhoneContainer className={"phoneProfile"}>
-                {this.state.friendsRequest ? (<Banner> </Banner>):(<FriendRequestBanner
+                {this.counter()}
+                {!this.state.friendsRequest.length ? (<Banner> </Banner>):(<FriendRequestBanner
                 onClick={() => {this.props.history.push(window.location.pathname+ `/requests`)}}>
-                    View Friend Requests
+                    View Friend Requests ({this.state.count})
                 </FriendRequestBanner>)}
                 <ProfileContainer>
                     <One>

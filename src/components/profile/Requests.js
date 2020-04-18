@@ -38,10 +38,7 @@ class Requests extends React.Component {
     constructor() {
         super();
         this.state = {
-            user: null,
-            id: null,
-            username: null,
-            birthday: null,
+            friendsRequest: []
         };
     }
 
@@ -57,21 +54,6 @@ class Requests extends React.Component {
     async componentDidMount() {
         this.props.changeMusicToNormal()
         this.state.id = this.props.match.params.id;
-        try {
-
-            //list all friendRequests
-            await api.get('/users/'+this.state.id+'/friendRequests')
-                .then(response => {return new Requests(response.data)})
-                .then(data => this.setState({
-
-                })
-                );
-        }        catch (error) {
-            alert(`Something went wrong while fetching the users: \n${handleError(error)}`);
-        }
-
-
-
     }
 
     render() {
@@ -79,7 +61,6 @@ class Requests extends React.Component {
             <BackgroundContainer className={"backgroundMain"}>
                 <PhoneContainer className={"phoneProfile"}>
                     <Banner></Banner>
-
                     <ProfileContainer>
                         <One>
                             <PixelButton
