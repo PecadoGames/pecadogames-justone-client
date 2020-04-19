@@ -115,7 +115,7 @@ class Profile extends React.Component {
                 );
 
             //get requests to diplay how many are there
-            const response = await api.get('/users/'+this.state.id+'/friendRequests')
+            const response = await api.get('/users/'+localStorage.getItem('id')+'/friendRequests')
             this.handleInputChange('friendsRequest', response.data)
 
         }        catch (error) {
