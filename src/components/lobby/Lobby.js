@@ -84,6 +84,12 @@ class Lobby extends React.Component{
     //leave the Lobby before start
     async leaveLobby(){
         try{
+            const requestBody = JSON.stringify({
+                id: localStorage.getItem("id"),
+                token: localStorage.getItem("token")
+            });
+            await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/rageQuits`, requestBody)
+            localStorage.removeItem('lobbyId')
             this.props.history.push('/game')
 
         }

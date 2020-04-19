@@ -222,7 +222,7 @@ class CreateLobby extends React.Component {
         try {
             const requestBody = JSON.stringify({
                 lobbyName: this.state.lobbyName,
-                numberOfPlayers: this.state.numberOfPlayers,
+                maxPlayersAndBots: this.state.numberOfPlayers,
                 userId: localStorage.getItem("id"),
                 token: localStorage.getItem("token"),
                 isPrivate: this.state.isPrivate,
@@ -234,7 +234,7 @@ class CreateLobby extends React.Component {
             //gets lobbyId from the location url
             this.state.lobbyId = url.substring(url.lastIndexOf('/')+1)
             //pushes user to lobby
-
+            localStorage.setItem('lobbyId', this.state.lobbyId)
             this.props.history.push('/game/lobbies/' + this.state.lobbyId)
         }
         catch(error){
