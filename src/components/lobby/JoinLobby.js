@@ -95,7 +95,7 @@ class JoinLobby extends React.Component {
                 token: localStorage.getItem('token')
             })
             await api.put('/lobbies/' + lobbyId + '/joins', requestBody);
-            this.props.history.push('game/lobbies/' + lobbyId);
+            this.props.history.push('/game/lobbies/' + lobbyId);
         }
         catch(error){
             alert(`Something went wrong during the joinLobby \n${handleError(error)}`)

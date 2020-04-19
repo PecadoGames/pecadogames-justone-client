@@ -146,6 +146,7 @@ class Lobby extends React.Component{
             <text>Enter Glue Or Hint</text>
             <InputField>
             </InputField>
+            <Button>Submit</Button>
             <br/>
             <text>Chat</text>
             <ChatBox></ChatBox>
