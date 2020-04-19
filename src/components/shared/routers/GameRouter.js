@@ -12,7 +12,7 @@ import {EditGuard} from "../routeProtectors/EditGuard"
 import Edit from "../../profile/Edit";
 import {GameGuard} from "../routeProtectors/GameGuard";
 import Requests from "../../profile/Requests";
-
+import Scoreboard from "../../scoreboard/Scoreboard.js"
 import Game from "../../game/Game"
 import Friends from "../../profile/Friends";
 
@@ -85,6 +85,16 @@ class GameRouter extends React.Component {
                   </GameGuard>
               )}
           />
+          <Route
+              exact
+              path={`${this.props.base}/scoreboard`}
+              render={() => (
+                  <GameGuard>
+                      <Scoreboard changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
+                  </GameGuard>
+              )}
+          />
+
           <Route
           exact
           path={`${this.props.base}/lobbies/:lobbyId`}

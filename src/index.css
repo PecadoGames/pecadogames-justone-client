@@ -162,3 +162,10 @@ button {
   height: 140px;
   width: 140px;
 }
+
+.scoreboard{
+  background-image: url("scoreboard.png");
+  background-size: 1000px 625px, contain;
+  background-repeat: no-repeat;
+  margin: auto;
+}

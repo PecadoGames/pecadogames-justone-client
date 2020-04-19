@@ -104,6 +104,9 @@ class Main extends React.Component {
                         >Profile</MainMenuButton>
                         <MainMenuButton
                             borderColor="#e0dd16"
+                            onClick={() => {
+                                this.props.history.push(`scoreboard`)
+                            }}
                         >
                             Scoreboard</MainMenuButton>
                     </ButtonContainer>
