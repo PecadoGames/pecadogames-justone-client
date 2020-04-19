@@ -3,7 +3,11 @@
  */
 class Message {
     constructor(data = {}) {
-        this.id = null;
+        this.messageId = null;
+        this.authorId = null;
+        this.authorUsername = null;
+        this.text = null;
+        this.creationDate = null;
         Object.assign(this, data);
     }
 }

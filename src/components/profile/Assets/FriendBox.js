@@ -17,7 +17,6 @@ class FriendBox extends React.Component {
 
     constructor(props) {
         super(props);
-        this.scrollToTop = this.scrollToTop.bind(this);
         this.state = {
             users: []
         }
@@ -38,9 +37,6 @@ class FriendBox extends React.Component {
     }
 
 
-    scrollToTop() {
-        scroll.scrollToTop();
-    }
 
     componentWillUnmount() {
         Events.scrollEvent.remove('begin');

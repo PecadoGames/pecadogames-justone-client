@@ -60,20 +60,30 @@ class Lobby extends React.Component{
     constructor() {
         super();
         this.state = {
-            lobby: null
+            lobby: null,
+            chatMessage: null
         };
     }
 
     //needs to be adjusted since you have to logout of the lobby
     async logout() {
         try{
-            const requestBody = JSON.stringify({
+            const requestBody1 = JSON.stringify({
+                userId: localStorage.getItem("id"),
+                userToken: localStorage.getItem("token")
+            });
+            await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/rageQuits`, requestBody1)
+
+            localStorage.removeItem('lobbyId')
+
+            const requestBody2 = JSON.stringify({
                 id: localStorage.getItem("id"),
                 token: localStorage.getItem("token")
             });
-            await api.put('/logout', requestBody);
-            localStorage.removeItem('token');
-            localStorage.removeItem('id');
+            await api.put('/logout', requestBody2);
+
+            localStorage.removeItem("token");
+            localStorage.removeItem("id");
             this.props.history.push('/login');
         }
         catch(error){
@@ -85,11 +95,11 @@ class Lobby extends React.Component{
     async leaveLobby(){
         try{
             const requestBody = JSON.stringify({
-                id: localStorage.getItem("id"),
-                token: localStorage.getItem("token")
+                userId: localStorage.getItem("id"),
+                userToken: localStorage.getItem("token")
             });
             await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/rageQuits`, requestBody)
-            localStorage.removeItem('lobbyId')
+            localStorage.removeItem("lobbyId")
             this.props.history.push('/game')
 
         }
@@ -119,6 +129,27 @@ class Lobby extends React.Component{
     catch(error){
 
     }}
+
+    handleInputChange(key, value) {
+        this.setState({ [key]: value });
+    }
+
+    async sendMessage(){
+        const requestBody = JSON.stringify({
+            userId: localStorage.getItem('id'),
+            token: localStorage.getItem('token'),
+            message: this.state.chatMessage,
+        })
+        await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/chat`, requestBody)
+
+    }
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        if(this.state.chatMessage !== nextState.chatMessage ){
+            return false;}
+        return true;
+    }
+
 
     //starts the game
     async startGame(){
@@ -164,8 +195,16 @@ class Lobby extends React.Component{
                         </Button>
                     <text>Chat</text>
                     <ChatBox></ChatBox>
-                    <InputField>
+                    <InputField
+                        placeholder="talk.."
+                        width="30%"
+                        onChange={e => {
+                            this.handleInputChange('chatMessage', e.target.value);
+
+                        }}>
                     </InputField>
+                    <Button
+                    onClick={()=>this.sendMessage()}>Send</Button>
                 </LeftContainer>
 
                 <RightContainer>

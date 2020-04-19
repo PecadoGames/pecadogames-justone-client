@@ -43,6 +43,8 @@ class UsersBox extends React.Component {
             if (indexResponse !== undefined || indexResponse !== -1) parsedResponse.splice(indexResponse, 1);
         }
         this.setState({['users']: parsedResponse})
+        // const parsedFriends = friends.data
+        // for (let friend in parsedFriends){ api.get(users/parsedFriends[friend].id)
 
     }
 
