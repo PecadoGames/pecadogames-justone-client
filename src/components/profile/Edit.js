@@ -81,7 +81,7 @@ class Profile extends React.Component {
             id: null,
             username: null,
             birthday: null,
-            color: null,
+            avatarColor: null,
         };
     }
 
@@ -99,6 +99,7 @@ class Profile extends React.Component {
                 token: localStorage.getItem("token"),
                 username: this.state.username,
                 birthday: this.state.birthday,
+                avatarColor: this.state.avatarColor,
             })
             const response= await api.put(`users/${this.state.id}`, requestBody);
             this.props.history.push(`/game/users/${this.state.id}`);
@@ -122,7 +123,7 @@ class Profile extends React.Component {
 
     //method checks if state's color matches color of button
     colorMatcher(colorToMatch) {
-        return colorToMatch === this.state.color;
+        return colorToMatch === this.state.avatarColor;
     }
 
     //checks if logged in user has permission to be on this page
@@ -137,19 +138,19 @@ class Profile extends React.Component {
 
     //returns profile pic based on current state
     getProfilePic(){
-        if (this.state.color === "GREEN"){
+        if (this.state.avatarColor === "GREEN"){
             return GreenShyguy;
         }
-        else if (this.state.color === "BLUE"){
+        else if (this.state.avatarColor === "BLUE"){
             return BlueShyguy;
         }
-        else if (this.state.color === "PINK"){
+        else if (this.state.avatarColor === "PINK"){
             return PinkShyguy;
         }
-        else if (this.state.color === "PURPLE"){
+        else if (this.state.avatarColor === "PURPLE"){
             return PurpleShyguy;
         }
-        else if (this.state.color === "YELLOW"){
+        else if (this.state.avatarColor === "YELLOW"){
             return YellowShyguy;
         }
         //default
@@ -170,6 +171,7 @@ class Profile extends React.Component {
                     {user: data,
                         username: data.username,
                         birthday: this.parseDate(data.birthday),
+                        avatarColor : data.avatarColor,
                        })
                 );
         }        catch (error) {
@@ -221,42 +223,42 @@ class Profile extends React.Component {
                                              background={"#b31a1a"}
                                              borderWidth={(this.colorMatcher("RED")) ? "2.5px" : "1px"}
                                              onClick={()=>{
-                                                 this.setState({color: "RED"})
+                                                 this.setState({avatarColor: "RED"})
                                              }}
                                 />
                                 <ColorButton id="GREEN"
                                              background={"#008a0e"}
                                              borderWidth={(this.colorMatcher("GREEN")) ? "2.5px" : "1px"}
                                              onClick={()=>{
-                                                 this.setState({color: "GREEN"})
+                                                 this.setState({avatarColor: "GREEN"})
                                              }}
                                 />
                                 <ColorButton id="YELLOW"
                                              background={"#dece38"}
                                              borderWidth={(this.colorMatcher("YELLOW")) ? "2.5px" : "1px"}
                                              onClick={()=>{
-                                                 this.setState({color: "YELLOW"})
+                                                 this.setState({avatarColor: "YELLOW"})
                                              }}
                                 />
                                 <ColorButton id="BLUE"
                                              background={"#2b37a8"}
                                              borderWidth={(this.colorMatcher("BLUE")) ? "2.5px" : "1px"}
                                              onClick={()=>{
-                                                 this.setState({color: "BLUE"})
+                                                 this.setState({avatarColor: "BLUE"})
                                              }}
                                 />
                                 <ColorButton id="PURPLE"
                                              background={"#562ba8"}
                                              borderWidth={(this.colorMatcher("PURPLE")) ? "2.5px" : "1px"}
                                              onClick={()=>{
-                                                 this.setState({color: "PURPLE"})
+                                                 this.setState({avatarColor: "PURPLE"})
                                              }}
                                 />
                                 <ColorButton id="PINK"
                                              background={"#cf71dc"}
                                              borderWidth={(this.colorMatcher("PINK")) ? "2.5px" : "1px"}
                                              onClick={()=>{
-                                                 this.setState({color: "PINK"})
+                                                 this.setState({avatarColor: "PINK"})
                                              }}
                                 />
                             </ColorButtonContainer>

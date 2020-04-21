@@ -7,6 +7,12 @@ import User from "../shared/models/User";
 import Requests from "./Requests";
 import {BackgroundContainer} from "../main/Main";
 import {FriendRequestBanner, PhoneContainer, TextRight, TextLeft, TextContainer, EditProfileButton, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, Banner} from "./Assets/profileAssets";
+import GreenShyguy from "./Assets/ProfilePictures/green.png";
+import BlueShyguy from "./Assets/ProfilePictures/blue.png";
+import PinkShyguy from "./Assets/ProfilePictures/pink.png";
+import PurpleShyguy from "./Assets/ProfilePictures/purple.png";
+import YellowShyguy from "./Assets/ProfilePictures/yellow.png";
+import RedShyguy from "./Assets/ProfilePictures/red.png";
 
 
 
@@ -33,7 +39,8 @@ class Profile extends React.Component {
             editable : true,
             score: 0,
             friendsRequest: [],
-            count: null
+            count: null,
+            color: null,
         };
     }
 
@@ -55,6 +62,28 @@ class Profile extends React.Component {
         }
         if(!this.state.editable){
             this.props.history.push(`/game/users/${localStorage.getItem("id")}/friends`)
+        }
+    }
+
+    //returns profile pic based on current state TODO: remove duplicated code
+    getProfilePic(){
+        if (this.state.avatarColor === "GREEN"){
+            return GreenShyguy;
+        }
+        else if (this.state.avatarColor === "BLUE"){
+            return BlueShyguy;
+        }
+        else if (this.state.avatarColor === "PINK"){
+            return PinkShyguy;
+        }
+        else if (this.state.avatarColor === "PURPLE"){
+            return PurpleShyguy;
+        }
+        else if (this.state.avatarColor === "YELLOW"){
+            return YellowShyguy;
+        }
+        else if (this.state.avatarColor === "RED"){
+            return RedShyguy;
         }
     }
 
@@ -97,6 +126,7 @@ class Profile extends React.Component {
     async componentDidMount() {
         this.props.changeMusicToNormal()
         this.state.id = this.props.match.params.id;
+
         if(localStorage.getItem('id') !== this.state.id){
             this.disableEdit();
         }
@@ -109,9 +139,9 @@ class Profile extends React.Component {
                         birthday: this.parseDate(data.birthday),
                         status: data.logged_in,
                         creation_date: this.parseDate(data.creation_date),
-                        score: data.score
+                        score: data.score,
+                        avatarColor: data.avatarColor,
                     })
-
                 );
 
             //get requests to diplay how many are there
@@ -142,9 +172,9 @@ class Profile extends React.Component {
                 onClick={() => {this.props.history.push(window.location.pathname+ `/requests`)}}>
                     View Friend Requests ({this.state.count})
                 </FriendRequestBanner>)}
-                <ProfileContainer>
+                <ProfileContainer className={"profileContainer"}>
                     <One>
-                        <ProfilePicContainer><p>Profile pic</p></ProfilePicContainer>
+                        <ProfilePicContainer className={"profilePicContainer"}><img src={this.getProfilePic()} alt={"Profile picture"} className={"profilePicture"}/></ProfilePicContainer>
                         {this.state.editable ? (<FriendsButton
                             onClick={()=> {this.props.history.push(window.location.pathname + `/friends`)}}
                         >Friends</FriendsButton>):(<div></div>)}
