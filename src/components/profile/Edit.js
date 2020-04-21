@@ -11,7 +11,7 @@ import YellowShyguy from "./Assets/ProfilePictures/yellow.png";
 import PurpleShyguy from "./Assets/ProfilePictures/purple.png";
 import PinkShyguy from "./Assets/ProfilePictures/pink.png";
 
-import {FriendRequestBanner, PhoneContainer, TextRight, TextLeft, TextContainer, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, Banner} from "./Assets/profileAssets";
+import {WindowHeader, PhoneContainer, TextLeft, TextContainer, PixelButton, One, Two, ProfilePicContainer, ProfileContainer} from "./Assets/profileAssets";
 
 const InputField = styled.input`
   background: transparent;
@@ -21,6 +21,7 @@ const InputField = styled.input`
   font-size:25px;
   width: 237px;
   border: none;
+  color: #c0c0c0;
   border-bottom: 1px solid black;
 `;
 
@@ -52,14 +53,6 @@ const SaveButton = styled(PixelButton)`
     &:hover {
         background: ${props => (props.disabled ? "#118f33" : "#25ba4d")};
     }
-`;
-
-const Title = styled.body`
-    font-size: 40px;
-    margin: 0px;
-    background: #cccdcf;
-    border-bottom: 2px solid black;
-    text-align:center;
 `;
 
 const ColorButton = styled.button`
@@ -186,7 +179,7 @@ class Profile extends React.Component {
         return (
             <BackgroundContainer className={"backgroundMain"}>
             <PhoneContainer className={"phoneProfile"}>
-                <Banner><Title>Edit your profile</Title></Banner>
+                <WindowHeader>..\Profile\Edit.js</WindowHeader>
                 <ProfileContainer className={"profileContainer"}>
                     <One>
                         <ProfilePicContainer className={"profilePicContainer"}><img src={this.getProfilePic()} alt={"Profile picture"} className={"profilePicture"}/></ProfilePicContainer>

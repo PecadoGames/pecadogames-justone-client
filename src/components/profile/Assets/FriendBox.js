@@ -1,24 +1,17 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Link, Element, Events, animateScroll as scroll } from 'react-scroll'
+import { Element, Events} from 'react-scroll'
 import {withRouter} from "react-router-dom";
 import {api} from "../../../helpers/api";
-import styled from "styled-components";
-import {Button} from "../../../views/design/Button";
-
-export const TextFriend = styled.body`
-  background: transparent;
-  margin-left: 5px;
-  font-size:25px;
-`;
-
+import { PixelButton, Row, RowContainer } from "./profileAssets";
 
 class FriendBox extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            users: []
+            users: [],
+            friendData: []
         }
     }
 
@@ -33,9 +26,27 @@ class FriendBox extends React.Component {
         });
         const response = await api.get(`/users/${localStorage.getItem("id")}/friends`)
         this.setState({['users']: response.data})
-
+        this.getStatusFromFriends()
     }
 
+    async getStatusFromFriends(){
+        const fullFriendList = [];
+        for(let user in this.state.users){
+        
+            const friends = await api.get(`users/${this.state.users[user].id}`)
+            
+            const friend = friends.data
+           
+            if(friend.logged_in === true){
+                fullFriendList.unshift(friend)
+            }
+            else{
+                fullFriendList.push(friend)
+            }
+
+        }
+        this.setState({friendData : fullFriendList});
+    }
 
 
     componentWillUnmount() {
@@ -47,22 +58,47 @@ class FriendBox extends React.Component {
         return (
             <div>
                 <Element name="FriendBox" className="element" id="containerElement" style={{
-                    position: 'relative',
-                    height: '200px',
-                    overflow: 'scroll',
+                    margin: 'auto',
+                    width: '85%',
+                    height: '250px',
+                    overflow: 'auto',
                 }}>
-                    {/* start of messages */}
-                    {this.state.users.map(users => {return(
-                        <Element key = {users.id} name={users.user}>
-                          <TextFriend> Username: {users.username}</TextFriend>
-                            <Button onClick={()=>this.props.history.push(`/game/users/${users.id}`)}>View Profile</Button>
-                        </Element>);
+                    <Row>
+                            <RowContainer
+                                textDecoration="underline"
+                            >
+                                Username
+                            </RowContainer>
+                            <RowContainer
+                                textDecoration="underline"
+                            >
+                                Status
+                            </RowContainer>
+                            <RowContainer/>
+                        </Row>
+                    {this.state.friendData.map(users => {return(
+                    <Element 
+                            key = {users.id} 
+                            name={users.user}
+                    >
+                        <Row>
+                            <RowContainer> 
+                            {users.username}
+                            </RowContainer>
+                            <RowContainer
+                                color={users.logged_in ? ("green") : ("red")}>
+                                {users.logged_in ? ("ONLINE") : ("OFFLINE")}
+                            </RowContainer>
+                            <RowContainer>
+                                <PixelButton 
+                                    marginTop="null"
+                                    onClick={()=>this.props.history.push(`/game/users/${users.id}`)}>View Profile
+                                </PixelButton>
+                            </RowContainer>
+                        </Row>
+                    </Element>);
                     })}
-                    {/* end of messages */}
-
-
                 </Element>
-
             </div>
         );
     }

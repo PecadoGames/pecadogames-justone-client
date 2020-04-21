@@ -169,3 +169,12 @@ button {
   background-repeat: no-repeat;
   margin: auto;
 }
+
+@keyframes blinkingAnimation {
+  0% {outline: 2px solid #ffff00;
+    color: #ffff00;}
+  50% {outline :2px solid #32CD32;
+    color: #32CD32}
+  100% {outline: 2px solid #ffff00;
+    color: #ffff00}
+}

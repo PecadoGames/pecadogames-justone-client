@@ -1,11 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Link, Element, Events, animateScroll as scroll } from 'react-scroll'
+import { Element, Events, animateScroll as scroll } from 'react-scroll'
 import {withRouter} from "react-router-dom";
 import {api} from "../../../helpers/api";
-import {Button} from "../../../views/design/Button";
 import styled from "styled-components";
-
+import { PixelButton, Row, RowContainer } from "./profileAssets";
 
 export const FriendButton = styled.button`
     border: 2px solid black;
@@ -87,23 +86,49 @@ class RequestBox extends React.Component {
         return (
             <div>
                 <Element name="RequestBox" className="element" id="containerElement" style={{
-                    position: 'relative',
-                    height: '300px',
-                    overflow: 'scroll',
+                    margin:"auto",
+                    width:"85%",
+                    height: '250px',
+                    overflow: 'auto',
                 }}>
-                    {/* start of messages */}
                     {this.state.requests.map(user => {return(
-                        <Element key = {user.id} name={user.user} style={{
-                            marginTop: '10px'
-                        }}>
-                            <TextFriend>UserId: {user.id}</TextFriend>
-                            <TextFriend>Username: {user.username}</TextFriend>
-                            <FriendButton onClick={()=>this.accept(user.id)}>Accept</FriendButton>
-                            <FriendButton onClick={()=>this.decline(user.id)}>Decline</FriendButton>
+                        <Element key = {user.id} name={user.user}>
+                            <Row>
+                                <RowContainer>
+                                    {user.username}
+                                </RowContainer>
+                                <RowContainer
+                                    width="400px">
+                                    <PixelButton 
+                                        marginTop="null"
+                                        onClick={()=>this.props.history.push(`/game/users/${user.id}`)}>View Profile
+                                    </PixelButton>
+                                </RowContainer>
+                                <RowContainer>
+                                <PixelButton
+                                    outline="2px solid #1D6F42"
+                                    color="#1D6F42"
+                                    hoverBackground="#1D6F42"
+                                    marginTop="null" 
+                                    onClick={()=>this.accept(user.id)}>
+                                        Accept
+                                </PixelButton>
+                                </RowContainer>
+                                <RowContainer>
+                                    <PixelButton
+                                    outline="2px solid #F03A17"
+                                    color="#F03A17"
+                                    hoverBackground="#F03A17"
+                                    marginTop="null" 
+                                    onClick={()=>this.decline(user.id)}>
+                                        Decline
+                                    </PixelButton>
+                                </RowContainer>
+                            </Row>
+
+
                         </Element>);
                     })}
-                    {/* end of messages */}
-
                 </Element>
 
             </div>

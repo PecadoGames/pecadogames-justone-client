@@ -1,29 +1,16 @@
 import React from 'react';
-import styled from 'styled-components';
 import {api, handleError} from '../../helpers/api';
 import {withRouter} from 'react-router-dom';
-import { OfflineIcon, OnlineIcon} from "../../views/design/Icon";
 import User from "../shared/models/User";
-import Requests from "./Requests";
 import {BackgroundContainer} from "../main/Main";
-import {FriendRequestBanner, PhoneContainer, TextRight, TextLeft, TextContainer, EditProfileButton, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, Banner} from "./Assets/profileAssets";
+import {PhoneContainer, TextRight, TextLeft, TextContainer, EditProfileButton, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, Banner,
+    WindowHeader, FriendsButton, NewFriendRequestButton} from "./Assets/profileAssets";
 import GreenShyguy from "./Assets/ProfilePictures/green.png";
 import BlueShyguy from "./Assets/ProfilePictures/blue.png";
 import PinkShyguy from "./Assets/ProfilePictures/pink.png";
 import PurpleShyguy from "./Assets/ProfilePictures/purple.png";
 import YellowShyguy from "./Assets/ProfilePictures/yellow.png";
 import RedShyguy from "./Assets/ProfilePictures/red.png";
-
-
-
-const FriendsButton = styled(PixelButton)`
-    color: white;
-    background: #118f33;
-    &:hover {
-        background: #25ba4d;
-    }
-`;
-
 
 
 class Profile extends React.Component {
@@ -61,7 +48,7 @@ class Profile extends React.Component {
             this.props.history.push(`/game`);
         }
         if(!this.state.editable){
-            this.props.history.push(`/game/users/${localStorage.getItem("id")}/friends`)
+            window.history.back()
         }
     }
 
@@ -89,8 +76,7 @@ class Profile extends React.Component {
 
     canEdit(){
         if(this.state.editable){
-            return <div>
-                <EditProfileButton
+            return <EditProfileButton
                     disabled={!this.state.editable}
                     onClick={() => {
                         this.props.history.push(`${this.state.id}/edit`)
@@ -98,7 +84,6 @@ class Profile extends React.Component {
             >
                 Edit Profile
             </EditProfileButton>
-            </div>
         }
     }
 
@@ -167,22 +152,28 @@ class Profile extends React.Component {
         return (
             <BackgroundContainer className={"backgroundMain"}>
             <PhoneContainer className={"phoneProfile"}>
-                {this.counter()}
-                {!this.state.friendsRequest.length ? (<Banner> </Banner>):(<FriendRequestBanner
-                onClick={() => {this.props.history.push(window.location.pathname+ `/requests`)}}>
-                    View Friend Requests ({this.state.count})
-                </FriendRequestBanner>)}
+                <WindowHeader>
+                    ..\Profile.js
+                </WindowHeader>
                 <ProfileContainer className={"profileContainer"}>
                     <One>
-                        <ProfilePicContainer className={"profilePicContainer"}><img src={this.getProfilePic()} alt={"Profile picture"} className={"profilePicture"}/></ProfilePicContainer>
-                        {this.state.editable ? (<FriendsButton
+                        <ProfilePicContainer className={"profilePicContainer"}>
+                            <img src={this.getProfilePic()} alt={"Profile picture"} className={"profilePicture"}/>
+                        </ProfilePicContainer>
+                        {this.state.editable ? (
+                        <FriendsButton
                             onClick={()=> {this.props.history.push(window.location.pathname + `/friends`)}}
-                        >Friends</FriendsButton>):(<div></div>)}
-                        <PixelButton
-                            onClick={() => {
-                                this.back();
-                            }}
-                        >Back</PixelButton>
+                        >
+                            Friends
+                        </FriendsButton>
+                        ):(null)}
+                        {this.counter()}
+                        {!this.state.friendsRequest.length || (localStorage.getItem('id') !== this.state.id) ? (null):
+                            (<NewFriendRequestButton
+                                onClick={() => {this.props.history.push(window.location.pathname+ `/requests`)}}>
+                                New Requests ({this.state.count})
+                            </NewFriendRequestButton>)
+                        }
                     </One>
                     <Two>
                         <TextContainer>
@@ -205,6 +196,13 @@ class Profile extends React.Component {
                             <TextLeft>Status:</TextLeft>
                             <TextRight>{this.parseStatus(this.state.status)}</TextRight>
                         </TextContainer>
+                        <PixelButton
+                            onClick={() => {
+                                this.back();
+                            }}
+                        >
+                            Back
+                        </PixelButton>
                         {this.canEdit()}
                     </Two>
                 </ProfileContainer>

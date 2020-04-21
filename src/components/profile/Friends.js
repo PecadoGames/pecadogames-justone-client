@@ -2,36 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import {api, handleError} from '../../helpers/api';
 import {withRouter} from 'react-router-dom';
-import User from "../shared/models/User";
 import {BackgroundContainer} from "../main/Main";
-import {FriendRequestBanner, PhoneContainer, TextRight, TextLeft, TextContainer, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, Banner} from "./Assets/profileAssets";
+import { PhoneContainer, PixelButton,  ProfileContainer, Banner} from "./Assets/profileAssets";
 import FriendBox from "./Assets/FriendBox";
 import UsersBox from "./Assets/UsersBox";
-
-
-const InputField = styled.input`
-  background: transparent;
-  margin: 0px;
-  margin-left: 5px;
-  text-align: right;
-  font-size:25px;
-  width: 200px;
-  float:right;
-  border: none;
-  border-bottom: 1px solid black;
-`;
-
-const SaveButton = styled(PixelButton)`
-    cursor: ${props => (props.disabled ? "default" : "pointer")};
-    opacity: ${props => (props.disabled ? 0.4 : 1)};
-    width: 350px;
-    color: white;
-    background: #118f33;
-    &:hover {
-        background: ${props => (props.disabled ? "#118f33" : "#25ba4d")};
-    }
-`;
-
+import {WindowHeader, ButtonRow} from "./Assets/profileAssets";
 
 
 
@@ -45,7 +20,6 @@ class Friends extends React.Component {
         };
     }
 
-
     handleInputChange(key, value) {
         // Example: if the key is username, this statement is the equivalent to the following one:
         // this.setState({'username': value});
@@ -57,10 +31,7 @@ class Friends extends React.Component {
         this.handleInputChange('addUser', false)}
         if(!this.state.addUser){
             this.handleInputChange('addUser', true)}
-
     }
-
-
 
     async componentDidMount() {
         this.props.changeMusicToNormal()
@@ -74,31 +45,31 @@ class Friends extends React.Component {
         }        catch (error) {
             alert(`Something went wrong while fetching the friends: \n${handleError(error)}`);
         }
-
-
-
     }
 
     render() {
         return (
             <BackgroundContainer className={"backgroundMain"}>
                 <PhoneContainer className={"phoneProfile"}>
-                    <Banner></Banner>
-                    <ProfileContainer>
-                        <One>
-                            <PixelButton
-                                onClick={() => {
-                                    this.props.history.push(`/game/users/${this.state.id}`);
-                                }}
-                            >Back</PixelButton>
-                            <PixelButton  onClick={() => {this.addFriend() }}>{this.state.addUser ? ('Friends'): ('Add Friends')}</PixelButton>
-                        </One>
-                        <Two>
-                            {!this.state.addUser ? (<FriendBox></FriendBox>) : (<UsersBox></UsersBox>)}
-
-                        </Two>
-
-                    </ProfileContainer>
+                    <WindowHeader>
+                        C:/PecadOS/Friendlist
+                    </WindowHeader>
+                        <ProfileContainer>
+                        {!this.state.addUser ? (<FriendBox></FriendBox>) : (<UsersBox></UsersBox>)}
+                            <ButtonRow>
+                                <PixelButton
+                                    onClick={() => {
+                                        this.props.history.push(`/game/users/${this.state.id}`);
+                                    }}
+                                >
+                                    Back
+                                </PixelButton>
+                                <PixelButton  
+                                    onClick={() => {this.addFriend() }}>
+                                        {this.state.addUser ? ('Friends'): ('Add Friends')}
+                                </PixelButton>
+                            </ButtonRow>
+                        </ProfileContainer>
                 </PhoneContainer>
             </BackgroundContainer>
         );
