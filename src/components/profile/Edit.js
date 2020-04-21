@@ -137,19 +137,19 @@ class Profile extends React.Component {
 
     //returns profile pic based on current state
     getProfilePic(){
-        if (this.state.color === "green"){
+        if (this.state.color === "GREEN"){
             return GreenShyguy;
         }
-        else if (this.state.color === "blue"){
+        else if (this.state.color === "BLUE"){
             return BlueShyguy;
         }
-        else if (this.state.color === "pink"){
+        else if (this.state.color === "PINK"){
             return PinkShyguy;
         }
-        else if (this.state.color === "purple"){
+        else if (this.state.color === "PURPLE"){
             return PurpleShyguy;
         }
-        else if (this.state.color === "yellow"){
+        else if (this.state.color === "YELLOW"){
             return YellowShyguy;
         }
         //default
@@ -217,46 +217,46 @@ class Profile extends React.Component {
                         <ColorContainer>
                             <TextLeft>Pick a color for your profile picture:</TextLeft>
                             <ColorButtonContainer>
-                                <ColorButton id="red"
+                                <ColorButton id="RED"
                                              background={"#b31a1a"}
-                                             borderWidth={(this.colorMatcher("red")) ? "2.5px" : "1px"}
+                                             borderWidth={(this.colorMatcher("RED")) ? "2.5px" : "1px"}
                                              onClick={()=>{
-                                                 this.setState({color: "red"})
+                                                 this.setState({color: "RED"})
                                              }}
                                 />
-                                <ColorButton id="green"
+                                <ColorButton id="GREEN"
                                              background={"#008a0e"}
-                                             borderWidth={(this.colorMatcher("green")) ? "2.5px" : "1px"}
+                                             borderWidth={(this.colorMatcher("GREEN")) ? "2.5px" : "1px"}
                                              onClick={()=>{
-                                                 this.setState({color: "green"})
+                                                 this.setState({color: "GREEN"})
                                              }}
                                 />
-                                <ColorButton id="yellow"
+                                <ColorButton id="YELLOW"
                                              background={"#dece38"}
-                                             borderWidth={(this.colorMatcher("yellow")) ? "2.5px" : "1px"}
+                                             borderWidth={(this.colorMatcher("YELLOW")) ? "2.5px" : "1px"}
                                              onClick={()=>{
-                                                 this.setState({color: "yellow"})
+                                                 this.setState({color: "YELLOW"})
                                              }}
                                 />
-                                <ColorButton id="blue"
+                                <ColorButton id="BLUE"
                                              background={"#2b37a8"}
-                                             borderWidth={(this.colorMatcher("blue")) ? "2.5px" : "1px"}
+                                             borderWidth={(this.colorMatcher("BLUE")) ? "2.5px" : "1px"}
                                              onClick={()=>{
-                                                 this.setState({color: "blue"})
+                                                 this.setState({color: "BLUE"})
                                              }}
                                 />
-                                <ColorButton id="purple"
+                                <ColorButton id="PURPLE"
                                              background={"#562ba8"}
-                                             borderWidth={(this.colorMatcher("purple")) ? "2.5px" : "1px"}
+                                             borderWidth={(this.colorMatcher("PURPLE")) ? "2.5px" : "1px"}
                                              onClick={()=>{
-                                                 this.setState({color: "purple"})
+                                                 this.setState({color: "PURPLE"})
                                              }}
                                 />
-                                <ColorButton id="pink"
+                                <ColorButton id="PINK"
                                              background={"#cf71dc"}
-                                             borderWidth={(this.colorMatcher("pink")) ? "2.5px" : "1px"}
+                                             borderWidth={(this.colorMatcher("PINK")) ? "2.5px" : "1px"}
                                              onClick={()=>{
-                                                 this.setState({color: "pink"})
+                                                 this.setState({color: "PINK"})
                                              }}
                                 />
                             </ColorButtonContainer>
