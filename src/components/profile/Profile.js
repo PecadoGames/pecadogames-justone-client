@@ -3,7 +3,7 @@ import {api, handleError} from '../../helpers/api';
 import {withRouter} from 'react-router-dom';
 import User from "../shared/models/User";
 import {BackgroundContainer} from "../main/Main";
-import {PhoneContainer, TextRight, TextLeft, TextContainer, EditProfileButton, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, Banner,
+import {PhoneContainer, TextRight, TextLeft, TextContainer, EditProfileButton, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, Row, ButtonRow,RowContainer,
     WindowHeader, FriendsButton, NewFriendRequestButton} from "./Assets/profileAssets";
 import GreenShyguy from "./Assets/ProfilePictures/green.png";
 import BlueShyguy from "./Assets/ProfilePictures/blue.png";
@@ -151,62 +151,69 @@ class Profile extends React.Component {
     render() {
         return (
             <BackgroundContainer className={"backgroundMain"}>
-            <PhoneContainer className={"phoneProfile"}>
-                <WindowHeader>
-                    ..\Profile.js
-                </WindowHeader>
-                <ProfileContainer className={"profileContainer"}>
-                    <One>
-                        <ProfilePicContainer className={"profilePicContainer"}>
-                            <img src={this.getProfilePic()} alt={"Profile picture"} className={"profilePicture"}/>
-                        </ProfilePicContainer>
-                        {this.state.editable ? (
-                        <FriendsButton
-                            onClick={()=> {this.props.history.push(window.location.pathname + `/friends`)}}
-                        >
-                            Friends
-                        </FriendsButton>
-                        ):(null)}
-                        {this.counter()}
-                        {!this.state.friendsRequest.length || (localStorage.getItem('id') !== this.state.id) ? (null):
-                            (<NewFriendRequestButton
-                                onClick={() => {this.props.history.push(window.location.pathname+ `/requests`)}}>
-                                New Requests ({this.state.count})
-                            </NewFriendRequestButton>)
-                        }
-                    </One>
-                    <Two>
-                        <TextContainer>
-                            <TextLeft>Username:</TextLeft>
-                            <TextRight>{this.state.username}</TextRight>
-                        </TextContainer>
-                        <TextContainer>
-                            <TextLeft>Score:</TextLeft>
-                            <TextRight>{this.state.score}</TextRight>
-                        </TextContainer>
-                        <TextContainer>
-                            <TextLeft>Joined on:</TextLeft>
-                            <TextRight>{this.state.creation_date}</TextRight>
-                        </TextContainer>
-                        <TextContainer>
-                            <TextLeft>Birthday:</TextLeft>
-                            <TextRight>{this.state.birthday}</TextRight>
-                        </TextContainer>
-                        <TextContainer>
-                            <TextLeft>Status:</TextLeft>
-                            <TextRight>{this.parseStatus(this.state.status)}</TextRight>
-                        </TextContainer>
-                        <PixelButton
-                            onClick={() => {
-                                this.back();
-                            }}
-                        >
-                            Back
-                        </PixelButton>
-                        {this.canEdit()}
-                    </Two>
-                </ProfileContainer>
-            </PhoneContainer>
+                <PhoneContainer className={"phoneProfile"}>
+                    <WindowHeader>
+                        ..\Profile.js
+                    </WindowHeader>
+                    <ProfileContainer className={"profileContainer"}>
+                        <One>
+                            <ProfilePicContainer className={"profilePicContainer"}>
+                                <img src={this.getProfilePic()} alt={"Profile picture"} className={"profilePicture"}/>
+                            </ProfilePicContainer>
+                            {this.state.editable ? (
+                            <FriendsButton
+                                onClick={()=> {this.props.history.push(window.location.pathname + `/friends`)}}
+                            >
+                                Friends
+                            </FriendsButton>
+                            ):(null)}
+                            {this.counter()}
+                            {!this.state.friendsRequest.length || (localStorage.getItem('id') !== this.state.id) ? (null):
+                                (<NewFriendRequestButton
+                                    onClick={() => {this.props.history.push(window.location.pathname+ `/requests`)}}>
+                                    New Requests ({this.state.count})
+                                </NewFriendRequestButton>)
+                            }
+                        </One>
+                        <Two>
+                            <TextContainer>
+                                <TextLeft>Username:</TextLeft>
+                                <TextRight>{this.state.username}</TextRight>
+                            </TextContainer>
+                            <TextContainer>
+                                <TextLeft>Score:</TextLeft>
+                                <TextRight>{this.state.score}</TextRight>
+                            </TextContainer>
+                            <TextContainer>
+                                <TextLeft>Joined on:</TextLeft>
+                                <TextRight>{this.state.creation_date}</TextRight>
+                            </TextContainer>
+                            <TextContainer>
+                                <TextLeft>Birthday:</TextLeft>
+                                <TextRight>{this.state.birthday}</TextRight>
+                            </TextContainer>
+                            <TextContainer>
+                                <TextLeft>Status:</TextLeft>
+                                <TextRight>{this.parseStatus(this.state.status)}</TextRight>
+                            </TextContainer>
+                            <Row>
+                                <ButtonRow>
+                                    <PixelButton
+                                        marginLeft = "0px"
+                                        onClick={() => {
+                                            this.back();
+                                        }}
+                                    >
+                                        Back
+                                    </PixelButton>
+                                </ButtonRow>
+                                <ButtonRow>
+                                {this.canEdit()}
+                                </ButtonRow>
+                            </Row>
+                        </Two>
+                    </ProfileContainer>
+                </PhoneContainer>
             </BackgroundContainer>
             /**
             <ProfileContainer>

@@ -67,6 +67,9 @@ export const One = styled.div`
 `;
 
 export const Two = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-top: 20px;
     margin-left: 32%;
 `;
@@ -85,15 +88,16 @@ export const ProfilePicContainer = styled.div`
 
 export const PixelButton = styled.button`
     border: 2px solid black;
+    margin-top: ${props => props.marginTop || "15px"};
     margin-left: ${props => props.marginLeft || "5px" };
+    margin-right: ${props => props.marginRight || "5px" };
     outline: ${props => props.outline || "2px solid #32CD32"};
     outline-offset: -7px;
     width: ${props => props.width || "150px" };
-    height: 50px;
+    height: ${props => props.height || "50px" };
     color: ${props => props.color || "#32CD32"};
     background: #000000;
     text-overflow: clip;
-    margin-top: ${props => props.marginTop || "15px"};
     &:hover {
       outline: ${props => props.hoverOutline || "2px solid #000000"};
       background: ${props => props.hoverBackground || "#32CD32"};
@@ -180,6 +184,7 @@ export const RowContainer = styled.div`
     margin-left: null;
 `;
 export const ButtonRow = styled.div`
+    margin-top: ${props => props.marginTop || "0px"};
     display: flex;
     flexDirection: row;
     width: 100%;

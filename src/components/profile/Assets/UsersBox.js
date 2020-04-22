@@ -1,16 +1,9 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Link, Element, Events, animateScroll as scroll } from 'react-scroll'
+import { Element, Events, animateScroll as scroll } from 'react-scroll'
 import {withRouter} from "react-router-dom";
 import {api} from "../../../helpers/api";
-import styled from "styled-components";
-import {Button} from "../../../views/design/Button";
-
-export const TextFriend = styled.body`
-  background: transparent;
-  margin-left: 5px;
-  font-size:25px;
-`;
+import { PixelButton, Row, RowContainer } from "./profileAssets";
 
 
 class UsersBox extends React.Component {
@@ -42,6 +35,11 @@ class UsersBox extends React.Component {
             let indexResponse = parsedResponse.findIndex(x => x.id === parsedFriends[friend].id)
             if (indexResponse !== undefined || indexResponse !== -1) parsedResponse.splice(indexResponse, 1);
         }
+        parsedResponse.sort(function (a, b){
+            a = a.username.toLowerCase();
+            b = b.username.toLowerCase();
+            return a < b ? -1 : a > b ? 1 : 0;
+        });
         this.setState({['users']: parsedResponse})
         // const parsedFriends = friends.data
         // for (let friend in parsedFriends){ api.get(users/parsedFriends[friend].id)
@@ -68,21 +66,37 @@ class UsersBox extends React.Component {
     render() {
         return (
             <div>
-                <Element name="FriendBox" className="element" id="containerElement" style={{
-                    position: 'relative',
-                    height: '200px',
-                    overflow: 'scroll',
+                <Element name="UserBox" className="element" id="containerElement" style={{
+                    margin:"auto",
+                    width:"85%",
+                    height: '250px',
+                    overflow: 'auto',
                 }}>
                     {/* start of messages */}
                     {this.state.users.map(users => {return(
                         <Element key = {users.id} name={users.user} style={{
                             marginTop: '30px'
                         }}>
-                            <TextFriend> Username: {users.username} </TextFriend>
-                            <TextFriend> UserID: {users.id}</TextFriend>
-                            <Button onClick={()=>this.addUser(users.id)}>Add as friend</Button>
-
-
+                            <Row>
+                                <RowContainer>
+                                    {users.username}
+                                </RowContainer>
+                                <RowContainer
+                                    width="400px">
+                                    <PixelButton 
+                                        marginTop="null"
+                                        onClick={()=>this.props.history.push(`/game/users/${users.id}`)}>View Profile
+                                    </PixelButton>
+                                </RowContainer>
+                                <RowContainer>
+                                <PixelButton
+                                    marginTop="null"
+                                    width="250px"
+                                    onClick={()=>this.addUser(users.id)}>
+                                        Send friend request
+                                </PixelButton>
+                                </RowContainer>
+                            </Row>
                         </Element>);
                     })}
                     {/* end of messages */}
