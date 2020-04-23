@@ -6,6 +6,7 @@ import {api, handleError} from "../../helpers/api";
 import ChatBox from "../ChatBox/ChatBox";
 import {InputField} from "../../views/design/InputField";
 import {Button} from "../../views/design/Button";
+import Timer from "./assets/Timer";
 
 const FormContainer = styled.div`
   display: flex;
@@ -60,12 +61,27 @@ class Lobby extends React.Component{
   constructor() {
     super();
     this.state = {
-      lobby: null
+      lobby: null,
+      message: '',
+      chatMessage: ''
     };
   }
 
   //needs to be adjusted since you have to logout of the lobby
   async logout() {
+    try{
+      const requestBody = JSON.stringify({
+        userId: localStorage.getItem("id"),
+        userToken: localStorage.getItem("token")
+      });
+      await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/rageQuits`, requestBody)
+      localStorage.removeItem("lobbyId")
+      this.props.history.push('/game')
+
+    }
+    catch(error){
+    }
+
     try{
       const requestBody = JSON.stringify({
         id: localStorage.getItem("id"),
@@ -84,8 +100,13 @@ class Lobby extends React.Component{
   //leave the Lobby before start
   async leaveLobby(){
     try{
-      this.props.history.push('/game')
-
+        const requestBody = JSON.stringify({
+          userId: localStorage.getItem("id"),
+          userToken: localStorage.getItem("token")
+        });
+        await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/rageQuits`, requestBody)
+        localStorage.removeItem("lobbyId")
+        this.props.history.push('/game')
     }
     catch(error){
 
@@ -114,9 +135,38 @@ class Lobby extends React.Component{
 
     }}
 
+  async submitMessage(){
+    const requestBody = JSON.stringify({
+      lobbyId: localStorage.getItem('lobbyId'),
+      userId: localStorage.getItem('id'),
+      token: localStorage.getItem('token'),
+      guess: this.state.message,
+    })
+    await api.put(`lobbies/${localStorage.getItem('lobbyId')}/game/message`,requestBody)
+  }
+
+  handleInputChange(key, value) {
+    this.setState({ [key]: value });
+  }
+
+  async sendMessage(){
+    const requestBody = JSON.stringify({
+      userId: localStorage.getItem('id'),
+      token: localStorage.getItem('token'),
+      message: this.state.chatMessage,
+    })
+    await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/chat`, requestBody)
+
+  }
+
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    if(this.state.chatMessage !== nextState.chatMessage || this.state.message !== nextState.message){
+      return false;}
+    return true;
+  }
 
   componentDidMount() {
-    //getLobby
+
   }
 
 
@@ -143,20 +193,34 @@ class Lobby extends React.Component{
               <text>Player6____________Ready</text>
               <text>Player7____________Ready</text>
             </PlayerContainer>
-            <text>Enter Glue Or Hint</text>
-            <InputField>
+            <br></br>
+            <text>Enter Glue or guess</text>
+            <InputField
+                placeholder="clue.."
+                width="30%"
+                onChange={e => {
+                  this.handleInputChange('message', e.target.value);
+                }}>
             </InputField>
-            <Button>Submit</Button>
+            <Button
+            onClick={()=>this.submitMessage}>Submit</Button>
             <br/>
             <text>Chat</text>
             <ChatBox></ChatBox>
-            <InputField>
+            <InputField
+                placeholder="talk.."
+                width="30%"
+                onChange={e => {
+                  this.handleInputChange('chatMessage', e.target.value);
+                }}>
             </InputField>
+            <Button
+             onClick={()=>this.sendMessage()}>Send</Button>
           </LeftContainer>
 
           <RightContainer>
             <TopRightContainer>
-              <text>Timer + Score + Round</text>
+              <Timer></Timer><text> Score + Round</text>
             </TopRightContainer>
             <BottomRightContainer className = 'lobbyBackground'>
             </BottomRightContainer>
