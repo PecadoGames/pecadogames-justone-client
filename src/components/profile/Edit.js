@@ -11,7 +11,7 @@ import YellowShyguy from "./Assets/ProfilePictures/yellow.png";
 import PurpleShyguy from "./Assets/ProfilePictures/purple.png";
 import PinkShyguy from "./Assets/ProfilePictures/pink.png";
 
-import {WindowHeader, PhoneContainer, TextLeft, TextContainer, PixelButton, One, Two, ProfilePicContainer, ProfileContainer} from "./Assets/profileAssets";
+import {WindowHeader, PhoneContainer, TextLeft, TextContainer, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, ButtonRow, RowContainer} from "./Assets/profileAssets";
 
 const InputField = styled.input`
   background: transparent;
@@ -47,11 +47,9 @@ const InputFieldDate = styled(InputField)`
 const SaveButton = styled(PixelButton)`
     cursor: ${props => (props.disabled ? "default" : "pointer")};
     opacity: ${props => (props.disabled ? 0.4 : 1)};
-    width: 500px;
-    color: white;
-    background: #118f33;
+    width: 200px;
     &:hover {
-        background: ${props => (props.disabled ? "#118f33" : "#25ba4d")};
+        background: ${props => (props.disabled ? "#118f33" : "default")};
     }
 `;
 
@@ -94,7 +92,7 @@ class Profile extends React.Component {
                 birthday: this.state.birthday,
                 avatarColor: this.state.avatarColor,
             })
-            const response= await api.put(`users/${this.state.id}`, requestBody);
+            await api.put(`users/${this.state.id}`, requestBody);
             this.props.history.push(`/game/users/${this.state.id}`);
         }
         catch(error){
@@ -146,8 +144,7 @@ class Profile extends React.Component {
         else if (this.state.avatarColor === "YELLOW"){
             return YellowShyguy;
         }
-        //default
-        else {
+        else if (this.state.avatarColor === "RED"){
             return RedShyguy;
         }
 
@@ -183,11 +180,6 @@ class Profile extends React.Component {
                 <ProfileContainer className={"profileContainer"}>
                     <One>
                         <ProfilePicContainer className={"profilePicContainer"}><img src={this.getProfilePic()} alt={"Profile picture"} className={"profilePicture"}/></ProfilePicContainer>
-                        <PixelButton
-                            onClick={() => {
-                                this.props.history.push(`/game/users/${this.state.id}`);
-                            }}
-                        >Back</PixelButton>
                     </One>
                     <Two>
                         <TextContainer>
@@ -256,12 +248,28 @@ class Profile extends React.Component {
                                 />
                             </ColorButtonContainer>
                         </ColorContainer>
-                        <SaveButton
-                            disabled={!this.state.username}
-                            onClick={()=>{
-                                this.updateProfile();
-                            }}
-                        >Save Profile</SaveButton>
+                        <ButtonRow
+                            marginTop="44px">
+                            <RowContainer>
+                                <PixelButton
+                                    onClick={() => {
+                                        this.props.history.push(`/game/users/${this.state.id}`);
+                                    }}
+                                >
+                                    Back
+                                </PixelButton>
+                            </RowContainer>
+                            <RowContainer>
+                                <SaveButton
+                                    disabled={!this.state.username}
+                                    onClick={()=>{
+                                        this.updateProfile();
+                                    }}
+                                >
+                                    Save Profile
+                                </SaveButton>
+                            </RowContainer>
+                        </ButtonRow>
                     </Two>
                 </ProfileContainer>
             </PhoneContainer>

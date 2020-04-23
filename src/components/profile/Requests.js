@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import {withRouter} from 'react-router-dom';
 import {BackgroundContainer} from "../main/Main";
 import {WindowHeader, PhoneContainer, PixelButton, ButtonRow, ProfileContainer} from "./Assets/profileAssets";
@@ -37,7 +36,7 @@ class Requests extends React.Component {
                                 <PixelButton
                                     width="200px"
                                     onClick={() => {
-                                        this.props.history.push(`/game/users/${this.state.id}`);
+                                        window.history.back();
                                     }}
                                 >
                                     Back

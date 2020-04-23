@@ -1,9 +1,8 @@
 import React from 'react';
-import styled from 'styled-components';
 import {api, handleError} from '../../helpers/api';
 import {withRouter} from 'react-router-dom';
 import {BackgroundContainer} from "../main/Main";
-import { PhoneContainer, PixelButton,  ProfileContainer, Banner} from "./Assets/profileAssets";
+import { PhoneContainer, PixelButton,  ProfileContainer} from "./Assets/profileAssets";
 import FriendBox from "./Assets/FriendBox";
 import UsersBox from "./Assets/UsersBox";
 import {WindowHeader, ButtonRow} from "./Assets/profileAssets";
@@ -52,22 +51,30 @@ class Friends extends React.Component {
             <BackgroundContainer className={"backgroundMain"}>
                 <PhoneContainer className={"phoneProfile"}>
                     <WindowHeader>
-                        C:/PecadOS/Friendlist
+                    {!this.state.addUser ? ("..\\Profile\\Friends.js") : ("..\\Profile\\Users.js")}
                     </WindowHeader>
                         <ProfileContainer>
                         {!this.state.addUser ? (<FriendBox></FriendBox>) : (<UsersBox></UsersBox>)}
                             <ButtonRow>
                                 <PixelButton
+                                    marginTop = "30px"
                                     onClick={() => {
-                                        this.props.history.push(`/game/users/${this.state.id}`);
+                                        !this.state.addUser ? 
+                                        (this.props.history.push(`/game/users/${this.state.id}`)
+                                        ) : (
+                                            this.addFriend());
                                     }}
                                 >
                                     Back
                                 </PixelButton>
-                                <PixelButton  
-                                    onClick={() => {this.addFriend() }}>
-                                        {this.state.addUser ? ('Friends'): ('Add Friends')}
-                                </PixelButton>
+                                    {!this.state.addUser ?
+                                        (<PixelButton
+                                            marginTop = "30px"
+                                            onClick={() => {this.addFriend() }}>
+                                            Friends
+                                            </PixelButton>
+                                        ):(null)} 
+                                
                             </ButtonRow>
                         </ProfileContainer>
                 </PhoneContainer>

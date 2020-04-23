@@ -63,6 +63,13 @@ class FriendBox extends React.Component {
                     height: '250px',
                     overflow: 'auto',
                 }}>
+                    {!this.state.users.length ? 
+                    (<Row>
+                        <RowContainer>
+                            You're lonely, find some friends
+                        </RowContainer>
+                    </Row>
+                    ) : (
                     <Row>
                             <RowContainer
                                 textDecoration="underline"
@@ -76,6 +83,7 @@ class FriendBox extends React.Component {
                             </RowContainer>
                             <RowContainer/>
                         </Row>
+                        )}
                     {this.state.friendData.map(users => {return(
                     <Element 
                             key = {users.id} 
