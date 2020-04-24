@@ -45,15 +45,15 @@ class RequestBox extends React.Component {
         Events.scrollEvent.register('end', function () {
             console.log("end", arguments);
         });
-        const response = await api.get('/users/'+localStorage.getItem('id')+'/friendRequests')
+        const response = await api.get(`/users/${localStorage.getItem('id')}/friendRequests?token=${localStorage.getItem('token')}`)
         this.setState({['requests']: response.data})
 
     }
 
     async accept(userId){
         const requestBody = JSON.stringify({
-            senderID: userId,
-            token: localStorage.getItem("token"),
+            requesterID: userId,
+            accepterToken: localStorage.getItem("token"),
             accepted: true
         })
         await api.put(`/users/${localStorage.getItem("id")}/friends`, requestBody)
@@ -63,8 +63,8 @@ class RequestBox extends React.Component {
 
     async decline(userId){
         const requestBody = JSON.stringify({
-            senderID: userId,
-            token: localStorage.getItem("token"),
+            requesterID: userId,
+            accepterToken: localStorage.getItem("token"),
             accepted: false
         })
         await api.put(`/users/${localStorage.getItem("id")}/friends`, requestBody)
