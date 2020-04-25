@@ -1,8 +1,8 @@
 import {api, handleError} from "../../../helpers/api";
-import styled from "styled-components";
+
 import React from "react";
 import {withRouter} from "react-router-dom";
-import {Events} from "react-scroll";
+
 
 class Timer extends React.Component{
     constructor() {
@@ -14,7 +14,7 @@ class Timer extends React.Component{
         };
     }
 
-
+    //gets time every half a second
     async getTimer(){
         this.state.interval = setInterval(async()=>{const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/game/timer`);
             this.setState({['timer']: response.data});
@@ -27,6 +27,7 @@ class Timer extends React.Component{
 
     }
 
+    //clears interval so it stops sending after page redirection
     componentWillUnmount() {
         clearInterval(this.state.interval)
     }

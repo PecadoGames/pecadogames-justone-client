@@ -66,6 +66,7 @@ class Lobby extends React.Component{
       game: null,
       players: [],
       gameState: null,
+      interval: null
     };
   }
 
@@ -83,7 +84,6 @@ class Lobby extends React.Component{
     }
     catch(error){
     }
-
     try{
       const requestBody = JSON.stringify({
         id: localStorage.getItem("id"),
@@ -111,38 +111,36 @@ class Lobby extends React.Component{
         this.props.history.push('/game')
     }
     catch(error){
-
     }
   }
-
 
   handleInputChange(key, value) {
     this.setState({ [key]: value });
   }
 
+  //gets Game half a second
   async getGame(){
     try{
-      const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/game?token=${localStorage.getItem('token')}`)
-      this.handleInputChange('game' ,response.data)
-      this.handleInputChange('gameState', response.data.gameState)
-      this.handleInputChange('players', response.data.players)
-
-
-
-
+      this.state.interval = setInterval(async ()=>{const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/game?token=${localStorage.getItem('token')}`);
+      this.handleInputChange('game' ,response.data);
+      this.handleInputChange('gameState', response.data.gameState);
+      this.handleInputChange('players', response.data.players)},500)
     }
     catch(error){
-
     }
   }
 
+  //needs to clear interval when unmount or it keeps calling
+  componentWillUnmount() {
+    clearInterval(this.state.interval)
+  }
+
+  //does not rerender when its fetches game data
   shouldComponentUpdate(nextProps, nextState, nextContext) {
-    if(this.state.chatMessage !== nextState.chatMessage){
+    if(this.state.chatMessage !== nextState.chatMessage || this.state.game !== nextState.game || this.state.gameState !== nextState.gameState || this.state.players !== nextState.players){
       return false;}
     return true;
   }
-
-
 
   componentDidMount() {
     this.getGame()

@@ -36,6 +36,16 @@ class Players extends React.Component{
 
     }
 
+    static getDerivedStateFromProps(props, state) {
+        if (props.players !== state.players) {
+            return {
+                players: props.players,
+            };
+        }
+        // Return null if the state hasn't changed
+        return null;
+    }
+
 
     render(){
         return(
@@ -43,7 +53,7 @@ class Players extends React.Component{
                 {this.state.players.map(player => {return(
                     <PlayerContainer>
                         <div>Username: {player.username}</div>
-                        <div>Status: {player.status}</div>
+                        <div>Status: {player.status=== null ? ('Ready') : (player.status)}</div>
                         </PlayerContainer>
                 )})}
 
