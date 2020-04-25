@@ -55,7 +55,6 @@ class Main extends React.Component {
 
     componentDidMount() {
         this.props.changeMusicToNormal()
-
     }
 
     async logout() {

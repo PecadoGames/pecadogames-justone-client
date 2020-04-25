@@ -10,6 +10,7 @@ import DimmedSongs from "./Music/AllSongsDimmedPlusNightNoise.mp3"
  * React Template by Lucas Pelloni
  */
 class App extends Component {
+
   constructor() {
       const min=0;
       const max=1800000;

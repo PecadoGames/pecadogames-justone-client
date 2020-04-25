@@ -113,6 +113,8 @@ class Lobby extends React.Component{
     }
   }
 
+
+
   //request to add Bot
   async addBot(){
     try{
@@ -135,14 +137,15 @@ class Lobby extends React.Component{
 
     }}
 
-  async submitMessage(){
+
+  async submitClue(){
     const requestBody = JSON.stringify({
       lobbyId: localStorage.getItem('lobbyId'),
       userId: localStorage.getItem('id'),
       token: localStorage.getItem('token'),
       guess: this.state.message,
     })
-    await api.put(`lobbies/${localStorage.getItem('lobbyId')}/game/message`,requestBody)
+    await api.put(`lobbies/${localStorage.getItem('lobbyId')}/game/clue`,requestBody)
   }
 
   handleInputChange(key, value) {
@@ -203,7 +206,7 @@ class Lobby extends React.Component{
                 }}>
             </InputField>
             <Button
-            onClick={()=>this.submitMessage}>Submit</Button>
+            onClick={()=>this.submitClue()}>Submit Clue</Button>
             <br/>
             <text>Chat</text>
             <ChatBox></ChatBox>
