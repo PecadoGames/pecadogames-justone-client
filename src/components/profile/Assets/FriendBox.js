@@ -24,7 +24,7 @@ class FriendBox extends React.Component {
         Events.scrollEvent.register('end', function () {
             console.log("end", arguments);
         });
-        const response = await api.get(`/users/${localStorage.getItem("id")}/friends`)
+        const response = await api.get(`/users/${localStorage.getItem("id")}/friends?token=${localStorage.getItem('token')}`)
         this.setState({['users']: response.data})
         this.getStatusFromFriends()
     }
@@ -33,7 +33,7 @@ class FriendBox extends React.Component {
         const fullFriendList = [];
         for(let user in this.state.users){
         
-            const friends = await api.get(`users/${this.state.users[user].id}`)
+            const friends = await api.get(`users/${this.state.users[user].id}?token=${localStorage.getItem('token')}`)
             
             const friend = friends.data
            

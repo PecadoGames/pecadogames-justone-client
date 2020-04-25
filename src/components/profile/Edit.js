@@ -155,7 +155,7 @@ class Profile extends React.Component {
         this.state.id = this.props.match.params.id;
         this.userHasPermission()
         try {
-            await api.get('/users/'+this.state.id)
+            await api.get(`/users/${this.state.id}?token=${localStorage.getItem('token')}`)
                 .then(response => {return new User(response.data)})
                 .then(data => this.setState(
                     {user: data,

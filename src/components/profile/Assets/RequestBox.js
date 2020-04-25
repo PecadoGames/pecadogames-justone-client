@@ -57,7 +57,7 @@ class RequestBox extends React.Component {
             accepted: true
         })
         await api.put(`/users/${localStorage.getItem("id")}/friends`, requestBody)
-        const response = await api.get('/users/'+localStorage.getItem('id')+'/friendRequests')
+        const response = await api.get(`/users/${localStorage.getItem('id')}/friendRequests?token=${localStorage.getItem('token')}`)
         this.setState({['requests']: response.data})
     }
 
@@ -68,7 +68,7 @@ class RequestBox extends React.Component {
             accepted: false
         })
         await api.put(`/users/${localStorage.getItem("id")}/friends`, requestBody)
-        const response = await api.get('/users/'+localStorage.getItem('id')+'/friendRequests')
+        const response = await api.get(`/users/${localStorage.getItem('id')}/friendRequests?token=${localStorage.getItem('token')}`)
         this.setState({['requests']: response.data})
 
     }

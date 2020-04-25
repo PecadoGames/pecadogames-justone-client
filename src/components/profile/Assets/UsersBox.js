@@ -25,8 +25,8 @@ class UsersBox extends React.Component {
         Events.scrollEvent.register('end', function () {
             console.log("end", arguments);
         });
-        const response = await api.get(`/users`)
-        const friends = await api.get(`/users/${localStorage.getItem('id')}/friends`)
+        const response = await api.get(`/users?token=${localStorage.getItem('token')}`)
+        const friends = await api.get(`/users/${localStorage.getItem('id')}/friends?token=${localStorage.getItem('token')}`)
         const parsedFriends = friends.data
         const parsedResponse = response.data
         const index = parsedResponse.findIndex(x => x.id.toString() === localStorage.getItem('id'));
