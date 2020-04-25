@@ -5,6 +5,7 @@ import {withRouter} from "react-router-dom";
 import {api} from "../../helpers/api";
 import styled from "styled-components";
 import {Button} from "../../views/design/Button";
+import {InputField} from "../../views/design/InputField";
 
 
 const Container = styled.div`
@@ -51,7 +52,8 @@ class ChatBox extends React.Component {
         super(props);
         this.state = {
             messages: [],
-            interval: null
+            interval: null,
+            chatMessage: ''
         }
     }
 
@@ -79,6 +81,26 @@ class ChatBox extends React.Component {
         clearInterval(this.state.interval)
     }
 
+    handleInputChange(key, value) {
+        this.setState({ [key]: value });
+    }
+
+    async sendMessage(){
+        const requestBody = JSON.stringify({
+            userId: localStorage.getItem('id'),
+            token: localStorage.getItem('token'),
+            message: this.state.chatMessage,
+        })
+        await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/chat`, requestBody)
+        this.handleInputChange('chatMessage', '')
+    }
+
+    _handleKeyDown= (e) => {
+        if (e.key === 'Enter'){
+            this.sendMessage()
+        }
+    }
+
 
     render() {
         return (
@@ -101,6 +123,18 @@ class ChatBox extends React.Component {
                     })}
                     {/* end of messages */}
                 </Element>
+                <InputField
+                    placeholder="chat"
+                    width="30%"
+                    value={this.state.chatMessage}
+                    onChange={e => {
+                        this.handleInputChange('chatMessage', e.target.value);
+                    }}
+                    onKeyDown={this._handleKeyDown}
+                >
+                </InputField>
+                <Button
+                    onClick={()=>this.sendMessage()}>Send</Button>
             </div>
         );
     }

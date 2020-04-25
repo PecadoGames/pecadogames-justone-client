@@ -7,6 +7,8 @@ import ChatBox from "../ChatBox/ChatBox";
 import {InputField} from "../../views/design/InputField";
 import {Button} from "../../views/design/Button";
 import Timer from "./assets/Timer";
+import Picture from "./assets/Picture";
+import Players from "./assets/Players";
 
 const FormContainer = styled.div`
   display: flex;
@@ -62,8 +64,8 @@ class Lobby extends React.Component{
     super();
     this.state = {
       lobby: null,
-      message: '',
-      chatMessage: ''
+      players: [],
+      gameState: null,
     };
   }
 
@@ -114,40 +116,6 @@ class Lobby extends React.Component{
   }
 
 
-
-  //request to add Bot
-  async addBot(){
-    try{
-
-
-    }
-    catch(error){
-
-    }
-
-  }
-
-  //request to add friend
-  async invite(){
-    try{
-
-
-    }
-    catch(error){
-
-    }}
-
-
-  async submitClue(){
-    const requestBody = JSON.stringify({
-      lobbyId: localStorage.getItem('lobbyId'),
-      userId: localStorage.getItem('id'),
-      token: localStorage.getItem('token'),
-      guess: this.state.message,
-    })
-    await api.put(`lobbies/${localStorage.getItem('lobbyId')}/game/clue`,requestBody)
-  }
-
   handleInputChange(key, value) {
     this.setState({ [key]: value });
   }
@@ -159,11 +127,11 @@ class Lobby extends React.Component{
       message: this.state.chatMessage,
     })
     await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/chat`, requestBody)
-
+    this.handleInputChange('chatMessage', '')
   }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
-    if(this.state.chatMessage !== nextState.chatMessage || this.state.message !== nextState.message){
+    if(this.state.chatMessage !== nextState.chatMessage){
       return false;}
     return true;
   }
@@ -184,48 +152,20 @@ class Lobby extends React.Component{
             <LogoutButton
                 onClick={()=>this.leaveLobby()}>Leave
             </LogoutButton>
-            <PlayerContainer>
-              <br/>
-              <text>LobbyName</text>
-              <br/>
-              <text>Player1____________Ready</text>
-              <text>Player2____________Ready</text>
-              <text>Player3____________Ready</text>
-              <text>Player4____________Ready</text>
-              <text>Player5____________Ready</text>
-              <text>Player6____________Ready</text>
-              <text>Player7____________Ready</text>
-            </PlayerContainer>
-            <br></br>
-            <text>Enter Glue or guess</text>
-            <InputField
-                placeholder="clue.."
-                width="30%"
-                onChange={e => {
-                  this.handleInputChange('message', e.target.value);
-                }}>
-            </InputField>
-            <Button
-            onClick={()=>this.submitClue()}>Submit Clue</Button>
-            <br/>
+            <Players
+            players ={this.state.players}>
+            </Players>
             <text>Chat</text>
             <ChatBox></ChatBox>
-            <InputField
-                placeholder="talk.."
-                width="30%"
-                onChange={e => {
-                  this.handleInputChange('chatMessage', e.target.value);
-                }}>
-            </InputField>
-            <Button
-             onClick={()=>this.sendMessage()}>Send</Button>
           </LeftContainer>
-
           <RightContainer>
             <TopRightContainer>
               <Timer></Timer><text> Score + Round</text>
             </TopRightContainer>
-            <BottomRightContainer className = 'lobbyBackground'>
+            <BottomRightContainer>
+            <Picture
+                players={this.state.players} gameState = {this.state.gameState}>
+            </Picture>
             </BottomRightContainer>
           </RightContainer>
 
