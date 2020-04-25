@@ -60,10 +60,10 @@ const PlayerContainer = styled.div`
 
 
 class Lobby extends React.Component{
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      lobby: null,
+      game: null,
       players: [],
       gameState: null,
     };
@@ -120,14 +120,20 @@ class Lobby extends React.Component{
     this.setState({ [key]: value });
   }
 
-  async sendMessage(){
-    const requestBody = JSON.stringify({
-      userId: localStorage.getItem('id'),
-      token: localStorage.getItem('token'),
-      message: this.state.chatMessage,
-    })
-    await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/chat`, requestBody)
-    this.handleInputChange('chatMessage', '')
+  async getGame(){
+    try{
+      const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/game?token=${localStorage.getItem('token')}`)
+      this.handleInputChange('game' ,response.data)
+      this.handleInputChange('gameState', response.data.gameState)
+      this.handleInputChange('players', response.data.players)
+
+
+
+
+    }
+    catch(error){
+
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState, nextContext) {
@@ -136,8 +142,10 @@ class Lobby extends React.Component{
     return true;
   }
 
-  componentDidMount() {
 
+
+  componentDidMount() {
+    this.getGame()
   }
 
 
@@ -164,7 +172,8 @@ class Lobby extends React.Component{
             </TopRightContainer>
             <BottomRightContainer>
             <Picture
-                players={this.state.players} gameState = {this.state.gameState}>
+                players = {this.state.players}
+                gameState = {this.state.gameState}>
             </Picture>
             </BottomRightContainer>
           </RightContainer>

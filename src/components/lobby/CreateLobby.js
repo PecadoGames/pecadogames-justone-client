@@ -223,7 +223,7 @@ class CreateLobby extends React.Component {
             const requestBody = JSON.stringify({
                 lobbyName: this.state.lobbyName,
                 maxPlayersAndBots: this.state.numberOfPlayers,
-                userId: localStorage.getItem("id"),
+                hostId: localStorage.getItem("id"),
                 token: localStorage.getItem("token"),
                 isPrivate: this.state.isPrivate,
                 voiceChat: this.state.voiceChat

@@ -134,15 +134,6 @@ class Lobby extends React.Component{
         this.setState({ [key]: value });
     }
 
-    async sendMessage(){
-        const requestBody = JSON.stringify({
-            userId: localStorage.getItem('id'),
-            token: localStorage.getItem('token'),
-            message: this.state.chatMessage,
-        })
-        await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/chat`, requestBody)
-
-    }
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         if(this.state.chatMessage !== nextState.chatMessage ){
@@ -154,6 +145,11 @@ class Lobby extends React.Component{
     //starts the game
     async startGame(){
         try{
+            const requestBody = JSON.stringify({
+                userId: localStorage.getItem("id"),
+                userToken: localStorage.getItem("token")
+            });
+            await api.post(`/lobbies/${localStorage.getItem('lobbyId')}`, requestBody)
             this.props.history.push(window.location.pathname +'/game')
 
         }
@@ -215,16 +211,6 @@ class Lobby extends React.Component{
                         </Button>
                     <text>Chat</text>
                     <ChatBox></ChatBox>
-                    <InputField
-                        placeholder="talk.."
-                        width="30%"
-                        onChange={e => {
-                            this.handleInputChange('chatMessage', e.target.value);
-
-                        }}>
-                    </InputField>
-                    <Button
-                    onClick={()=>this.sendMessage()}>Send</Button>
                 </LeftContainer>
 
                 <RightContainer>

@@ -69,7 +69,7 @@ class ChatBox extends React.Component {
             console.log("end", arguments);
         });
         //ask ever second for chat
-        this.state.interval = setInterval(async()=>{const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/chat`);
+        this.state.interval = setInterval(async()=>{const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/chat?token=${localStorage.getItem('token')}`);
         this.setState({['messages']: response.data.messages});
         }, 1000)
     }
@@ -87,8 +87,8 @@ class ChatBox extends React.Component {
 
     async sendMessage(){
         const requestBody = JSON.stringify({
-            userId: localStorage.getItem('id'),
-            token: localStorage.getItem('token'),
+            playerId: localStorage.getItem('id'),
+            playerToken: localStorage.getItem('token'),
             message: this.state.chatMessage,
         })
         await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/chat`, requestBody)
