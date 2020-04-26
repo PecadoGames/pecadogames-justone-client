@@ -146,8 +146,8 @@ class Lobby extends React.Component{
     async startGame(){
         try{
             const requestBody = JSON.stringify({
-                userId: localStorage.getItem("id"),
-                userToken: localStorage.getItem("token")
+                hostId: localStorage.getItem("id"),
+                hostToken: localStorage.getItem("token")
             });
             await api.post(`/lobbies/${localStorage.getItem('lobbyId')}`, requestBody)
             this.props.history.push(window.location.pathname +'/game')

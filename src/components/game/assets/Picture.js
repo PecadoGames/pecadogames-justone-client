@@ -57,8 +57,6 @@ class Picture extends React.Component{
                 {this.state.gameState}
                 {this.state.players.map(player => {return(<div>{player.username}</div>)})}
             </Container>
-
-
         </BackgroundContainer>
 
 
