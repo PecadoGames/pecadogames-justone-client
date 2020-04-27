@@ -55,7 +55,6 @@ class Picture extends React.Component{
         <BackgroundContainer className = 'lobbyBackground'>
             <Container>
                 {this.state.gameState}
-                {this.state.players.map(player => {return(<div>{player.username}</div>)})}
             </Container>
             <PickWord
                 pickWordFunction={this.props.pickWordFunction}

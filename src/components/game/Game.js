@@ -150,11 +150,7 @@ class Lobby extends React.Component{
 
   async pickWord(number){
     try{
-      const requestBody = JSON.stringify({
-        number: number,
-        userToken: localStorage.getItem("token")
-      });
-      await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/game/word`, requestBody)
+      await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/game/word?token=${localStorage.getItem("token")}`)
       this.props.history.push('/game')
     }
     catch(error){
