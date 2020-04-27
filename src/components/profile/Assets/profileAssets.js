@@ -117,18 +117,18 @@ export const FriendsButton = styled(PixelButton)`
     }
 `;
 
-export const NewFriendRequestButton = styled(PixelButton)`
+export const BlinkingPixelButton = styled(PixelButton)`
     outline: 2px solid #ffff00;
     margin: auto;
-    width: 180px;
-    height: 80px;
-    margin-top: 10px;
+    width: ${props => props.width || "180px" };
+    height: ${props => props.height || "80px" };
+    margin-top: ${props => props.marginTop || "10px"};
     color: #ffff00;
     &:hover {
         background: #ffff00;
-        animation: blinkingAnimationInverted 2s infinite;
+        animation: ${props => props.blinkingAnimationInverted || "blinkingAnimationInverted 2s infinite"};
     }
-    animation: blinkingAnimation 2s infinite;
+    animation: ${props => props.blinkingAnimation || "blinkingAnimation 2s infinite"};
 `;
 
 export const EditProfileButton = styled(PixelButton)`

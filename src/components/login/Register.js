@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { api, handleError } from '../../helpers/api';
 import { withRouter } from 'react-router-dom';
-import { Button } from '../../views/design/Button';
+import {PixelButton} from '../profile/Assets/profileAssets'
 import {InputField} from "../../views/design/InputField";
 import {Title} from "../../views/Header"
 import Sound from "react-sound";
@@ -14,7 +14,7 @@ import commercial from "../login/assets/CommercialFunnyMusic.mp3"
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 1000px;
+  height: 890px;
   width: 800px;
   border-radius: 20px;
   align-items: flex-start;  
@@ -30,7 +30,7 @@ const HandyContainer = styled.div`
   border-radius: 20px;
   align-items: flex-start;  
   padding-left: 20px;
-  padding-top: 220px;
+  padding-top: 80px;
 `;
 
 
@@ -38,14 +38,20 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-left: 70px;
-  
 `;
 
-const Label = styled.label`
-  color: black;
-  font-size: 27px;
-  margin-left: 70px;
-`;
+
+const LargePhoneTitle = styled.div`
+    display: flex;
+    margin-left: 90px;
+    width: 190px;
+    text-align: center;
+    font-size: 50px;
+    height: auto;
+    background: #000000;
+    border-bottom: 2px solid #c0c0c0;
+    color: #c0c0c0;
+`
 
 
 class Register extends React.Component {
@@ -102,8 +108,7 @@ class Register extends React.Component {
     render() {
         return (
 
-            <FormContainer className={'backgroundLogin'}
-            >
+            <FormContainer className={'backgroundLogin'}>
                 <Title>Just One Club</Title>
                 <HandyContainer className={'handyImage'}>
                     <Sound url={commercial}
@@ -112,51 +117,52 @@ class Register extends React.Component {
                            volume={30}
                            loop={true}
                     />
-                    <Label>Username</Label>
-                            <InputField
-                                placeholder="Enter username"
-                                width="220px"
-                                marginLeft="70px"
-                                height="45px"
-                                onChange={e => {
-                                    this.handleInputChange('username', e.target.value);
-                                }}
-                                color="black"
-                                borderBottom= "null"
-                                border= "1px solid black"
-
-                            />
-                    <Label>Password</Label>
-                            <InputField
-                                placeholder="Enter password"
-                                width="220px"
-                                marginLeft="70px"
-                                height="45px"
-                                type = {'password'}
-                                onChange={e => {
-                                    this.handleInputChange('password', e.target.value);
-                                }}
-                                color="black"
-                                borderBottom= "null"
-                                border= "1px solid black"
-                            />
-                    <Label>Confirm</Label>
-                            <InputField
-                                onKeyDown={this._handleKeyDown}
-                                placeholder="Confirm password"
-                                width="220px"
-                                marginLeft="70px"
-                                height="45px"
-                                type = {'password'}
-                                onChange={e => {
-                                    this.handleInputChange('confirmation', e.target.value);
-                                }}
-                                color="black"
-                                borderBottom= "null"
-                                border= "1px solid black"
-                            />
+                    <LargePhoneTitle>
+                        PecadOS
+                        Sign Up
+                    </LargePhoneTitle>
+                        <InputField
+                            placeholder="Enter username"
+                            width="220px"
+                            marginTop = "70px"
+                            marginLeft="70px"
+                            marginBottom="30px"
+                            height="45px"
+                            onChange={e => {
+                                this.handleInputChange('username', e.target.value);
+                            }}
+                            color="#c0c0c0"
+                            borderBottom= "2px solid #c0c0c0"
+                        />
+                        <InputField
+                            placeholder="Enter password"
+                            width="220px"
+                            marginLeft="70px"
+                            marginBottom="30px"
+                            height="45px"
+                            type = {'password'}
+                            onChange={e => {
+                                this.handleInputChange('password', e.target.value);
+                            }}
+                            color="#c0c0c0"
+                            borderBottom= "2px solid #c0c0c0"
+                        />
+                        <InputField
+                            onKeyDown={this._handleKeyDown}
+                            placeholder="Confirm password"
+                            width="220px"
+                            marginLeft="70px"
+                            marginBottom="30px"
+                            height="45px"
+                            type = {'password'}
+                            onChange={e => {
+                                this.handleInputChange('confirmation', e.target.value);
+                            }}
+                            color="#c0c0c0"
+                            borderBottom= "2px solid #c0c0c0"
+                        />
                         <ButtonContainer>
-                            <Button
+                            <PixelButton
                                 width="220px"
                                 onClick={() => {
                                     this.register();
@@ -165,10 +171,10 @@ class Register extends React.Component {
                                 hover="none"
                             >
                                 Sign up
-                            </Button>
+                            </PixelButton>
                         </ButtonContainer>
                         <ButtonContainer>
-                            <Button
+                            <PixelButton
                                 width="220px"
                                 onClick={() => {
                                     this.props.history.push(`/login`);
@@ -177,7 +183,7 @@ class Register extends React.Component {
                                 hover="none"
                             >
                                 Back
-                            </Button>
+                            </PixelButton>
                         </ButtonContainer>
                 </HandyContainer>
             </FormContainer>

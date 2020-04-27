@@ -9,15 +9,12 @@ import {Title} from "../../views/Header"
 import {UserWrapper} from "../../views/design/UserWrapper";
 import Sound from 'react-sound';
 import open_creaky_door from '../login/assets/open_creaky_door.mp3'
-
-
-
-
+import { BlinkingPixelButton } from '../profile/Assets/profileAssets';
 
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 800px;
+  height: 890px;
   width: 800px;
   border-radius: 20px;
   align-items: flex-start;  
@@ -43,6 +40,33 @@ const Label = styled.label`
   font-size: 40px;
   font-family: 'Open Sans' 
 `;
+
+const PhoneContainer = styled.div`
+  margin-top: -10px;
+  display: flex;
+  justify-content: center;
+  margin-left 600px;
+  width: 200px;
+  height: 365px;
+`;
+
+const RegisterContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  height: 300px;
+  width: 145px;
+  color: #c0c0c0;    
+  text-align: center;
+  align-items: center;
+  font-size: 35px;
+`
+
+const AdvertismentText = styled.div`
+  color: ${props => props.color};    
+  text-align: center;
+  font-size: 35px;
+`
 
 
 class Login extends React.Component {
@@ -219,22 +243,33 @@ class Login extends React.Component {
                 >
                 </Button>
               </ButtonContainer>
-              <ButtonContainer>
-                <Button
-                    marginTop = "10px"
-                    marginLeft = "600px"
-                    color = "red"
-                    text= "left"
-                    width="200px"
-                    background= "null"
-                    className= "buttonImage"
-                    height= "365px"
-                    onClick={() => {
+              <PhoneContainer 
+                className = "buttonImage">
+                <RegisterContainer>
+                  PecadOS
+                  <AdvertismentText
+                    color="#ff00ff">
+                    1000000
+                  </AdvertismentText>
+                  <AdvertismentText
+                    color="#00ccff">
+                    User
+                  </AdvertismentText>
+                  <img 
+                  src={require('./assets/membercard_small.png')}
+                  width="100" />
+                    <BlinkingPixelButton                    
+                      width = "135px"
+                      marginTop = "15px"
+                      height = "auto"
+                      blinkingAnimation = "blinkingAnimation 0.7s infinite"
+                      onClick={() => {
                       this.props.history.push(`/register`);
-                    }}
-                >
-                </Button>
-              </ButtonContainer>
+                    }}>
+                      REGISTER NOW
+                    </BlinkingPixelButton>
+                </RegisterContainer>
+              </PhoneContainer>
         </FormContainer>
 
     )

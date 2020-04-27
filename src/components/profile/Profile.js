@@ -4,7 +4,7 @@ import {withRouter} from 'react-router-dom';
 import User from "../shared/models/User";
 import {BackgroundContainer} from "../main/Main";
 import {PhoneContainer, TextRight, TextLeft, TextContainer, EditProfileButton, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, Row, ButtonRow,RowContainer,
-    WindowHeader, FriendsButton, NewFriendRequestButton} from "./Assets/profileAssets";
+    WindowHeader, FriendsButton, BlinkingPixelButton} from "./Assets/profileAssets";
 import GreenShyguy from "./Assets/ProfilePictures/green.png";
 import BlueShyguy from "./Assets/ProfilePictures/blue.png";
 import PinkShyguy from "./Assets/ProfilePictures/pink.png";
@@ -169,10 +169,10 @@ class Profile extends React.Component {
                             ):(null)}
                             {this.counter()}
                             {!this.state.friendsRequest.length || (localStorage.getItem('id') !== this.state.id) ? (null):
-                                (<NewFriendRequestButton
+                                (<BlinkingPixelButton
                                     onClick={() => {this.props.history.push(window.location.pathname+ `/requests`)}}>
                                     New Requests ({this.state.count})
-                                </NewFriendRequestButton>)
+                                </BlinkingPixelButton>)
                             }
                         </One>
                         <Two>

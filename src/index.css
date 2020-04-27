@@ -74,9 +74,10 @@ button {
 }
 
 .buttonImage{
-  background-image: url("PixleHandy.png");
+  background-image: url("phone_small.png");
   background-size:  200px 365px, contain ;
   background-repeat: no-repeat;
+  background-color: transparent;
 }
 
 
@@ -88,11 +89,11 @@ button {
 }
 
 .handyImage{
-  background-image: url("BigHandy.png");
+  background-image: url("phone.png");
   background-size:  400px 730px, contain ;
   background-repeat: no-repeat;
   margin-left: calc(50% - 200px);
-  margin-top: 30px;
+  margin-top: 5px;
 }
 
 .handWithCard{
@@ -117,7 +118,7 @@ button {
 }
 
 .phoneProfile{
-  background-image:url("PhoneProfile.png");
+  background-image:url("phone_landscape.png");
   background-size: 1150px 600px, contain;
   background-repeat: no-repeat;
   margin:auto;

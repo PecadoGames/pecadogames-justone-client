@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const InputField = styled.input`
   &::placeholder {
-    color: ${props => props.color || "#9e9e9e"};
+    color: ${props => props.placeholderColor || "#9e9e9e"};
     text-align: justify;
   }
   height:  ${props => props.height || "35px"};
