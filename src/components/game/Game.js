@@ -7,8 +7,8 @@ import ChatBox from "../ChatBox/ChatBox";
 import {InputField} from "../../views/design/InputField";
 import {Button} from "../../views/design/Button";
 import Timer from "./assets/Timer";
-import Picture from "./assets/Picture";
-import Players from "./assets/Players";
+import GamePicture from "./assets/GamePicture";
+import GameInfos from "./assets/GameInfos";
 import PickWord from "./assets/PickWord.js";
 
 const FormContainer = styled.div`
@@ -68,7 +68,9 @@ class Lobby extends React.Component{
       players: [],
       gameState: null,
       interval: null,
-      currentGuesserId: 1
+      currentGuesserId: 1,
+      lobbyName: '',
+      clues: []
     };
   }
 
@@ -127,7 +129,9 @@ class Lobby extends React.Component{
       this.handleInputChange('game' ,response.data);
       this.handleInputChange('currentGuesserId', response.data.currentGuesser.id);
       this.handleInputChange('gameState', response.data.gameState);
-      this.handleInputChange('players', response.data.players)},500)
+      this.handleInputChange('players', response.data.players);
+      this.handleInputChange('lobbyName', response.data.lobbyName);
+      this.handleInputChange('clues', response.data.clues)},500)
     }
     catch(error){
     }
@@ -141,7 +145,10 @@ class Lobby extends React.Component{
 
   //does not rerender when its fetches game data
   shouldComponentUpdate(nextProps, nextState, nextContext) {
-    if(this.state.chatMessage !== nextState.chatMessage || this.state.game !== nextState.game || this.state.gameState !== nextState.gameState || this.state.players !== nextState.players){
+    if(this.state.currentGuesserId !== nextState.currentGuesserId || this.state.game !== nextState.game
+        || this.state.gameState !== nextState.gameState || this.state.players !== nextState.players
+        || this.state.interval !== nextState.interval || this.state.lobbyName !== nextState.lobbyName
+        || this.state.clues !== nextState.clues){
       return false;}
     return true;
   }
@@ -156,8 +163,6 @@ class Lobby extends React.Component{
         number: number,
       });
       await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/game/word?token=${localStorage.getItem("token")}`, requestBody)
-      await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/game/word?token=${localStorage.getItem("token")}`)
-
       this.props.history.push('/game')
     }
     catch(error){
@@ -175,9 +180,9 @@ class Lobby extends React.Component{
             <LogoutButton
                 onClick={()=>this.leaveLobby()}>Leave
             </LogoutButton>
-            <Players
-            players ={this.state.players}>
-            </Players>
+            <GameInfos
+            players ={this.state.players} lobbyName={this.state.lobbyName}>
+            </GameInfos>
             <text>Chat</text>
             <ChatBox></ChatBox>
           </LeftContainer>
@@ -186,13 +191,14 @@ class Lobby extends React.Component{
               <Timer></Timer><text> Score + Round</text>
             </TopRightContainer>
             <BottomRightContainer>
-            <Picture
+            <GamePicture
                 players = {this.state.players}
                 gameState = {this.state.gameState}
                 pickWordFunction={this.pickWord}
                 currentGuesserId = {this.state.currentGuesserId}
+                clues = {this.state.clues}
             >
-            </Picture>
+            </GamePicture>
             </BottomRightContainer>
           </RightContainer>
         </FormContainer>

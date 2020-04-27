@@ -9,6 +9,8 @@ class Lobby {
         this.numberOfBots = null;
         this.isPrivate = null;
         this.voicechat = null;
+        this.playersInLobby = null;
+        this.currentGuesser= null;
         Object.assign(this, data);
     }
 }

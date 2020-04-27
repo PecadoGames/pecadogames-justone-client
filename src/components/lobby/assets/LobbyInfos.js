@@ -19,11 +19,13 @@ const PlayerContainer = styled.div`
   width: 400px
  `
 
-class Players extends React.Component{
+class LobbyInfos extends React.Component{
     constructor() {
         super();
         this.state = {
             players: [],
+            lobby: false,
+            lobbyName: ''
         };
     }
 
@@ -33,13 +35,16 @@ class Players extends React.Component{
 
     componentDidMount() {
         this.handleInputChange('players', this.props.players)
+        this.handleInputChange('lobbyName', this.props.lobbyName)
+
 
     }
 
     static getDerivedStateFromProps(props, state) {
-        if (props.players !== state.players) {
+        if (props.players !== state.players || props.lobbyName !== state.lobbyName) {
             return {
                 players: props.players,
+                lobbyName: props.lobbyName
             };
         }
         // Return null if the state hasn't changed
@@ -50,15 +55,19 @@ class Players extends React.Component{
     render(){
         return(
             <PlayersContainer>
+                lobbyName: {this.state.lobbyName}
+                <br></br>
+                <br></br>
+                <text>Players:</text>
                 {this.state.players.map(player => {return(
                     <PlayerContainer>
                         <div>Username: {player.username}</div>
-                        <div>Status: {player.status=== null ? ('Ready') : (player.status)}</div>
-                        </PlayerContainer>
+                        <div></div>
+                    </PlayerContainer>
                 )})}
 
             </PlayersContainer>
         )
     }
 }
-export default withRouter(Players);
+export default withRouter(LobbyInfos);

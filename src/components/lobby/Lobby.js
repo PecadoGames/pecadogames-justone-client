@@ -4,6 +4,7 @@ import {withRouter} from "react-router-dom";
 import {LogoutButton} from "../../views/design/LogoutButton";
 import {api, handleError} from "../../helpers/api";
 import ChatBox from "../ChatBox/ChatBox";
+import LobbyInfos from "./assets/LobbyInfos";
 import {InputField} from "../../views/design/InputField";
 import {Button} from "../../views/design/Button";
 
@@ -61,7 +62,9 @@ class Lobby extends React.Component{
         super();
         this.state = {
             lobby: null,
-            chatMessage: null
+            players: [],
+            lobbyName: '',
+            interval: null
         };
     }
 
@@ -108,27 +111,6 @@ class Lobby extends React.Component{
         }
     }
 
-    //request to add Bot
-    async addBot(){
-        try{
-
-
-        }
-        catch(error){
-
-        }
-
-    }
-
-    //request to add friend
-    async invite(){
-        try{
-
-
-    }
-    catch(error){
-
-    }}
 
     handleInputChange(key, value) {
         this.setState({ [key]: value });
@@ -136,7 +118,8 @@ class Lobby extends React.Component{
 
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if(this.state.chatMessage !== nextState.chatMessage ){
+        if(this.state.interval !== nextState.interval || this.state.lobby !== nextState.lobby
+            || this.state.players !== nextState.players|| this.state.lobbyName !== nextState.lobbyName){
             return false;}
         return true;
     }
@@ -158,11 +141,22 @@ class Lobby extends React.Component{
         }
     }
 
+    async getLobby(){
+        this.state.interval = setInterval(async()=>{const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}?token=${localStorage.getItem('token')}`);
+        this.setState({['lobby']: response.data});
+            this.setState({['players']:response.data.playersInLobby});
+            this.setState({['lobbyName']: response.data.lobbyName})
+        }
+        , 500)
+
+    }
     componentDidMount() {
-        //getLobby
-        //this.setupBeforeUnloadListener for closing tab
+        this.getLobby()
     }
 
+    componentWillUnmount() {
+        clearInterval(this.state.interval)
+    }
     //this block is for closing tab
     //doSomethingBeforeUnload = () => {
       //  const requestBody2 = JSON.stringify({
@@ -195,16 +189,7 @@ class Lobby extends React.Component{
                         onClick={()=>this.leaveLobby()}>Leave
                     </LogoutButton>
                     <PlayerContainer>
-                        <br/>
-                        <text>LobbyName</text>
-                        <br/>
-                        <text>Player1</text>
-                        <text>Player2</text>
-                        <text>Player3</text>
-                        <text>Player4</text>
-                        <text>Player5</text>
-                        <text>Player6</text>
-                        <text>Player7</text>
+                        <LobbyInfos players={this.state.players} lobbyName={this.state.lobbyName}></LobbyInfos>
                     </PlayerContainer>
                     <Button
                         onClick={()=>this.startGame()}>Start Game
@@ -215,10 +200,10 @@ class Lobby extends React.Component{
 
                 <RightContainer>
                     <TopRightContainer>
-                        <Button onClick={()=>this.invite()}>
+                        <Button>
                             Invite Friend
                         </Button>
-                        <Button onClick={()=>this.addBot()}>
+                        <Button>
                             Add Bot
                         </Button>
                     </TopRightContainer>

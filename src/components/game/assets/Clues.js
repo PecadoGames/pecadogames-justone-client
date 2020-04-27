@@ -4,7 +4,7 @@ import React from "react";
 
 
 
-class Guesses extends React.Component{
+class Clues extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -39,4 +39,4 @@ class Guesses extends React.Component{
         )
     }
 }
-export default withRouter(Guesses);
+export default withRouter(Clues);
