@@ -70,10 +70,8 @@ class Picture extends React.Component{
             <Container>
                 {this.state.gameState}
             </Container>
-            {this.displayPickWord()
-            ?<PickWord pickWordFunction={this.props.pickWordFunction}/>
-            : null}
-            {this.displayPickWord() ? <PickWord pickWordFunction={this.props.pickWordFunction}/>:(<div></div>)}
+            
+            {this.displayPickWord() ? <PickWord pickWordFunction={this.props.pickWordFunction}/>:null}
             {this.state.gameState==="ENTERCLUESTATE"? (<div></div>):(<div></div>)}
             {this.state.gameState==="NLPSTATE"? (<div></div>):(<div></div>)}
             {this.state.gameState==="VOTEONCLUESTATE"? (<div></div>):(<div></div>)}
