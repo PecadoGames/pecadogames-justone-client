@@ -9,13 +9,14 @@ import {Button} from "../../views/design/Button";
 import Timer from "./assets/Timer";
 import Picture from "./assets/Picture";
 import Players from "./assets/Players";
+import PickWord from "./assets/PickWord.js";
 
 const FormContainer = styled.div`
   display: flex;
   flex-direction: row;
   height: 800px;
   width: 1200px;
-  align-items: flex-start;  
+  align-items: flex-start; 
   color: white;
   margin: auto;
 `;
@@ -135,6 +136,7 @@ class Lobby extends React.Component{
     clearInterval(this.state.interval)
   }
 
+
   //does not rerender when its fetches game data
   shouldComponentUpdate(nextProps, nextState, nextContext) {
     if(this.state.chatMessage !== nextState.chatMessage || this.state.game !== nextState.game || this.state.gameState !== nextState.gameState || this.state.players !== nextState.players){
@@ -146,6 +148,18 @@ class Lobby extends React.Component{
     this.getGame()
   }
 
+  async pickWord(number){
+    try{
+      const requestBody = JSON.stringify({
+        number: number,
+        userToken: localStorage.getItem("token")
+      });
+      await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/game/word`, requestBody)
+      this.props.history.push('/game')
+    }
+    catch(error){
+    }
+  }
 
   render(){
     return(
@@ -171,11 +185,12 @@ class Lobby extends React.Component{
             <BottomRightContainer>
             <Picture
                 players = {this.state.players}
-                gameState = {this.state.gameState}>
+                gameState = {this.state.gameState}
+                pickWordFunction={this.pickWord}
+            >
             </Picture>
             </BottomRightContainer>
           </RightContainer>
-
         </FormContainer>
     )
   }

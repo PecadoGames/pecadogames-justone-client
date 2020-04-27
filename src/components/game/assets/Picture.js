@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import {withRouter} from "react-router-dom";
 import React from "react";
+import PickWord from "./PickWord";
 
 
 const BackgroundContainer = styled.div`
@@ -17,7 +18,7 @@ const Container = styled.div`
    align-items: bottom;
    height: 350px;
    width: 400px
-    `
+`
 
 class Picture extends React.Component{
     constructor(props) {
@@ -57,6 +58,9 @@ class Picture extends React.Component{
                 {this.state.gameState}
                 {this.state.players.map(player => {return(<div>{player.username}</div>)})}
             </Container>
+            <PickWord
+                pickWordFunction={this.props.pickWordFunction}
+            />
         </BackgroundContainer>
 
 
