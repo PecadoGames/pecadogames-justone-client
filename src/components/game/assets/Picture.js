@@ -26,6 +26,7 @@ class Picture extends React.Component{
         this.state = {
             players: null,
             gameState: '',
+            currentGuesserId: null,
         };
     }
 
@@ -39,16 +40,29 @@ class Picture extends React.Component{
     }
 
     static getDerivedStateFromProps(props, state) {
-        if (props.players !== state.players || props.gameState !== state.gameState ) {
+        if (props.players !== state.players || props.gameState !== state.gameState || props.currentGuesserId !== state.currentGuesserId) {
             return {
                 players: props.players,
-                gameState: props.gameState
+                gameState: props.gameState,
+                currentGuesserId: props.currentGuesserId
             };
         }
         // Return null if the state hasn't changed
         return null;
     }
 
+    displayPickWord(){
+        if (this.state.gameState && this.props.currentGuesserId) {
+            let state1 = this.state.gameState
+            let state2 = "PICKWORDSTATE"
+            let guesserId = this.props.currentGuesserId.toString()
+            let playerId = localStorage.getItem("id")
+            if (state1 === state2 && guesserId === playerId){
+                return true
+            }
+            else {return false}
+        }
+    }
 
     render(){
     return(
@@ -57,14 +71,11 @@ class Picture extends React.Component{
                 {this.state.gameState}
                 {this.state.players.map(player => {return(<div>{player.username}</div>)})}
             </Container>
-            <PickWord
-                pickWordFunction={this.props.pickWordFunction}
-            />
+            {this.displayPickWord()
+            ?<PickWord pickWordFunction={this.props.pickWordFunction}/>
+            : null}
         </BackgroundContainer>
-
-
-
-    )
-}
+        )
+    }
 }
 export default withRouter(Picture);

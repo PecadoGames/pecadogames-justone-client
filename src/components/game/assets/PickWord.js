@@ -52,7 +52,7 @@ class PickWord extends React.Component{
     render(){
         return(
             <Wrapper>
-                <Text>Pick a number to start the game: {this.state.pickedWord}</Text>
+                <Text>Pick a number to start the game</Text>
                 <Container>
                     <NumberButton
                         onClick={()=>this.submitWord(1)}

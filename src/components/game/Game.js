@@ -67,7 +67,8 @@ class Lobby extends React.Component{
       game: null,
       players: [],
       gameState: null,
-      interval: null
+      interval: null,
+      currentGuesserId: 1
     };
   }
 
@@ -124,6 +125,7 @@ class Lobby extends React.Component{
     try{
       this.state.interval = setInterval(async ()=>{const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/game?token=${localStorage.getItem('token')}`);
       this.handleInputChange('game' ,response.data);
+      this.handleInputChange('currentGuesserId', response.data.currentGuesser.id);
       this.handleInputChange('gameState', response.data.gameState);
       this.handleInputChange('players', response.data.players)},500)
     }
@@ -152,9 +154,8 @@ class Lobby extends React.Component{
     try{
       const requestBody = JSON.stringify({
         number: number,
-        userToken: localStorage.getItem("token")
       });
-      await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/game/word`, requestBody)
+      await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/game/word?token=${localStorage.getItem("token")}`, requestBody)
       this.props.history.push('/game')
     }
     catch(error){
@@ -187,6 +188,7 @@ class Lobby extends React.Component{
                 players = {this.state.players}
                 gameState = {this.state.gameState}
                 pickWordFunction={this.pickWord}
+                currentGuesserId = {this.state.currentGuesserId}
             >
             </Picture>
             </BottomRightContainer>
