@@ -90,9 +90,8 @@ class JoinLobby extends React.Component {
     async joinLobby(lobbyId) {
         try {
             const requestBody = JSON.stringify({
-                lobbyId: lobbyId,
-                userId: localStorage.getItem('id'),
-                token: localStorage.getItem('token')
+                playerId: localStorage.getItem('id'),
+                playerToken: localStorage.getItem('token')
             })
             await api.put('/lobbies/' + lobbyId + '/joins', requestBody);
             localStorage.setItem('lobbyId', lobbyId)

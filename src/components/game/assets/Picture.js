@@ -36,7 +36,6 @@ class Picture extends React.Component{
     componentDidMount() {
         this.handleInputChange('players', this.props.players)
         this.handleInputChange('gameState', this.props.gameState)
-
     }
 
     static getDerivedStateFromProps(props, state) {
