@@ -10,14 +10,15 @@ class Timer extends React.Component{
         this.state = {
             lobby: null,
             interval: null,
-            timer: 0
+            timer: null
         };
     }
 
     //gets time every half a second
     async getTimer(){
         this.state.interval = setInterval(async()=>{const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/game/timer?token=${localStorage.getItem('token')}`);
-            this.setState({['timer']: response.data});
+            this.setState({['timer']: response.data}
+           );
         }, 500)
     }
 

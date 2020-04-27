@@ -108,7 +108,7 @@ class ChatBox extends React.Component {
                 <Element name="chatBox" className="element" id="containerElement" style={{
                     position: 'relative',
                     height: '300px',
-                    overflow: 'scroll',
+                    overflow: 'auto',
                 }}>
                     {/* start of messages */}
                     {this.state.messages.map(message => {return(

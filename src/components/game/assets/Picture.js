@@ -69,11 +69,17 @@ class Picture extends React.Component{
         <BackgroundContainer className = 'lobbyBackground'>
             <Container>
                 {this.state.gameState}
-                {this.state.players.map(player => {return(<div>{player.username}</div>)})}
             </Container>
             {this.displayPickWord()
             ?<PickWord pickWordFunction={this.props.pickWordFunction}/>
             : null}
+            {this.displayPickWord() ? <PickWord pickWordFunction={this.props.pickWordFunction}/>:(<div></div>)}
+            {this.state.gameState==="ENTERCLUESTATE"? (<div></div>):(<div></div>)}
+            {this.state.gameState==="NLPSTATE"? (<div></div>):(<div></div>)}
+            {this.state.gameState==="VOTEONCLUESTATE"? (<div></div>):(<div></div>)}
+            {this.state.gameState==="TRANSITIONSTATE"? (<div></div>):(<div></div>)}
+            {this.state.gameState==="ENTERGUESSSTATE"? (<div></div>):(<div></div>)}
+            {this.state.gameState==="ENDGAMESTATE"? (<div></div>):(<div></div>)}
         </BackgroundContainer>
         )
     }

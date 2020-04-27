@@ -156,6 +156,8 @@ class Lobby extends React.Component{
         number: number,
       });
       await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/game/word?token=${localStorage.getItem("token")}`, requestBody)
+      await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/game/word?token=${localStorage.getItem("token")}`)
+
       this.props.history.push('/game')
     }
     catch(error){
