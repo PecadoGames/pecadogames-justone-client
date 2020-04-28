@@ -4,11 +4,9 @@ import { api, handleError } from '../../helpers/api';
 import { withRouter } from 'react-router-dom';
 import {PixelButton} from '../profile/Assets/profileAssets'
 import {InputField} from "../../views/design/InputField";
-import {Title} from "../../views/Header"
 import Sound from "react-sound";
 import commercial from "../login/assets/CommercialFunnyMusic.mp3"
-
-
+import {LogoContainer} from "../login/Login"
 
 
 const FormContainer = styled.div`
@@ -52,7 +50,6 @@ const LargePhoneTitle = styled.div`
     border-bottom: 2px solid #c0c0c0;
     color: #c0c0c0;
 `
-
 
 class Register extends React.Component {
 
@@ -99,7 +96,7 @@ class Register extends React.Component {
 
     }
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
+    shouldComponentUpdate(nextState) {
         if(this.state.username !== nextState.username || this.state.password !== nextState.password || this.state.confirmation !== nextState.confirmation){
             return false;}
         return true;
@@ -109,7 +106,9 @@ class Register extends React.Component {
         return (
 
             <FormContainer className={'backgroundLogin'}>
-                <Title>Just One Club</Title>
+                <LogoContainer>
+                    <img src={require('./assets/logo_j1.gif')} width="150"/>
+                </LogoContainer>
                 <HandyContainer className={'handyImage'}>
                     <Sound url={commercial}
                            playStatus={Sound.status.PLAYING}

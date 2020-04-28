@@ -5,7 +5,6 @@ import User from '../shared/models/User';
 import { withRouter } from 'react-router-dom';
 import { Button } from '../../views/design/Button';
 import {InputField} from "../../views/design/InputField";
-import {Title} from "../../views/Header"
 import {UserWrapper} from "../../views/design/UserWrapper";
 import Sound from 'react-sound';
 import open_creaky_door from '../login/assets/open_creaky_door.mp3'
@@ -68,6 +67,11 @@ const AdvertismentText = styled.div`
   font-size: 35px;
 `
 
+ export const LogoContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-left: 315px;
+`
 
 class Login extends React.Component {
 
@@ -193,7 +197,9 @@ class Login extends React.Component {
               />
             {this.state.showError && <Label className="error-message">User is already logged in!</Label>}
           </Container>
-          <Title>Just One Club</Title>
+          <LogoContainer>          
+            <img src={require('./assets/logo_j1.gif')} width="150"/>
+          </LogoContainer>
               <UserWrapper>
                 <InputField
                     placeholder="Enter username"
