@@ -123,6 +123,7 @@ class Lobby extends React.Component{
       this.handleInputChange('gameState', response.data.gameState);
       this.handleInputChange('players', response.data.players);
       this.handleInputChange('lobbyName', response.data.lobbyName);
+      this.handleInputChange('currentWord', response.data.currentWord)
       this.handleInputChange('clues', response.data.clues)},500)
     }
     catch(error){
@@ -187,6 +188,7 @@ class Lobby extends React.Component{
                 players = {this.state.players}
                 gameState = {this.state.gameState}
                 pickWordFunction={this.pickWord}
+                currentWord={this.state.currentWord}
                 currentGuesserId = {this.state.currentGuesserId}
                 clues = {this.state.clues}
             >

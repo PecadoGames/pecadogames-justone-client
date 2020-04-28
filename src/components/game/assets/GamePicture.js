@@ -70,6 +70,7 @@ class GamePicture extends React.Component{
     }
 
     displayPickWord(){
+        //returns true if gamestate is PICKWORDSTATE and the user is the guesser
         if (this.state.gameState && this.props.currentGuesserId) {
             let state1 = this.state.gameState
             let state2 = "PICKWORDSTATE"
@@ -79,6 +80,14 @@ class GamePicture extends React.Component{
                 return true
             }
             else {return false}
+        }
+    }
+
+    //TODO: test this method
+    displayCurrentWord(){
+        //returns if there is a currentWord
+        if (this.props.currentWord){
+            return this.props.currentWord
         }
     }
 
@@ -101,7 +110,7 @@ class GamePicture extends React.Component{
             <Container>
                 {this.state.gameState}
             </Container>
-
+            {this.displayCurrentWord()}
             {this.displayPickWord() ? <PickWord pickWordFunction={this.props.pickWordFunction}/>:null}
             {this.displayEnterGuess() ? <Guesser clues={this.props.clues}/> : null}
             {this.state.gameState==="NLPSTATE"? (<div></div>):(<div></div>)}
