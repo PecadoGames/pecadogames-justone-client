@@ -4,12 +4,10 @@ import {withRouter} from "react-router-dom";
 import {LogoutButton} from "../../views/design/LogoutButton";
 import {api, handleError} from "../../helpers/api";
 import ChatBox from "../ChatBox/ChatBox";
-import {InputField} from "../../views/design/InputField";
-import {Button} from "../../views/design/Button";
 import Timer from "./assets/Timer";
 import GamePicture from "./assets/GamePicture";
 import GameInfos from "./assets/GameInfos";
-import PickWord from "./assets/PickWord.js";
+
 
 const FormContainer = styled.div`
   display: flex;
@@ -51,13 +49,7 @@ const BottomRightContainer = styled.div`
   width: 800px
  `
 
-const PlayerContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  height: 300px;
-  width: 400px
- `
+
 
 
 class Lobby extends React.Component{
@@ -78,8 +70,8 @@ class Lobby extends React.Component{
   async logout() {
     try{
       const requestBody = JSON.stringify({
-        userId: localStorage.getItem("id"),
-        userToken: localStorage.getItem("token")
+        playerId: localStorage.getItem("id"),
+        playerToken: localStorage.getItem("token")
       });
       await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/rageQuits`, requestBody)
       localStorage.removeItem("lobbyId")
@@ -107,8 +99,8 @@ class Lobby extends React.Component{
   async leaveLobby(){
     try{
         const requestBody = JSON.stringify({
-          userId: localStorage.getItem("id"),
-          userToken: localStorage.getItem("token")
+          playerId: localStorage.getItem("id"),
+          playerToken: localStorage.getItem("token")
         });
         await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/rageQuits`, requestBody)
         localStorage.removeItem("lobbyId")

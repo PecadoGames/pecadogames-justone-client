@@ -58,7 +58,7 @@ const LobbyField = ({ lobby }) => {
                 width = '100%'>
                 {lobby.isPrivate ? <div></div>: <div>
                     <Block>LobbyName: <UserName>{lobby.lobbyName}</UserName></Block>
-                    <Block>PlayerAmount: <Name>{lobby.numberOfPlayers}</Name></Block>
+                    <Block>Players: <Name>{lobby.currentNumPlayersAndBots}/{lobby.maxPlayersAndBots}</Name></Block>
                     <Block>Bots: <Id>{!lobby.numberOfBots ? 0: lobby.numberOfBots}</Id></Block>
                 </div>
                 }

@@ -72,8 +72,8 @@ class Lobby extends React.Component{
     async logout() {
         try{
             const requestBody1 = JSON.stringify({
-                userId: localStorage.getItem("id"),
-                userToken: localStorage.getItem("token")
+                playerId: localStorage.getItem("id"),
+                playerToken: localStorage.getItem("token")
             });
             await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/rageQuits`, requestBody1)
 
@@ -98,8 +98,8 @@ class Lobby extends React.Component{
     async leaveLobby(){
         try{
             const requestBody = JSON.stringify({
-                userId: localStorage.getItem("id"),
-                userToken: localStorage.getItem("token")
+                playerId: localStorage.getItem("id"),
+                playerToken: localStorage.getItem("token")
             });
             await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/rageQuits`, requestBody)
             localStorage.removeItem("lobbyId")
