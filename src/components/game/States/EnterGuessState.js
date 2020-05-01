@@ -4,6 +4,8 @@ import React from "react";
 
 
 
+
+
 class EnterGuessState extends React.Component{
     constructor(props) {
         super(props);
@@ -34,9 +36,11 @@ class EnterGuessState extends React.Component{
 
     render(){
         return(
-            <div>{this.state.clues.map(clue => {
-                return (<div>clue</div>)})}
+            <div>
                 <text>EnterGuess</text>
+                {this.state.clues.map(clue => {
+                return (<div>{clue.clue}</div>)})}
+
             </div>
 
 
