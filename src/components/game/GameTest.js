@@ -89,8 +89,8 @@ class GameTest extends React.Component{
             interval: null,
             currentGuesserId: 1,
             lobbyName: '',
-            clues: [],
-            stateName: 'EndGameState'
+            clues: [{'clue': 'hello'},{'clue':'whatsUp'}],
+            stateName: ''
         };
     }
 
@@ -98,6 +98,7 @@ class GameTest extends React.Component{
 
     handleInputChange(key, value) {
         this.setState({ [key]: value });
+        localStorage.setItem(key,value)
     }
 
     stateChange(){
@@ -124,6 +125,7 @@ class GameTest extends React.Component{
 
 
     componentDidMount() {
+        this.setState({'stateName': localStorage.getItem('stateName')})
     }
 
 
