@@ -135,7 +135,7 @@ class Game extends React.Component{
       this.handleInputChange('players', response.data.players);
       this.handleInputChange('lobbyName', response.data.lobbyName);
       this.handleInputChange('currentWord', response.data.currentWord)
-      this.handleInputChange('clues', response.data.clues)},500)
+      this.handleInputChange('clues', response.data.enteredClues)},500)
     }
     catch(error){
     }
@@ -289,12 +289,11 @@ class Game extends React.Component{
             </GamePicture>
 
               <InsideContainer>
-
                 {this.displayCurrentWord()}
                 {this.displayPickWordState() ? <PickWordState pickWordFunction={this.pickWord} currentGuesserId = {this.state.currentGuesserId}/>:null}
                 {this.displayEnterCluesState() ? <EnterCluesState/>:null}
-                {this.displayVoteOnClueState() ? <VoteOnClueState clues={this.state.clues}/> : null}
-                {this.displayEnterGuessState() ? <EnterGuessState/>: null}
+                {this.displayVoteOnClueState() ? <VoteOnClueState/> : null}
+                {this.displayEnterGuessState() ? <EnterGuessState  clues={this.state.clues}/>: null}
                 {this.displayTransitionState()? <TransitionState/>: null}
                 {this.displayEndGameState() ? <EndGameState/> : null}
               </InsideContainer>
