@@ -7,6 +7,8 @@ import ChatBox from "../ChatBox/ChatBox";
 import Timer from "./assets/Timer";
 import GamePicture from "./assets/GamePicture";
 import GameInfos from "./assets/GameInfos";
+import PickWord from "./assets/PickWord";
+import Guesser from "./assets/Guesser";
 
 
 const FormContainer = styled.div`
@@ -45,6 +47,11 @@ const BottomRightContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
+  height: 700px;
+  width: 800px
+ `
+const InsideContainer = styled.div`
+  position: absolute
   height: 700px;
   width: 800px
  `
@@ -162,6 +169,41 @@ class Lobby extends React.Component{
     }
   }
 
+  displayPickWord(){
+    //returns true if gamestate is PICKWORDSTATE and the user is the guesser
+    if (this.state.gameState && this.state.currentGuesserId) {
+      let state1 = this.state.gameState
+      let state2 = "PICKWORDSTATE"
+      let guesserId = this.state.currentGuesserId.toString()
+      let playerId = localStorage.getItem("id")
+      if (state1 === state2 && guesserId === playerId){
+        return true
+      }
+      else {return false}
+    }
+  }
+
+  //TODO: test this method
+  displayCurrentWord(){
+    //returns if there is a currentWord
+    if (this.state.currentWord){
+      return this.state.currentWord
+    }
+  }
+
+  displayEnterGuess(){
+    if (this.state.gameState && this.state.currentGuesserId){
+      let state1 = this.state.gameState
+      let state2 = "ENTERGUESSSTATE"
+      let guesserId = this.state.currentGuesserId.toString()
+      let playerId = localStorage.getItem("id")
+      if (state1 === state2 && guesserId === playerId){
+        return true
+      }
+      else {return false}
+    }
+  }
+
   render(){
     return(
         <FormContainer>
@@ -187,12 +229,23 @@ class Lobby extends React.Component{
             <GamePicture
                 players = {this.state.players}
                 gameState = {this.state.gameState}
-                pickWordFunction={this.pickWord}
-                currentWord={this.state.currentWord}
                 currentGuesserId = {this.state.currentGuesserId}
-                clues = {this.state.clues}
             >
             </GamePicture>
+
+              <InsideContainer>
+
+                {this.displayCurrentWord()}
+                {this.displayPickWord() ? <PickWord pickWordFunction={this.state.pickWordFunction}/>:null}
+                {this.displayEnterGuess() ? <Guesser clues={this.state.clues}/> : null}
+
+
+                {this.state.gameState==="NLPSTATE"? (<div></div>):(<div></div>)}
+                {this.state.gameState==="VOTEONCLUESTATE"? (<div></div>):(<div></div>)}
+                {this.state.gameState==="TRANSITIONSTATE"? (<div></div>):(<div></div>)}
+                {this.state.gameState==="ENDGAMESTATE"? (<div></div>):(<div></div>)}
+              </InsideContainer>
+              {this.state.gameState}
             </BottomRightContainer>
           </RightContainer>
         </FormContainer>

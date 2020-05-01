@@ -36,7 +36,6 @@ class Guesser extends React.Component{
         return(
             <div>{this.state.clues.map(clue => {
                 return (clue)})}
-                <text>Hallo</text>
             </div>
 
 
