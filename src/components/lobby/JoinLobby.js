@@ -28,11 +28,10 @@ const Number = styled.div`
   margin-left: 3px;
   margin-right: 3px;
   margin-top: 31px;
-     
 `
 
 const FormContainer = styled.div`
-    display: flex;
+  display: flex;
   flex-direction: column;
   height: 800px;
   width: 1200px;
@@ -63,7 +62,6 @@ const SmallContainer = styled.div`
   `
 
 const LobbyContainer = styled.li`
-    
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -72,8 +70,6 @@ const LobbyContainer = styled.li`
   width: 330px
   border: 1px solid
   margin-top: 5px
-  
- 
 `;
 
 class JoinLobby extends React.Component {

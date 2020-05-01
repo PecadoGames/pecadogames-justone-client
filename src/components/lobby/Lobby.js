@@ -7,6 +7,7 @@ import ChatBox from "../ChatBox/ChatBox";
 import LobbyInfos from "./assets/LobbyInfos";
 import {InputField} from "../../views/design/InputField";
 import {Button} from "../../views/design/Button";
+import EditLobby from "./assets/EditLobby"
 
 const FormContainer = styled.div`
   display: flex;
@@ -36,7 +37,7 @@ const TopRightContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-  height: 100px;
+  height: 150px;
   width: 800px;
   
  `
@@ -150,6 +151,18 @@ class Lobby extends React.Component{
         , 500)
 
     }
+
+    editLobby(){
+        if (this.state.lobby){
+            if (this.state.lobby.hostId.toString() === localStorage.getItem("id")){
+                return <EditLobby
+                        lobby={this.state.lobby}
+                />
+            }
+
+        }
+    }
+
     componentDidMount() {
         this.getLobby()
     }
@@ -189,7 +202,7 @@ class Lobby extends React.Component{
                         onClick={()=>this.leaveLobby()}>Leave
                     </LogoutButton>
                     <PlayerContainer>
-                        <LobbyInfos players={this.state.players} lobbyName={this.state.lobbyName}></LobbyInfos>
+                        <LobbyInfos players={this.state.players} lobbyName={this.state.lobbyName}/>
                     </PlayerContainer>
                     <Button
                         onClick={()=>this.startGame()}>Start Game
@@ -197,15 +210,9 @@ class Lobby extends React.Component{
                     <text>Chat</text>
                     <ChatBox></ChatBox>
                 </LeftContainer>
-
                 <RightContainer>
                     <TopRightContainer>
-                        <Button>
-                            Invite Friend
-                        </Button>
-                        <Button>
-                            Add Bot
-                        </Button>
+                        {this.editLobby()}
                     </TopRightContainer>
                     <BottomRightContainer className = 'lobbyBackground'>
                     </BottomRightContainer>
