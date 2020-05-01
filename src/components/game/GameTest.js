@@ -121,7 +121,7 @@ class GameTest extends React.Component{
             return <PickWordState currentGuesserId={this.state.number}/>
         }
         if(this.state.stateName === 'TransitionState'){
-            return <TransitionState/>
+            return <TransitionState currentGuesserId={this.state.number}/>
         }
         if(this.state.stateName === 'VoteOnClueState'){
             return <VoteOnClueState currentGuesserId={this.state.number}/>
