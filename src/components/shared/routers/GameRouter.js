@@ -15,12 +15,34 @@ import Requests from "../../profile/Requests";
 import Scoreboard from "../../scoreboard/Scoreboard.js"
 import Game from "../../game/Game"
 import Friends from "../../profile/Friends";
+import EndGameState from "../../game/States/EndGameState";
+import EnterCluesState from "../../game/States/EnterCluesState";
+import EnterGuessState from "../../game/States/EnterGuessState";
+import PickWordState from "../../game/States/PickWordState";
+import TransitionState from "../../game/States/TransitionState";
+import VoteOnClueState from "../../game/States/VoteOnClueState";
+import Picture from "../../game/GameInfos/Picture";
+import GameTest from "../../game/GameTest";
 
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
 `;
+
+const InsideContainer = styled.div`
+  position: absolute
+  height: 700px;
+  width: 800px
+ `
+
+const BottomRightContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  height: 700px;
+  width: 800px
+ `
 
 class GameRouter extends React.Component {
   render() {
@@ -105,6 +127,18 @@ class GameRouter extends React.Component {
               path={`${this.props.base}/lobbies/:lobbyId/game`}
               render={() =>(<Game></Game>)}
           />
+
+
+          {/* This is just for looking at the state purpose */}
+          <Route
+              exact
+              path={`${this.props.base}/lobbies/:lobbyId/States`}
+              render={() =>(<GameTest/>)}
+             />
+          {/* Ends here */}
+
+
+
         <Route
           exact
           path={`${this.props.base}`}
