@@ -4,11 +4,11 @@ import React from "react";
 
 
 
-class Guesser extends React.Component{
+class TransitionState extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            clues: []
+            selectName: null
         };
     }
 
@@ -17,14 +17,14 @@ class Guesser extends React.Component{
     }
 
     componentDidMount() {
-        this.handleInputChange('clues', this.props.clues)
+        this.handleInputChange('selectName', this.props.selectName)
     }
 
     //when the props from parent changes this is called to change states
     static getDerivedStateFromProps(props, state) {
-        if (props.clues !== state.clues) {
+        if (props.selectName !== state.selectName) {
             return {
-                clues: props.clues,
+                selectName: props.selectName,
             };
         }
         // Return null if the state hasn't changed
@@ -34,12 +34,9 @@ class Guesser extends React.Component{
 
     render(){
         return(
-            <div>{this.state.clues.map(clue => {
-                return (clue)})}
-            </div>
-
+            <div></div>
 
         )
     }
 }
-export default withRouter(Guesser);
+export default withRouter(TransitionState);

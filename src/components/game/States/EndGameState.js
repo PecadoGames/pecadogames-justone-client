@@ -4,7 +4,7 @@ import React from "react";
 
 
 
-class VoteOnClue extends React.Component{
+class EndGameState extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -39,4 +39,4 @@ class VoteOnClue extends React.Component{
         )
     }
 }
-export default withRouter(VoteOnClue);
+export default withRouter(EndGameState);

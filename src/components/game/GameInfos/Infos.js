@@ -19,7 +19,7 @@ const PlayerContainer = styled.div`
   width: 400px
  `
 
-class GameInfos extends React.Component{
+class Infos extends React.Component{
     constructor() {
         super();
         this.state = {
@@ -65,4 +65,4 @@ class GameInfos extends React.Component{
         )
     }
 }
-export default withRouter(GameInfos);
+export default withRouter(Infos);

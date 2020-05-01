@@ -4,11 +4,12 @@ import {withRouter} from "react-router-dom";
 import {LogoutButton} from "../../views/design/LogoutButton";
 import {api, handleError} from "../../helpers/api";
 import ChatBox from "../ChatBox/ChatBox";
-import Timer from "./assets/Timer";
-import GamePicture from "./assets/GamePicture";
-import GameInfos from "./assets/GameInfos";
-import PickWord from "./assets/PickWord";
-import Guesser from "./assets/Guesser";
+import Timer from "./GameInfos/Timer";
+import GamePicture from "./GameInfos/Picture";
+import GameInfos from "./GameInfos/Infos";
+import PickWord from "./States/PickWordState";
+import Guesser from "./States/EnterGuessState";
+import Clues from "./States/EnterCluesState";
 
 
 const FormContainer = styled.div`
@@ -59,7 +60,7 @@ const InsideContainer = styled.div`
 
 
 
-class Lobby extends React.Component{
+class Game extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
@@ -191,6 +192,18 @@ class Lobby extends React.Component{
     }
   }
 
+  displayClues(){
+
+  }
+
+  displayVoteOnClue(){
+
+  }
+
+  displayClues(){
+
+  }
+
   displayEnterGuess(){
     if (this.state.gameState && this.state.currentGuesserId){
       let state1 = this.state.gameState
@@ -236,11 +249,11 @@ class Lobby extends React.Component{
               <InsideContainer>
 
                 {this.displayCurrentWord()}
-                {this.displayPickWord() ? <PickWord pickWordFunction={this.state.pickWordFunction}/>:null}
+                {this.displayPickWord() ? <PickWord pickWordFunction={this.pickWord}/>:null}
+                {this.displayClues() ? <Clues/>:null}
                 {this.displayEnterGuess() ? <Guesser clues={this.state.clues}/> : null}
 
 
-                {this.state.gameState==="NLPSTATE"? (<div></div>):(<div></div>)}
                 {this.state.gameState==="VOTEONCLUESTATE"? (<div></div>):(<div></div>)}
                 {this.state.gameState==="TRANSITIONSTATE"? (<div></div>):(<div></div>)}
                 {this.state.gameState==="ENDGAMESTATE"? (<div></div>):(<div></div>)}
@@ -252,4 +265,4 @@ class Lobby extends React.Component{
     )
   }
 }
-export default withRouter(Lobby);
+export default withRouter(Game);

@@ -13,7 +13,7 @@ const BackgroundContainer = styled.div`
 
 
 
-class GamePicture extends React.Component{
+class Picture extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -55,4 +55,4 @@ class GamePicture extends React.Component{
         )
     }
 }
-export default withRouter(GamePicture);
+export default withRouter(Picture);

@@ -4,7 +4,7 @@ import React from "react";
 
 
 
-class Clues extends React.Component{
+class EnterCluesState extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -34,9 +34,11 @@ class Clues extends React.Component{
 
     render(){
         return(
-            <div></div>
+            <div>
+                <text> Hello</text>
+            </div>
 
         )
     }
 }
-export default withRouter(Clues);
+export default withRouter(EnterCluesState);

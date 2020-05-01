@@ -29,7 +29,7 @@ const Text = styled.body`
     border: 1px solid black;
 `;
 
-class PickWord extends React.Component{
+class PickWordState extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
@@ -75,4 +75,4 @@ class PickWord extends React.Component{
     }
 }
 
-export default withRouter(PickWord);
+export default withRouter(PickWordState);
