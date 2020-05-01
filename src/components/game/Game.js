@@ -5,8 +5,10 @@ import {LogoutButton} from "../../views/design/LogoutButton";
 import {api, handleError} from "../../helpers/api";
 import ChatBox from "../ChatBox/ChatBox";
 import Timer from "./GameInfos/Timer";
-import GamePicture from "./GameInfos/Picture";
-import GameInfos from "./GameInfos/Infos";
+import Round from "./GameInfos/Round";
+import Score from "./GameInfos/Score";
+import Picture from "./GameInfos/Picture";
+import Infos from "./GameInfos/Infos";
 import PickWordState from "./States/PickWordState";
 import EnterGuessState from "./States/EnterGuessState";
 import EnterCluesState from "./States/EnterCluesState";
@@ -270,24 +272,25 @@ class Game extends React.Component{
             <LogoutButton
                 onClick={()=>this.leaveLobby()}>Leave
             </LogoutButton>
-            <GameInfos
+            <Infos
             players ={this.state.players} lobbyName={this.state.lobbyName}>
-            </GameInfos>
+            </Infos>
             <text>Chat</text>
             <ChatBox></ChatBox>
           </LeftContainer>
           <RightContainer>
             <TopRightContainer>
               <Timer></Timer><text> Score + Round</text>
+              <Score></Score>
+              <Round></Round>
             </TopRightContainer>
             <BottomRightContainer>
-            <GamePicture
+            <Picture
                 players = {this.state.players}
                 gameState = {this.state.gameState}
                 currentGuesserId = {this.state.currentGuesserId}
             >
-            </GamePicture>
-
+            </Picture>
               <InsideContainer>
                 {this.displayCurrentWord()}
                 {this.displayPickWordState() ? <PickWordState pickWordFunction={this.pickWord}/>:null}
