@@ -12,7 +12,7 @@ class UsersBox extends React.Component {
         super(props);
         this.scrollToTop = this.scrollToTop.bind(this);
         this.state = {
-            users: [{}]
+            users: []
         }
     }
 
@@ -41,9 +41,6 @@ class UsersBox extends React.Component {
             return a < b ? -1 : a > b ? 1 : 0;
         });
         this.setState({['users']: parsedResponse})
-        // const parsedFriends = friends.data
-        // for (let friend in parsedFriends){ api.get(users/parsedFriends[friend].id)
-
     }
 
     async addUser(userId){
@@ -72,7 +69,6 @@ class UsersBox extends React.Component {
                     height: '250px',
                     overflow: 'auto',
                 }}>
-                    {/* start of messages */}
                     {this.state.users.map(users => {return(
                         <Element key = {users.id} name={users.user} style={{
                             marginTop: '30px'
@@ -99,9 +95,6 @@ class UsersBox extends React.Component {
                             </Row>
                         </Element>);
                     })}
-                    {/* end of messages */}
-
-
                 </Element>
 
             </div>

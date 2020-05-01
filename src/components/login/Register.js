@@ -8,7 +8,6 @@ import Sound from "react-sound";
 import commercial from "../login/assets/CommercialFunnyMusic.mp3"
 import {LogoContainer} from "../login/Login"
 
-
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -18,7 +17,6 @@ const FormContainer = styled.div`
   align-items: flex-start;  
   padding-left: 20px;
 `;
-
 
 const HandyContainer = styled.div`
   display: flex;
@@ -31,13 +29,11 @@ const HandyContainer = styled.div`
   padding-top: 80px;
 `;
 
-
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-left: 70px;
 `;
-
 
 const LargePhoneTitle = styled.div`
     display: flex;
@@ -50,6 +46,7 @@ const LargePhoneTitle = styled.div`
     border-bottom: 2px solid #c0c0c0;
     color: #c0c0c0;
 `
+
 
 class Register extends React.Component {
 
@@ -83,7 +80,6 @@ class Register extends React.Component {
         }
     }
 
-
     handleInputChange(key, value) {
         // Example: if the key is username, this statement is the equivalent to the following one:
         // this.setState({'username': value});
@@ -104,7 +100,6 @@ class Register extends React.Component {
 
     render() {
         return (
-
             <FormContainer className={'backgroundLogin'}>
                 <LogoContainer>
                     <img src={require('./assets/logo_j1.gif')} width="150"/>
@@ -186,7 +181,6 @@ class Register extends React.Component {
                         </ButtonContainer>
                 </HandyContainer>
             </FormContainer>
-
         );
     }
 }

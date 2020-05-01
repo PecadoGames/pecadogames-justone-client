@@ -8,7 +8,6 @@ import UsersBox from "./Assets/UsersBox";
 import {WindowHeader, ButtonRow} from "./Assets/profileAssets";
 
 
-
 class Friends extends React.Component {
     constructor() {
         super();
@@ -36,7 +35,6 @@ class Friends extends React.Component {
         this.props.changeMusicToNormal()
         this.state.id = this.props.match.params.id;
         try {
-
             //get friends
             const response = await api.get(`/users/${this.state.id}/friends?token=${localStorage.getItem('token')}`)
             this.handleInputChange('friends', response.data)
@@ -73,7 +71,9 @@ class Friends extends React.Component {
                                             onClick={() => {this.addFriend() }}>
                                             Friends
                                             </PixelButton>
-                                        ):(null)} 
+                                        ):(
+                                            null)
+                                            } 
                                 
                             </ButtonRow>
                         </ProfileContainer>

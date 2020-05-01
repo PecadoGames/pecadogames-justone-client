@@ -3,7 +3,7 @@ import {api, handleError} from '../../helpers/api';
 import {withRouter} from 'react-router-dom';
 import User from "../shared/models/User";
 import {BackgroundContainer} from "../main/Main";
-import {PhoneContainer, TextRight, TextLeft, TextContainer, EditProfileButton, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, Row, ButtonRow,RowContainer,
+import {PhoneContainer, TextRight, TextLeft, TextContainer, EditProfileButton, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, Row, ButtonRow,
     WindowHeader, FriendsButton, BlinkingPixelButton} from "./Assets/profileAssets";
 import GreenShyguy from "./Assets/ProfilePictures/green.png";
 import BlueShyguy from "./Assets/ProfilePictures/blue.png";
@@ -52,7 +52,6 @@ class Profile extends React.Component {
         }
     }
 
-    //returns profile pic based on current state TODO: remove duplicated code
     getProfilePic(){
         if (this.state.avatarColor === "GREEN"){
             return GreenShyguy;
@@ -215,87 +214,6 @@ class Profile extends React.Component {
                     </ProfileContainer>
                 </PhoneContainer>
             </BackgroundContainer>
-            /**
-            <ProfileContainer>
-                <Title>User Page</Title>
-                <h2>{(this.state.editable) ? "Editing User" : this.state.username}</h2>
-                <div>
-                    <UserWrapper
-                        marginTop="5px"
-                        borderRadius="3px">
-                        <UserIcon
-                            marginLeft="1px"
-                            marginBottom="none"
-                        />
-                        <InputField
-                            marginBottom="1px"
-                            borderBottom={(!this.state.editable) ? "1px solid #424242" : "1px solid white"}
-                            disabled={!this.state.editable}
-                            placeholder={this.state.username}
-                            color={(this.state.editable) ? "white" : "#9e9e9e"}
-                            value={(this.state.editable) ? this.state.username : null}
-                            onChange={e => {
-                                this.handleInputChange('username', e.target.value);
-                            }}
-                        />
-                    </UserWrapper>
-                    <UserWrapper
-                        borderRadius="3px">
-                        {this.checkStatus()}
-                        <InputField
-                            marginBottom="1px"
-                            borderBottom={"1px solid #424242"}
-                            disabled={true}
-                            placeholder={(this.state.status) ? "Online" : "Offline"}
-                        />
-                    </UserWrapper>
-                    <UserWrapper
-                        borderRadius="3px">
-                        <CreationIcon
-                            marginLeft="1px"
-                            marginBottom="none"
-                        />
-                        <InputField
-                            marginBottom="1px"
-                            borderBottom={"1px solid #424242"}
-                            disabled={true}
-                            placeholder={this.state.creationDate}
-                        />
-                    </UserWrapper>
-                    <UserWrapper
-                        >
-                        <CakeIcon
-                        marginLeft="1px"
-                        marginBottom="none"
-                        />
-                        <InputField
-                            marginBottom="1px"
-                            borderBottom={(!this.state.editable) ? "1px solid #424242" : "1px solid white"}
-                            disabled={!this.state.editable}
-                            placeholder={(!this.state.birthday) ? "Birthday" : this.state.birthday}
-                            color={(this.state.editable) ? "white" : "#9e9e9e"}
-                            value={(this.state.editable) ? this.state.birthday : null}
-                            onChange={e => {
-                                this.handleInputChange('birthday', e.target.value);
-                            }}
-                        />
-                    </UserWrapper>
-                    {this.canEdit()}
-                    <Button
-                        width="45%"
-                        borderRadius="3px"
-                        onClick={() => {
-                            (localStorage.getItem('id') === this.state.id)
-                                ? this.updateUser() : this.backToOverview();
-                            this.backToOverview();
-                        }}
-                    >
-                        {(this.state.editable) ? "Done" : "Back"}
-                    </Button>
-                </div>
-            </ProfileContainer>
-
-             */
         );
     }
 }
