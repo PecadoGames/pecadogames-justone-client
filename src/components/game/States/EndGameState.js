@@ -1,8 +1,12 @@
 import {withRouter} from "react-router-dom";
 import React from "react";
+import styled from "styled-components";
 
-
-
+const Text = styled.div`
+    font-size: 40px;
+    margin-top: 600px;
+    margin-left: 200px;
+`;
 
 class EndGameState extends React.Component{
     constructor(props) {
@@ -36,6 +40,9 @@ class EndGameState extends React.Component{
         return(
             <div>
                 <text>EndGame</text>
+                <br/>
+                <text>You will be redirected to the lobby in a few seconds</text>
+                <Text>Hurray the game is over!</Text>
             </div>
 
         )

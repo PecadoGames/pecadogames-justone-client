@@ -112,10 +112,10 @@ class GameTest extends React.Component{
             return <EndGameState/>
         }
         if(this.state.stateName === 'EnterCluesState'){
-            return <EnterCluesState/>
+            return <EnterCluesState currentGuesserId={this.state.number}/>
         }
         if(this.state.stateName === 'EnterGuessState'){
-            return <EnterGuessState clues={this.state.clues}/>
+            return <EnterGuessState clues={this.state.clues} currentGuesserId={this.state.number}/>
         }
         if(this.state.stateName === 'PickWordState'){
             return <PickWordState currentGuesserId={this.state.number}/>
@@ -124,7 +124,7 @@ class GameTest extends React.Component{
             return <TransitionState/>
         }
         if(this.state.stateName === 'VoteOnClueState'){
-            return <VoteOnClueState/>
+            return <VoteOnClueState currentGuesserId={this.state.number}/>
         }
     }
 

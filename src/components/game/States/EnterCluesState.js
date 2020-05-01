@@ -8,7 +8,7 @@ class EnterCluesState extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            selectName: null
+            currentGuesserId: null
         };
     }
 
@@ -17,26 +17,44 @@ class EnterCluesState extends React.Component{
     }
 
     componentDidMount() {
-        this.handleInputChange('selectName', this.props.selectName)
     }
 
     //when the props from parent changes this is called to change states
     static getDerivedStateFromProps(props, state) {
-        if (props.selectName !== state.selectName) {
+        if (props.currentGuesserId !== state.currentGuesserId) {
             return {
-                selectName: props.selectName,
+                currentGuesserId: props.currentGuesserId,
             };
         }
         // Return null if the state hasn't changed
         return null;
     }
 
+    renderForGuesser(){
+        const guesser = this.state.currentGuesserId;
+        const currentPlayer = localStorage.getItem("id");
+        if (guesser.toString() === currentPlayer.toString()){
+            return true;
+        }
+        else {return false;}
+    }
+
 
     render(){
         return(
-            <div>
-                <text> EnterClues</text>
-            </div>
+            this.renderForGuesser() ?
+                <div>
+                    <text> EnterClues</text>
+                    <br/>
+                    <text> Display two enter clues if 'specialGame' boolean in Dto is true, else display one</text>
+                </div>
+                :
+                <div>
+                    <text> Wait for Clues</text>
+                    <br/>
+                    <text> Please wait until they submit</text>
+                </div>
+
 
         )
     }
