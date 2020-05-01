@@ -34,7 +34,9 @@ class TransitionState extends React.Component{
 
     render(){
         return(
-            <div></div>
+            <div>
+                <text>Transition</text>
+            </div>
 
         )
     }

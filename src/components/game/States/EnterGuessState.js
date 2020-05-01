@@ -36,7 +36,9 @@ class EnterGuessState extends React.Component{
         return(
             <div>{this.state.clues.map(clue => {
                 return (clue)})}
+                <text>EndGame</text>
             </div>
+
 
 
         )

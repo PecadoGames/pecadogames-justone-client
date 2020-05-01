@@ -34,7 +34,9 @@ class VoteOnClueState extends React.Component{
 
     render(){
         return(
-            <div></div>
+            <div>
+                <text>VoteOnClue</text>
+            </div>
 
         )
     }

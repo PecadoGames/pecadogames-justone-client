@@ -34,7 +34,9 @@ class EndGameState extends React.Component{
 
     render(){
         return(
-            <div></div>
+            <div>
+                <text>EndGame</text>
+            </div>
 
         )
     }

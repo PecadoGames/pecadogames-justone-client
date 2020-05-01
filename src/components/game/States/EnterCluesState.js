@@ -35,7 +35,7 @@ class EnterCluesState extends React.Component{
     render(){
         return(
             <div>
-                <text> Hello</text>
+                <text> EnterClues</text>
             </div>
 
         )

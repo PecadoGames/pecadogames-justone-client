@@ -7,9 +7,12 @@ import ChatBox from "../ChatBox/ChatBox";
 import Timer from "./GameInfos/Timer";
 import GamePicture from "./GameInfos/Picture";
 import GameInfos from "./GameInfos/Infos";
-import PickWord from "./States/PickWordState";
-import Guesser from "./States/EnterGuessState";
-import Clues from "./States/EnterCluesState";
+import PickWordState from "./States/PickWordState";
+import EnterGuessState from "./States/EnterGuessState";
+import EnterCluesState from "./States/EnterCluesState";
+import VoteOnClueState from "./States/VoteOnClueState";
+import TransitionState from "./States/TransitionState";
+import EndGameState from "./States/EndGameState";
 
 
 const FormContainer = styled.div`
@@ -170,20 +173,6 @@ class Game extends React.Component{
     }
   }
 
-  displayPickWord(){
-    //returns true if gamestate is PICKWORDSTATE and the user is the guesser
-    if (this.state.gameState && this.state.currentGuesserId) {
-      let state1 = this.state.gameState
-      let state2 = "PICKWORDSTATE"
-      let guesserId = this.state.currentGuesserId.toString()
-      let playerId = localStorage.getItem("id")
-      if (state1 === state2 && guesserId === playerId){
-        return true
-      }
-      else {return false}
-    }
-  }
-
   //TODO: test this method
   displayCurrentWord(){
     //returns if there is a currentWord
@@ -192,30 +181,83 @@ class Game extends React.Component{
     }
   }
 
-  displayClues(){
-
-  }
-
-  displayVoteOnClue(){
-
-  }
-
-  displayClues(){
-
-  }
-
-  displayEnterGuess(){
-    if (this.state.gameState && this.state.currentGuesserId){
+  displayPickWordState(){
+    //returns true if gamestate is PICKWORDSTATE and the user is the guesser
+    if (this.state.gameState) {
       let state1 = this.state.gameState
-      let state2 = "ENTERGUESSSTATE"
-      let guesserId = this.state.currentGuesserId.toString()
-      let playerId = localStorage.getItem("id")
-      if (state1 === state2 && guesserId === playerId){
+      let state2 = "PICKWORDSTATE"
+      if (state1 === state2){
         return true
       }
       else {return false}
     }
+    else{return false}
   }
+
+
+  displayVoteOnClueState(){
+    if (this.state.gameState) {
+      let state1 = this.state.gameState
+      let state2 = "VOTEONCLUESSTATE"
+      if (state1 === state2){
+        return true
+      }
+      else {return false}
+    }
+    else{return false}
+
+  }
+
+  displayEnterCluesState(){
+    if (this.state.gameState) {
+      let state1 = this.state.gameState
+      let state2 = "ENTERCLUESSTATE"
+      if (state1 === state2){
+        return true
+      }
+      else {return false}
+    }
+    else{return false}
+
+  }
+
+  displayEndGameState(){
+    if (this.state.gameState) {
+      let state1 = this.state.gameState
+      let state2 = "ENDGAMESTATE"
+      if (state1 === state2){
+        return true
+      }
+      else {return false}
+    }
+    else{return false}
+
+  }
+
+  displayEnterGuessState(){
+    if (this.state.gameState) {
+      let state1 = this.state.gameState
+      let state2 = "ENTERGUESSSTATE"
+      if (state1 === state2){
+        return true
+      }
+      else {return false}
+    }
+    else{return false}
+  }
+
+  displayTransitionState(){
+    if (this.state.gameState) {
+      let state1 = this.state.gameState
+      let state2 = "TRANSITIONSTATE"
+      if (state1 === state2){
+        return true
+      }
+      else {return false}
+    }
+    else{return false}
+  }
+
 
   render(){
     return(
@@ -249,14 +291,12 @@ class Game extends React.Component{
               <InsideContainer>
 
                 {this.displayCurrentWord()}
-                {this.displayPickWord() ? <PickWord pickWordFunction={this.pickWord}/>:null}
-                {this.displayClues() ? <Clues/>:null}
-                {this.displayEnterGuess() ? <Guesser clues={this.state.clues}/> : null}
-
-
-                {this.state.gameState==="VOTEONCLUESTATE"? (<div></div>):(<div></div>)}
-                {this.state.gameState==="TRANSITIONSTATE"? (<div></div>):(<div></div>)}
-                {this.state.gameState==="ENDGAMESTATE"? (<div></div>):(<div></div>)}
+                {this.displayPickWordState() ? <PickWordState pickWordFunction={this.pickWord}/>:null}
+                {this.displayEnterCluesState() ? <EnterCluesState/>:null}
+                {this.displayVoteOnClueState() ? <VoteOnClueState clues={this.state.clues}/> : null}
+                {this.displayEnterGuessState() ? <EnterGuessState/>: null}
+                {this.displayTransitionState()? <TransitionState/>: null}
+                {this.displayEndGameState() ? <EndGameState/> : null}
               </InsideContainer>
               {this.state.gameState}
             </BottomRightContainer>
