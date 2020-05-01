@@ -1,7 +1,37 @@
 import {withRouter} from "react-router-dom";
 import React from "react";
+import styled from "styled-components";
+import {InputField} from "../../../views/design/InputField";
 
+const Wrapper = styled.div`
+    height: 200px;
+    width: 400px;
+    background-color: #9c6f1c;
+    padding: 10px;
+    text-align: center;
+    margin-top: 500px;
+    margin-left: 200px;
+    display: flex;
+    flex-direction: column;
+  
+`;
 
+const Clues = styled.div`
+    margin-left: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+`;
+
+const Clue = styled.div`
+
+    margin-left: 10px;
+    align-items: left;
+`;
+
+const Text = styled.div`
+    font-size: 20px;
+`;
 
 
 
@@ -36,12 +66,15 @@ class EnterGuessState extends React.Component{
 
     render(){
         return(
-            <div>
-                <text>EnterGuess</text>
+            <Wrapper>
+                <Text>Your Clues:</Text>
+                <Clues>
                 {this.state.clues.map(clue => {
-                return (<div>{clue.clue}</div>)})}
-
-            </div>
+                return (<Clue>{clue.clue}</Clue>)})}
+                </Clues>
+                <Text>Guess:</Text>
+                <InputField></InputField>
+            </Wrapper>
 
 
 

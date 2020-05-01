@@ -51,6 +51,11 @@ const BottomRightContainer = styled.div`
   height: 700px;
   width: 800px
  `
+
+const SmallContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+ `
 const InsideContainer = styled.div`
   position: absolute
   height: 700px;
@@ -89,8 +94,9 @@ class GameTest extends React.Component{
             interval: null,
             currentGuesserId: 1,
             lobbyName: '',
-            clues: [{'clue': 'hello'},{'clue':'whatsUp'}],
-            stateName: ''
+            clues: [{'clue': 'hello'},{'clue':'whatsUp'},{'clue':'Ramono'}],
+            stateName: '',
+            number: 1
         };
     }
 
@@ -112,7 +118,7 @@ class GameTest extends React.Component{
             return <EnterGuessState clues={this.state.clues}/>
         }
         if(this.state.stateName === 'PickWordState'){
-            return <PickWordState currentGuesserId={parseInt(localStorage.getItem('id'))}/>
+            return <PickWordState currentGuesserId={this.state.number}/>
         }
         if(this.state.stateName === 'TransitionState'){
             return <TransitionState/>
@@ -120,6 +126,13 @@ class GameTest extends React.Component{
         if(this.state.stateName === 'VoteOnClueState'){
             return <VoteOnClueState/>
         }
+    }
+
+    changeId(){
+        if(this.state.number===1){
+            this.handleInputChange('number',2)}
+        if(this.state.number===2){
+            this.handleInputChange('number',1)}
     }
 
 
@@ -142,8 +155,12 @@ class GameTest extends React.Component{
                                         onClick={() => {this.handleInputChange('stateName', 'EnterCluesState')}}>Clue</MainMenuButton>
                         <MainMenuButton borderColor="#0bb845"
                                         onClick={() => {this.handleInputChange('stateName', 'EnterGuessState')}}>Guess</MainMenuButton>
+                        <SmallContainer>
                         <MainMenuButton borderColor="#0bb845"
                                         onClick={() => {this.handleInputChange('stateName', 'PickWordState')}}>PickWord</MainMenuButton>
+                        <MainMenuButton borderColor="#0bb845"
+                                        onClick={() => {this.changeId()}}>Change Id</MainMenuButton>
+                        </SmallContainer>
                         <MainMenuButton borderColor="#0bb845"
                                         onClick={() => {this.handleInputChange('stateName', 'TransitionState')}}>Transition</MainMenuButton>
                         <MainMenuButton borderColor="#0bb845"
