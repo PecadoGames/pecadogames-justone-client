@@ -108,7 +108,7 @@ class EditLobby extends React.Component{
             this.handleInputChange('sentUpdate', true)
             const requestBody = JSON.stringify({
                 maxPlayersAndBots: this.state.maxPlayersAndBots,
-                token: localStorage.getItem("token")
+                hostToken: localStorage.getItem("token")
             })
             setTimeout(() => {this.handleInputChange('sentUpdate', false)}, 2500);
             await api.put(`/lobbies/${this.state.lobby.lobbyId}`, requestBody);

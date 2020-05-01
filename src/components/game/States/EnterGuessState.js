@@ -9,7 +9,7 @@ const Wrapper = styled.div`
     background-color: #9c6f1c;
     padding: 10px;
     text-align: center;
-    margin-top: 500px;
+    margin-top: 480px;
     margin-left: 200px;
     display: flex;
     flex-direction: column;
@@ -73,7 +73,8 @@ class EnterGuessState extends React.Component{
                 return (<Clue>{clue.clue}</Clue>)})}
                 </Clues>
                 <Text>Guess:</Text>
-                <InputField></InputField>
+                <InputField width = '350px'
+                            marginTop = '30px'></InputField>
             </Wrapper>
 
 
