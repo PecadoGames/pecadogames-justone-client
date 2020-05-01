@@ -33,13 +33,34 @@ class PickWordState extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            game: null,
+            currentGuesserId: null,
         };
     }
 
     handleInputChange(key, value) {
         this.setState({ [key]: value });
     }
+
+    //when the props from parent changes this is called to change states
+    static getDerivedStateFromProps(props, state) {
+        if (props.currentGuesserId !== state.currentGuesserId) {
+            return {
+                currentGuesserId: props.currentGuesserId,
+            };
+        }
+        // Return null if the state hasn't changed
+        return null;
+    }
+
+    renderForGuesser(){
+        const guesser = this.state.currentGuesserId;
+        const currentPlayer = localStorage.getItem("id");
+        if (guesser.toString() === currentPlayer.toString()){
+            return true;
+        }
+        else {return false;}
+    }
+
 
     componentDidMount() {
 
@@ -51,6 +72,7 @@ class PickWordState extends React.Component{
 
     render(){
         return(
+            this.renderForGuesser() ?
             <Wrapper>
                 <Text>Pick a number to start the game</Text>
                 <Container>
@@ -70,7 +92,7 @@ class PickWordState extends React.Component{
                         onClick={()=>this.submitWord(5)}
                     >5</NumberButton>
                 </Container>
-            </Wrapper>
+            </Wrapper>:null
         )
     }
 }

@@ -293,7 +293,7 @@ class Game extends React.Component{
             </Picture>
               <InsideContainer>
                 {this.displayCurrentWord()}
-                {this.displayPickWordState() ? <PickWordState pickWordFunction={this.pickWord}/>:null}
+                {this.displayPickWordState() ? <PickWordState pickWordFunction={this.pickWord} currentGuesserId = {this.state.currentGuesserId}/>:null}
                 {this.displayEnterCluesState() ? <EnterCluesState/>:null}
                 {this.displayVoteOnClueState() ? <VoteOnClueState/> : null}
                 {this.displayEnterGuessState() ? <EnterGuessState  clues={this.state.clues}/>: null}
