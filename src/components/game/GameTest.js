@@ -88,7 +88,7 @@ class GameTest extends React.Component{
             interval: null,
             currentGuesserId: 1,
             lobbyName: '',
-            clues: [{'clue': 'hello'},{'clue':'whatsUp'},{'clue':'Ramono'}],
+            clues: [{'clue': 'hello'},{'clue':'whatsUp'},{'clue':'Ramono'},{'clue': 'tinder'},{'clue':'bruh'},{'clue':'cmon'}],
             stateName: '',
             number: 1,
             currentWord: 'marion'

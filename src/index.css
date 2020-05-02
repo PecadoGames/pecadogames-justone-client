@@ -171,6 +171,13 @@ button {
   margin: auto;
 }
 
+.guess-sign-left{
+  background-image: url("guess-sign-left.png");
+  background-size: 150px 80px, contain;
+  background-repeat: no-repeat;
+  margin: auto;
+}
+
 @keyframes blinkingAnimation {
   0% {outline: 2px solid #ffff00;
     color: #ffff00;}

@@ -7,16 +7,36 @@ import {Button} from "../../../views/design/Button";
 
 const Wrapper = styled.div`
     height: 200px;
-    width: 400px;
-    background-color: #9c6f1c;
+    width: 470px;
+    background-color: none;
     padding: 10px;
     text-align: center;
-    margin-top: 480px;
-    margin-left: 200px;
+    margin-top: 420px;
+    margin-left: 150px;
     display: flex;
     flex-direction: column;
-  
 `;
+
+const Wrapper2 = styled.div`
+    height: 200px;
+    width: 600px;
+    background-color: none;
+    padding: 10px;
+    text-align: center;
+    margin-top: 530px;
+    margin-left: 150px;
+    text-align: center;
+`;
+
+const Wrapper1 = styled.div`
+    display: inline;
+    background-color: hsla(220, 3%, 19%, 0.8);
+    width: 60%;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-left: 85px;
+`;
+
 
 const Clues = styled.div`
     margin-left: 100px;
@@ -35,7 +55,33 @@ const Text = styled.div`
     font-size: 20px;
 `;
 
+const SignLeft = styled.div`
+  display: flex;
+  height: 80px;
+  width: 150px;
+  align-items: flex-start;  
+  float:left;
+`;
 
+const TextSignLeft = styled.div`
+    margin-top: 30px;
+    margin-left: 30px;
+    font-size: 20px;
+    color:black;
+    transform:rotate(-3.5deg)
+`;
+
+const SignContainer = styled.div`
+    width: 100%;
+    height: 100%
+    align-items: flex-start;
+`;
+
+
+
+const InputFieldGuess = styled(InputField)`
+      
+`;
 
 
 class EnterGuessState extends React.Component{
@@ -107,41 +153,39 @@ class EnterGuessState extends React.Component{
     render(){
         return(
             this.renderForGuesser() ?
+
                 <Wrapper>
-                    <Text>The Clues:</Text>
-                    <Clues>
-                        {this.state.clues.map(clue => {
-                            return (<Clue>{clue.clue}</Clue>)})}
-                    </Clues>
-                    <br/>
+                    <Wrapper1>
                     <Text>Guess:</Text>
-                    <InputField width = '350px'
-                                marginTop = '10px'
-                                placeholder= 'Enter your guess'
+                    <InputFieldGuess
+                                width={"60%"}
+                                placeholder= 'Your guess...'
                                 onChange={e => {
                                     this.handleInputChange('guess', e.target.value);
 
                                 }}
                                 onKeyDown={this._handleKeyDown}>
 
-                    </InputField>
+                    </InputFieldGuess>
                     <Button
                         onClick={()=>this.submitGuess()}
                     >Submit
                     </Button>
+                    </Wrapper1>
+                    <div>
+                        <SignContainer>
+                            {this.state.clues.map(clue => {
+                                return (<SignLeft className={"guess-sign-left"}><TextSignLeft>{clue.clue}</TextSignLeft></SignLeft>)})}
+                        </SignContainer>
+                    </div>
                 </Wrapper>
                 :
-                <Wrapper>
-                    <Text>Your teams valid clues:</Text>
-                    <Clues>
-                        {this.state.clues.map(clue => {
-                            return (<Clue>{clue.clue}</Clue>)})}
-                    </Clues>
-                    <Text>Wait for the guesser to guess</Text>
-                </Wrapper>
-
-
-
+                    <Wrapper2>
+                        <SignContainer>
+                            {this.state.clues.map(clue => {
+                                return (<SignLeft className={"guess-sign-left"}><TextSignLeft>{clue.clue}</TextSignLeft></SignLeft>)})}
+                        </SignContainer>
+                    </Wrapper2>
         )
     }
 }
