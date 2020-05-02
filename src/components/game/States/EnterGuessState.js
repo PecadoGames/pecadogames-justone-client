@@ -191,7 +191,7 @@ class EnterGuessState extends React.Component{
                     <Wrapper2>
                         <SignContainer>
                             {this.state.clues.map(clue => {
-                                return (<SignLeft className={"guess-sign-left"}><TextSignLeft>{clue.clue}</TextSignLeft></SignLeft>)})}
+                                return (<SignLeft className={"guess-sign-left"}>{this.displayClue(clue.clue)}</SignLeft>)})}
                         </SignContainer>
                     </Wrapper2>
         )
