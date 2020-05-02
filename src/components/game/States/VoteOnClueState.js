@@ -147,9 +147,9 @@ class VoteOnClueState extends React.Component{
                     </Wrapper1>
                     <SignContainer>
                         {this.state.clues.map(clue => {
-                            return (<SignLeft className={"guess-sign-left"}><TextSignLeft>{clue.clue}</TextSignLeft>
-                                {this.isInList(clue.clue) ?
-                                    <Button onClick={()=>{this.addToList(clue.clue)}}
+                            return (<SignLeft className={"guess-sign-left"}><TextSignLeft>{clue}</TextSignLeft>
+                                {this.isInList(clue) ?
+                                    <Button onClick={()=>{this.addToList(clue)}}
                                             background='none'
                                             boxShadow='none'
                                             color='#008000'
@@ -157,7 +157,7 @@ class VoteOnClueState extends React.Component{
                                             weight='bold'>✓</Button>
                                     :
                                     <Button
-                                        onClick={()=>{this.removeFromList(clue.clue)}}
+                                        onClick={()=>{this.removeFromList(clue)}}
                                         background='none'
                                         boxShadow='none'
                                         color='#FF0000'
