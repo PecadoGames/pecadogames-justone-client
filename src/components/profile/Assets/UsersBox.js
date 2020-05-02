@@ -12,7 +12,8 @@ class UsersBox extends React.Component {
         super(props);
         this.scrollToTop = this.scrollToTop.bind(this);
         this.state = {
-            users: []
+            users: [],
+            sentFriendRequests: []
         }
     }
 
@@ -51,6 +52,36 @@ class UsersBox extends React.Component {
         await api.put(`/users/${userId}/friendRequests`, requestBody)
     }
 
+    displaySentOrRequestButton(userId){
+        for (let index in this.state.sentFriendRequests){
+            if (this.state.sentFriendRequests[index] === userId){
+                return(
+                <RowContainer>
+                    Sent
+                </RowContainer>
+                )
+                }
+            }            
+        return(
+        <RowContainer>
+            <PixelButton
+                marginTop="null"
+                width="250px"
+                onClick={() => {
+                    this.addUser(userId);
+                    this.addSentRequest(userId)
+                }}>
+                    Send friend request
+            </PixelButton>
+        </RowContainer>)
+    }
+
+    addSentRequest(userId){
+        let sentFriendRequests = this.state.sentFriendRequests
+        sentFriendRequests.push(userId)
+        this.setState({['setFriendRequests']: sentFriendRequests})
+    }
+
     scrollToTop() {
         scroll.scrollToTop();
     }
@@ -81,22 +112,17 @@ class UsersBox extends React.Component {
                                     width="400px">
                                     <PixelButton 
                                         marginTop="null"
-                                        onClick={()=>this.props.history.push(`/game/users/${users.id}`)}>View Profile
+                                        onClick={() =>
+                                            this.props.history.push(`/game/users/${users.id}`)
+                                            }>
+                                                View Profile
                                     </PixelButton>
                                 </RowContainer>
-                                <RowContainer>
-                                <PixelButton
-                                    marginTop="null"
-                                    width="250px"
-                                    onClick={()=>this.addUser(users.id)}>
-                                        Send friend request
-                                </PixelButton>
-                                </RowContainer>
+                                {this.displaySentOrRequestButton(users.id)}
                             </Row>
                         </Element>);
                     })}
                 </Element>
-
             </div>
         );
     }

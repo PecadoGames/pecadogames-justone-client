@@ -69,7 +69,7 @@ class Friends extends React.Component {
                                         (<PixelButton
                                             marginTop = "30px"
                                             onClick={() => {this.addFriend() }}>
-                                            Friends
+                                            Add Friends
                                             </PixelButton>
                                         ):(
                                             null)

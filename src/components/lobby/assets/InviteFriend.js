@@ -1,9 +1,6 @@
 import {withRouter} from "react-router-dom";
 import React from "react";
 
-
-
-
 class InviteFriend extends React.Component{
     constructor(props) {
         super(props);

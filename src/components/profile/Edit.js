@@ -179,7 +179,9 @@ class Profile extends React.Component {
                 <WindowHeader>..\Profile\Edit.js</WindowHeader>
                 <ProfileContainer className={"profileContainer"}>
                     <One>
-                        <ProfilePicContainer className={"profilePicContainer"}><img src={this.getProfilePic()} alt={"Profile picture"} className={"profilePicture"}/></ProfilePicContainer>
+                        <ProfilePicContainer className={"profilePicContainer"}>
+                            <img src={this.getProfilePic()} alt={"Avatar"} className={"profilePicture"}/>
+                            </ProfilePicContainer>
                     </One>
                     <Two>
                         <TextContainer>

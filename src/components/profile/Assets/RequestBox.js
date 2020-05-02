@@ -45,9 +45,7 @@ class RequestBox extends React.Component {
         Events.scrollEvent.register('end', function () {
             console.log("end", arguments);
         });
-        const response = await api.get(`/users/${localStorage.getItem('id')}/friendRequests?token=${localStorage.getItem('token')}`)
-        this.setState({['requests']: response.data})
-
+        this.updateFriendRequests()
     }
 
     async accept(userId){
@@ -57,8 +55,7 @@ class RequestBox extends React.Component {
             accepted: true
         })
         await api.put(`/users/${localStorage.getItem("id")}/friends`, requestBody)
-        const response = await api.get(`/users/${localStorage.getItem('id')}/friendRequests?token=${localStorage.getItem('token')}`)
-        this.setState({['requests']: response.data})
+        this.updateFriendRequests()
     }
 
     async decline(userId){
@@ -68,9 +65,12 @@ class RequestBox extends React.Component {
             accepted: false
         })
         await api.put(`/users/${localStorage.getItem("id")}/friends`, requestBody)
+        this.updateFriendRequests()
+    }
+
+    async updateFriendRequests(){
         const response = await api.get(`/users/${localStorage.getItem('id')}/friendRequests?token=${localStorage.getItem('token')}`)
         this.setState({['requests']: response.data})
-
     }
 
     scrollToTop() {

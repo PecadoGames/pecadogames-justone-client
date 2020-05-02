@@ -102,7 +102,7 @@ class Register extends React.Component {
         return (
             <FormContainer className={'backgroundLogin'}>
                 <LogoContainer>
-                    <img src={require('./assets/logo_j1.gif')} width="150"/>
+                    <img src={require('./assets/logo_j1.gif')} width="150" alt="J1 blinking neon-sign"/>
                 </LogoContainer>
                 <HandyContainer className={'handyImage'}>
                     <Sound url={commercial}

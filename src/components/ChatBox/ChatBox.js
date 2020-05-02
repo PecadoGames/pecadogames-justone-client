@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Link, Element, Events, animateScroll as scroll } from 'react-scroll'
+import { Element, Events, animateScroll } from 'react-scroll'
 import {withRouter} from "react-router-dom";
 import {api} from "../../helpers/api";
 import styled from "styled-components";
@@ -11,35 +11,23 @@ import {InputField} from "../../views/design/InputField";
 const Container = styled.div`
   display: flex;
   flex-direction: row;
-
-
-  
 `;
 const TextContainer = styled.div`
   display: flex;
   width: 150px;
   flex-direction: row;
-  
-
-
-
-  
 `;
 
 const UsernameContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 90px;
-    
-  
 `;
 
 const CreationContainer = styled.div`
   display: flex;
   flex-direction: row;
   margin-left: 10px;
-
-  
 `;
 
 
@@ -57,8 +45,6 @@ class ChatBox extends React.Component {
         }
     }
 
-
-
     async componentDidMount() {
 
         Events.scrollEvent.register('begin', function () {
@@ -73,7 +59,6 @@ class ChatBox extends React.Component {
         this.setState({['messages']: response.data.messages});
         }, 1000)
     }
-
 
     componentWillUnmount() {
         Events.scrollEvent.remove('begin');
@@ -100,7 +85,6 @@ class ChatBox extends React.Component {
             this.sendMessage()
         }
     }
-
 
     render() {
         return (
