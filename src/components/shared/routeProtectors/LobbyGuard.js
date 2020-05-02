@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
  *
  * Another way to export directly your functional component.
  */
-export const InLobbyGuard = props => {
+export const LobbyGuard = props => {
     if (localStorage.getItem("lobbyId") && !localStorage.getItem('gameId')) {
         return props.children;
     }

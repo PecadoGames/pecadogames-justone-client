@@ -29,13 +29,7 @@ const RightContainer = styled.div`
   height: 800px;
   width: 800px; `;
 
-const LeftContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  height: 800px;
-  width: 400px
- `
+
 const TopRightContainer = styled.div`
   display: flex;
   flex-direction: row;

@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
  *
  * Another way to export directly your functional component.
  */
-export const LoggedInGuard = props => {
+export const LoggedInUser = props => {
     if (localStorage.getItem("id") && !localStorage.getItem('gameId') && !localStorage.getItem('lobbyId')) {
         return props.children;
     }

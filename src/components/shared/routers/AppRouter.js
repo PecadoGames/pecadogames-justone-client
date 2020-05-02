@@ -4,6 +4,10 @@ import GameRouter from "./GameRouter";
 import { LoggedOutUser } from "../routeProtectors/LoggedOutUser";
 import Register from "../../login/Register";
 import LoginBase from "../../login/LoginBase";
+import Lobby from "../../lobby/Lobby";
+import TransitionState from "../../game/States/TransitionState";
+import EndGameState from "../../game/States/EndGameState";
+
 
 
 
@@ -21,7 +25,7 @@ class AppRouter extends React.Component {
     return (
       <BrowserRouter >
         <Switch>
-          <div>
+            <Route exact path="/" exact render={() => <Redirect to={"/game"} />} />
             <Route
               path="/game"
               render={() => (
@@ -46,8 +50,6 @@ class AppRouter extends React.Component {
                   </LoggedOutUser>
               )}
           />
-            <Route path="/" exact render={() => <Redirect to={"/game"} />} />
-          </div>
         </Switch>
       </BrowserRouter>
     );

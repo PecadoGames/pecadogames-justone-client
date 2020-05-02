@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import AppRouter from "./components/shared/routers/AppRouter";
 import Sound from "react-sound";
-import nightNoise from "./Music/NightNoise.mp3";
 import Songs from "./Music/AllSongs.mp3"
 import DimmedSongs from "./Music/AllSongsDimmedPlusNightNoise.mp3"
 
@@ -21,6 +20,8 @@ class App extends Component {
           position: random,
     }
   }
+
+
 
 
   changeMusicToNormal=()=>{
