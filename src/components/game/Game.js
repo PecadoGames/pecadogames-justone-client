@@ -301,7 +301,7 @@ class Game extends React.Component{
                 {this.displayVoteOnClueState() ? <VoteOnClueState currentGuesserId = {this.state.currentGuesserId}/> : null}
                 {this.displayEnterGuessState() ? <EnterGuessState  currentGuesserId = {this.state.currentGuesserId} clues={this.state.clues}/>: null}
                 {this.displayTransitionState()? <TransitionState currentGuesserId = {this.state.currentGuesserId}/>: null}
-                {this.displayEndGameState() ? <EndGameState/> : null}
+                {this.displayEndGameState() ? <EndGameState players = {this.state.players}/> : null}
               </InsideContainer>
               {this.state.gameState}
             </BottomRightContainer>
