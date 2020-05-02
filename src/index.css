@@ -103,6 +103,13 @@ button {
   margin:auto;
 }
 
+.smallHandWithCard{
+  background-image:url("handCard.png");
+  background-size: 450px 525px, contain;
+  background-repeat: no-repeat;
+  margin:auto;
+}
+
 .blankNewsPaper{
   background-image:url("BlankNewsPaper.png");
   background-size: 848px 807px, contain;
