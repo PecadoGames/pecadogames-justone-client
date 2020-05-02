@@ -1,8 +1,21 @@
 import {withRouter} from "react-router-dom";
 import React from "react";
 import {Button} from "../../../views/design/Button";
+import styled from "styled-components";
+import {api, handleError} from "../../../helpers/api";
 
+const Clues = styled.div`
+    margin-left: 100px;
+    display: flex;
+    flex-direction: row;
+    align-items: left;
+`;
 
+const Clue = styled.div`
+
+    margin-left: 10px;
+    align-items: left;
+`;
 
 
 class VoteOnClueState extends React.Component{
@@ -43,8 +56,34 @@ class VoteOnClueState extends React.Component{
         else {return false;}
     }
 
-    async voteOnClue(){
+    async voteYesOnClue(clue){
+        try {
+            const requestBody = JSON.stringify({
+                playerId: localStorage.getItem('id'),
+                playerToken: localStorage.getItem('token'),
+                clue: clue,
+                vote: true
+            })
+            await api.put('/lobbies/' + localStorage.getItem('lobbyId') + '/game/vote', requestBody);
+        }
+    catch(error){
+            alert(`Something went wrong during the voting \n${handleError(error)}`)
+        }
+    }
 
+    async voteNoOnClue(clue){
+        try {
+            const requestBody = JSON.stringify({
+                playerId: localStorage.getItem('id'),
+                playerToken: localStorage.getItem('token'),
+                clue: clue,
+                vote: false
+            })
+            await api.put('/lobbies/' + localStorage.getItem('lobbyId') + '/game/vote', requestBody);
+        }
+    catch(error){
+            alert(`Something went wrong during the voting \n${handleError(error)}`)
+        }
     }
 
     render(){
@@ -56,7 +95,12 @@ class VoteOnClueState extends React.Component{
                 :
                 <div>
                     <text>VoteOnClue for the Clue submitter, please vote</text>
-                    <Button onClick={()=>{this.voteOnClue()}}>vote on clue</Button>
+                    <Clues>
+                        {this.state.clues.map(clue => {
+                            return (<Clue>{clue.clue} <Button onClick={()=>{this.voteYesOnClue(clue.clue)}}>Okay</Button><Button onClick={()=>{this.voteNoOnClue(clue.clue)}}>Wrong!</Button></Clue>
+                            )})}
+                    </Clues>
+
                 </div>
 
         )

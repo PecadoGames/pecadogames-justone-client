@@ -112,7 +112,7 @@ class GameTest extends React.Component{
             return <EndGameState/>
         }
         if(this.state.stateName === 'EnterCluesState'){
-            return <EnterCluesState currentGuesserId={this.state.number}/>
+            return <EnterCluesState specialGame={this.state.specialGame} currentGuesserId={this.state.number}/>
         }
         if(this.state.stateName === 'EnterGuessState'){
             return <EnterGuessState clues={this.state.clues} currentGuesserId={this.state.number}/>
@@ -124,9 +124,18 @@ class GameTest extends React.Component{
             return <TransitionState currentGuesserId={this.state.number}/>
         }
         if(this.state.stateName === 'VoteOnClueState'){
-            return <VoteOnClueState currentGuesserId={this.state.number}/>
+            return <VoteOnClueState clues={this.state.clues} currentGuesserId={this.state.number}/>
         }
     }
+
+    handleMode(){
+        if(this.state.specialGame===false){
+            this.handleInputChange('specialGame',true)}
+        else{
+            this.handleInputChange('specialGame',false)}
+
+    }
+
 
     changeId(){
         if(this.state.number===1){
@@ -151,8 +160,12 @@ class GameTest extends React.Component{
                     <TopRightContainer>
                         <MainMenuButton borderColor="#0bb845"
                                         onClick={() => {this.handleInputChange('stateName', 'EndGameState')}}>End</MainMenuButton>
-                        <MainMenuButton borderColor="#0bb845"
-                                        onClick={() => {this.handleInputChange('stateName', 'EnterCluesState')}}>Clue</MainMenuButton>
+                        <SmallContainer>
+                            <MainMenuButton borderColor="#0bb845"
+                                            onClick={() => {this.handleInputChange('stateName', 'EnterCluesState')}}>Clue</MainMenuButton>
+                            <MainMenuButton borderColor="#0bb845"
+                                            onClick={() => {this.handleMode()}}>Mode</MainMenuButton>
+                        </SmallContainer>
                         <MainMenuButton borderColor="#0bb845"
                                         onClick={() => {this.handleInputChange('stateName', 'EnterGuessState')}}>Guess</MainMenuButton>
                         <SmallContainer>

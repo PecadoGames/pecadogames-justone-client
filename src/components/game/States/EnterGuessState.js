@@ -132,7 +132,12 @@ class EnterGuessState extends React.Component{
                 </Wrapper>
                 :
                 <Wrapper>
-                    <Text>This is for the Submitter</Text>
+                    <Text>Your teams valid clues:</Text>
+                    <Clues>
+                        {this.state.clues.map(clue => {
+                            return (<Clue>{clue.clue}</Clue>)})}
+                    </Clues>
+                    <Text>Wait for the guesser to guess</Text>
                 </Wrapper>
 
 
