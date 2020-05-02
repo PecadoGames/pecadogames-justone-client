@@ -57,9 +57,9 @@ class EnterGuessState extends React.Component{
     async submitGuess(){
         try {
             const requestBody = JSON.stringify({
-                userId: localStorage.getItem('id'),
-                userToken: localStorage.getItem('token'),
-                guess: this.state.guess
+                playerId: localStorage.getItem('id'),
+                playerToken: localStorage.getItem('token'),
+                message: this.state.guess
             })
             await api.put(`lobbies/${localStorage.getItem('lobbyId')}/game/guess`, requestBody)
         }
