@@ -69,7 +69,6 @@ const SubmitButton = styled(Button)`
 `;
 
 const AddPlayerButton = styled(SmallButton)`
-    
     opacity: ${props => (props.disabled ? 1 : 0.8)};
     cursor: ${props => (props.disabled ? "default" : "pointer")};
 `;
@@ -107,9 +106,10 @@ class EditLobby extends React.Component{
         try {
             this.handleInputChange('sentUpdate', true)
             const requestBody = JSON.stringify({
-                maxPlayersAndBots: this.state.maxPlayersAndBots,
+                maxNumberOfPlayersAndBots: this.state.maxPlayersAndBots,
                 hostToken: localStorage.getItem("token")
             })
+            //this disables the button temporarily to avoid too many updates
             setTimeout(() => {this.handleInputChange('sentUpdate', false)}, 2500);
             await api.put(`/lobbies/${this.state.lobby.lobbyId}`, requestBody);
         }catch (error) {
