@@ -14,7 +14,8 @@ class EnterCluesState extends React.Component{
             currentGuesserId: null,
             specialGame: false,
             clue: '',
-            clue2: ''
+            clue2: '',
+            currentWord: ''
         };
     }
 
@@ -27,10 +28,12 @@ class EnterCluesState extends React.Component{
 
     //when the props from parent changes this is called to change states
     static getDerivedStateFromProps(props, state) {
-        if (props.currentGuesserId !== state.currentGuesserId || props.specialGame !== state.specialGame) {
+        if (props.currentGuesserId !== state.currentGuesserId || props.specialGame !== state.specialGame
+            || props.currentWord !== state.currentWord) {
             return {
                 currentGuesserId: props.currentGuesserId,
-                specialGame: props.specialGame
+                specialGame: props.specialGame,
+                currentWord: props.currentWord
             };
         }
         // Return null if the state hasn't changed
@@ -79,6 +82,8 @@ class EnterCluesState extends React.Component{
                 :
                 this.state.specialGame ?
                     <div>
+                        <text>The word is: {this.state.currentWord}</text>
+                        <br/>
                         <text> EnterClues</text>
                         <br/>
                         <text> Display two enter clues</text>
@@ -106,6 +111,8 @@ class EnterCluesState extends React.Component{
                     </div>
                     :
                     <div>
+                        <text>The word is: {this.state.currentWord}</text>
+                        <br/>
                         <text> EnterClues</text>
                         <br/>
                         <text> Display one enter Clue</text>

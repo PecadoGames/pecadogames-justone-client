@@ -96,7 +96,8 @@ class GameTest extends React.Component{
             lobbyName: '',
             clues: [{'clue': 'hello'},{'clue':'whatsUp'},{'clue':'Ramono'}],
             stateName: '',
-            number: 1
+            number: 1,
+            currentWord: 'marion'
         };
     }
 
@@ -112,7 +113,7 @@ class GameTest extends React.Component{
             return <EndGameState/>
         }
         if(this.state.stateName === 'EnterCluesState'){
-            return <EnterCluesState specialGame={this.state.specialGame} currentGuesserId={this.state.number}/>
+            return <EnterCluesState currentWord={this.state.currentWord } specialGame={this.state.specialGame} currentGuesserId={this.state.number}/>
         }
         if(this.state.stateName === 'EnterGuessState'){
             return <EnterGuessState clues={this.state.clues} currentGuesserId={this.state.number}/>
