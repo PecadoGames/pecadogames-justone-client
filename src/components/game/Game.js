@@ -178,13 +178,6 @@ class Game extends React.Component{
     }
   }
 
-  //TODO: test this method
-  displayCurrentWord(){
-    //returns if there is a currentWord
-    if (this.state.currentWord){
-      return this.state.currentWord
-    }
-  }
 
   displayPickWordState(){
     //returns true if gamestate is PICKWORDSTATE and the user is the guesser
@@ -226,6 +219,18 @@ class Game extends React.Component{
 
   }
 
+  displayEndGameState(){
+    if (this.state.gameState) {
+      let state1 = this.state.gameState
+      let state2 = "ENDGAMESTATE"
+      if (state1 === state2){
+        return true
+      }
+      else {return false}
+    }
+    else{return false}
+
+  }
 
   displayEnterGuessState(){
     if (this.state.gameState) {
