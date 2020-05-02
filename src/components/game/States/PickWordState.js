@@ -9,6 +9,9 @@ const Wrapper = styled.div`
     padding: 10px;
     text-align: center;
     margin-left: 200px;
+    margin-top: 480px;
+    bottom: 21px;
+    left: 0px;
 `;
 
 const Container = styled.div`
