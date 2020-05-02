@@ -76,26 +76,31 @@ class PickWordState extends React.Component{
     render(){
         return(
             this.renderForGuesser() ?
-            <Wrapper>
-                <Text>Pick a number to start the game</Text>
-                <Container>
-                    <NumberButton
-                        onClick={()=>this.submitWord(1)}
-                    >1</NumberButton>
-                    <NumberButton
-                        onClick={()=>this.submitWord(2)}
-                    >2</NumberButton>
-                    <NumberButton
-                        onClick={()=>this.submitWord(3)}
-                    >3</NumberButton>
-                    <NumberButton
-                        onClick={()=>this.submitWord(4)}
-                    >4</NumberButton>
-                    <NumberButton
-                        onClick={()=>this.submitWord(5)}
-                    >5</NumberButton>
-                </Container>
-            </Wrapper>:null
+                <Wrapper>
+                    <Text>Pick a number to start the game</Text>
+                    <Container>
+                        <NumberButton
+                            onClick={()=>this.submitWord(1)}
+                        >1</NumberButton>
+                        <NumberButton
+                            onClick={()=>this.submitWord(2)}
+                        >2</NumberButton>
+                        <NumberButton
+                            onClick={()=>this.submitWord(3)}
+                        >3</NumberButton>
+                        <NumberButton
+                            onClick={()=>this.submitWord(4)}
+                        >4</NumberButton>
+                        <NumberButton
+                            onClick={()=>this.submitWord(5)}
+                        >5</NumberButton>
+                    </Container>
+                </Wrapper>
+                :
+                <Wrapper>
+                    <Text>The guesser is currently picking a word</Text>
+                </Wrapper>
+
         )
     }
 }

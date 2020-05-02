@@ -8,11 +8,16 @@ const Text = styled.div`
     margin-left: 200px;
 `;
 
+const Player = styled.div`
+    height: 20px;
+    width: 20px;
+`;
+
 class EndGameState extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            selectName: null
+            players: []
         };
     }
 
@@ -21,14 +26,19 @@ class EndGameState extends React.Component{
     }
 
     componentDidMount() {
-        this.handleInputChange('selectName', this.props.selectName)
+        setTimeout(() => {this.redirectToLobby()}, 10000 );
+    }
+
+    redirectToLobby(){
+        localStorage.removeItem('gameId')
+        this.props.history.push(`/game/lobbies/${localStorage.getItem('lobbyId')}`);
     }
 
     //when the props from parent changes this is called to change states
     static getDerivedStateFromProps(props, state) {
-        if (props.selectName !== state.selectName) {
+        if (props.players !== state.players) {
             return {
-                selectName: props.selectName,
+                players: props.players,
             };
         }
         // Return null if the state hasn't changed
@@ -41,8 +51,10 @@ class EndGameState extends React.Component{
             <div>
                 <text>EndGame</text>
                 <br/>
-                <text>You will be redirected to the lobby in a few seconds</text>
+                <text>You will be redirected to the lobby in 10 seconds</text>
                 <Text>Hurray the game is over!</Text>
+                {this.state.players.map(player => {
+                    return (<Player>{player.username}</Player>)})}
             </div>
 
         )

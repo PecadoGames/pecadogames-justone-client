@@ -83,7 +83,7 @@ class GameTest extends React.Component{
         super(props);
         this.state = {
             game: null,
-            players: [],
+            players: [{'username': 'ramon'},{'username': 'marion'}],
             gameState: null,
             interval: null,
             currentGuesserId: 1,
@@ -104,7 +104,7 @@ class GameTest extends React.Component{
 
     stateChange(){
         if(this.state.stateName === 'EndGameState'){
-            return <EndGameState/>
+            return <EndGameState players={this.state.players}/>
         }
         if(this.state.stateName === 'EnterCluesState'){
             return <EnterCluesState currentWord={this.state.currentWord } specialGame={this.state.specialGame} currentGuesserId={this.state.number}/>
