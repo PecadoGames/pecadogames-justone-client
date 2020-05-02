@@ -38,18 +38,6 @@ const Wrapper1 = styled.div`
 `;
 
 
-const Clues = styled.div`
-    margin-left: 100px;
-    display: flex;
-    flex-direction: row;
-    align-items: left;
-`;
-
-const Clue = styled.div`
-
-    margin-left: 10px;
-    align-items: left;
-`;
 
 const Text = styled.div`
     font-size: 20px;

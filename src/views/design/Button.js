@@ -4,6 +4,7 @@ export const Button = styled.button`
   &:hover {
     transform: ${props => props.hover || "translateY(-2px)"}
   }
+  font-weight: ${props => props.weight || null}
   margin-bottom: 20px;
   margin-top: ${props => props.marginTop || null}
   margin-left: ${props => props.marginLeft || null}
@@ -11,7 +12,6 @@ export const Button = styled.button`
   font-size: ${props => props.fontSize || "24px"}
   text-align: ${props => props.text || "center"};
   color: ${props => props.color || "#ffffff"};
- 
   width: ${props => props.width || null};
   height: ${props => props.height || "40px"};
   border: none;

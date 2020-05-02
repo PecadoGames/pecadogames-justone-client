@@ -4,26 +4,63 @@ import {Button} from "../../../views/design/Button";
 import styled from "styled-components";
 import {api, handleError} from "../../../helpers/api";
 
-const Clues = styled.div`
-    margin-left: 100px;
+
+
+const SignLeft = styled.div`
+  display: flex;
+  height: 80px;
+  width: 150px;
+  align-items: flex-start;  
+  float:left;
+`;
+
+const Text = styled.div`
+    text-align: center;
+    position: relative;
+    top: 150px;
+    font-size: 36px;
+    border: 1px solid black;
+`;
+
+const TextSignLeft = styled.div`
+    margin-top: 30px;
+    margin-left: 30px;
+    font-size: 20px;
+    color:black;
+    transform:rotate(-3.5deg)
+`;
+
+const SignContainer = styled.div`
+    width: 100%;
+    height: 100%
+    align-items: flex-start;
+`;
+
+const Wrapper = styled.div`
+    height: 200px;
+    width: 470px;
+    background-color: none;
+    padding: 10px;
+    text-align: center;
+    margin-top: 500px;
+    margin-left: 170px;
     display: flex;
-    flex-direction: row;
-    align-items: left;
+    flex-direction: column;
 `;
 
-const Clue = styled.div`
-
-    margin-left: 10px;
-    align-items: left;
+const Wrapper1 = styled.div`
+    display: inline;
+    padding-right: 40px;
+   
 `;
-
 
 class VoteOnClueState extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
             currentGuesserId: null,
-            clues: []
+            clues: [],
+            votes: []
         };
     }
 
@@ -56,13 +93,13 @@ class VoteOnClueState extends React.Component{
         else {return false;}
     }
 
-    async voteYesOnClue(clue){
+    async voteOnClues(){
         try {
             const requestBody = JSON.stringify({
                 playerId: localStorage.getItem('id'),
                 playerToken: localStorage.getItem('token'),
-                clue: clue,
-                vote: true
+                list: this.state.votes
+
             })
             await api.put('/lobbies/' + localStorage.getItem('lobbyId') + '/game/vote', requestBody);
         }
@@ -71,37 +108,63 @@ class VoteOnClueState extends React.Component{
         }
     }
 
-    async voteNoOnClue(clue){
-        try {
-            const requestBody = JSON.stringify({
-                playerId: localStorage.getItem('id'),
-                playerToken: localStorage.getItem('token'),
-                clue: clue,
-                vote: false
-            })
-            await api.put('/lobbies/' + localStorage.getItem('lobbyId') + '/game/vote', requestBody);
-        }
-    catch(error){
-            alert(`Something went wrong during the voting \n${handleError(error)}`)
-        }
+    addToList(clue){
+        let list = this.state.votes
+        list.push(clue)
+        this.handleInputChange('votes',list)
     }
+
+    removeFromList(clue){
+        let list = this.state.votes
+        for( let i = 0; i < list.length; i++){ if ( list[i] === clue) { list.splice(i, 1); }}
+        this.handleInputChange('votes', list)
+    }
+
+    isInList(clue){
+        for(let word in this.state.votes){
+            if (this.state.votes[word] === clue){
+                return false;
+            }
+        }
+        return true;
+    }
+
 
     render(){
         return(
             this.renderForGuesser() ?
-                <div>
-                    <text>VoteOnClue for Guesser, wait until they voted</text>
-                </div>
+                <Text>Wait until your friends voted!</Text>
                 :
-                <div>
-                    <text>VoteOnClue for the Clue submitter, please vote</text>
-                    <Clues>
-                        {this.state.clues.map(clue => {
-                            return (<Clue>{clue.clue} <Button onClick={()=>{this.voteYesOnClue(clue.clue)}}>Okay</Button><Button onClick={()=>{this.voteNoOnClue(clue.clue)}}>Wrong!</Button></Clue>
-                            )})}
-                    </Clues>
+                <Wrapper>
+                    <Wrapper1>
+                        <Button  background='#FAEBD7'
+                                 boxShadow='none'
+                                 width='200px'
 
-                </div>
+                                 color='black'
+                                 fontSize='30px'
+                                 onClick={()=>{this.voteOnClues()}}>Send Vote</Button>
+                    </Wrapper1>
+                    <SignContainer>
+                        {this.state.clues.map(clue => {
+                            return (<SignLeft className={"guess-sign-left"}><TextSignLeft>{clue.clue}</TextSignLeft>
+                                {this.isInList(clue.clue) ?
+                                    <Button onClick={()=>{this.addToList(clue.clue)}}
+                                            background='none'
+                                            boxShadow='none'
+                                            color='#008000'
+                                            fontSize='40px'
+                                            weight='bold'>✓</Button>
+                                    :
+                                    <Button
+                                        onClick={()=>{this.removeFromList(clue.clue)}}
+                                        background='none'
+                                        boxShadow='none'
+                                        color='#FF0000'
+                                        fontSize='40px'
+                                        weight='bold'>X</Button>}</SignLeft>)})}
+                    </SignContainer>
+                </Wrapper>
 
         )
     }
