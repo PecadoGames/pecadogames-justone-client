@@ -5,10 +5,10 @@ import { Redirect } from "react-router-dom";
  *
  * Another way to export directly your functional component.
  */
-export const ProfileGuard = props => {
-    if (localStorage.getItem("token")) {
+export const InGameGuard = props => {
+    if (localStorage.getItem("gameId")) {
         return props.children;
     }
     // redirect to login page if user isn't logged in
-    return <Redirect to={"/login"} />;
+    return <Redirect to={`/game/lobbies/${localStorage.getItem(`lobbyId`)}`} />;
 };

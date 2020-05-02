@@ -2,27 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import { Redirect, Route  } from "react-router-dom";
 import Profile from "../../profile/Profile";
-import {ProfileGuard} from "../routeProtectors/ProfileGuard";
 import Main from "../../main/Main";
 import JoinLobby from "../../lobby/JoinLobby";
-import {JoinLobbyGuard} from "../routeProtectors/JoinLobbyGuard"
 import CreateLobby from "../../lobby/CreateLobby";
 import Lobby from "../../lobby/Lobby";
-import {EditGuard} from "../routeProtectors/EditGuard"
 import Edit from "../../profile/Edit";
-import {GameGuard} from "../routeProtectors/GameGuard";
 import Requests from "../../profile/Requests";
 import Scoreboard from "../../scoreboard/Scoreboard.js"
 import Game from "../../game/Game"
 import Friends from "../../profile/Friends";
-import EndGameState from "../../game/States/EndGameState";
-import EnterCluesState from "../../game/States/EnterCluesState";
-import EnterGuessState from "../../game/States/EnterGuessState";
-import PickWordState from "../../game/States/PickWordState";
-import TransitionState from "../../game/States/TransitionState";
-import VoteOnClueState from "../../game/States/VoteOnClueState";
-import Picture from "../../game/GameInfos/Picture";
 import GameTest from "../../game/GameTest";
+import {LoggedInGuard} from "../routeProtectors/LoggedInGuard";
+import {InLobbyGuard} from "../routeProtectors/InLobbyGuard";
+import {InGameGuard} from "../routeProtectors/InGameGuard";
 
 
 const Container = styled.div`
@@ -30,19 +22,6 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const InsideContainer = styled.div`
-  position: absolute
-  height: 700px;
-  width: 800px
- `
-
-const BottomRightContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  height: 700px;
-  width: 800px
- `
 
 class GameRouter extends React.Component {
   render() {
@@ -54,78 +33,92 @@ class GameRouter extends React.Component {
         <Route
           exact
           path={`${this.props.base}/main`}
-          render={() => <Main changeMusicToNormal={this.props.changeMusicToNormal} />}
+          render={() => (
+              <LoggedInGuard>
+              <Main changeMusicToNormal={this.props.changeMusicToNormal} />
+              </LoggedInGuard>
+          )}
         />
 
           <Route
               exact
               path={`${this.props.base}/users/:id`}
               render={() => (
-                  <ProfileGuard>
+                  <LoggedInGuard>
                     <Profile changeMusicToNormal={this.props.changeMusicToNormal} />
-                  </ProfileGuard>
+                  </LoggedInGuard>
               )}
           />
           <Route
               exact
               path={`${this.props.base}/lobbies`}
               render={() => (
-                  <JoinLobbyGuard>
+                  <LoggedInGuard>
                   <JoinLobby changeMusicToNormal={this.props.changeMusicToNormal} />
-                  </JoinLobbyGuard>
+                  </LoggedInGuard>
               )}
               />
           <Route
               exact
               path={`${this.props.base}/users/:id/edit`}
               render={() => (
-                  <EditGuard>
+                  <LoggedInGuard>
                       <Edit changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
-                  </EditGuard>
+                  </LoggedInGuard>
               )}
           />
           <Route
               exact
               path={`${this.props.base}/users/:id/requests`}
               render={() => (
+                  <LoggedInGuard>
                   <Requests changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
+                  </LoggedInGuard>
               )}
               />
           <Route
               exact
               path={`${this.props.base}/users/:id/friends`}
               render={() => (
+                  <LoggedInGuard>
                   <Friends changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
+                  </LoggedInGuard>
               )}
           />
           <Route
               exact
               path={`${this.props.base}/createLobby`}
               render={() => (
-                  <GameGuard>
+                  <LoggedInGuard>
                       <CreateLobby changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
-                  </GameGuard>
+                  </LoggedInGuard>
               )}
           />
           <Route
               exact
               path={`${this.props.base}/scoreboard`}
               render={() => (
-                  <GameGuard>
+                  <LoggedInGuard>
                       <Scoreboard changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
-                  </GameGuard>
+                  </LoggedInGuard>
               )}
           />
 
           <Route
           exact
           path={`${this.props.base}/lobbies/:lobbyId`}
-          render={() =>(<Lobby></Lobby>)}
+          render={() =>(
+              <InLobbyGuard>
+              <Lobby></Lobby>
+              </InLobbyGuard>)}
           />
           <Route
               exact
               path={`${this.props.base}/lobbies/:lobbyId/game`}
-              render={() =>(<Game></Game>)}
+              render={() =>(
+                  <InGameGuard>
+                  <Game></Game>
+                  </InGameGuard>)}
           />
 
 

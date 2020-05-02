@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import {withRouter} from "react-router-dom";
 import React from "react";
-import PickWord from "./PickWordState";
+
 
 
 const BackgroundContainer = styled.div`

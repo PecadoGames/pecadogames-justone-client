@@ -5,7 +5,6 @@ import {LogoutButton} from "../../views/design/LogoutButton";
 import {api, handleError} from "../../helpers/api";
 import ChatBox from "../ChatBox/ChatBox";
 import LobbyInfos from "./assets/LobbyInfos";
-import {InputField} from "../../views/design/InputField";
 import {Button} from "../../views/design/Button";
 import EditLobby from "./assets/EditLobby"
 
@@ -134,6 +133,7 @@ class Lobby extends React.Component{
                 hostToken: localStorage.getItem("token")
             });
             await api.post(`/lobbies/${localStorage.getItem('lobbyId')}`, requestBody)
+            localStorage.setItem('gameId', localStorage.getItem('lobbyId'))
             this.props.history.push(window.location.pathname +'/game')
 
         }

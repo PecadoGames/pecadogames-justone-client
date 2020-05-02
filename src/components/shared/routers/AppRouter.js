@@ -1,13 +1,10 @@
 import React from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
-import { GameGuard } from "../routeProtectors/GameGuard";
 import GameRouter from "./GameRouter";
-import { LoginGuard } from "../routeProtectors/LoginGuard";
+import { LoggedOutUser } from "../routeProtectors/LoggedOutUser";
 import Register from "../../login/Register";
 import LoginBase from "../../login/LoginBase";
-import Songs from "../../../Music/AllSongs.mp3";
-import Sound from "react-sound";
-import DimmedSongs from "../../../Music/AllSongsDimmed.mp3";
+
 
 
 /**
@@ -28,25 +25,25 @@ class AppRouter extends React.Component {
             <Route
               path="/game"
               render={() => (
-                <GameGuard>
                   <GameRouter base={"/game"} changeMusicToNormal={this.props.changeMusicToNormal} />
-                </GameGuard>
               )}
             />
             <Route
               path="/login"
               exact
               render={() => (
-                <LoginGuard>
+                <LoggedOutUser>
                   <LoginBase changeMusicToDim={this.props.changeMusicToDim} />
-                </LoginGuard>
+                </LoggedOutUser>
               )}
             />
           <Route
               path="/register"
               exact
               render={() => (
+                  <LoggedOutUser>
                   <Register changeMusicToDim={this.props.changeMusicToDim}/>
+                  </LoggedOutUser>
               )}
           />
             <Route path="/" exact render={() => <Redirect to={"/game"} />} />
