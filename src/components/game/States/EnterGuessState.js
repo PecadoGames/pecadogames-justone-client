@@ -66,9 +66,9 @@ const SignLeft = styled.div`
 const TextSignLeft = styled.div`
     margin-top: 30px;
     margin-left: 30px;
-    font-size: 20px;
     color:black;
-    transform:rotate(-3.5deg)
+    transform:rotate(-4deg)
+    font-size: ${props => (props.fontSize || '20px')};
 `;
 
 const SignContainer = styled.div`
@@ -78,10 +78,6 @@ const SignContainer = styled.div`
 `;
 
 
-
-const InputFieldGuess = styled(InputField)`
-      
-`;
 
 
 class EnterGuessState extends React.Component{
@@ -149,6 +145,18 @@ class EnterGuessState extends React.Component{
         else {return false;}
     }
 
+    displayClue(clue){
+        if (clue.length <= 8){
+            return <TextSignLeft style={{fontSize: 20}}>{clue}</TextSignLeft>
+        }
+        else if (clue.length <= 11){
+            return <TextSignLeft style={{fontSize: 14, marginTop: 33}}>{clue}</TextSignLeft>
+        }
+        else{
+            return <TextSignLeft style={{fontSize: 10, marginTop: 35}}>{clue}</TextSignLeft>
+        }
+    }
+
 
     render(){
         return(
@@ -157,7 +165,7 @@ class EnterGuessState extends React.Component{
                 <Wrapper>
                     <Wrapper1>
                     <Text>Guess:</Text>
-                    <InputFieldGuess
+                    <InputField
                                 width={"60%"}
                                 placeholder= 'Your guess...'
                                 onChange={e => {
@@ -166,7 +174,7 @@ class EnterGuessState extends React.Component{
                                 }}
                                 onKeyDown={this._handleKeyDown}>
 
-                    </InputFieldGuess>
+                    </InputField>
                     <Button
                         onClick={()=>this.submitGuess()}
                     >Submit
@@ -175,7 +183,7 @@ class EnterGuessState extends React.Component{
                     <div>
                         <SignContainer>
                             {this.state.clues.map(clue => {
-                                return (<SignLeft className={"guess-sign-left"}><TextSignLeft>{clue.clue}</TextSignLeft></SignLeft>)})}
+                                return (<SignLeft className={"guess-sign-left"}>{this.displayClue(clue.clue)}</SignLeft>)})}
                         </SignContainer>
                     </div>
                 </Wrapper>
