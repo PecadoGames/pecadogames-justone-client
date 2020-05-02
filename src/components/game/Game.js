@@ -138,7 +138,7 @@ class Game extends React.Component{
       this.handleInputChange('players', response.data.players);
       this.handleInputChange('lobbyName', response.data.lobbyName);
       this.handleInputChange('currentWord', response.data.currentWord);
-      this.handleInputChange('clues', response.data.enteredClues);
+      this.handleInputChange('clues', response.data.actualClues);
       this.handleInputChange('specialGame', response.data.specialGame)},500)
     }
     catch(error){
@@ -226,18 +226,6 @@ class Game extends React.Component{
 
   }
 
-  displayEndGameState(){
-    if (this.state.gameState) {
-      let state1 = this.state.gameState
-      let state2 = "ENDGAMESTATE"
-      if (state1 === state2){
-        return true
-      }
-      else {return false}
-    }
-    else{return false}
-
-  }
 
   displayEnterGuessState(){
     if (this.state.gameState) {
@@ -295,10 +283,9 @@ class Game extends React.Component{
             >
             </Picture>
               <InsideContainer>
-                {this.displayCurrentWord()}
                 {this.displayPickWordState() ? <PickWordState pickWordFunction={this.pickWord} currentGuesserId = {this.state.currentGuesserId}/>:null}
                 {this.displayEnterCluesState() ? <EnterCluesState currentWord = {this.state.currentWord} specialGame = {this.state.specialGame} currentGuesserId = {this.state.currentGuesserId}/>:null}
-                {this.displayVoteOnClueState() ? <VoteOnClueState currentGuesserId = {this.state.currentGuesserId}/> : null}
+                {this.displayVoteOnClueState() ? <VoteOnClueState currentGuesserId = {this.state.currentGuesserId} clues={this.state.clues}/> : null}
                 {this.displayEnterGuessState() ? <EnterGuessState  currentGuesserId = {this.state.currentGuesserId} clues={this.state.clues}/>: null}
                 {this.displayTransitionState()? <TransitionState currentGuesserId = {this.state.currentGuesserId}/>: null}
                 {this.displayEndGameState() ? <EndGameState players = {this.state.players}/> : null}

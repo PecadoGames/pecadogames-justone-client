@@ -9,6 +9,7 @@ class Lobby {
         this.numberOfBots = null;
         this.isPrivate = null;
         this.voicechat = null;
+        this.gameStarted = null;
         this.playersInLobby = null;
         this.currentGuesser= null;
         this.currentNumPlayersAndBots = null;

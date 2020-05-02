@@ -146,7 +146,12 @@ class Lobby extends React.Component{
         this.state.interval = setInterval(async()=>{const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}?token=${localStorage.getItem('token')}`);
         this.setState({['lobby']: response.data});
             this.setState({['players']:response.data.playersInLobby});
-            this.setState({['lobbyName']: response.data.lobbyName})
+            this.setState({['lobbyName']: response.data.lobbyName});
+            alert(response.data.gameStarted)
+            if(response.data.gameStarted === true){
+                localStorage.setItem('gameId', response.data.lobbyId)
+                this.props.history.push(window.location.pathname +'/game')
+            }
         }
         , 500)
 
