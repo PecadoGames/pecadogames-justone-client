@@ -194,7 +194,7 @@ class Login extends React.Component {
             {this.state.showError && <Label className="error-message">User is already logged in!</Label>}
           </Container>
           <LogoContainer>          
-            <img src={require('./assets/logo_j1.gif')} width="150"/>
+            <img src={require('./assets/logo_j1.gif')} width="150" alt="J1 blinking neon-sign"/>
           </LogoContainer>
               <UserWrapper>
                 <InputField
@@ -257,9 +257,7 @@ class Login extends React.Component {
                     color="#00ccff">
                     User
                   </AdvertismentText>
-                  <img 
-                  src={require('./assets/membercard_small.png')}
-                  width="100" />
+                  <img src={require('./assets/membercard_small.png')} width="100" alt="Membercard"/>
                     <BlinkingPixelButton                    
                       width = "135px"
                       marginTop = "15px"

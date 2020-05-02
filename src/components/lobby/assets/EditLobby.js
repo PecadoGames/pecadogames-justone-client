@@ -1,9 +1,7 @@
 import styled from "styled-components";
 import React from "react";
-import {withRouter} from "react-router-dom";
 import {Button} from "../../../views/design/Button";
 import {api, handleError} from "../../../helpers/api";
-import User from "../../shared/models/User";
 
 const Wrapper = styled.div`
     height: 150px;

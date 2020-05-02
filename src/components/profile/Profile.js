@@ -98,15 +98,6 @@ class Profile extends React.Component {
         return day + "." + month + "."+year
     }
 
-    parseStatus(toParse){
-        if(this.state.status === true){
-            return "Online"
-        }
-        else{
-            return "Offline"
-        }
-    }
-
     async componentDidMount() {
         this.props.changeMusicToNormal()
         this.state.id = this.props.match.params.id;
