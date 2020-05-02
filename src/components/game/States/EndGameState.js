@@ -2,10 +2,57 @@ import {withRouter} from "react-router-dom";
 import React from "react";
 import styled from "styled-components";
 
+const Wrapper = styled.div`
+    position: fixed center;
+    margin:auto;
+    width: 500px;
+    height: auto;
+    background-color: hsla(220, 3%, 19%, 0.7);
+    width: 60%;
+    border: 2px solid black;
+    border-radius: 5px;
+    text-align: center;
+`;
+
+const Container = styled.div`
+    background-color: #333333;
+    width: 80%;
+    height: 70%;
+    margin-left: 10%;
+    border-radius: 5px;
+    border: 2px solid black;
+    margin-bottom: 30px;
+`;
+
+const ScoreContainer = styled.div`
+    background-color: #242424;
+    width: 70%;
+    height: 45px;
+    border-radius: 8px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+`;
+
+const TextLeft = styled.div`
+    font-size: 22px;
+    margin-top: 10px;
+    margin-left: 10px;
+    float:left;
+`;
+
+const TextRight = styled(TextLeft)`
+    float:right;
+    margin-right: 10px;
+`;
+
+const Line = styled.hr`
+    border-top: 1px solid black;
+    width: 80%;
+`;
+
 const Text = styled.div`
-    font-size: 40px;
-    margin-top: 600px;
-    margin-left: 200px;
+    font-size: 50px;
 `;
 
 const Player = styled.div`
@@ -25,6 +72,7 @@ class EndGameState extends React.Component{
         this.setState({ [key]: value });
     }
 
+    //redirects user to lobby after 10 seconds
     componentDidMount() {
         setTimeout(() => {this.redirectToLobby()}, 10000 );
     }
@@ -48,15 +96,20 @@ class EndGameState extends React.Component{
 
     render(){
         return(
-            <div>
-                <text>EndGame</text>
-                <br/>
-                <text>You will be redirected to the lobby in 10 seconds</text>
-                <Text>Hurray the game is over!</Text>
-                {this.state.players.map(player => {
-                    return (<Player>{player.username}</Player>)})}
-            </div>
+            <Wrapper>
 
+                <Text>Game Over!</Text>
+                You will be redirected to the lobby in 10 seconds
+                <Line/>
+                <Container>
+                    {this.state.players.map(player => {
+                        return (<ScoreContainer>
+                            <TextLeft>{player.username}</TextLeft>
+                            <TextRight>{player.score}</TextRight>
+                        </ScoreContainer>)
+                    })}
+                </Container>
+            </Wrapper>
         )
     }
 }

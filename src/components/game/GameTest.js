@@ -83,7 +83,7 @@ class GameTest extends React.Component{
         super(props);
         this.state = {
             game: null,
-            players: [{'username': 'ramon'},{'username': 'marion'}],
+            players: [{'username': 'ramon', 'score': '420'},{'username': 'marion', 'score':'69'}],
             gameState: null,
             interval: null,
             currentGuesserId: 1,

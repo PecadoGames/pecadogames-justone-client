@@ -73,7 +73,7 @@ class EnterGuessState extends React.Component{
         super(props);
         this.state = {
             clues: [],
-            guess: '',
+            guess: null,
             currentGuesserId: null
         };
     }
@@ -164,6 +164,8 @@ class EnterGuessState extends React.Component{
 
                     </InputField>
                     <Button
+                        guess={this.state.guess}
+                        disabled={!this.props.guess}
                         onClick={()=>this.submitGuess()}
                     >Submit
                     </Button>
