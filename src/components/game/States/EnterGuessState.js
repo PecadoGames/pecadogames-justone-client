@@ -178,12 +178,19 @@ class EnterGuessState extends React.Component{
                     </div>
                 </Wrapper>
                 :
-                    <Wrapper2>
+                <Wrapper>
+                    <Wrapper1>
+                        Your team mate is currently guessing.
+                        Please be patient.
+                        <div style={{fontSize: "10px"}}>or be impatient, i don't care, I'm just a html element</div>
+                    </Wrapper1>
+                    <div>
                         <SignContainer>
                             {this.state.clues.map(clue => {
                                 return (<SignLeft className={"guess-sign-left"}>{this.displayClue(clue)}</SignLeft>)})}
                         </SignContainer>
-                    </Wrapper2>
+                    </div>
+                </Wrapper>
         )
     }
 }

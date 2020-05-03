@@ -112,11 +112,12 @@ class EnterCluesState extends React.Component{
     render(){
         return(
             this.renderForGuesser() ?
-                <div>
-                    <text> Wait for Clues</text>
-                    <br/>
-                    <text> Please wait until they submit</text>
-                </div>
+                <Wrapper style={{marginTop:"470px"}}>
+                    <Container>
+                        Your team mates are currently entering clues for you.
+                        Please wait until they are finished
+                    </Container>
+                </Wrapper>
                 :
                 this.state.specialGame ?
                     <Wrapper>
