@@ -8,9 +8,6 @@ import Lobby from "../../lobby/Lobby";
 import TransitionState from "../../game/States/TransitionState";
 import EndGameState from "../../game/States/EndGameState";
 
-
-
-
 /**
  * Main router of your application.
  * In the following class, different routes are rendered. In our case, there is a Login Route with matches the path "/login"
@@ -25,7 +22,7 @@ class AppRouter extends React.Component {
     return (
       <BrowserRouter >
         <Switch>
-            <Route exact path="/" exact render={() => <Redirect to={"/game"} />} />
+            <Route exact path="/" render={() => <Redirect to={"/game"} />} />
             <Route
               path="/game"
               render={() => (

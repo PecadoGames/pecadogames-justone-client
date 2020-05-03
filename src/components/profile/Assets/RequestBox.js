@@ -70,7 +70,7 @@ class RequestBox extends React.Component {
 
     async updateFriendRequests(){
         const response = await api.get(`/users/${localStorage.getItem('id')}/friendRequests?token=${localStorage.getItem('token')}`)
-        this.setState({['requests']: response.data})
+        this.setState({requests: response.data})
     }
 
     scrollToTop() {
@@ -125,8 +125,6 @@ class RequestBox extends React.Component {
                                     </PixelButton>
                                 </RowContainer>
                             </Row>
-
-
                         </Element>);
                     })}
                 </Element>

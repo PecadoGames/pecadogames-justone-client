@@ -40,14 +40,13 @@ class Profile extends React.Component {
 
     disableEdit(){
         this.handleInputChange('editable', false)
-
     }
 
     back(){
         if(this.state.editable){
             this.props.history.push(`/game`);
         }
-        if(!this.state.editable){
+        else{
             window.history.back()
         }
     }
@@ -98,7 +97,7 @@ class Profile extends React.Component {
         return day + "." + month + "."+year
     }
 
-    parseStatus(toParse){
+    parseStatus(){
         if(this.state.status === true){
             return "Online"
         }

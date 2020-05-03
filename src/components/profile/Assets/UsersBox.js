@@ -46,8 +46,8 @@ class UsersBox extends React.Component {
 
     async addUser(userId){
         const requestBody = JSON.stringify({
-            senderID: localStorage.getItem("id"),
             token: localStorage.getItem("token"),
+            senderID: localStorage.getItem("id")
         })
         await api.put(`/users/${userId}/friendRequests`, requestBody)
     }
@@ -56,16 +56,20 @@ class UsersBox extends React.Component {
         for (let index in this.state.sentFriendRequests){
             if (this.state.sentFriendRequests[index] === userId){
                 return(
-                <RowContainer>
+                <RowContainer
+                    width="266px">
                     Sent
                 </RowContainer>
                 )
                 }
             }            
         return(
-        <RowContainer>
+        <RowContainer
+            width="266px">
             <PixelButton
                 marginTop="null"
+                marginLeft="null"
+                marginRight="null"
                 width="250px"
                 onClick={() => {
                     this.addUser(userId);
@@ -96,7 +100,6 @@ class UsersBox extends React.Component {
             <div>
                 <Element name="UserBox" className="element" id="containerElement" style={{
                     margin:"auto",
-                    width:"85%",
                     height: '250px',
                     overflow: 'auto',
                 }}>
@@ -105,11 +108,12 @@ class UsersBox extends React.Component {
                             marginTop: '30px'
                         }}>
                             <Row>
-                                <RowContainer>
+                                <RowContainer
+                                    width="266px">
                                     {users.username}
                                 </RowContainer>
                                 <RowContainer
-                                    width="400px">
+                                    width="266px">
                                     <PixelButton 
                                         marginTop="null"
                                         onClick={() =>
