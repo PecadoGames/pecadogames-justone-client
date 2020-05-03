@@ -129,6 +129,18 @@ class VoteOnClueState extends React.Component{
         return true;
     }
 
+    displayClue(clue){
+        if (clue.length <= 8){
+            return <TextSignLeft style={{fontSize: 20}}>{clue}</TextSignLeft>
+        }
+        else if (clue.length <= 11){
+            return <TextSignLeft style={{fontSize: 14, marginTop: 33}}>{clue}</TextSignLeft>
+        }
+        else{
+            return <TextSignLeft style={{fontSize: 10, marginTop: 35}}>{clue}</TextSignLeft>
+        }
+    }
+
 
     render(){
         return(
@@ -147,7 +159,7 @@ class VoteOnClueState extends React.Component{
                     </Wrapper1>
                     <SignContainer>
                         {this.state.clues.map(clue => {
-                            return (<SignLeft className={"guess-sign-left"}><TextSignLeft>{clue}</TextSignLeft>
+                            return (<SignLeft className={"guess-sign-left"}><TextSignLeft>{this.displayClue(clue)}</TextSignLeft>
                                 {this.isInList(clue) ?
                                     <Button onClick={()=>{this.addToList(clue)}}
                                             background='none'
