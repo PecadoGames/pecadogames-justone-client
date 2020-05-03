@@ -79,6 +79,16 @@ class JoinLobby extends React.Component {
         ;
     }
 
+    getLobbyLength(){
+        //1 is the default value
+        if (!this.state.lobbies.length){
+            return 1
+        }
+        else{
+            return this.state.lobbies.length/5
+        }
+    }
+
     handleInputChange(key, value) {
         this.setState({ [key]: value });
     }
@@ -169,7 +179,7 @@ class JoinLobby extends React.Component {
                     :
                     null
                 }
-                <PageNumber>{this.state.number/5}/{Math.ceil(this.state.lobbies.length/5)}</PageNumber>
+                <PageNumber>{this.state.number/5}/{Math.ceil(this.getLobbyLength())}</PageNumber>
             </FormContainer>
 
         )
