@@ -194,7 +194,10 @@ class EditLobby extends React.Component{
                     </SmallContainer>
                     <SmallContainer>
                         <AdjustableContainer marginTop={"8px"}>
-                        <Button>
+                        <Button
+                            onClick={
+                                () => 
+                                this.props.toggleInviteFriends()}>
                             Invite Friend
                         </Button>
                         </AdjustableContainer>
