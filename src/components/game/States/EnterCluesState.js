@@ -106,6 +106,12 @@ class EnterCluesState extends React.Component{
         }
     }
 
+    _handleKeyDown = (e) => {
+        if (e.key === 'Enter'){
+            this.submit()
+        }
+    }
+
 
 
 
@@ -170,6 +176,7 @@ class EnterCluesState extends React.Component{
                                             onChange={e => {
                                                 this.handleInputChange('clue', e.target.value)
                                             }}
+                                            onKeyDown={this._handleKeyDown}
                                 >
                                 </InputField>
                                 <SubmitButton
