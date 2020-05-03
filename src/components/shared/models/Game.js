@@ -1,7 +1,7 @@
 class Game {
     constructor(data = {}) {
         this.currentWord = null;
-        this.actualClues = null;
+        this.cluesAsString = null;
         this.specialGame = null;
         Object.assign(this, data);
     }

@@ -138,7 +138,7 @@ class Game extends React.Component{
       this.handleInputChange('players', response.data.players);
       this.handleInputChange('lobbyName', response.data.lobbyName);
       this.handleInputChange('currentWord', response.data.currentWord);
-      this.handleInputChange('clues', response.data.actualClues);
+      this.handleInputChange('clues', response.data.cluesAsString);
       this.handleInputChange('specialGame', response.data.specialGame)},500)
     }
     catch(error){

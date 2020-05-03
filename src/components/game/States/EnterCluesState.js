@@ -60,8 +60,8 @@ class EnterCluesState extends React.Component{
             const requestBody = JSON.stringify({
                 playerId: localStorage.getItem('id'),
                 playerToken: localStorage.getItem('token'),
-                clue: this.state.clue,
-                clue2: this.state.clue2
+                message: this.state.clue,
+                message2: this.state.clue2
             })
             await api.put('/lobbies/' + localStorage.getItem('lobbyId') + '/game/clue', requestBody);
         }

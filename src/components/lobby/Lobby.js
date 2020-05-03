@@ -147,7 +147,6 @@ class Lobby extends React.Component{
         this.setState({['lobby']: response.data});
             this.setState({['players']:response.data.playersInLobby});
             this.setState({['lobbyName']: response.data.lobbyName});
-            alert(response.data.gameStarted)
             if(response.data.gameStarted === true){
                 localStorage.setItem('gameId', response.data.lobbyId)
                 this.props.history.push(window.location.pathname +'/game')
