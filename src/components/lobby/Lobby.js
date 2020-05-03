@@ -138,7 +138,6 @@ class Lobby extends React.Component{
             });
             await api.post(`/lobbies/${localStorage.getItem('lobbyId')}`, requestBody)
             localStorage.setItem('gameId', localStorage.getItem('lobbyId'))
-            this.props.history.push(window.location.pathname +'/game')
 
         }
         catch(error){
