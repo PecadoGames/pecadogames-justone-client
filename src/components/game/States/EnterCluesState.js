@@ -107,6 +107,8 @@ class EnterCluesState extends React.Component{
     }
 
 
+
+
     render(){
         return(
             this.renderForGuesser() ?
@@ -124,18 +126,18 @@ class EnterCluesState extends React.Component{
                             Enter a clue to help your team mate correctly guess {this.state.currentWord}.
                             <br/>
                             <div style={{display: "block"}}>
-                                <InputField width = '60%'
+                                <InputField width = '80%'
                                             marginTop = '10px'
-                                            placeholder= 'Your clue...'
+                                            placeholder= 'Your first clue...'
                                             color={"black"}
                                             onChange={e => {
                                                 this.handleInputChange('clue', e.target.value)
                                             }}
                                 >
                                 </InputField>
-                                <InputField width = '60%'
+                                <InputField width = '80%'
                                             marginTop = '10px'
-                                            placeholder= 'Your clue...'
+                                            placeholder= 'Your second clue...'
                                             color={"black"}
                                             onChange={e => {
                                                 this.handleInputChange('clue2', e.target.value)
@@ -145,7 +147,7 @@ class EnterCluesState extends React.Component{
                                 <SubmitButton
                                     marginLeft = '22px'
                                     width = '250px'
-                                    disabled={!this.state.clue}
+                                    disabled={!(this.state.clue && this.state.clue2)}
                                     onClick={()=>{this.submit()}}>
                                     Submit
                                 </SubmitButton>
