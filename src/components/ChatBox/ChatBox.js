@@ -55,7 +55,7 @@ class ChatBox extends React.Component {
             console.log("end", arguments);
         });
         //ask ever second for chat
-        this.state.interval = setInterval(async()=>{this.getMessages()}, 2000)
+        this.state.interval = setInterval(async()=>{this.getMessages()}, 500)
 
     }
 
