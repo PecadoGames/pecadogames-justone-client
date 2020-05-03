@@ -86,7 +86,7 @@ class GameTest extends React.Component{
             players: [{'username': 'ramon', 'score': '420'},{'username': 'marion', 'score':'69'}],
             gameState: null,
             interval: null,
-            currentGuesserId: 1,
+            currentGuesserId: parseInt(localStorage.getItem('id')),
             lobbyName: '',
             clues: ['clue','whatsUp','tinder','Ramono'],
             stateName: '',
@@ -134,10 +134,10 @@ class GameTest extends React.Component{
 
 
     changeId(){
-        if(this.state.number===1){
-            this.handleInputChange('number',2)}
-        if(this.state.number===2){
-            this.handleInputChange('number',1)}
+        if(this.state.number===parseInt(localStorage.getItem('id'))){
+            this.handleInputChange('number',parseInt(localStorage.getItem('id'))+1)}
+        else{
+            this.handleInputChange('number',parseInt(localStorage.getItem('id')))}
     }
 
 
