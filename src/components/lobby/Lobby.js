@@ -64,7 +64,8 @@ class Lobby extends React.Component{
             lobby: null,
             players: [],
             lobbyName: '',
-            interval: null
+            interval: null,
+            hostName: ''
         };
     }
 
@@ -119,7 +120,8 @@ class Lobby extends React.Component{
 
     shouldComponentUpdate(nextProps, nextState, nextContext) {
         if(this.state.interval !== nextState.interval || this.state.lobby !== nextState.lobby
-            || this.state.players !== nextState.players|| this.state.lobbyName !== nextState.lobbyName){
+            || this.state.players !== nextState.players|| this.state.lobbyName !== nextState.lobbyName
+            || this.state.hostName !== nextState.hostName ){
             return false;}
         return true;
     }
@@ -151,9 +153,15 @@ class Lobby extends React.Component{
                 localStorage.setItem('gameId', response.data.lobbyId)
                 this.props.history.push(window.location.pathname +'/game')
             }
+            this.getHostName(response.data.hostId)
         }
-        , 500)
+        , 400)
 
+    }
+
+    async getHostName(hostId){
+        const response = await api.get(`/users/${hostId}?token=${localStorage.getItem('token')}`)
+        this.handleInputChange('hostName', response.data.username)
     }
 
     editLobby(){
@@ -213,7 +221,7 @@ class Lobby extends React.Component{
                     <LogoutButton
                         onClick={()=>this.leaveLobby()}>Leave
                     </LogoutButton>
-                    <text>Host: {this.state.lobby ? this.state.lobby.hostId : null}</text>
+                    <text>Host: {this.state.lobby ? this.state.hostName : null}</text>
                     <PlayerContainer>
                         <LobbyInfos players={this.state.players} lobbyName={this.state.lobbyName}/>
                     </PlayerContainer>
