@@ -170,13 +170,12 @@ export const ButtonWrapper = styled.div`
 export const Row = styled.div`
     display: flex;
     flexDirection: row;
-    width: 95%;
 `;
 
 export const RowContainer = styled.div`
     background: transparent;
     color: ${props => (props.color || "#c0c0c0")};
-    width: ${props => (props.width || "250px")};
+    width: ${props => (props.width || "40%")};
     text-decoration: ${props => (props.textDecoration || null)};
     font-size:25px;
     text-align: center;

@@ -3,13 +3,55 @@ import React from "react";
 import {InputField} from "../../../views/design/InputField";
 import {Button} from "../../../views/design/Button";
 import {api, handleError} from "../../../helpers/api";
+import styled from "styled-components";
 
+const Wrapper = styled.div`
+    height: 200px;
+    width: 470px;
+    background-color: none;
+    padding: 10px;
+    text-align: center;
+    margin-top: 400px;
+    margin-left: 225px;
+    display: flex;
+    flex-direction: column;
+`;
+
+const Container = styled.div`
+    height: auto;
+    width: 300px;
+    background-color: hsla(44, 49%, 84%, 0.8);
+    color: black;
+    border-radius: 8px;
+    border: 2px solid black;
+`;
+
+const Text = styled.div`
+    align-text: center;
+    font-size: 26px;
+    color:black;
+`;
+
+const SubmitButton = styled.div`
+     height: 35px;
+     cursor: ${props => (props.disabled ? "default" : "pointer")};
+     opacity: ${props => (props.disabled ? 0.4 : 1)};
+     background-color: #2e2d2c;
+     border: 2px solid black;
+     margin-top: 10px;
+     padding-top: 5px;
+     color: white;
+     border-radius: 3px;
+     margin-left: ${props => (props.marginLeft || "0px")}
+     width: ${props => (props.width || "80px")}
+     margin-bottom: 20px;
+`;
 
 
 
 class EnterCluesState extends React.Component{
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             currentGuesserId: null,
             specialGame: false,
@@ -49,12 +91,6 @@ class EnterCluesState extends React.Component{
         else {return false;}
     }
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if(this.state.clue !== nextState.clue || this.state.clue2 !== nextState.clue2){
-            return false;}
-        return true;
-    }
-
     async submit(){
         try {
             const requestBody = JSON.stringify({
@@ -71,64 +107,80 @@ class EnterCluesState extends React.Component{
     }
 
 
+
+
     render(){
         return(
             this.renderForGuesser() ?
-                <div>
-                    <text> Wait for Clues</text>
-                    <br/>
-                    <text> Please wait until they submit</text>
-                </div>
+                <Wrapper style={{marginTop:"470px"}}>
+                    <Container>
+                        Your team mates are currently entering clues for you.
+                        Please wait until they are finished
+                    </Container>
+                </Wrapper>
                 :
                 this.state.specialGame ?
-                    <div>
-                        <text>The word is: {this.state.currentWord}</text>
-                        <br/>
-                        <text> EnterClues</text>
-                        <br/>
-                        <text> Display two enter clues</text>
-                        <br/>
-                        <InputField width = '350px'
-                                    marginTop = '10px'
-                                    placeholder= 'Enter your first clue'
-                                    onChange={e => {
-                                        this.handleInputChange('clue', e.target.value);
-
-                                    }}
-                                    >
-                        </InputField>
-                        <br/>
-                        <InputField width = '350px'
-                                    marginTop = '10px'
-                                    placeholder= 'Enter your second clue'
-                                    onChange={e => {
-                                        this.handleInputChange('clue2', e.target.value);
-
-                                    }}
-                                    >
-                        </InputField>
-                        <Button onClick={()=>{this.submit()}}>Submit</Button>
-                    </div>
+                    <Wrapper>
+                        <Container>
+                            The word is:
+                            <Text>{this.state.currentWord}</Text>
+                            Enter a clue to help your team mate correctly guess {this.state.currentWord}.
+                            <br/>
+                            <div style={{display: "block"}}>
+                                <InputField width = '80%'
+                                            marginTop = '10px'
+                                            placeholder= 'Your first clue...'
+                                            color={"black"}
+                                            onChange={e => {
+                                                this.handleInputChange('clue', e.target.value)
+                                            }}
+                                >
+                                </InputField>
+                                <InputField width = '80%'
+                                            marginTop = '10px'
+                                            placeholder= 'Your second clue...'
+                                            color={"black"}
+                                            onChange={e => {
+                                                this.handleInputChange('clue2', e.target.value)
+                                            }}
+                                >
+                                </InputField>
+                                <SubmitButton
+                                    marginLeft = '22px'
+                                    width = '250px'
+                                    disabled={!(this.state.clue && this.state.clue2)}
+                                    onClick={()=>{this.submit()}}>
+                                    Submit
+                                </SubmitButton>
+                            </div>
+                        </Container>
+                    </Wrapper>
                     :
-                    <div>
-                        <text>The word is: {this.state.currentWord}</text>
-                        <br/>
-                        <text> EnterClues</text>
-                        <br/>
-                        <text> Display one enter Clue</text>
-                        <br/>
-                        <InputField width = '350px'
-                                    marginTop = '10px'
-                                    placeholder= 'Enter your clue'
-                                    onChange={e => {
-                                        this.handleInputChange('clue', e.target.value);
-
-                                    }}
-                                    >
-                        </InputField>
-                        <Button onClick={()=>{this.submit()}}>Submit</Button>
-                    </div>
-
+                    <Wrapper>
+                        <Container>
+                            The word is:
+                            <Text>{this.state.currentWord}</Text>
+                            Enter a clue to help your team mate correctly guess {this.state.currentWord}.
+                            <br/>
+                                <div style={{display: "flex"}}>
+                                <InputField width = '60%'
+                                            marginTop = '10px'
+                                            placeholder= 'Your clue...'
+                                            color={"black"}
+                                            onChange={e => {
+                                                this.handleInputChange('clue', e.target.value)
+                                            }}
+                                >
+                                </InputField>
+                                <SubmitButton
+                                    width = '80px'
+                                    disabled={!this.state.clue}
+                                    onClick={()=>{this.submit()}}>
+                                    Submit
+                                </SubmitButton>
+                                </div>
+                        </Container>
+                    </Wrapper>
         )
     }
 }

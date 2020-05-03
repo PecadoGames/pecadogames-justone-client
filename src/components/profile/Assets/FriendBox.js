@@ -65,7 +65,8 @@ class FriendBox extends React.Component {
                 }}>
                     {!this.state.users.length ? 
                     (<Row>
-                        <RowContainer>
+                        <RowContainer
+                        width="auto">
                             You're lonely, find some friends
                         </RowContainer>
                     </Row>

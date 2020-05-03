@@ -47,6 +47,11 @@ const LargePhoneTitle = styled.div`
     color: #c0c0c0;
 `
 
+const SignInButton = styled(PixelButton)`
+    opacity: ${props => (props.disabled ? 0.8 : 1)};
+    cursor: ${props => (props.disabled ? "default" : "pointer")};
+`;
+
 
 class Register extends React.Component {
 
@@ -75,9 +80,32 @@ class Register extends React.Component {
         }
     }
     _handleKeyDown = (e) => {
-        if (e.key === 'Enter'){
+        if (e.key === 'Enter' && this.correctInput()){
             this.register();
         }
+    }
+
+    correctInput(){
+        if (this.state.username && this.state.password && this.state.confirmation){
+            console.log("There is a username, password and confirmation")
+            if (this.state.password === this.state.confirmation){
+                console.log("password matches with confirmation")
+                return true;
+            }
+            else {
+                alert("Make sure that you enter the same password twice")
+                //resets all values
+                setTimeout(()=>{
+                    document.getElementById("confirmationField").value = ''
+                    document.getElementById("passwordField").value = ''
+                    this.handleInputChange('password', '')
+                    this.handleInputChange('confirmation', '')
+                }, 500)
+            }
+        }
+        else{
+            console.log("Empty fields")
+            return false;}
     }
 
     handleInputChange(key, value) {
@@ -89,13 +117,6 @@ class Register extends React.Component {
     componentDidMount() {
         this.props.changeMusicToDim();
 
-
-    }
-
-    shouldComponentUpdate(nextState) {
-        if(this.state.username !== nextState.username || this.state.password !== nextState.password || this.state.confirmation !== nextState.confirmation){
-            return false;}
-        return true;
     }
 
     render() {
@@ -129,6 +150,7 @@ class Register extends React.Component {
                             borderBottom= "2px solid #c0c0c0"
                         />
                         <InputField
+                            id="passwordField"
                             placeholder="Enter password"
                             width="220px"
                             marginLeft="70px"
@@ -142,6 +164,7 @@ class Register extends React.Component {
                             borderBottom= "2px solid #c0c0c0"
                         />
                         <InputField
+                            id="confirmationField"
                             onKeyDown={this._handleKeyDown}
                             placeholder="Confirm password"
                             width="220px"
@@ -156,8 +179,9 @@ class Register extends React.Component {
                             borderBottom= "2px solid #c0c0c0"
                         />
                         <ButtonContainer>
-                            <PixelButton
+                            <SignInButton
                                 width="220px"
+                                disabled={!this.correctInput()}
                                 onClick={() => {
                                     this.register();
                                 }}
@@ -165,7 +189,7 @@ class Register extends React.Component {
                                 hover="none"
                             >
                                 Sign up
-                            </PixelButton>
+                            </SignInButton>
                         </ButtonContainer>
                         <ButtonContainer>
                             <PixelButton

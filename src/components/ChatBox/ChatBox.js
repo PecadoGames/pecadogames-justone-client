@@ -55,10 +55,17 @@ class ChatBox extends React.Component {
             console.log("end", arguments);
         });
         //ask ever second for chat
-        this.state.interval = setInterval(async()=>{const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/chat?token=${localStorage.getItem('token')}`);
-        this.setState({['messages']: response.data.messages});
-        }, 500)
+        this.state.interval = setInterval(async()=>{this.getMessages()}, 1000)
+
     }
+
+    async getMessages(){
+        const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/chat?token=${localStorage.getItem('token')}`)
+        this.setState({['messages']: response.data.messages});
+        this.scrollDown()
+    }
+
+
 
     componentWillUnmount() {
         Events.scrollEvent.remove('begin');
@@ -86,10 +93,31 @@ class ChatBox extends React.Component {
         }
     }
 
+    scrollDown(){
+        //gets chatbox
+        const element = document.getElementById("containerElement")
+        //gets height
+        if (element){
+            const clientHeight = element.clientHeight;
+            const currentPosition = element.scrollTop;
+            const scrollHeight = element.scrollHeight;
+
+            let tolerance = scrollHeight - (scrollHeight/20);
+            //if this is true the user is at the bottom with 5 percent error margin
+            console.log("scrolling down to chatbox: " + (clientHeight + currentPosition >= tolerance))
+            if (clientHeight + currentPosition >= tolerance){
+                setTimeout(()=>{
+                    element.scrollBy(0, 50)
+                    }, 200
+                )
+        }}
+    }
+
     render() {
         return (
             <div>
                 <Element name="chatBox" className="element" id="containerElement" style={{
+                    display: 'block',
                     position: 'relative',
                     height: '300px',
                     overflow: 'auto',
