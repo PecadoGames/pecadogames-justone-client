@@ -39,7 +39,8 @@ class Friends extends React.Component {
             const response = await api.get(`/users/${this.state.id}/friends?token=${localStorage.getItem('token')}`)
             this.handleInputChange('friends', response.data)
 
-        }        catch (error) {
+        }        
+        catch (error) {
             alert(`Something went wrong while fetching the friends: \n${handleError(error)}`);
         }
     }
