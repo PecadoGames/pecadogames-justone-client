@@ -91,7 +91,8 @@ class GameTest extends React.Component{
             clues: ['clue','whatsUp','tinder','Ramono'],
             stateName: '',
             number: 1,
-            currentWord: 'marion'
+            currentWord: 'marion',
+            isGuessCorrect: true
         };
     }
 
@@ -116,7 +117,7 @@ class GameTest extends React.Component{
             return <PickWordState currentGuesserId={this.state.number}/>
         }
         if(this.state.stateName === 'TransitionState'){
-            return <TransitionState currentGuesserId={this.state.number}/>
+            return <TransitionState currentWord = {this.state.currentWord} currentGuesserId={this.state.number} players={this.state.players} isGuessCorrect={this.state.isGuessCorrect}/>
         }
         if(this.state.stateName === 'VoteOnClueState'){
             return <VoteOnClueState clues={this.state.clues} currentGuesserId={this.state.number}/>

@@ -76,7 +76,8 @@ class Game extends React.Component{
       currentGuesserId: 1,
       lobbyName: '',
       clues: [],
-      specialGame: false
+      specialGame: false,
+      isGuessCorrect: null
     };
   }
 
@@ -139,7 +140,8 @@ class Game extends React.Component{
       this.handleInputChange('lobbyName', response.data.lobbyName);
       this.handleInputChange('currentWord', response.data.currentWord);
       this.handleInputChange('clues', response.data.cluesAsString);
-      this.handleInputChange('specialGame', response.data.specialGame)},500)
+      this.handleInputChange('specialGame', response.data.specialGame);
+      this.handleInputChange('isGuessCorrect', response.data.isGuessCorrect)},500)
     }
     catch(error){
     }
@@ -157,7 +159,7 @@ class Game extends React.Component{
         || this.state.gameState !== nextState.gameState || this.state.players !== nextState.players
         || this.state.interval !== nextState.interval || this.state.lobbyName !== nextState.lobbyName
         || this.state.clues !== nextState.clues || this.state.specialGame !== nextState.specialGame
-        || this.state.currentWord !== nextState.currentWord){
+        || this.state.currentWord !== nextState.currentWord || this.state.isGuessCorrect !== nextState.isGuessCorrect){
       return false;}
     return true;
   }
@@ -292,7 +294,7 @@ class Game extends React.Component{
                 {this.displayEnterCluesState() ? <EnterCluesState currentWord = {this.state.currentWord} specialGame = {this.state.specialGame} currentGuesserId = {this.state.currentGuesserId}/>:null}
                 {this.displayVoteOnClueState() ? <VoteOnClueState currentGuesserId = {this.state.currentGuesserId} clues={this.state.clues}/> : null}
                 {this.displayEnterGuessState() ? <EnterGuessState  currentGuesserId = {this.state.currentGuesserId} clues={this.state.clues}/>: null}
-                {this.displayTransitionState()? <TransitionState currentGuesserId = {this.state.currentGuesserId}/>: null}
+                {this.displayTransitionState()? <TransitionState currentWord = {this.state.currentWord} currentGuesserId = {this.state.currentGuesserId} players = {this.state.players} isGuessCorrect = {this.state.isGuessCorrect}/>: null}
                 {this.displayEndGameState() ? <EndGameState players = {this.state.players}/> : null}
               </InsideContainer>
               {this.state.gameState}

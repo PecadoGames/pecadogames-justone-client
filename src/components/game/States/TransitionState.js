@@ -1,6 +1,33 @@
-import {withRouter} from "react-router-dom";
 import React from "react";
+import styled from "styled-components";
+import {withRouter} from "react-router-dom";
 
+const Container = styled.div`
+    margin-top: 100px;
+  
+`;
+
+const ScoreContainer = styled.div`
+    background-color: #242424;
+    width: 70%;
+    height: 45px;
+    border-radius: 8px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+`;
+
+const TextLeft = styled.div`
+    font-size: 22px;
+    margin-top: 10px;
+    margin-left: 10px;
+    float:left;
+`;
+
+const TextRight = styled(TextLeft)`
+    float:right;
+    margin-right: 10px;
+`;
 
 
 
@@ -8,7 +35,10 @@ class TransitionState extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            currentGuesserId: null
+            currentGuesserId: null,
+            players: [],
+            isGuessCorrect: null,
+            currentWord: ''
         };
     }
 
@@ -21,9 +51,13 @@ class TransitionState extends React.Component{
 
     //when the props from parent changes this is called to change states
     static getDerivedStateFromProps(props, state) {
-        if (props.currentGuesserId !== state.currentGuesserId) {
+        if (props.currentGuesserId !== state.currentGuesserId || props.players !== state.players
+            || props.isGuessCorrect !== state.isGuessCorrect || props.currentWord !== state.currentWord) {
             return {
                 currentGuesserId: props.currentGuesserId,
+                players: props.players,
+                isGuessCorrect: props.isGuessCorrect,
+                currentWord: props.currentWord
             };
         }
         // Return null if the state hasn't changed
@@ -43,13 +77,35 @@ class TransitionState extends React.Component{
     render(){
         return(
             this.renderForGuesser() ?
-                <div>
-                    <text>Transition for Guesser</text>
-                </div>
+                <Container>
+                    {this.state.players.map(player => {
+                        return (<ScoreContainer>
+                            <TextLeft>{player.username}</TextLeft>
+                            <TextRight>{player.score}</TextRight></ScoreContainer>)})}
+                    <ScoreContainer>
+                    <TextLeft>{this.state.isGuessCorrect ?
+                        <div>Your guess was correct!</div>
+                        :
+                        <div>You guessed wrong! </div>}
+                    </TextLeft>
+                    </ScoreContainer>
+                    <ScoreContainer> <TextLeft>The word was {this.state.currentWord}</TextLeft> </ScoreContainer>
+                </Container>
                 :
-                <div>
-                    <text>Transition for Submitter</text>
-                </div>
+                <Container>
+                    {this.state.players.map(player => {
+                        return (<ScoreContainer>
+                            <TextLeft>{player.username}</TextLeft>
+                            <TextRight>{player.score}</TextRight></ScoreContainer>)})}
+                    <ScoreContainer>
+                    <TextLeft>{this.state.isGuessCorrect ?
+                        <div>Your teammate guessed correct!</div>
+                        :
+                        <div>Your teammate guessed wrong!</div>}
+                    </TextLeft>
+                    </ScoreContainer>
+                    <ScoreContainer> <TextLeft>The word was {this.state.currentWord}</TextLeft> </ScoreContainer>
+                </Container>
         )
     }
 }
