@@ -57,7 +57,7 @@ class ChatBox extends React.Component {
         //ask ever second for chat
         this.state.interval = setInterval(async()=>{const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/chat?token=${localStorage.getItem('token')}`);
         this.setState({['messages']: response.data.messages});
-        }, 1000)
+        }, 500)
     }
 
     componentWillUnmount() {

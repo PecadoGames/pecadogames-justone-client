@@ -1,8 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import {Button} from "../../../views/design/Button";
-import {api} from "../../../helpers/api";
-import {withRouter} from "react-router-dom";
 
 
 
@@ -56,11 +53,12 @@ const LobbyField = ({ lobby }) => {
     return (
             <Container
                 width = '100%'>
-                {lobby.isPrivate ? <div></div>: <div>
-                    <Block>LobbyName: <UserName>{lobby.lobbyName}</UserName></Block>
-                    <Block>Players: <Name>{lobby.currentNumPlayersAndBots}/{lobby.maxPlayersAndBots}</Name></Block>
-                    <Block>Bots: <Id>{!lobby.numberOfBots ? 0: lobby.numberOfBots}</Id></Block>
-                </div>
+                {lobby.private || lobby.currentNumPlayersAndBots === lobby.maxPlayersAndBots ? null :
+                    <div>
+                        <Block>LobbyName: <UserName>{lobby.lobbyName}</UserName></Block>
+                        <Block>Players: <Name>{lobby.currentNumPlayersAndBots}/{lobby.maxPlayersAndBots}</Name></Block>
+                        <Block>Bots: <Id>{!lobby.numberOfBots ? 0: lobby.numberOfBots}</Id></Block>
+                    </div>
                 }
             </Container>
 

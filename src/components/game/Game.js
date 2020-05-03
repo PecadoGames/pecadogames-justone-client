@@ -143,7 +143,7 @@ class Game extends React.Component{
       this.handleInputChange('specialGame', response.data.specialGame);
       this.handleInputChange('isGuessCorrect', response.data.guessCorrect);
       this.handleInputChange('score', response.data.overallScore);
-      this.handleInputChange('rounds', response.data.roundsPlayed)},500)
+      this.handleInputChange('rounds', response.data.roundsPlayed)},200)
     }
     catch(error){
     }

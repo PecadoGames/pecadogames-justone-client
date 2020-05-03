@@ -15,6 +15,9 @@ import GameTest from "../../game/GameTest";
 import {LoggedInUser} from "../routeProtectors/LoggedInUser";
 import {LobbyGuard} from "../routeProtectors/LobbyGuard";
 import {GameGuard} from "../routeProtectors/GameGuard";
+import FlipNewspaper from "../../lobby/assets/FlipNewspaper.mp3";
+import Sound from "react-sound";
+import Songs from "../../../Music/AllSongs.mp3";
 
 
 const Container = styled.div`
@@ -24,12 +27,33 @@ const Container = styled.div`
 
 
 class GameRouter extends React.Component {
-  render() {
+    constructor() {
+        super();
+        this.state = {
+            flip: Sound.status.STOPPED
+        }
+    }
+
+    changeFlipToOn=()=>{
+        this.setState({ flip: Sound.status.PLAYING });
+    }
+    changeFlipToOff=()=>{
+        this.setState({ flip: Sound.status.STOPPED });
+    }
+
+
+
+    render() {
     /**
      * "this.props.base" is "/game" because as been passed as a prop in the parent of GameRouter, i.e., App.js
      */
     return (
       <Container>
+          <Sound url={FlipNewspaper}
+                 playStatus={this.state.flip}
+                 volume={40}
+                 playFromPosition={0}
+          />
           {/* This is just for looking at the state purpose */}
           <Route
               exact
@@ -63,7 +87,7 @@ class GameRouter extends React.Component {
               path={`${this.props.base}/lobbies`}
               render={() => (
                   <LoggedInUser>
-                  <JoinLobby changeMusicToNormal={this.props.changeMusicToNormal} />
+                  <JoinLobby changeMusicToNormal={this.props.changeMusicToNormal} flipOn={this.changeFlipToOn} flipOff={this.changeFlipToOff}/>
                   </LoggedInUser>
               )}
               />

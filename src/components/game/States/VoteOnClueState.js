@@ -98,7 +98,7 @@ class VoteOnClueState extends React.Component{
             const requestBody = JSON.stringify({
                 playerId: localStorage.getItem('id'),
                 playerToken: localStorage.getItem('token'),
-                list: this.state.votes
+                invalidClues: this.state.votes
 
             })
             await api.put('/lobbies/' + localStorage.getItem('lobbyId') + '/game/vote', requestBody);

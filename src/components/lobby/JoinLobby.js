@@ -6,29 +6,17 @@ import FlipNewspaper from "../lobby/assets/FlipNewspaper.mp3"
 import {LogoutButton} from "../../views/design/LogoutButton";
 import {api, handleError} from "../../helpers/api";
 import {Button} from "../../views/design/Button";
-import LobbyField from "./assets/LobbyField";
+import Lobbies from "./assets/Lobbies";
 
 
-const ButtonContainer = styled.div`
-  margin-left: 10px;
-  margin-top: 30px;  
-  align-items: flex-start;  
-  display: flex;
-  flex-direction: column;
-`
+
 const Text = styled.div`
   font-size: 30px;
   color: #000000
   margin-left: 120px;
 `;
 
-const Number = styled.div`
-  font-size: 10px;
-  color: #000000
-  margin-left: 3px;
-  margin-right: 3px;
-  margin-top: 31px;
-`
+
 
 const FormContainer = styled.div`
   display: flex;
@@ -61,44 +49,35 @@ const SmallContainer = styled.div`
   align-items: flex-start;  
   `
 
-const LobbyContainer = styled.li`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  height: auto;
-  width: 330px
-  border: 1px solid
-  margin-top: 5px
-`;
+const SiteButtonLeft = styled.button`
+  position: absolute
+  margin-top: 650px;
+  margin-left: 290px
+`
+
+const SiteButtonRight = styled.button`
+  position: absolute
+  margin-top: 650px;
+  margin-left: 550px
+`
+
+const PageNumber = styled.text`
+  position: absolute
+  margin-top: 660px;
+  margin-left: 430px;
+  color: black;
+`
 
 class JoinLobby extends React.Component {
     constructor() {
         super();
         this.state = {
-            lobbies: null}
+            lobbies: [],
+            interval: null,
+            number: 5
+        }
         ;
     }
-
-
-
-
-    async joinLobby(lobbyId) {
-        try {
-            const requestBody = JSON.stringify({
-                playerId: localStorage.getItem('id'),
-                playerToken: localStorage.getItem('token')
-            })
-            await api.put('/lobbies/' + lobbyId + '/joins', requestBody);
-            localStorage.setItem('lobbyId', lobbyId)
-            this.props.history.push('/game/lobbies/' + lobbyId);
-        }
-        catch(error){
-            alert(`Something went wrong during the joinLobby \n${handleError(error)}`)
-        }
-    }
-
-
 
     handleInputChange(key, value) {
         this.setState({ [key]: value });
@@ -121,21 +100,36 @@ class JoinLobby extends React.Component {
     }
 
     back(){
+        this.props.flipOff()
         this.props.history.push(`/game`);
     }
 
+    changeSiteRight=()=>{
+        this.setState({ number: this.state.number+5 });
+    }
+    changeSiteLeft=()=>{
+        if(this.state.number > 5){
+        this.setState({ number: this.state.number-5 });}
+    }
 
-    async componentDidMount() {
-        try {
-            this.props.changeMusicToNormal()
-            const response = await api.get('/lobbies')
+
+
+    async getLobbies(){
+        this.state.interval = setInterval(async ()=> {
+            const response = await api.get(`/lobbies?token=${localStorage.getItem('token')}`)
             this.setState({lobbies: response.data})
+        }, 100)
 
+    }
+    async componentDidMount() {
+            this.props.changeMusicToNormal()
+            this.getLobbies()
+            this.props.flipOn()
+    }
 
-        }
-        catch(error){
-            alert(`Something went wrong while fetching the users: \n${handleError(error)}`);
-        }
+    componentWillUnmount() {
+        this.props.flipOff()
+        clearInterval(this.state.interval)
     }
 
 
@@ -147,11 +141,6 @@ class JoinLobby extends React.Component {
                         this.logout();
                     }}
                 >Logout</LogoutButton>
-                <Sound url={FlipNewspaper}
-                             playStatus={Sound.status.PLAYING}
-                             volume={40}
-                             playFromPosition={0}
-                />
                 <Container className={"blankNewsPaper"}>
                     <SmallContainer className={"backArrow"}>
                         <Button
@@ -168,35 +157,19 @@ class JoinLobby extends React.Component {
                         </Button>
                         <Text>Lobbies</Text>
                     </SmallContainer>
-                    {!this.state.lobbies ? (<div>There are no lobbies</div>):(
-                        <SmallContainer>
-                    {this.state.lobbies.map(lobby => {
-                        return (
-                            <LobbyContainer key={lobby.lobbyId} >
-                                <LobbyField
-                                    lobby={lobby}
-                                />
-                                <ButtonContainer className= 'phoneCall'>
-                                <Button
-                                    background = "none"
-                                    hover="none"
-                                    height= "30px"
-                                    boxShadow = "none"
-                                    transition = "none"
-                                    width = "20px"
-                                    color= "black"
-                                    fontSize="10px"
-
-                                    onClick={() => {this.joinLobby(lobby.lobbyId)}}> </Button>
-                                </ButtonContainer>
-                                <Number> *****</Number>
-                            </LobbyContainer>
-                        );
-                    })}
-                        </SmallContainer>
-                        )}
+                    <Lobbies lobbies = {this.state.lobbies} number={this.state.number}/>
                 </Container>
-
+                {this.state.number > 5 ?
+                    <SiteButtonLeft  onClick={()=>{this.changeSiteLeft(); this.props.flipOn()}}>left</SiteButtonLeft>
+                    :
+                    null
+                }
+                {this.state.lobbies.length > this.state.number ?
+                    <SiteButtonRight onClick={()=>{this.changeSiteRight();this.props.flipOn()}}>right</SiteButtonRight>
+                    :
+                    null
+                }
+                <PageNumber>{this.state.number/5}/{Math.ceil(this.state.lobbies.length/5)}</PageNumber>
             </FormContainer>
 
         )
