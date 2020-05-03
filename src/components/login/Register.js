@@ -65,6 +65,7 @@ class Register extends React.Component {
     }
 
     async register() {
+        if (this.correctInput()){
         try {
             const requestBody = JSON.stringify({
                 username: this.state.username,
@@ -78,7 +79,9 @@ class Register extends React.Component {
         } catch (error) {
             alert(`Something went wrong during the login: \n${handleError(error)}`);
         }
+        }
     }
+
     _handleKeyDown = (e) => {
         if (e.key === 'Enter' && this.correctInput()){
             this.register();
@@ -93,7 +96,7 @@ class Register extends React.Component {
                 return true;
             }
             else {
-                alert("Make sure that you enter the same password twice")
+                alert("Make sure both passwords match,")
                 //resets all values
                 setTimeout(()=>{
                     document.getElementById("confirmationField").value = ''
@@ -117,6 +120,13 @@ class Register extends React.Component {
     componentDidMount() {
         this.props.changeMusicToDim();
 
+    }
+
+    shouldComponentUpdate(nextProps, nextState, nextContext) {
+        if(this.state.username !== nextState.username|| this.state.password !== nextState.password
+            || this.state.confirmation !== nextState.confirmation){
+            return false;}
+        return true;
     }
 
     render() {
@@ -181,7 +191,6 @@ class Register extends React.Component {
                         <ButtonContainer>
                             <SignInButton
                                 width="220px"
-                                disabled={!this.correctInput()}
                                 onClick={() => {
                                     this.register();
                                 }}
