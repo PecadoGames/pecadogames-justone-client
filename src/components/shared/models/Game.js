@@ -3,7 +3,9 @@ class Game {
         this.currentWord = null;
         this.cluesAsString = null;
         this.specialGame = null;
-        this.isGuessCorrect = null;
+        this.guessCorrect = null;
+        this.overallScore = null;
+        this.roundsPlayed = null;
         Object.assign(this, data);
     }
 }

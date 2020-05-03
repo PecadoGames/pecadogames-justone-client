@@ -167,6 +167,15 @@ class Lobby extends React.Component{
         }
     }
 
+    isHost(){
+        if (this.state.lobby){
+            if (this.state.lobby.hostId.toString() === localStorage.getItem("id")){
+                return true;
+            }
+        return false;
+        }
+    }
+
     componentDidMount() {
         this.getLobby()
     }
@@ -197,7 +206,6 @@ class Lobby extends React.Component{
     render(){
         return(
             <FormContainer>
-
                 <LeftContainer>
                     <LogoutButton
                         onClick={()=>this.logout()}>Logout
@@ -205,12 +213,13 @@ class Lobby extends React.Component{
                     <LogoutButton
                         onClick={()=>this.leaveLobby()}>Leave
                     </LogoutButton>
+                    <text>Host: {this.state.lobby ? this.state.lobby.hostId : null}</text>
                     <PlayerContainer>
                         <LobbyInfos players={this.state.players} lobbyName={this.state.lobbyName}/>
                     </PlayerContainer>
-                    <Button
+                    {this.isHost() ? <Button
                         onClick={()=>this.startGame()}>Start Game
-                        </Button>
+                        </Button> :  null}
                     <text>Chat</text>
                     <ChatBox></ChatBox>
                 </LeftContainer>

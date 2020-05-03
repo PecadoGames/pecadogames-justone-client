@@ -141,7 +141,9 @@ class Game extends React.Component{
       this.handleInputChange('currentWord', response.data.currentWord);
       this.handleInputChange('clues', response.data.cluesAsString);
       this.handleInputChange('specialGame', response.data.specialGame);
-      this.handleInputChange('isGuessCorrect', response.data.isGuessCorrect)},500)
+      this.handleInputChange('isGuessCorrect', response.data.guessCorrect);
+      this.handleInputChange('score', response.data.overallScore);
+      this.handleInputChange('rounds', response.data.roundsPlayed)},500)
     }
     catch(error){
     }
@@ -159,7 +161,8 @@ class Game extends React.Component{
         || this.state.gameState !== nextState.gameState || this.state.players !== nextState.players
         || this.state.interval !== nextState.interval || this.state.lobbyName !== nextState.lobbyName
         || this.state.clues !== nextState.clues || this.state.specialGame !== nextState.specialGame
-        || this.state.currentWord !== nextState.currentWord || this.state.isGuessCorrect !== nextState.isGuessCorrect){
+        || this.state.currentWord !== nextState.currentWord || this.state.isGuessCorrect !== nextState.isGuessCorrect
+        || this.state.rounds !== nextState.rounds || this.state.score !== nextState.score){
       return false;}
     return true;
   }
@@ -278,9 +281,9 @@ class Game extends React.Component{
           </LeftContainer>
           <RightContainer>
             <TopRightContainer>
-              <Timer></Timer><text> Score + Round</text>
-              <Score></Score>
-              <Round></Round>
+              <Timer></Timer>
+              <Score score = {this.state.score}></Score>
+              <Round rounds = {this.state.rounds}></Round>
             </TopRightContainer>
             <BottomRightContainer>
             <Picture
@@ -297,7 +300,6 @@ class Game extends React.Component{
                 {this.displayTransitionState()? <TransitionState currentWord = {this.state.currentWord} currentGuesserId = {this.state.currentGuesserId} players = {this.state.players} isGuessCorrect = {this.state.isGuessCorrect}/>: null}
                 {this.displayEndGameState() ? <EndGameState players = {this.state.players}/> : null}
               </InsideContainer>
-              {this.state.gameState}
             </BottomRightContainer>
           </RightContainer>
         </FormContainer>

@@ -8,7 +8,7 @@ class Score extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            selectName: null
+            score: null
         };
     }
 
@@ -17,14 +17,13 @@ class Score extends React.Component{
     }
 
     componentDidMount() {
-        this.handleInputChange('selectName', this.props.selectName)
     }
 
     //when the props from parent changes this is called to change states
     static getDerivedStateFromProps(props, state) {
-        if (props.selectName !== state.selectName) {
+        if (props.score !== state.score) {
             return {
-                selectName: props.selectName,
+                score: props.score,
             };
         }
         // Return null if the state hasn't changed
@@ -34,7 +33,7 @@ class Score extends React.Component{
 
     render(){
         return(
-            <div></div>
+            <div>Game Score: {this.state.score}</div>
 
         )
     }

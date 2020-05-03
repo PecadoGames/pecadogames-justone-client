@@ -15,7 +15,7 @@ const PlayerContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-  height: 300px;
+  height: 30px;
   width: 400px
  `
 

@@ -8,7 +8,7 @@ class Round extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            selectName: null
+            rounds: null
         };
     }
 
@@ -17,14 +17,13 @@ class Round extends React.Component{
     }
 
     componentDidMount() {
-        this.handleInputChange('selectName', this.props.selectName)
     }
 
     //when the props from parent changes this is called to change states
     static getDerivedStateFromProps(props, state) {
-        if (props.selectName !== state.selectName) {
+        if (props.rounds !== state.rounds) {
             return {
-                selectName: props.selectName,
+                rounds: props.rounds,
             };
         }
         // Return null if the state hasn't changed
@@ -34,7 +33,7 @@ class Round extends React.Component{
 
     render(){
         return(
-            <div></div>
+            <div>Round: {this.state.rounds}/13</div>
 
         )
     }
