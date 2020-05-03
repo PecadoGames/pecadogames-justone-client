@@ -104,7 +104,7 @@ class ChatBox extends React.Component {
 
             let tolerance = scrollHeight - (scrollHeight/20);
             //if this is true the user is at the bottom with 5 percent error margin
-            console.log(clientHeight + currentPosition === scrollHeight)
+            console.log("scrolling down to chatbox: " + (clientHeight + currentPosition >= tolerance))
             if (clientHeight + currentPosition >= tolerance){
                 setTimeout(()=>{
                     element.scrollBy(0, 50)
