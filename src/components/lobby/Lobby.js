@@ -7,6 +7,7 @@ import ChatBox from "../ChatBox/ChatBox";
 import LobbyInfos from "./assets/LobbyInfos";
 import {Button} from "../../views/design/Button";
 import EditLobby from "./assets/EditLobby"
+import LobbyInvite from "./assets/LobbyInvite";
 
 const FormContainer = styled.div`
   display: flex;
@@ -65,7 +66,8 @@ class Lobby extends React.Component{
             players: [],
             lobbyName: '',
             interval: null,
-            hostName: ''
+            hostName: '',
+            inviteFriends: false
         };
     }
 
@@ -168,7 +170,7 @@ class Lobby extends React.Component{
         if (this.state.lobby){
             if (this.state.lobby.hostId.toString() === localStorage.getItem("id")){
                 return <EditLobby
-                        lobby={this.state.lobby}
+                        lobby={this.state.lobby} toggleInviteFriends={this.toggleInviteFriends}
                 />
             }
 
@@ -183,6 +185,12 @@ class Lobby extends React.Component{
         return false;
         }
     }
+
+    toggleInviteFriends=()=>{
+        this.setState(prevState => ({
+        inviteFriends: !prevState.inviteFriends
+      }));}
+
 
     componentDidMount() {
         this.getLobby()
@@ -236,6 +244,8 @@ class Lobby extends React.Component{
                         {this.editLobby()}
                     </TopRightContainer>
                     <BottomRightContainer className = 'lobbyBackground'>
+                        {this.state.inviteFriends &&
+                        <LobbyInvite/>}
                     </BottomRightContainer>
                 </RightContainer>
 
