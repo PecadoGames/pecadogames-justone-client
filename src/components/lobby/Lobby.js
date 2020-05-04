@@ -90,11 +90,11 @@ class Lobby extends React.Component{
 
             localStorage.removeItem("token");
             localStorage.removeItem("id");
-            this.props.history.push('/login');
         }
         catch(error){
             alert(`Something went wrong during the logout \n${handleError(error)}`)
         }
+        this.props.history.push('/login');
     }
 
     //leave the Lobby before start
@@ -106,13 +106,13 @@ class Lobby extends React.Component{
             });
             await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/rageQuits`, requestBody)
             localStorage.removeItem("lobbyId")
-            this.props.history.push(`/game/main`)
-            this.props.history.push(`/game/main`)
 
         }
         catch(error){
 
         }
+
+        this.props.history.push(`/game/main`)
     }
 
 

@@ -81,7 +81,7 @@ class Game extends React.Component{
     };
   }
 
-  //needs to be adjusted since you have to logout of the lobby
+  //needs to be adjusted since you have to logout of the game
   async logout() {
     try{
       const requestBody = JSON.stringify({
@@ -90,8 +90,6 @@ class Game extends React.Component{
       });
       await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/rageQuits`, requestBody)
       localStorage.removeItem("lobbyId")
-      this.props.history.push('/game')
-
     }
     catch(error){
     }
@@ -103,14 +101,14 @@ class Game extends React.Component{
       await api.put('/logout', requestBody);
       localStorage.removeItem('token');
       localStorage.removeItem('id');
-      this.props.history.push('/login');
     }
     catch(error){
       alert(`Something went wrong during the logout \n${handleError(error)}`)
     }
+    this.props.history.push('/login');
   }
 
-  //leave the Lobby before start
+  //leave the game, needs to be adjusted
   async leaveLobby(){
     try{
         const requestBody = JSON.stringify({
@@ -119,10 +117,11 @@ class Game extends React.Component{
         });
         await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/rageQuits`, requestBody)
         localStorage.removeItem("lobbyId")
-        this.props.history.push('/game')
+
     }
     catch(error){
     }
+    this.props.history.push('/game')
   }
 
   handleInputChange(key, value) {
