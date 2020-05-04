@@ -122,7 +122,7 @@ class EnterCluesState extends React.Component{
             this.renderForGuesser() || this.state.submitted ?
                 <Wrapper style={{marginTop:"470px"}}>
                     <Container>
-                        Your team mates are currently entering clues for you.
+                        Your team mates are currently entering clues.
                         Please wait until they are finished
                     </Container>
                 </Wrapper>
