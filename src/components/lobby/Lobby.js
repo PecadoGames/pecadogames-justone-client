@@ -106,7 +106,8 @@ class Lobby extends React.Component{
             });
             await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/rageQuits`, requestBody)
             localStorage.removeItem("lobbyId")
-            this.props.history.push('/game')
+            this.props.history.push(`/game/main`)
+            this.props.history.push(`/game/main`)
 
         }
         catch(error){

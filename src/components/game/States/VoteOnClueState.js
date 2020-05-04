@@ -60,7 +60,8 @@ class VoteOnClueState extends React.Component{
         this.state = {
             currentGuesserId: null,
             clues: [],
-            votes: []
+            votes: [],
+            voted: false
         };
     }
 
@@ -95,6 +96,7 @@ class VoteOnClueState extends React.Component{
 
     async voteOnClues(){
         try {
+            this.handleInputChange('voted', true)
             const requestBody = JSON.stringify({
                 playerId: localStorage.getItem('id'),
                 playerToken: localStorage.getItem('token'),
@@ -144,7 +146,7 @@ class VoteOnClueState extends React.Component{
 
     render(){
         return(
-            this.renderForGuesser() ?
+            this.renderForGuesser()  || this.state.voted ?
                 <Text>Wait until your friends voted!</Text>
                 :
                 <Wrapper>

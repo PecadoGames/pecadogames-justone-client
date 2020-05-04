@@ -57,7 +57,8 @@ class EnterCluesState extends React.Component{
             specialGame: false,
             clue: '',
             clue2: '',
-            currentWord: ''
+            currentWord: '',
+            submitted: false
         };
     }
 
@@ -93,6 +94,7 @@ class EnterCluesState extends React.Component{
 
     async submit(){
         try {
+            this.handleInputChange('submitted', true)
             const requestBody = JSON.stringify({
                 playerId: localStorage.getItem('id'),
                 playerToken: localStorage.getItem('token'),
@@ -117,7 +119,7 @@ class EnterCluesState extends React.Component{
 
     render(){
         return(
-            this.renderForGuesser() ?
+            this.renderForGuesser() || this.state.submitted ?
                 <Wrapper style={{marginTop:"470px"}}>
                     <Container>
                         Your team mates are currently entering clues for you.
