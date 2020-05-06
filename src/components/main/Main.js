@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {withRouter} from "react-router-dom";
 import {LogoutButton} from "../../views/design/LogoutButton"
 import {api, handleError} from "../../helpers/api";
+import InviteLobbyPhone from "../lobby/InviteLobbyPhone"
 
 export const BackgroundContainer = styled.div`
   display: flex;
@@ -113,6 +114,7 @@ class Main extends React.Component {
                             Scoreboard</MainMenuButton>
                     </ButtonContainer>
                 </HandContainer>
+                <InviteLobbyPhone></InviteLobbyPhone>
             </BackgroundContainer>
         );
     }
