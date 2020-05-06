@@ -225,7 +225,7 @@ class CreateLobby extends React.Component {
                 maxPlayersAndBots: this.state.numberOfPlayers,
                 hostId: localStorage.getItem("id"),
                 hostToken: localStorage.getItem("token"),
-                isPrivate: this.state.isPrivate,
+                private: this.state.isPrivate,
                 voiceChat: this.state.voiceChat
             })
             //posts lobby
