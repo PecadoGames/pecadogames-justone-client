@@ -114,7 +114,9 @@ class Main extends React.Component {
                             Scoreboard</MainMenuButton>
                     </ButtonContainer>
                 </HandContainer>
-                <InviteLobbyPhone></InviteLobbyPhone>
+                <InviteLobbyPhone changePhoneToOff={this.props.changePhoneToOff}
+                                  changePhoneToOn={this.props.changePhoneToOn}>
+                </InviteLobbyPhone>
             </BackgroundContainer>
         );
     }

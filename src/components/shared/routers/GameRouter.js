@@ -30,7 +30,9 @@ class GameRouter extends React.Component {
     constructor() {
         super();
         this.state = {
-            flip: Sound.status.STOPPED
+            flip: Sound.status.STOPPED,
+            phoneRing: Sound.status.STOPPED
+
         }
     }
 
@@ -39,6 +41,12 @@ class GameRouter extends React.Component {
     }
     changeFlipToOff=()=>{
         this.setState({ flip: Sound.status.STOPPED });
+    }
+    changePhoneToOff=()=>{
+        this.setState({ phoneRing: Sound.status.STOPPED });
+    }
+    changePhoneToOn=()=>{
+        this.setState({ phoneRing: Sound.status.PLAYING });
     }
 
 
@@ -49,11 +57,19 @@ class GameRouter extends React.Component {
      */
     return (
       <Container>
+          {/* Sound effects for Game */}
           <Sound url={FlipNewspaper}
                  playStatus={this.state.flip}
                  volume={40}
                  playFromPosition={0}
           />
+          <Sound url={FlipNewspaper}
+                 playStatus={this.state.phoneRing}
+                 volume={40}
+                 playFromPosition={0}
+          />
+
+
           {/* This is just for looking at the state purpose */}
           <Route
               exact
@@ -63,12 +79,15 @@ class GameRouter extends React.Component {
               )}
           />
           {/* Ends here */}
+
         <Route
           exact
           path={`${this.props.base}/main`}
           render={() => (
               <LoggedInUser>
-              <Main changeMusicToNormal={this.props.changeMusicToNormal} />
+              <Main changeMusicToNormal={this.props.changeMusicToNormal}
+                    changePhoneToOff={this.changePhoneToOff}
+                    changePhoneToOn={this.changePhoneToOn}/>
               </LoggedInUser>
           )}
         />
@@ -78,7 +97,9 @@ class GameRouter extends React.Component {
               path={`${this.props.base}/users/:id`}
               render={() => (
                   <LoggedInUser>
-                    <Profile changeMusicToNormal={this.props.changeMusicToNormal} />
+                    <Profile changeMusicToNormal={this.props.changeMusicToNormal}
+                             changePhoneToOff={this.changePhoneToOff}
+                             changePhoneToOn={this.changePhoneToOn}/>
                   </LoggedInUser>
               )}
           />
@@ -87,7 +108,10 @@ class GameRouter extends React.Component {
               path={`${this.props.base}/lobbies`}
               render={() => (
                   <LoggedInUser>
-                  <JoinLobby changeMusicToNormal={this.props.changeMusicToNormal} flipOn={this.changeFlipToOn} flipOff={this.changeFlipToOff}/>
+                  <JoinLobby changeMusicToNormal={this.props.changeMusicToNormal}
+                             flipOn={this.changeFlipToOn}
+                             flipOff={this.changeFlipToOff} changePhoneToOff={this.changePhoneToOff}
+                             changePhoneToOn={this.changePhoneToOn}/>
                   </LoggedInUser>
               )}
               />
@@ -96,7 +120,10 @@ class GameRouter extends React.Component {
               path={`${this.props.base}/users/:id/edit`}
               render={() => (
                   <LoggedInUser>
-                      <Edit changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
+                      <Edit changeMusicToNormal={this.props.changeMusicToNormal}
+                            stopNoise={this.props.stopNoise}
+                            changePhoneToOff={this.changePhoneToOff}
+                            changePhoneToOn={this.changePhoneToOn}/>
                   </LoggedInUser>
               )}
           />
@@ -105,7 +132,10 @@ class GameRouter extends React.Component {
               path={`${this.props.base}/users/:id/requests`}
               render={() => (
                   <LoggedInUser>
-                  <Requests changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
+                  <Requests changeMusicToNormal={this.props.changeMusicToNormal}
+                            stopNoise={this.props.stopNoise}
+                            changePhoneToOff={this.changePhoneToOff}
+                            changePhoneToOn={this.changePhoneToOn}/>
                   </LoggedInUser>
               )}
               />
@@ -114,7 +144,10 @@ class GameRouter extends React.Component {
               path={`${this.props.base}/users/:id/friends`}
               render={() => (
                   <LoggedInUser>
-                  <Friends changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
+                  <Friends changeMusicToNormal={this.props.changeMusicToNormal}
+                           stopNoise={this.props.stopNoise}
+                           changePhoneToOff={this.changePhoneToOff}
+                           changePhoneToOn={this.changePhoneToOn}/>
                   </LoggedInUser>
               )}
           />
@@ -123,7 +156,10 @@ class GameRouter extends React.Component {
               path={`${this.props.base}/createLobby`}
               render={() => (
                   <LoggedInUser>
-                      <CreateLobby changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
+                      <CreateLobby changeMusicToNormal={this.props.changeMusicToNormal}
+                                   stopNoise={this.props.stopNoise}
+                                   changePhoneToOff={this.changePhoneToOff}
+                                   changePhoneToOn={this.changePhoneToOn}/>
                   </LoggedInUser>
               )}
           />
@@ -132,7 +168,10 @@ class GameRouter extends React.Component {
               path={`${this.props.base}/scoreboard`}
               render={() => (
                   <LoggedInUser>
-                      <Scoreboard changeMusicToNormal={this.props.changeMusicToNormal} stopNoise={this.props.stopNoise}/>
+                      <Scoreboard changeMusicToNormal={this.props.changeMusicToNormal}
+                                  stopNoise={this.props.stopNoise}
+                                  changePhoneToOff={this.changePhoneToOff}
+                                  changePhoneToOn={this.changePhoneToOn}/>
                   </LoggedInUser>
               )}
           />

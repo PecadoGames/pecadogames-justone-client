@@ -22,7 +22,9 @@ class App extends Component {
   }
 
 
-
+  changeMusicToDim=()=>{
+      this.setState({musicUrl: DimmedSongs})
+  }
 
   changeMusicToNormal=()=>{
     this.setState({ musicUrl: Songs });

@@ -4,9 +4,7 @@ import GameRouter from "./GameRouter";
 import { LoggedOutUser } from "../routeProtectors/LoggedOutUser";
 import Register from "../../login/Register";
 import LoginBase from "../../login/LoginBase";
-import Lobby from "../../lobby/Lobby";
-import TransitionState from "../../game/States/TransitionState";
-import EndGameState from "../../game/States/EndGameState";
+
 
 /**
  * Main router of your application.
