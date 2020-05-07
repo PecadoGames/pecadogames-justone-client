@@ -129,7 +129,8 @@ class JoinLobby extends React.Component {
     async getLobbies(){
         this.state.interval = setInterval(async ()=> {
             const response = await api.get(`/lobbies?token=${localStorage.getItem('token')}`)
-            this.setState({lobbies: response.data})
+            const list = response.data
+            this.setState({lobbies: list})
         }, 100)
 
     }
