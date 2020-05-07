@@ -153,11 +153,11 @@ class Lobby extends React.Component{
             }
             this.getHostName(response.data.hostId);
             let isInList = false;
-            for (let a in this.state.lobbies){
+            for (let a in response.data.playersInLobby){
                 if (response.data.playersInLobby[a].id === parseInt(localStorage.getItem('id'))){
                     isInList = true;
                 }
-                if (a === response.data.playersInLobby.length() && (isInList === false)){
+                if (parseInt(a) === response.data.playersInLobby.length-1 && (isInList === false)){
                     localStorage.removeItem('lobbyId');
                     this.props.history.push('/game');
                 }
