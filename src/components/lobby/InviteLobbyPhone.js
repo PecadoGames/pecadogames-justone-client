@@ -32,12 +32,11 @@ class InviteLobbyPhone extends React.Component {
     constructor() {
         super();
         this.state = {
-            interval: null,
+            phone: null,
             lobbies: [],
-            phone: false,
+            phoneCheck: false,
             alreadyChanged: true,
-
-
+            accepted: false,
         }
         ;
     }
@@ -53,12 +52,12 @@ class InviteLobbyPhone extends React.Component {
     }
 
     async getInvitation(){
-        this.state.interval = setInterval(async()=>{
+        this.state.phone = setInterval(async()=>{
             const response = await api.get(`/users/${localStorage.getItem('id')}/invitations?token=${localStorage.getItem('token')}`);
             this.handleInputChange('lobbies', response.data)
             this.checkPhone()
-            if(this.state.time){
-                this.props.changeToLobby()
+            if(this.state.accepted){
+                clearInterval(this.state.phone)
             }
             }
             , 500)
@@ -67,16 +66,16 @@ class InviteLobbyPhone extends React.Component {
 
 
     checkPhone(){
-        if(this.state.lobbies.length > 0 && !this.state.phone ){
-            this.handleInputChange('phone', true)
-            if (this.state.phone === true && this.state.alreadyChanged ){
+        if(this.state.lobbies.length > 0 && !this.state.phoneCheck ){
+            this.handleInputChange('phoneCheck', true)
+            if (this.state.phoneCheck === true && this.state.alreadyChanged ){
                 this.props.changePhoneToOn()
                 this.handleInputChange('alreadyChanged', false)
             }
         }
         else if(this.state.lobbies.length === 0){
-            this.handleInputChange('phone', false)
-            if (this.state.phone === false && !this.state.alreadyChanged ){
+            this.handleInputChange('phoneCheck', false)
+            if (this.state.phoneCheck === false && !this.state.alreadyChanged ){
                 this.handleInputChange('alreadyChanged', true)
                 this.props.changePhoneToOff()
                 }
@@ -97,6 +96,7 @@ class InviteLobbyPhone extends React.Component {
         catch(error){
 
         }
+        this.handleInputChange('accepted', true)
         setTimeout(  ()=>localStorage.setItem('lobbyId', lobbyId), 1500)
     }
 
@@ -118,14 +118,14 @@ class InviteLobbyPhone extends React.Component {
     }
 
     componentWillUnmount() {
-        clearInterval(this.state.interval)
+        clearInterval(this.state.phone)
         this.props.changePhoneToOff()
 
     }
 
     render(){
     return (
-        this.state.phone ?
+        this.state.phoneCheck && !this.state.accepted ?
             <Container>
                 {this.state.lobbies.map(lobby => {return(
                     <div>

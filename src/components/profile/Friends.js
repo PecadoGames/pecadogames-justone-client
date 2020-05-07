@@ -6,8 +6,32 @@ import { PhoneContainer, PixelButton,  ProfileContainer} from "./Assets/profileA
 import FriendBox from "./Assets/FriendBox";
 import UsersBox from "./Assets/UsersBox";
 import {WindowHeader, ButtonRow} from "./Assets/profileAssets";
-import InviteLobbyPhone from "../lobby/InviteLobbyPhone";
+import styled from "styled-components";
 
+const Container = styled.div`
+    position: absolute;
+    left: 0px;
+    top: 700px;
+    width: 100px;
+    height: 100px;
+    border: 2px solid red;
+`;
+
+const AcceptButton = styled.button`
+    border: 2px solid black;
+    height: 30%;
+    width: 80%;
+    font-size: 10px;
+`;
+
+const DeclineButton = styled(AcceptButton)`
+    
+`;
+
+
+const Text = styled.div`
+    color: white;
+`;
 
 class Friends extends React.Component {
     constructor() {
@@ -16,7 +40,13 @@ class Friends extends React.Component {
             friends: null,
             username: null,
             addUser: false,
-            phone: null
+
+            phone: null,
+            lobbies: [],
+            phoneCheck: false,
+            alreadyChanged: true,
+            accepted: false,
+
         };
     }
 
@@ -25,6 +55,73 @@ class Friends extends React.Component {
         // this.setState({'username': value});
         this.setState({ [key]: value });
     }
+
+    async getInvitation(){
+        this.state.phone = setInterval(async()=>{
+                const response = await api.get(`/users/${localStorage.getItem('id')}/invitations?token=${localStorage.getItem('token')}`);
+                this.handleInputChange('lobbies', response.data)
+                this.checkPhone()
+                if(this.state.accepted){
+                    clearInterval(this.state.phone)
+                }
+            }
+            , 500)
+    }
+
+    checkPhone(){
+        if(this.state.lobbies.length > 0 && !this.state.phoneCheck ){
+            this.handleInputChange('phoneCheck', true)
+            if (this.state.phoneCheck === true && this.state.alreadyChanged ){
+                this.props.changePhoneToOn()
+                this.handleInputChange('alreadyChanged', false)
+            }
+        }
+        else if(this.state.lobbies.length === 0){
+            this.handleInputChange('phoneCheck', false)
+            if (this.state.phoneCheck === false && !this.state.alreadyChanged ){
+                this.handleInputChange('alreadyChanged', true)
+                this.props.changePhoneToOff()
+            }
+        }
+    }
+
+    async accept(lobbyId){
+        try {
+            const requestBody = JSON.stringify({
+                accepterId: localStorage.getItem('id'),
+                accepterToken: localStorage.getItem('token'),
+                accepted: true
+            });
+            await api.put(`/lobbies/${lobbyId}/acceptances`, requestBody);
+            this.props.changeTalkingToOn()
+
+        }
+        catch(error){
+
+        }
+        this.handleInputChange('accepted', true)
+        setTimeout(  ()=>localStorage.setItem('lobbyId', lobbyId), 1500)
+        setTimeout(  ()=>this.props.history.push('/game'), 1600)
+        setTimeout(  ()=>this.props.changeTalkingToOff(), 1600)
+    }
+
+
+
+    async decline(lobbyId){
+        try {
+            const requestBody = JSON.stringify({
+                accepterId: localStorage.getItem('id'),
+                accepterToken: localStorage.getItem('token'),
+                accepted: false
+
+            });
+            await api.put(`/lobbies/${lobbyId}/acceptances`, requestBody);
+        }
+        catch(error){
+
+        }
+    }
+
 
     async addFriend(){
         if(this.state.addUser){
@@ -45,23 +142,42 @@ class Friends extends React.Component {
         catch (error) {
             alert(`Something went wrong while fetching the friends: \n${handleError(error)}`);
         }
-        this.lobby()
+        this.getInvitation()
 
-    }
-
-    lobby(){
-        this.state.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
-            this.props.changeTalkingToOff();this.props.history.push('/game');}
-        },1000)
     }
 
     componentWillUnmount() {
         clearInterval(this.state.phone)
+        this.props.changePhoneToOff()
+
     }
+
+
 
     render() {
         return (
             <BackgroundContainer className={"backgroundMain"}>
+
+                {this.state.phoneCheck && !this.state.accepted ?  <Container>
+                    {this.state.lobbies.map(lobby => {return(
+                            <div>
+                                <Text>Lobby: {lobby.lobbyName}</Text>
+                                <Text>HostName: {lobby.hostName}</Text>
+                                <AcceptButton
+                                    onClick={() => {this.accept(lobby.lobbyId);}}
+                                >accept
+                                </AcceptButton>
+                                <DeclineButton
+                                    onClick={() => {this.decline(lobby.lobbyId);}}
+                                >decline
+                                </DeclineButton>
+
+                            </div>
+                        )}
+                    )}
+                </Container> : null}
+
+
                 <PhoneContainer className={"phoneProfile"}>
                     <WindowHeader>
                     {!this.state.addUser ? ("..\\Profile\\Friends.js") : ("..\\Profile\\Users.js")}
@@ -86,19 +202,14 @@ class Friends extends React.Component {
                                             onClick={() => {this.addFriend() }}>
                                             Add Friends
                                             </PixelButton>
-                                        ):(
-                                            null)
+                                        ):
+                                        null
                                             } 
                                 
                             </ButtonRow>
                         </ProfileContainer>
                 </PhoneContainer>
-                <InviteLobbyPhone changePhoneToOff={this.props.changePhoneToOff}
-                                  changePhoneToOn={this.props.changePhoneToOn}
-                                  changeTalkingToOff={this.props.changeTalkingToOff}
-                                  changeTalkingToOn={this.props.changeTalkingToOn}
-                >
-                </InviteLobbyPhone>
+
             </BackgroundContainer>
         );
     }
