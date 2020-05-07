@@ -67,7 +67,8 @@ class Lobby extends React.Component{
             lobbyName: '',
             interval: null,
             hostName: '',
-            inviteFriends: false
+            inviteFriends: false,
+            hostId: null
         };
     }
 
@@ -121,13 +122,7 @@ class Lobby extends React.Component{
     }
 
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if(this.state.interval !== nextState.interval || this.state.lobby !== nextState.lobby
-            || this.state.players !== nextState.players|| this.state.lobbyName !== nextState.lobbyName
-            || this.state.hostName !== nextState.hostName ){
-            return false;}
-        return true;
-    }
+
 
 
     //starts the game
@@ -151,6 +146,7 @@ class Lobby extends React.Component{
         this.setState({['lobby']: response.data});
             this.setState({['players']:response.data.playersInLobby});
             this.setState({['lobbyName']: response.data.lobbyName});
+            this.setState({['hostId']: response.data.hostId});
             if(response.data.gameStarted === true){
                 localStorage.setItem('gameId', response.data.lobbyId)
                 this.props.history.push(window.location.pathname +'/game')
@@ -231,7 +227,7 @@ class Lobby extends React.Component{
                     </LogoutButton>
                     <text>Host: {this.state.lobby ? this.state.hostName : null}</text>
                     <PlayerContainer>
-                        <LobbyInfos players={this.state.players} lobbyName={this.state.lobbyName}/>
+                        <LobbyInfos players={this.state.players} lobbyName={this.state.lobbyName} hostId={this.state.hostId}/>
                     </PlayerContainer>
                     {this.isHost() ? <Button
                         onClick={()=>this.startGame()}>Start Game
