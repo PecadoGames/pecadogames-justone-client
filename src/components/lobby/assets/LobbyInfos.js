@@ -53,6 +53,7 @@ class LobbyInfos extends React.Component{
     }
 
     valid(id){
+        //check if player is host or not
         let a = (this.state.hostId !== id)
         let b = (this.state.hostId === parseInt(localStorage.getItem('id')))
         return a && b
