@@ -158,7 +158,7 @@ class Lobby extends React.Component{
                         isInList = true
                     }
                 }
-                if (isInList === true){
+                if (isInList === false){
                     localStorage.removeItem(this.lobbyId)
                     this.props.history.push('/game')
                 }
