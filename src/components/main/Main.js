@@ -50,13 +50,29 @@ class Main extends React.Component {
     constructor() {
         super();
         this.state = {
-            id : localStorage.getItem("id")
+            id : localStorage.getItem("id"),
+            phone: null
+
         };
     }
 
     componentDidMount() {
         this.props.changeMusicToNormal()
+        this.lobby()
+
     }
+
+    lobby(){
+        this.state.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
+            this.props.changeTalkingToOff();this.props.history.push('/game');}
+        },1000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.phone)
+    }
+
+
 
     async logout() {
         try{
@@ -73,6 +89,12 @@ class Main extends React.Component {
             alert(`Something went wrong during the logout \n${handleError(error)}`)
         }
     }
+
+
+    handleInputChange(key, value) {
+        this.setState({ [key]: value });
+    }
+
 
     render(){
         return (
@@ -115,7 +137,10 @@ class Main extends React.Component {
                     </ButtonContainer>
                 </HandContainer>
                 <InviteLobbyPhone changePhoneToOff={this.props.changePhoneToOff}
-                                  changePhoneToOn={this.props.changePhoneToOn}>
+                                  changePhoneToOn={this.props.changePhoneToOn}
+                                  changeTalkingToOff={this.props.changeTalkingToOff}
+                                  changeTalkingToOn={this.props.changeTalkingToOn}
+                                  >
                 </InviteLobbyPhone>
             </BackgroundContainer>
         );

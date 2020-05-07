@@ -7,6 +7,7 @@ import {LogoutButton} from "../../views/design/LogoutButton";
 import {api, handleError} from "../../helpers/api";
 import {Button} from "../../views/design/Button";
 import Lobbies from "./assets/Lobbies";
+import InviteLobbyPhone from "./InviteLobbyPhone";
 
 
 
@@ -74,7 +75,8 @@ class JoinLobby extends React.Component {
         this.state = {
             lobbies: [],
             interval: null,
-            number: 5
+            number: 5,
+            phone: null
         }
         ;
     }
@@ -135,11 +137,22 @@ class JoinLobby extends React.Component {
             this.props.changeMusicToNormal()
             this.getLobbies()
             this.props.flipOn()
+        this.lobby()
+
     }
+
+    lobby(){
+        this.state.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
+            this.props.changeTalkingToOff();this.props.history.push('/game');}
+        },1000)
+    }
+
+
 
     componentWillUnmount() {
         this.props.flipOff()
         clearInterval(this.state.interval)
+        clearInterval(this.state.phone)
     }
 
 
@@ -180,6 +193,12 @@ class JoinLobby extends React.Component {
                     null
                 }
                 <PageNumber>{this.state.number/5}/{Math.ceil(this.getLobbyLength())}</PageNumber>
+                <InviteLobbyPhone changePhoneToOff={this.props.changePhoneToOff}
+                                  changePhoneToOn={this.props.changePhoneToOn}
+                                  changeTalkingToOff={this.props.changeTalkingToOff}
+                                  changeTalkingToOn={this.props.changeTalkingToOn}
+                >
+                </InviteLobbyPhone>
             </FormContainer>
 
         )

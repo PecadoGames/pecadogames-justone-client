@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {api, handleError} from '../../helpers/api';
 import {withRouter} from 'react-router-dom';
+import InviteLobbyPhone from "../lobby/InviteLobbyPhone";
 
 const Background = styled.div`
   display: flex;
@@ -39,9 +40,24 @@ const ScoreTextRight = styled(ScoreTextLeft)`
 class Scoreboard extends React.Component{
     constructor() {
         super();
+        this.state = {
+            phone: null
+        };
     }
 
-    async componentDidMount() {}
+    async componentDidMount() {   this.lobby()
+
+    }
+
+    lobby(){
+        this.state.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
+            this.props.changeTalkingToOff();this.props.history.push('/game');}
+        },1000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.phone)
+    }
 
     render() {
         return(
@@ -58,6 +74,12 @@ class Scoreboard extends React.Component{
                 <ScoreContainer
                     marginLeft={"581px"}>
                 </ScoreContainer>
+                <InviteLobbyPhone changePhoneToOff={this.props.changePhoneToOff}
+                                  changePhoneToOn={this.props.changePhoneToOn}
+                                  changeTalkingToOff={this.props.changeTalkingToOff}
+                                  changeTalkingToOn={this.props.changeTalkingToOn}
+                >
+                </InviteLobbyPhone>
             </Background>
 
         );

@@ -3,12 +3,14 @@ import {withRouter} from 'react-router-dom';
 import {BackgroundContainer} from "../main/Main";
 import {WindowHeader, PhoneContainer, PixelButton, ButtonRow, ProfileContainer} from "./Assets/profileAssets";
 import RequestBox from "./Assets/RequestBox";
+import InviteLobbyPhone from "../lobby/InviteLobbyPhone";
 
 class Requests extends React.Component {
     constructor() {
         super();
         this.state = {
-            friendsRequest: []
+            friendsRequest: [],
+            phone: null
         };
     }
 
@@ -21,6 +23,18 @@ class Requests extends React.Component {
     async componentDidMount() {
         this.props.changeMusicToNormal()
         this.state.id = this.props.match.params.id;
+        this.lobby()
+
+    }
+
+    lobby(){
+        this.state.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
+            this.props.changeTalkingToOff();this.props.history.push('/game');}
+        },1000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.phone)
     }
 
     render() {
@@ -44,6 +58,12 @@ class Requests extends React.Component {
                             </ButtonRow>
                     </ProfileContainer>
                 </PhoneContainer>
+                <InviteLobbyPhone changePhoneToOff={this.props.changePhoneToOff}
+                                  changePhoneToOn={this.props.changePhoneToOn}
+                                  changeTalkingToOff={this.props.changeTalkingToOff}
+                                  changeTalkingToOn={this.props.changeTalkingToOn}
+                >
+                </InviteLobbyPhone>
             </BackgroundContainer>
         );
     }

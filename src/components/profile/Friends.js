@@ -6,6 +6,7 @@ import { PhoneContainer, PixelButton,  ProfileContainer} from "./Assets/profileA
 import FriendBox from "./Assets/FriendBox";
 import UsersBox from "./Assets/UsersBox";
 import {WindowHeader, ButtonRow} from "./Assets/profileAssets";
+import InviteLobbyPhone from "../lobby/InviteLobbyPhone";
 
 
 class Friends extends React.Component {
@@ -14,7 +15,8 @@ class Friends extends React.Component {
         this.state = {
             friends: null,
             username: null,
-            addUser: false
+            addUser: false,
+            phone: null
         };
     }
 
@@ -43,6 +45,18 @@ class Friends extends React.Component {
         catch (error) {
             alert(`Something went wrong while fetching the friends: \n${handleError(error)}`);
         }
+        this.lobby()
+
+    }
+
+    lobby(){
+        this.state.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
+            this.props.changeTalkingToOff();this.props.history.push('/game');}
+        },1000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.phone)
     }
 
     render() {
@@ -79,6 +93,12 @@ class Friends extends React.Component {
                             </ButtonRow>
                         </ProfileContainer>
                 </PhoneContainer>
+                <InviteLobbyPhone changePhoneToOff={this.props.changePhoneToOff}
+                                  changePhoneToOn={this.props.changePhoneToOn}
+                                  changeTalkingToOff={this.props.changeTalkingToOff}
+                                  changeTalkingToOn={this.props.changeTalkingToOn}
+                >
+                </InviteLobbyPhone>
             </BackgroundContainer>
         );
     }

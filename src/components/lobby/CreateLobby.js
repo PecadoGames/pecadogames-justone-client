@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {withRouter} from 'react-router-dom';
 import {api, handleError} from "../../helpers/api";
+import InviteLobbyPhone from "./InviteLobbyPhone";
 
 const MenuWrapper = styled.div`
     margin-left: 160px;
@@ -136,6 +137,7 @@ class CreateLobby extends React.Component {
             numberOfPlayers: 4,
             voiceChat: true,
             isPrivate:false,
+            phone: null
         }
         ;
     }
@@ -216,6 +218,21 @@ class CreateLobby extends React.Component {
         // Example: if the key is username, this statement is the equivalent to the following one:
         // this.setState({'username': value});
         this.setState({ [key]: value });
+    }
+
+    componentDidMount() {
+        this.lobby()
+
+    }
+
+    lobby(){
+        this.state.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
+            this.props.changeTalkingToOff();this.props.history.push('/game');}
+        },1000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.phone)
     }
 
     async createLobby(){
@@ -331,6 +348,12 @@ class CreateLobby extends React.Component {
                         </ButtonContainer>
                     </MenuWrapper>
                 </Paper>
+                <InviteLobbyPhone changePhoneToOff={this.props.changePhoneToOff}
+                                  changePhoneToOn={this.props.changePhoneToOn}
+                                  changeTalkingToOff={this.props.changeTalkingToOff}
+                                  changeTalkingToOn={this.props.changeTalkingToOn}
+                >
+                </InviteLobbyPhone>
             </Background>
         );
     }}

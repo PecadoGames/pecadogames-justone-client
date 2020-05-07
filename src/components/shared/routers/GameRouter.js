@@ -17,7 +17,8 @@ import {LobbyGuard} from "../routeProtectors/LobbyGuard";
 import {GameGuard} from "../routeProtectors/GameGuard";
 import FlipNewspaper from "../../lobby/assets/FlipNewspaper.mp3";
 import Sound from "react-sound";
-import Songs from "../../../Music/AllSongs.mp3";
+import PhoneRing from "../../lobby/assets/Digital Ringing.mp3"
+import Shyguy from "../../lobby/assets/Shyguy talking.mp3"
 
 
 const Container = styled.div`
@@ -31,7 +32,8 @@ class GameRouter extends React.Component {
         super();
         this.state = {
             flip: Sound.status.STOPPED,
-            phoneRing: Sound.status.STOPPED
+            phoneRing: Sound.status.STOPPED,
+            talking: Sound.status.STOPPED
 
         }
     }
@@ -48,6 +50,16 @@ class GameRouter extends React.Component {
     changePhoneToOn=()=>{
         this.setState({ phoneRing: Sound.status.PLAYING });
     }
+    changeTalkingToOff=()=>{
+        this.setState({ talking: Sound.status.STOPPED });
+    }
+    changeTalkingToOn=()=>{
+        this.setState({ talking: Sound.status.PLAYING });
+    }
+
+
+
+
 
 
 
@@ -63,10 +75,16 @@ class GameRouter extends React.Component {
                  volume={40}
                  playFromPosition={0}
           />
-          <Sound url={FlipNewspaper}
+          <Sound url={PhoneRing}
                  playStatus={this.state.phoneRing}
-                 volume={40}
+                 volume={5}
+                 loop={true}
                  playFromPosition={0}
+          />
+          <Sound url={Shyguy}
+                 playStatus={this.state.talking}
+                 volume={40}
+                 playFromPosition={15000}
           />
 
 
@@ -87,7 +105,9 @@ class GameRouter extends React.Component {
               <LoggedInUser>
               <Main changeMusicToNormal={this.props.changeMusicToNormal}
                     changePhoneToOff={this.changePhoneToOff}
-                    changePhoneToOn={this.changePhoneToOn}/>
+                    changePhoneToOn={this.changePhoneToOn}
+                    changeTalkingToOff={this.changeTalkingToOff}
+                    changeTalkingToOn={this.changeTalkingToOn}/>
               </LoggedInUser>
           )}
         />
@@ -99,7 +119,9 @@ class GameRouter extends React.Component {
                   <LoggedInUser>
                     <Profile changeMusicToNormal={this.props.changeMusicToNormal}
                              changePhoneToOff={this.changePhoneToOff}
-                             changePhoneToOn={this.changePhoneToOn}/>
+                             changePhoneToOn={this.changePhoneToOn}
+                             changeTalkingToOff={this.changeTalkingToOff}
+                             changeTalkingToOn={this.changeTalkingToOn}/>
                   </LoggedInUser>
               )}
           />
@@ -110,8 +132,11 @@ class GameRouter extends React.Component {
                   <LoggedInUser>
                   <JoinLobby changeMusicToNormal={this.props.changeMusicToNormal}
                              flipOn={this.changeFlipToOn}
-                             flipOff={this.changeFlipToOff} changePhoneToOff={this.changePhoneToOff}
-                             changePhoneToOn={this.changePhoneToOn}/>
+                             flipOff={this.changeFlipToOff}
+                             changePhoneToOff={this.changePhoneToOff}
+                             changePhoneToOn={this.changePhoneToOn}
+                             changeTalkingToOff={this.changeTalkingToOff}
+                             changeTalkingToOn={this.changeTalkingToOn}/>
                   </LoggedInUser>
               )}
               />
@@ -123,7 +148,9 @@ class GameRouter extends React.Component {
                       <Edit changeMusicToNormal={this.props.changeMusicToNormal}
                             stopNoise={this.props.stopNoise}
                             changePhoneToOff={this.changePhoneToOff}
-                            changePhoneToOn={this.changePhoneToOn}/>
+                            changePhoneToOn={this.changePhoneToOn}
+                            changeTalkingToOff={this.changeTalkingToOff}
+                            changeTalkingToOn={this.changeTalkingToOn}/>
                   </LoggedInUser>
               )}
           />
@@ -135,7 +162,9 @@ class GameRouter extends React.Component {
                   <Requests changeMusicToNormal={this.props.changeMusicToNormal}
                             stopNoise={this.props.stopNoise}
                             changePhoneToOff={this.changePhoneToOff}
-                            changePhoneToOn={this.changePhoneToOn}/>
+                            changePhoneToOn={this.changePhoneToOn}
+                            changeTalkingToOff={this.changeTalkingToOff}
+                            changeTalkingToOn={this.changeTalkingToOn}/>
                   </LoggedInUser>
               )}
               />
@@ -147,7 +176,9 @@ class GameRouter extends React.Component {
                   <Friends changeMusicToNormal={this.props.changeMusicToNormal}
                            stopNoise={this.props.stopNoise}
                            changePhoneToOff={this.changePhoneToOff}
-                           changePhoneToOn={this.changePhoneToOn}/>
+                           changePhoneToOn={this.changePhoneToOn}
+                           changeTalkingToOff={this.changeTalkingToOff}
+                           changeTalkingToOn={this.changeTalkingToOn}/>
                   </LoggedInUser>
               )}
           />
@@ -159,7 +190,9 @@ class GameRouter extends React.Component {
                       <CreateLobby changeMusicToNormal={this.props.changeMusicToNormal}
                                    stopNoise={this.props.stopNoise}
                                    changePhoneToOff={this.changePhoneToOff}
-                                   changePhoneToOn={this.changePhoneToOn}/>
+                                   changePhoneToOn={this.changePhoneToOn}
+                                   changeTalkingToOff={this.changeTalkingToOff}
+                                   changeTalkingToOn={this.changeTalkingToOn}/>
                   </LoggedInUser>
               )}
           />
@@ -171,7 +204,9 @@ class GameRouter extends React.Component {
                       <Scoreboard changeMusicToNormal={this.props.changeMusicToNormal}
                                   stopNoise={this.props.stopNoise}
                                   changePhoneToOff={this.changePhoneToOff}
-                                  changePhoneToOn={this.changePhoneToOn}/>
+                                  changePhoneToOn={this.changePhoneToOn}
+                                  changeTalkingToOff={this.changeTalkingToOff}
+                                  changeTalkingToOn={this.changeTalkingToOn}/>
                   </LoggedInUser>
               )}
           />

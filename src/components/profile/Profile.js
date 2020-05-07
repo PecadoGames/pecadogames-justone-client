@@ -11,6 +11,7 @@ import PinkShyguy from "./Assets/ProfilePictures/pink.png";
 import PurpleShyguy from "./Assets/ProfilePictures/purple.png";
 import YellowShyguy from "./Assets/ProfilePictures/yellow.png";
 import RedShyguy from "./Assets/ProfilePictures/red.png";
+import InviteLobbyPhone from "../lobby/InviteLobbyPhone";
 
 
 class Profile extends React.Component {
@@ -28,6 +29,7 @@ class Profile extends React.Component {
             friendsRequest: [],
             count: null,
             color: null,
+            phone: null
         };
     }
 
@@ -135,6 +137,18 @@ class Profile extends React.Component {
             alert(`Something went wrong while fetching the users or friends: \n${handleError(error)}`);
         }
             // See here to get more data.
+        this.lobby()
+
+    }
+
+    lobby(){
+        this.state.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
+            this.props.changeTalkingToOff();this.props.history.push('/game');}
+        },1000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.phone)
     }
 
     counter(){
@@ -212,6 +226,12 @@ class Profile extends React.Component {
                         </Two>
                     </ProfileContainer>
                 </PhoneContainer>
+                <InviteLobbyPhone changePhoneToOff={this.props.changePhoneToOff}
+                                  changePhoneToOn={this.props.changePhoneToOn}
+                                  changeTalkingToOff={this.props.changeTalkingToOff}
+                                  changeTalkingToOn={this.props.changeTalkingToOn}
+                >
+                </InviteLobbyPhone>
             </BackgroundContainer>
         );
     }

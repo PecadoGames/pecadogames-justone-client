@@ -34,7 +34,9 @@ class InviteLobbyPhone extends React.Component {
         this.state = {
             interval: null,
             lobbies: [],
-            phone: false
+            phone: false,
+            alreadyChanged: true,
+
 
         }
         ;
@@ -43,6 +45,8 @@ class InviteLobbyPhone extends React.Component {
     componentDidMount() {
       this.getInvitation()
     }
+
+
 
     handleInputChange(key, value) {
         this.setState({ [key]: value });
@@ -53,43 +57,70 @@ class InviteLobbyPhone extends React.Component {
             const response = await api.get(`/users/${localStorage.getItem('id')}/invitations?token=${localStorage.getItem('token')}`);
             this.handleInputChange('lobbies', response.data)
             this.checkPhone()
+            if(this.state.time){
+                this.props.changeToLobby()
             }
-            , 1000)
+            }
+            , 500)
     }
+
+
 
     checkPhone(){
         if(this.state.lobbies.length > 0 && !this.state.phone ){
             this.handleInputChange('phone', true)
-            this.props.changePhoneToOn()
+            if (this.state.phone === true && this.state.alreadyChanged ){
+                this.props.changePhoneToOn()
+                this.handleInputChange('alreadyChanged', false)
+            }
         }
         else if(this.state.lobbies.length === 0){
             this.handleInputChange('phone', false)
-            this.props.changePhoneToOff()
+            if (this.state.phone === false && !this.state.alreadyChanged ){
+                this.handleInputChange('alreadyChanged', true)
+                this.props.changePhoneToOff()
+                }
         }
     }
 
     async accept(lobbyId){
-        const requestBody = JSON.stringify({
-            accepterId: localStorage.getItem('id'),
-            accepterToken: localStorage.getItem('token'),
-            accepted: true
-        });
-        await api.put(`/lobbies/${lobbyId}/acceptances`, requestBody);
+        try {
+            const requestBody = JSON.stringify({
+                accepterId: localStorage.getItem('id'),
+                accepterToken: localStorage.getItem('token'),
+                accepted: true
+            });
+            await api.put(`/lobbies/${lobbyId}/acceptances`, requestBody);
+            this.props.changeTalkingToOn()
 
+        }
+        catch(error){
+
+        }
+        setTimeout(  ()=>localStorage.setItem('lobbyId', lobbyId), 1500)
     }
 
-    async decline(lobbyId){
-        const requestBody = JSON.stringify({
-            accepterId: localStorage.getItem('id'),
-            accepterToken: localStorage.getItem('token'),
-            accepted: false
 
-        });
-        await api.put(`/lobbies/${lobbyId}/acceptances`, requestBody);
+
+    async decline(lobbyId){
+        try {
+            const requestBody = JSON.stringify({
+                accepterId: localStorage.getItem('id'),
+                accepterToken: localStorage.getItem('token'),
+                accepted: false
+
+            });
+            await api.put(`/lobbies/${lobbyId}/acceptances`, requestBody);
+        }
+        catch(error){
+
+        }
     }
 
     componentWillUnmount() {
         clearInterval(this.state.interval)
+        this.props.changePhoneToOff()
+
     }
 
     render(){

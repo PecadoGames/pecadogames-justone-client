@@ -12,6 +12,7 @@ import PurpleShyguy from "./Assets/ProfilePictures/purple.png";
 import PinkShyguy from "./Assets/ProfilePictures/pink.png";
 
 import {WindowHeader, PhoneContainer, TextLeft, TextContainer, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, ButtonRow, RowContainer} from "./Assets/profileAssets";
+import InviteLobbyPhone from "../lobby/InviteLobbyPhone";
 
 const InputField = styled.input`
   background: transparent;
@@ -73,6 +74,7 @@ class Profile extends React.Component {
             username: null,
             birthday: null,
             avatarColor: null,
+            phone: null
         };
     }
 
@@ -168,8 +170,18 @@ class Profile extends React.Component {
             alert(`Something went wrong while fetching the users: \n${handleError(error)}`);
         }
 
+        this.lobby()
 
+    }
 
+    lobby(){
+        this.state.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
+            this.props.changeTalkingToOff();this.props.history.push('/game');}
+        },1000)
+    }
+
+    componentWillUnmount() {
+        clearInterval(this.state.phone)
     }
 
     render() {
@@ -275,6 +287,12 @@ class Profile extends React.Component {
                     </Two>
                 </ProfileContainer>
             </PhoneContainer>
+                <InviteLobbyPhone changePhoneToOff={this.props.changePhoneToOff}
+                                  changePhoneToOn={this.props.changePhoneToOn}
+                                  changeTalkingToOff={this.props.changeTalkingToOff}
+                                  changeTalkingToOn={this.props.changeTalkingToOn}
+                >
+                </InviteLobbyPhone>
             </BackgroundContainer>
         );
     }
