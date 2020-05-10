@@ -195,6 +195,12 @@ button {
   margin: auto;
 }
 
+.lobbyInvitePhone{
+  background-image: url("phone_small.png");
+  background-size: 200px 346px, contain;
+  background-repeat: no-repeat;
+}
+
 @keyframes blinkingAnimation {
   0% {outline: 2px solid #ffff00;
     color: #ffff00;}

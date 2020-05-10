@@ -14,22 +14,47 @@ import {WindowHeader, PhoneContainer, TextLeft, TextContainer, PixelButton, One,
 
 const Container = styled.div`
     position: absolute;
-    left: 0px;
-    top: 700px;
-    width: 100px;
+    left: 200px;
+    top: 247px;
+    width: 250px;
     height: 100px;
-    border: 2px solid red;
+    z-index: 9;
 `;
 
 const AcceptButton = styled.button`
+    height: 30px;
+    float:left;
+    width: 30px;
     border: 2px solid black;
-    height: 30%;
-    width: 80%;
-    font-size: 10px;
+    padding-top: -3px;
+    font-size: 20px;
+    text-align: center;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 5px;
+    background-color: #1d9c06;
+`;
+
+const ButtonContainer = styled.div`
+    display: inline-block;
+    width: 100px;
+    height: 35px;
+    text-align: center;
 `;
 
 const DeclineButton = styled(AcceptButton)`
-    
+        background-color: #a8120a;
+`;
+
+
+const LobbyInvitationWrapper = styled.div`
+    text-align: center;
+    background-color:#5c5b5b;
+    border-radius: 10px;
+    width: 95%;
+    padding-bottom: 5px;
+    margin-bottom: 5px;   
+    border: 2px solid black;
 `;
 
 
@@ -86,6 +111,13 @@ const ColorButton = styled.button`
     margin-right: 28px;
     border-color: black;
     border-width: ${props => props.borderWidth|| "1px"};
+`;
+
+const LobbyInvitation = styled.div`
+    
+
+
+
 `;
 
 class Profile extends React.Component {
@@ -278,29 +310,27 @@ class Profile extends React.Component {
         return (
 
             <BackgroundContainer className={"backgroundMain"}>
-
-
+            <PhoneContainer className={"phoneProfile"}>
                 {this.state.phoneCheck && !this.state.accepted ?  <Container>
                     {this.state.lobbies.map(lobby => {return(
-                            <div>
-                                <Text>Lobby: {lobby.lobbyName}</Text>
-                                <Text>HostName: {lobby.hostName}</Text>
-                                <AcceptButton
-                                    onClick={() => {this.accept(lobby.lobbyId);}}
-                                >accept
-                                </AcceptButton>
-                                <DeclineButton
-                                    onClick={() => {this.decline(lobby.lobbyId);}}
-                                >decline
-                                </DeclineButton>
-
-                            </div>
+                            <LobbyInvitationWrapper>
+                                <Text>Lobby: {lobby.lobbyName} | HostName: {lobby.hostName}</Text>
+                                <ButtonContainer>
+                                    <AcceptButton
+                                        onClick={() => {this.accept(lobby.lobbyId);}}
+                                    >✓
+                                    </AcceptButton>
+                                    <DeclineButton
+                                        onClick={() => {this.decline(lobby.lobbyId);}}
+                                    >X
+                                    </DeclineButton>
+                                </ButtonContainer>
+                            </LobbyInvitationWrapper>
                         )}
                     )}
+
+
                 </Container> : null}
-
-
-            <PhoneContainer className={"phoneProfile"}>
                 <WindowHeader>..\Profile\Edit.js</WindowHeader>
                 <ProfileContainer className={"profileContainer"}>
                     <One>

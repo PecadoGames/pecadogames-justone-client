@@ -2,25 +2,71 @@ import React from 'react';
 import styled from 'styled-components';
 import {withRouter} from 'react-router-dom';
 import {api, handleError} from "../../helpers/api";
+import {TextContainer, PixelButton} from "../profile/Assets/profileAssets";
+import {BackgroundContainer} from "../main/Main";
 
 const Container = styled.div`
     position: absolute;
-    left: 0px;
-    top: 700px;
-    width: 100px;
-    height: 100px;
-    border: 2px solid red;
+    margin-left: 20px;
+    margin-top: 450px;
+    width: 200px;
+    height: 150px;
 `;
 
 const AcceptButton = styled.button`
+    height: 30px;
+    float:left;
+    width: 30px;
     border: 2px solid black;
-    height: 30%;
-    width: 80%;
-    font-size: 10px;
+    padding-top: -3px;
+    font-size: 20px;
+    text-align: center;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 5px;
+    background-color: #1d9c06;
+`;
+
+const ButtonContainer = styled.div`
+    display: inline-block;
+    width: 100px;
+    height: 35px;
+    text-align: center;
 `;
 
 const DeclineButton = styled(AcceptButton)`
-    
+        background-color: #a8120a;
+`;
+
+const Wrapper = styled.div`
+    margin-left: 20px;
+    width: 140px;
+    text-align: center;
+    overflow: auto;
+    height: 290px;
+`;
+
+const PhoneContainerWithMessage = styled.div`
+    width: 200px;
+    height: 346px;
+    padding: 10px;
+    padding-top: 30px;
+    margin-top: 0px;
+`;
+
+const PhoneContainerNoMessage = styled.div`
+    width: 200px;
+    height: 146px;
+    margin-top: 195px;
+`;
+
+const MessageWrapper = styled.div`
+    text-align: center;
+    background-color:#5c5b5b;
+    border-radius: 10px;
+    width: 95%;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
 `;
 
 
@@ -113,7 +159,6 @@ class InviteLobbyPhone extends React.Component {
             await api.put(`/lobbies/${lobbyId}/acceptances`, requestBody);
         }
         catch(error){
-
         }
     }
 
@@ -127,27 +172,37 @@ class InviteLobbyPhone extends React.Component {
     return (
         this.state.phoneCheck && !this.state.accepted ?
             <Container>
-                {this.state.lobbies.map(lobby => {return(
-                    <div>
-                        <Text>Lobby: {lobby.lobbyName}</Text>
-                        <Text>HostName: {lobby.hostName}</Text>
-                        <AcceptButton
-                            onClick={() => {this.accept(lobby.lobbyId);}}
-                        >accept
-                        </AcceptButton>
-                        <DeclineButton
-                            onClick={() => {this.decline(lobby.lobbyId);}}
-                        >decline
-                        </DeclineButton>
-
-                    </div>
-                )}
-                )}
+                <PhoneContainerWithMessage className={"lobbyInvitePhone"}>
+                    <Wrapper>
+                    <Text style={{fontSize: "28px"}}>Invitations</Text>
+                        {this.state.lobbies.map(lobby => {return(
+                            <MessageWrapper>
+                                    <Text>Lobby: {lobby.lobbyName}</Text>
+                                    <Text>HostName: {lobby.hostName}</Text>
+                                    <ButtonContainer>
+                                        <AcceptButton
+                                            onClick={() => {this.accept(lobby.lobbyId);}}
+                                        >✓
+                                        </AcceptButton>
+                                        <DeclineButton
+                                            onClick={() => {this.decline(lobby.lobbyId);}}
+                                        >X
+                                        </DeclineButton>
+                                    </ButtonContainer>
+                            </MessageWrapper>
+                        )}
+                        )}
+                    </Wrapper>
+                </PhoneContainerWithMessage>
             </Container>
             :
-            <div></div>
+            <Container>
+                <PhoneContainerNoMessage className={"lobbyInvitePhone"}>
+
+                </PhoneContainerNoMessage>
+            </Container>
     );
-}
+    }
 }
 
 export default InviteLobbyPhone;
