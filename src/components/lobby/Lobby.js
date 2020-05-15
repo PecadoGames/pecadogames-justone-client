@@ -205,24 +205,6 @@ class Lobby extends React.Component{
     componentWillUnmount() {
         clearInterval(this.state.interval)
     }
-    //this block is for closing tab
-    //doSomethingBeforeUnload = () => {
-      //  const requestBody2 = JSON.stringify({
-        //    id: localStorage.getItem("id"),
-          //  token: localStorage.getItem("token")
-       // });
-        //api.put('/logout', requestBody2);
-     //   localStorage.removeItem('token');
-     //   localStorage.removeItem('id');
-    //}
-
-    //setupBeforeUnloadListener = () => {
-      //  window.addEventListener("beforeunload", (ev) => {
-        //    ev.preventDefault();
-         //   return this.doSomethingBeforeUnload();
-      //  });
-   // }
-    //block ends here
 
 
     render(){
