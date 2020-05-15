@@ -19,6 +19,7 @@ import FlipNewspaper from "../../lobby/assets/FlipNewspaper.mp3";
 import Sound from "react-sound";
 import PhoneRing from "../../lobby/assets/Digital Ringing.mp3"
 import Shyguy from "../../lobby/assets/Shyguy talking.mp3"
+import Rules from "../../Rules/Rules";
 
 
 const Container = styled.div`
@@ -72,12 +73,12 @@ class GameRouter extends React.Component {
           {/* Sound effects for Game */}
           <Sound url={FlipNewspaper}
                  playStatus={this.state.flip}
-                 volume={40}
+                 volume={15}
                  playFromPosition={0}
           />
           <Sound url={PhoneRing}
                  playStatus={this.state.phoneRing}
-                 volume={5}
+                 volume={7}
                  loop={true}
                  playFromPosition={0}
           />
@@ -110,6 +111,20 @@ class GameRouter extends React.Component {
                     changeTalkingToOn={this.changeTalkingToOn}/>
               </LoggedInUser>
           )}
+        />
+
+        <Route
+            exact
+            path={`${this.props.base}/rules`}
+            render={() => (
+                <LoggedInUser>
+                    <Rules changeMusicToNormal={this.props.changeMusicToNormal}
+                          changePhoneToOff={this.changePhoneToOff}
+                          changePhoneToOn={this.changePhoneToOn}
+                          changeTalkingToOff={this.changeTalkingToOff}
+                          changeTalkingToOn={this.changeTalkingToOn}/>
+                </LoggedInUser>
+            )}
         />
 
           <Route

@@ -273,7 +273,7 @@ class Game extends React.Component{
                 onClick={()=>this.leaveLobby()}>Leave
             </LogoutButton>
             <Infos
-            players ={this.state.players} lobbyName={this.state.lobbyName}>
+            players ={this.state.players} lobbyName={this.state.lobbyName} currentGuesserId = {this.state.currentGuesserId}>
             </Infos>
             <text>Chat</text>
             <ChatBox></ChatBox>
@@ -294,7 +294,7 @@ class Game extends React.Component{
               <InsideContainer>
                 {this.displayPickWordState() ? <PickWordState pickWordFunction={this.pickWord} currentGuesserId = {this.state.currentGuesserId}/>:null}
                 {this.displayEnterCluesState() ? <EnterCluesState currentWord = {this.state.currentWord} specialGame = {this.state.specialGame} currentGuesserId = {this.state.currentGuesserId}/>:null}
-                {this.displayVoteOnClueState() ? <VoteOnClueState currentGuesserId = {this.state.currentGuesserId} clues={this.state.clues}/> : null}
+                {this.displayVoteOnClueState() ? <VoteOnClueState  players = {this.state.players} currentGuesserId = {this.state.currentGuesserId} clues={this.state.clues}/> : null}
                 {this.displayEnterGuessState() ? <EnterGuessState  currentGuesserId = {this.state.currentGuesserId} clues={this.state.clues}/>: null}
                 {this.displayTransitionState()? <TransitionState currentWord = {this.state.currentWord} currentGuesserId = {this.state.currentGuesserId} players = {this.state.players} isGuessCorrect = {this.state.isGuessCorrect}/>: null}
                 {this.displayEndGameState() ? <EndGameState players = {this.state.players}/> : null}

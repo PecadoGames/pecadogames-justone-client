@@ -99,14 +99,17 @@ class Main extends React.Component {
     render(){
         return (
             <BackgroundContainer className ={"backgroundMain"}>
-                <LogoutButton onClick={() => {this.props.history.push(`states`)}}>
-                    States
-                    </LogoutButton>
                 <LogoutButton
                     onClick={()=>{
                         this.logout();
                     }}
                 >Logout</LogoutButton>
+                <LogoutButton onClick={() => {this.props.history.push(`states`)}}>
+                    States
+                    </LogoutButton>
+                <LogoutButton onClick={() => {this.props.history.push(`rules`)}}>
+                    Rules
+                </LogoutButton>
                 <HandContainer
                     className={"handWithCard"}
                 >

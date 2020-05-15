@@ -13,6 +13,7 @@ class Lobby {
         this.playersInLobby = null;
         this.currentGuesser= null;
         this.currentNumPlayersAndBots = null;
+        this.gameIsStarted = null;
         Object.assign(this, data);
     }
 }

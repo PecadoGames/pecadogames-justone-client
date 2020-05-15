@@ -122,7 +122,7 @@ button {
 
 .blankNewsPaper{
   background-image:url("BlankNewsPaper.png");
-  background-size: 848px 807px, contain;
+  background-size: 848px 620px, contain;
   background-repeat: no-repeat;
   margin:auto;
 }
@@ -198,6 +198,12 @@ button {
 .lobbyInvitePhone{
   background-image: url("phone_small.png");
   background-size: 200px 346px, contain;
+  background-repeat: no-repeat;
+}
+
+.Arcade{
+  background-image: url("Arcade.png");
+  background-size: 1200px 800px, contain, contain;
   background-repeat: no-repeat;
 }
 

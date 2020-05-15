@@ -19,12 +19,23 @@ const PlayerContainer = styled.div`
   width: 400px
  `
 
+
+const MiniContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: left;
+  width: 200px;
+  justify-content: space-between
+
+ `
+
 class Infos extends React.Component{
     constructor() {
         super();
         this.state = {
             players: [],
-            lobbyName: ''
+            lobbyName: '',
+            currentGuesser: null
         };
     }
 
@@ -39,10 +50,11 @@ class Infos extends React.Component{
     }
 
     static getDerivedStateFromProps(props, state) {
-        if (props.players !== state.players || props.lobbyName !== state.lobbyName) {
+        if (props.players !== state.players || props.lobbyName !== state.lobbyName ||  props.currentGuesserId !== state.currentGuesserId) {
             return {
                 players: props.players,
-                lobbyName: props.lobbyName
+                lobbyName: props.lobbyName,
+                currentGuesserId: props.currentGuesserId
             };
         }
         // Return null if the state hasn't changed
@@ -56,8 +68,13 @@ class Infos extends React.Component{
                 LobbyName: {this.state.lobbyName}
                 {this.state.players.map(player => {return(
                     <PlayerContainer>
-                        <div>Username: {player.username}</div>
+                        <MiniContainer>
+                        <div>Username: {player.username}</div>{this.state.currentGuesserId === player.id ?
+                        <div>Guesser</div>
+                        :
+                        null}
                         <div></div>
+                        </MiniContainer>
                         </PlayerContainer>
                 )})}
 

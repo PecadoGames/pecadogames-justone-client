@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
-import Sound from 'react-sound';
-import FlipNewspaper from "../lobby/assets/FlipNewspaper.mp3"
 import {LogoutButton} from "../../views/design/LogoutButton";
 import {api, handleError} from "../../helpers/api";
 import {Button} from "../../views/design/Button";
 import Lobbies from "./assets/Lobbies";
 import InviteLobbyPhone from "./InviteLobbyPhone";
+import ArrowRight from "./assets/ArrowRight.png"
+import ArrowLeft from "./assets/ArrowLeft.png"
 
 
 
@@ -32,9 +32,9 @@ const FormContainer = styled.div`
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 848px
+  height: 200px
   width: 807px;
-  border-radius: 20px;
+ 
   align-items: flex-start;  
   margin-left: 270px;
   margin-top: 150px;
@@ -54,12 +54,37 @@ const SiteButtonLeft = styled.button`
   position: absolute
   margin-top: 650px;
   margin-left: 290px
+  width: 60px;
+  height:  30px;
+  background: transparent
+  border: none 
+`
+
+const ArrowRightContainer = styled.div`
+  position: absolute
+  margin-top: 650px;
+  margin-left: 550px
+  width: 60px;
+  height:  30px;
+`
+
+
+const ArrowLeftContainer = styled.div`
+  position: absolute
+  margin-top: 650px;
+  margin-left: 290px
+  width: 60px;
+  height:  30px;
 `
 
 const SiteButtonRight = styled.button`
   position: absolute
   margin-top: 650px;
   margin-left: 550px
+  width: 60px;
+  height:  30px;
+  background: transparent
+  border: none 
 `
 
 const PageNumber = styled.text`
@@ -135,9 +160,9 @@ class JoinLobby extends React.Component {
 
     }
     async componentDidMount() {
-            this.props.changeMusicToNormal()
-            this.getLobbies()
-            this.props.flipOn()
+        this.props.changeMusicToNormal()
+        this.getLobbies()
+        this.props.flipOn()
         this.lobby()
 
     }
@@ -160,6 +185,10 @@ class JoinLobby extends React.Component {
     render() {
         return (
             <FormContainer className={"backgroundMain"}>
+                <ArrowLeftContainer>  {this.state.number > 5 ?<img src={ArrowLeft}/>: null}
+                </ArrowLeftContainer>
+                <ArrowRightContainer> {this.state.lobbies.length > this.state.number ? <img src={ArrowRight}/> : null}
+                </ArrowRightContainer>
                 <LogoutButton
                     onClick={()=>{
                         this.logout();
@@ -184,12 +213,14 @@ class JoinLobby extends React.Component {
                     <Lobbies lobbies = {this.state.lobbies} number={this.state.number}/>
                 </Container>
                 {this.state.number > 5 ?
-                    <SiteButtonLeft  onClick={()=>{this.changeSiteLeft(); this.props.flipOn()}}>left</SiteButtonLeft>
+                    <SiteButtonLeft  onClick={()=>{this.changeSiteLeft(); this.props.flipOn()}}>
+                    </SiteButtonLeft>
                     :
                     null
                 }
                 {this.state.lobbies.length > this.state.number ?
-                    <SiteButtonRight onClick={()=>{this.changeSiteRight();this.props.flipOn()}}>right</SiteButtonRight>
+                    <SiteButtonRight onClick={()=>{this.changeSiteRight();this.props.flipOn()}}>
+                    </SiteButtonRight>
                     :
                     null
                 }
@@ -200,6 +231,7 @@ class JoinLobby extends React.Component {
                                   changeTalkingToOn={this.props.changeTalkingToOn}
                 >
                 </InviteLobbyPhone>
+
             </FormContainer>
 
         )

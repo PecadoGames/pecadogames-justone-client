@@ -61,7 +61,8 @@ class VoteOnClueState extends React.Component{
             currentGuesserId: null,
             clues: [],
             votes: [],
-            voted: false
+            voted: false,
+            players: []
         };
     }
 
@@ -70,15 +71,26 @@ class VoteOnClueState extends React.Component{
     }
 
     componentDidMount() {
+        this.hasVoted()
+    }
 
+    hasVoted(){
+        for (let a in this.state.players){
+            if (this.state.players[a].id === parseInt(localStorage.getItem('id'))){
+                if(this.state.players[a].voted === true){
+                    this.handleInputChange('voted', true)
+                }
+            }
+        }
     }
 
     //when the props from parent changes this is called to change states
     static getDerivedStateFromProps(props, state) {
-        if (props.currentGuesserId !== state.currentGuesserId || props.clues !== state.clues) {
+        if (props.currentGuesserId !== state.currentGuesserId || props.clues !== state.clues || props.players !== state.players) {
             return {
                 currentGuesserId: props.currentGuesserId,
                 clues: props.clues,
+                players: props.players
             };
         }
         // Return null if the state hasn't changed
@@ -96,7 +108,6 @@ class VoteOnClueState extends React.Component{
 
     async voteOnClues(){
         try {
-            this.handleInputChange('voted', true)
             const requestBody = JSON.stringify({
                 playerId: localStorage.getItem('id'),
                 playerToken: localStorage.getItem('token'),

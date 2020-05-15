@@ -139,7 +139,7 @@ class Register extends React.Component {
                     <Sound url={commercial}
                            playStatus={Sound.status.PLAYING}
                            playFromPosition={800}
-                           volume={30}
+                           volume={15}
                            loop={true}
                     />
                     <LargePhoneTitle>

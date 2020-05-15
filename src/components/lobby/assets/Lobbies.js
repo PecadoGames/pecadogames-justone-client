@@ -6,6 +6,7 @@ import {Button} from "../../../views/design/Button";
 import {api, handleError} from "../../../helpers/api";
 
 
+
 const Number = styled.div`
   font-size: 10px;
   color: #000000
@@ -118,7 +119,7 @@ class Lobbies extends React.Component{
                     {this.state.displayedLobbies.map(lobby => {
                         return (
                             <LobbyContainer key={lobby.lobbyId} >
-                                <LobbyField
+                                 <LobbyField
                                     lobby={lobby}
                                 />
                                 <ButtonContainer className= 'phoneCall'>
@@ -134,7 +135,8 @@ class Lobbies extends React.Component{
 
                                         onClick={() => {this.joinLobby(lobby.lobbyId)}}> </Button>
                                 </ButtonContainer>
-                                <Number> *****</Number>
+                                <Number>Call</Number>
+                               <Number> *****</Number>
                             </LobbyContainer>
                         );
                     })

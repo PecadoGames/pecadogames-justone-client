@@ -12,6 +12,12 @@ const Text = styled.div`
         margin-top: 200px;
 `;
 
+const Sign = styled.div`
+      font-size: 30px;
+      color: #ffffff
+     
+`;
+
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,6 +29,18 @@ const FormContainer = styled.div`
   margin-left: calc(50% - 400px);
 
 `;
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 200px;
+  width: 800px;
+  align-items: flex-start;  
+  margin-left: calc(50% - 400px);
+
+`;
+
+
 
 
 
@@ -42,16 +60,23 @@ class LoginBase extends Component {
                     The developers of this game are not responsible of any kind of damage.
                     This game is a fangame of the game called "Just One".
                     This game was only made for fun. If you find any glitch, error or bug,
-                    please report it via email, link in the description.
+                    please report it via email, link in the description. And please play it on Google Chrome
+                    for all the features ;).
                     <br></br>
                     <br></br>
-                    <Button onClick={() => {
+                    <Container>
+                    <Sign>Confirm to continue>>>>>>>>>>>>>>>>>></Sign><Button
+                        height= "80px;"
+                        width="400px;"
+                        onClick={() => {
                      localStorage.setItem("confirmed", "true");
                      this.forceUpdate();
                 }}> I'm not pregnant and I have no heart problems...  yet
-                </Button>
+                </Button><Sign></Sign>
+                    </Container>
                 </Text>
                     </FormContainer>
+
         ) : (
                 <Login changeMusicToDim={this.props.changeMusicToDim} > </Login>
         )}
