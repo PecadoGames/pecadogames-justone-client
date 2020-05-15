@@ -6,11 +6,8 @@ import {TextContainer, PixelButton} from "../profile/Assets/profileAssets";
 import {BackgroundContainer} from "../main/Main";
 
 const Container = styled.div`
-    position: absolute;
-    margin-left: 20px;
-    margin-top: 450px;
-    width: 200px;
-    height: 150px;
+    position: fixed;
+    bottom: 0px;
 `;
 
 const AcceptButton = styled.button`

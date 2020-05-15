@@ -113,13 +113,6 @@ const ColorButton = styled.button`
     border-width: ${props => props.borderWidth|| "1px"};
 `;
 
-const LobbyInvitation = styled.div`
-    
-
-
-
-`;
-
 class Profile extends React.Component {
     constructor() {
         super();
@@ -129,7 +122,6 @@ class Profile extends React.Component {
             username: null,
             birthday: null,
             avatarColor: null,
-
             phone: null,
             lobbies: [],
             phoneCheck: false,
@@ -148,6 +140,7 @@ class Profile extends React.Component {
 
     async updateProfile(){
         try {
+            this.checkBirthday(this.state.birthday)
             const requestBody = JSON.stringify({
                 userId: localStorage.getItem("id"),
                 token: localStorage.getItem("token"),
@@ -159,7 +152,17 @@ class Profile extends React.Component {
             this.props.history.push(`/game/users/${this.state.id}`);
         }
         catch(error){
-            alert(`Could not create a lobby. \n${handleError(error)}`)
+            alert(`Could not update profile: \n${handleError(error)}`)
+        }
+    }
+
+    checkBirthday(birthday){
+        try{
+            let birthdayDate = new Date(birthday);
+            this.handleInputChange("birthday", birthdayDate)
+        }
+        catch(error){
+            alert("Invalid date")
         }
     }
 
@@ -351,7 +354,7 @@ class Profile extends React.Component {
                         <TextContainer>
                             <TextLeft>Birthday:</TextLeft>
                             <InputFieldDate
-                                type="date"
+                                placeholder={"dd.mm.jjjj"}
                                 defaultValue={this.state.birthday}
                             onChange={e =>{
                                 this.handleInputChange('birthday', e.target.value)
@@ -363,42 +366,42 @@ class Profile extends React.Component {
                             <ColorButtonContainer>
                                 <ColorButton id="RED"
                                              background={"#b31a1a"}
-                                             borderWidth={(this.colorMatcher("RED")) ? "2.5px" : "1px"}
+                                             borderWidth={(this.colorMatcher("RED")) ? "1px" : "3px"}
                                              onClick={()=>{
                                                  this.setState({avatarColor: "RED"})
                                              }}
                                 />
                                 <ColorButton id="GREEN"
                                              background={"#008a0e"}
-                                             borderWidth={(this.colorMatcher("GREEN")) ? "2.5px" : "1px"}
+                                             borderWidth={(this.colorMatcher("GREEN")) ? "1px" : "3px"}
                                              onClick={()=>{
                                                  this.setState({avatarColor: "GREEN"})
                                              }}
                                 />
                                 <ColorButton id="YELLOW"
                                              background={"#dece38"}
-                                             borderWidth={(this.colorMatcher("YELLOW")) ? "2.5px" : "1px"}
+                                             borderWidth={(this.colorMatcher("YELLOW")) ? "1px" : "3px"}
                                              onClick={()=>{
                                                  this.setState({avatarColor: "YELLOW"})
                                              }}
                                 />
                                 <ColorButton id="BLUE"
                                              background={"#2b37a8"}
-                                             borderWidth={(this.colorMatcher("BLUE")) ? "2.5px" : "1px"}
+                                             borderWidth={(this.colorMatcher("BLUE")) ? "1px" : "3px"}
                                              onClick={()=>{
                                                  this.setState({avatarColor: "BLUE"})
                                              }}
                                 />
                                 <ColorButton id="PURPLE"
                                              background={"#562ba8"}
-                                             borderWidth={(this.colorMatcher("PURPLE")) ? "2.5px" : "1px"}
+                                             borderWidth={(this.colorMatcher("PURPLE")) ? "1px" : "3px"}
                                              onClick={()=>{
                                                  this.setState({avatarColor: "PURPLE"})
                                              }}
                                 />
                                 <ColorButton id="PINK"
                                              background={"#cf71dc"}
-                                             borderWidth={(this.colorMatcher("PINK")) ? "2.5px" : "1px"}
+                                             borderWidth={(this.colorMatcher("PINK")) ? "1px" : "3px"}
                                              onClick={()=>{
                                                  this.setState({avatarColor: "PINK"})
                                              }}
@@ -418,7 +421,7 @@ class Profile extends React.Component {
                             </RowContainer>
                             <RowContainer>
                                 <SaveButton
-                                    disabled={!this.state.username}
+                                    disabled={!this.state.username || this.state.username.length > 16}
                                     onClick={()=>{
                                         this.updateProfile();
                                     }}

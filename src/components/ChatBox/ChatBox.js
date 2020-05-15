@@ -57,6 +57,13 @@ class ChatBox extends React.Component {
         //ask ever second for chat
         this.state.interval = setInterval(async()=>{this.getMessages()}, 500)
 
+        //scrolls down if page renders
+        console.log("Reloaded page: scrolling down")
+            setTimeout(()=>{
+                    const element = document.getElementById("containerElement")
+                    element.scrollBy(0, element.clientHeight)
+                }, 1000
+            )
     }
 
     async getMessages(){
@@ -77,11 +84,34 @@ class ChatBox extends React.Component {
         this.setState({ [key]: value });
     }
 
+    formatString(message){
+        let splitMessage = message.split(" ");
+        let i;
+        for (i=0; i < splitMessage.length; i++){
+            if (splitMessage[i].length > 15){
+                splitMessage[i] = this.sliceMessage(splitMessage[i])
+            }
+        }
+        return splitMessage.join(" ");
+    }
+
+    sliceMessage(messageToBeSpliced){
+        let part1 = messageToBeSpliced.slice(0, 15)
+        let part2 = messageToBeSpliced.slice(15, messageToBeSpliced.length)
+        if (part2.length > 15){
+            part2 = this.sliceMessage(part2)
+        }
+        else{
+            let words = [part1, part2]
+            return words.join(" ");
+        }
+    }
+
     async sendMessage(){
         const requestBody = JSON.stringify({
             playerId: localStorage.getItem('id'),
             playerToken: localStorage.getItem('token'),
-            message: this.state.chatMessage,
+            message: this.formatString(this.state.chatMessage),
         })
         await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/chat`, requestBody)
         this.handleInputChange('chatMessage', '')
@@ -101,13 +131,14 @@ class ChatBox extends React.Component {
             const clientHeight = element.clientHeight;
             const currentPosition = element.scrollTop;
             const scrollHeight = element.scrollHeight;
+            let tolerance = scrollHeight - 50;
 
-            let tolerance = scrollHeight - (scrollHeight/10);
             //if this is true the user is at the bottom with 5 percent error margin
+            console.log(clientHeight + "+" + currentPosition + ">=" + tolerance )
             console.log("scrolling down to chatbox: " + (clientHeight + currentPosition >= tolerance))
             if (clientHeight + currentPosition >= tolerance){
                 setTimeout(()=>{
-                    element.scrollBy(0, 50)
+                    element.scrollBy(0, element.clientHeight)
                     }, 200
                 )
         }}
