@@ -3,8 +3,7 @@ import {withRouter} from "react-router-dom";
 import React from "react";
 import ShyGuy from "../Shyguys/shyguy-gif-1.gif"
 import {api} from "../../../helpers/api";
-import commercial from "../../login/assets/CommercialFunnyMusic.mp3";
-import Sound from "react-sound";
+
 
 
 const BackgroundContainer = styled.div`
