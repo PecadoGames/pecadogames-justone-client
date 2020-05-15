@@ -92,7 +92,6 @@ class ChatBox extends React.Component {
                 splitMessage[i] = this.sliceMessage(splitMessage[i])
             }
         }
-        alert(splitMessage)
         return splitMessage.join(" ");
     }
 
