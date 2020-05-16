@@ -59,10 +59,12 @@ class ChatBox extends React.Component {
 
         //scrolls down if page renders
         console.log("Reloaded page: scrolling down")
-            setTimeout(()=>{
-                    const element = document.getElementById("containerElement")
-                    element.scrollBy(0, element.clientHeight)
-                }, 1000
+
+        setTimeout(()=>{
+            const element = document.getElementById("containerElement")
+            if(element){
+                element.scrollBy(0, element.clientHeight)
+            }}, 1000
             )
     }
 

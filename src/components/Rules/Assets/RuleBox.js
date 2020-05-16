@@ -278,7 +278,8 @@ class RuleBox extends React.Component {
                         <Text>Score Calculation:</Text>
                     </Element>
                     <Element style={{marginTop: '10px'}}>
-                        <Text>Soon to be announced</Text>
+                        <Text>The faster you are, the better the score. If your clues gets erased, so do
+                        your points for the respective round. The rest is our secret formula ;) Good luck! </Text>
                     </Element>
                 </Element>
                 <DownContainer onClick={() => {this.scrollDown()}}>
