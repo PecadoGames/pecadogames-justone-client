@@ -85,6 +85,7 @@ class ChatBox extends React.Component {
     }
 
     formatString(message){
+        if (message.length < 50){
         let splitMessage = message.split(" ");
         let i;
         for (i=0; i < splitMessage.length; i++){
@@ -92,14 +93,20 @@ class ChatBox extends React.Component {
                 splitMessage[i] = this.sliceMessage(splitMessage[i])
             }
         }
+        console.log("sending message:" + splitMessage.join(" "))
         return splitMessage.join(" ");
+        }
+        else{
+            alert("Message too long!")
+        }
     }
 
     sliceMessage(messageToBeSpliced){
         let part1 = messageToBeSpliced.slice(0, 15)
         let part2 = messageToBeSpliced.slice(15, messageToBeSpliced.length)
         if (part2.length > 15){
-            part2 = this.sliceMessage(part2)
+            alert("brudi don't spam")
+            
         }
         else{
             let words = [part1, part2]
