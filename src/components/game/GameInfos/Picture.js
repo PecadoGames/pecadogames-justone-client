@@ -14,7 +14,8 @@ import ChairLeftBehind from "../Chairs/TableClosed/TischLinkerHintererStuhl.png"
 import ChairLeftFront from "../Chairs/TableClosed/TischLinkerVordererStuhl.png"
 import ChairRightFront from "../Chairs/TableClosed/TischRechterVordererStuhl.png"
 import ChairRightBehind from "../Chairs/TableClosed/TischRechterHintererStuhl.png"
-
+import ChairRightFrontOPEN from "../Chairs/TableOpen/RightFrontChairOPEN.png"
+import ChairLeftFrontOPEN from "../Chairs/TableOpen/LeftFrontChairOPEN.png"
 
 
 
@@ -100,11 +101,11 @@ class Picture extends React.Component{
             </ImageContainer>
             <ImageContainer src={ChairLeftBehind}>
             </ImageContainer>
-            <ImageContainer src={ChairLeftFront}>
+            <ImageContainer src={ChairLeftFrontOPEN}>
             </ImageContainer>
             <ImageContainer src={ChairRightBehind}>
             </ImageContainer>
-            <ImageContainer src={ChairRightFront}>
+            <ImageContainer src={ChairRightFrontOPEN}>
             </ImageContainer>
             <ImageContainer src={ShyGuyBehindLeft}>
             </ImageContainer>
