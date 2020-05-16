@@ -69,6 +69,10 @@ class Picture extends React.Component{
         return false
     }
 
+    componentWillUnmount() {
+        clearInterval(this.state.interval)
+    }
+
 
     render(){
     return(
