@@ -4,7 +4,8 @@ import { Element, Events, animateScroll as scroll } from 'react-scroll'
 import {withRouter} from "react-router-dom";
 import {api, handleError} from "../../../helpers/api";
 import styled from "styled-components";
-import { PixelButton, Row, RowContainer } from "../../profile/Assets/profileAssets";
+import { Row, RowContainer } from "../../profile/Assets/profileAssets";
+import { PixelButton } from "../../../views/design/PixelButton";
 
 const HandyContainer = styled.div`
   display: flex;

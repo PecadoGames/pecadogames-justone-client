@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { api, handleError } from '../../helpers/api';
 import { withRouter } from 'react-router-dom';
-import {PixelButton} from '../profile/Assets/profileAssets'
+import { PixelButton } from "../../views/design/PixelButton";
 import {InputField} from "../../views/design/InputField";
 import Sound from "react-sound";
 import commercial from "../login/assets/CommercialFunnyMusic.mp3"

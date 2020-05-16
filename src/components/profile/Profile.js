@@ -3,8 +3,9 @@ import {api, handleError} from '../../helpers/api';
 import {withRouter} from 'react-router-dom';
 import User from "../shared/models/User";
 import {BackgroundContainer} from "../main/Main";
-import {PhoneContainer, TextRight, TextLeft, TextContainer, EditProfileButton, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, Row, ButtonRow,
+import {PhoneContainer, TextRight, TextLeft, TextContainer, EditProfileButton, One, Two, ProfilePicContainer, ProfileContainer, Row, ButtonRow,
     WindowHeader, FriendsButton, BlinkingPixelButton} from "./Assets/profileAssets";
+import { PixelButton } from "../../views/design/PixelButton";
 import GreenShyguy from "./Assets/ProfilePictures/green.png";
 import BlueShyguy from "./Assets/ProfilePictures/blue.png";
 import PinkShyguy from "./Assets/ProfilePictures/pink.png";

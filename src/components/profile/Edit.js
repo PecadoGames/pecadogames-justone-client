@@ -10,7 +10,8 @@ import BlueShyguy from "./Assets/ProfilePictures/blue.png";
 import YellowShyguy from "./Assets/ProfilePictures/yellow.png";
 import PurpleShyguy from "./Assets/ProfilePictures/purple.png";
 import PinkShyguy from "./Assets/ProfilePictures/pink.png";
-import {WindowHeader, PhoneContainer, TextLeft, TextContainer, PixelButton, One, Two, ProfilePicContainer, ProfileContainer, ButtonRow, RowContainer} from "./Assets/profileAssets";
+import {WindowHeader, PhoneContainer, TextLeft, TextContainer, One, Two, ProfilePicContainer, ProfileContainer, ButtonRow, RowContainer} from "./Assets/profileAssets";
+import { PixelButton } from "../../views/design/PixelButton";
 
 const Container = styled.div`
     position: absolute;

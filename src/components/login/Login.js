@@ -13,7 +13,7 @@ import { BlinkingPixelButton } from '../profile/Assets/profileAssets';
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 890px;
+  height: 885px;
   width: 800px;
   border-radius: 20px;
   align-items: flex-start;  

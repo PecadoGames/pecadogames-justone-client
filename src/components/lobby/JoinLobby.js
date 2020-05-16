@@ -3,20 +3,10 @@ import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
 import {LogoutButton} from "../../views/design/LogoutButton";
 import {api, handleError} from "../../helpers/api";
-import {Button} from "../../views/design/Button";
 import Lobbies from "./assets/Lobbies";
 import InviteLobbyPhone from "./InviteLobbyPhone";
-import ArrowRight from "./assets/ArrowRight.png"
-import ArrowLeft from "./assets/ArrowLeft.png"
-
-
-
-const Text = styled.div`
-  font-size: 30px;
-  color: #000000
-  margin-left: 120px;
-`;
-
+import {ButtonRow} from "../profile/Assets/profileAssets";
+import { PixelButton } from '../../views/design/PixelButton';
 
 
 const FormContainer = styled.div`
@@ -26,73 +16,63 @@ const FormContainer = styled.div`
   width: 1200px;
   border-radius: 20px;
   align-items: flex-start;  
-  padding-left: 20px;
 `;
 
 const Container = styled.div`
   display: flex;
-  flex-direction: column;
-  height: 200px
-  width: 807px;
- 
+  width: 848px;
+  height: 620px;
   align-items: flex-start;  
   margin-left: 270px;
   margin-top: 150px;
-  padding-right: 730px;
-  padding-bottom: 800px;
 `;
 
-const SmallContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin-top: 0px;
-  margin-left: 10px;
-  align-items: flex-start;  
-  `
+const PageContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    height: 520px;
+`;
 
-const SiteButtonLeft = styled.button`
-  position: absolute
-  margin-top: 650px;
-  margin-left: 290px
-  width: 60px;
-  height:  30px;
-  background: transparent
-  border: none 
-`
+const Text = styled.div`
+  font-size: 30px;
+  color: #565553
+  text-decoration: underline
+`;
 
-const ArrowRightContainer = styled.div`
-  position: absolute
-  margin-top: 650px;
-  margin-left: 550px
-  width: 60px;
-  height:  30px;
-`
+const NoLobbiesText = styled.div`
+    margin-top: 180px;
+    color: #565553;
+    font-size: 20px;
+    height: 415px;
+` 
 
+const LobbiesContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 350px;
+    height: 415px;
+`;
 
-const ArrowLeftContainer = styled.div`
-  position: absolute
-  margin-top: 650px;
-  margin-left: 290px
-  width: 60px;
-  height:  30px;
-`
-
-const SiteButtonRight = styled.button`
-  position: absolute
-  margin-top: 650px;
-  margin-left: 550px
-  width: 60px;
-  height:  30px;
-  background: transparent
-  border: none 
-`
+const NavigationButton = styled(PixelButton)`
+    margin-top: 0px
+    height: 45px
+    background: none
+    outline: 2px solid #565553
+    border: none
+    color: #565553
+    &:hover {
+        outline: 2px solid white
+        background: #565553
+        color: white
+    }
+`;
 
 const PageNumber = styled.text`
-  position: absolute
-  margin-top: 660px;
-  margin-left: 430px;
-  color: black;
-`
+  color: #565553;
+`;
 
 class JoinLobby extends React.Component {
     constructor() {
@@ -144,12 +124,11 @@ class JoinLobby extends React.Component {
     changeSiteRight=()=>{
         this.setState({ number: this.state.number+5 });
     }
+
     changeSiteLeft=()=>{
         if(this.state.number > 5){
         this.setState({ number: this.state.number-5 });}
     }
-
-
 
     async getLobbies(){
         this.state.interval = setInterval(async ()=> {
@@ -159,6 +138,7 @@ class JoinLobby extends React.Component {
         }, 100)
 
     }
+
     async componentDidMount() {
         this.props.changeMusicToNormal()
         this.getLobbies()
@@ -173,67 +153,60 @@ class JoinLobby extends React.Component {
         },1000)
     }
 
-
-
     componentWillUnmount() {
         this.props.flipOff()
         clearInterval(this.state.interval)
         clearInterval(this.state.phone)
     }
 
-
     render() {
         return (
             <FormContainer className={"backgroundMain"}>
-                <ArrowLeftContainer>  {this.state.number > 5 ?<img src={ArrowLeft}/>: null}
-                </ArrowLeftContainer>
-                <ArrowRightContainer> {this.state.lobbies.length > this.state.number ? <img src={ArrowRight}/> : null}
-                </ArrowRightContainer>
                 <LogoutButton
                     onClick={()=>{
                         this.logout();
                     }}
                 >Logout</LogoutButton>
                 <Container className={"blankNewsPaper"}>
-                    <SmallContainer className={"backArrow"}>
-                        <Button
-                        height = "18px"
-                        width="40px"
-                        background= "none"
-                        opacity= "0"
-                        boxShadow = "null"
-                        onClick={()=>{
-                        this.back();
-                    }}
-                        >
-
-                        </Button>
+                    <PageContainer>
                         <Text>Lobbies</Text>
-                    </SmallContainer>
-                    <Lobbies lobbies = {this.state.lobbies} number={this.state.number}/>
+                        {this.state.lobbies.length === 0 ?
+                            (<NoLobbiesText>There are no lobbies</NoLobbiesText>
+                                ):(
+                            <LobbiesContainer>
+                                <Lobbies lobbies = {this.state.lobbies} number={this.state.number}/>
+                            </LobbiesContainer>)}
+                        <ButtonRow>
+                            {this.state.number > 5 &&
+                            <NavigationButton
+                                width="85px"  
+                                onClick={()=>{this.changeSiteLeft(); this.props.flipOn()}}>
+                                    Last
+                            </NavigationButton>
+                            }
+                            <NavigationButton
+                                width="130px"
+                                onClick={()=> this.back()}>
+                                Main Menu
+                            </NavigationButton>
+                            {this.state.lobbies.length > this.state.number &&
+                            <NavigationButton
+                                width="85px"
+                                onClick={()=>{this.changeSiteRight();this.props.flipOn()}}>
+                                    Next
+                            </NavigationButton>
+                            }
+                        </ButtonRow>
+                        <PageNumber>{this.state.number/5}/{Math.ceil(this.getLobbyLength())}</PageNumber>
+                    </PageContainer>
                 </Container>
-                {this.state.number > 5 ?
-                    <SiteButtonLeft  onClick={()=>{this.changeSiteLeft(); this.props.flipOn()}}>
-                    </SiteButtonLeft>
-                    :
-                    null
-                }
-                {this.state.lobbies.length > this.state.number ?
-                    <SiteButtonRight onClick={()=>{this.changeSiteRight();this.props.flipOn()}}>
-                    </SiteButtonRight>
-                    :
-                    null
-                }
-                <PageNumber>{this.state.number/5}/{Math.ceil(this.getLobbyLength())}</PageNumber>
                 <InviteLobbyPhone changePhoneToOff={this.props.changePhoneToOff}
                                   changePhoneToOn={this.props.changePhoneToOn}
                                   changeTalkingToOff={this.props.changeTalkingToOff}
                                   changeTalkingToOn={this.props.changeTalkingToOn}
                 >
                 </InviteLobbyPhone>
-
             </FormContainer>
-
         )
     }
 }

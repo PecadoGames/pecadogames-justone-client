@@ -3,7 +3,8 @@ import { render } from 'react-dom';
 import { Element, Events, animateScroll as scroll } from 'react-scroll'
 import {withRouter} from "react-router-dom";
 import {api} from "../../../helpers/api";
-import { PixelButton, Row, RowContainer } from "./profileAssets";
+import { Row, RowContainer } from "./profileAssets";
+import { PixelButton } from "../../../views/design/PixelButton";
 
 
 class UsersBox extends React.Component {

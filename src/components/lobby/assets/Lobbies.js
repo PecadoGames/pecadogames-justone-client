@@ -2,18 +2,9 @@ import styled from "styled-components";
 import React from "react";
 import {withRouter} from "react-router-dom";
 import LobbyField from "./LobbyField";
-import {Button} from "../../../views/design/Button";
+import {PixelButton} from "../../../views/design/PixelButton";
 import {api, handleError} from "../../../helpers/api";
-
-
-
-const Number = styled.div`
-  font-size: 10px;
-  color: #000000
-  margin-left: 3px;
-  margin-right: 3px;
-  margin-top: 31px;
-`
+import PhoneImg from '../assets/PhoneCall.png';
 
 
 const SmallContainer = styled.div`
@@ -21,8 +12,8 @@ const SmallContainer = styled.div`
   flex-direction: column;
   margin-top: 0px;
   margin-left: 10px;
-  align-items: flex-start;  
-  `
+  align-items: flex-start;
+  `;
 
 const LobbyContainer = styled.li`
   display: flex;
@@ -31,24 +22,25 @@ const LobbyContainer = styled.li`
   justify-content: center;
   height: auto;
   width: 330px
-  border: 1px solid
+  border-bottom: 2px solid #565553; 
   margin-top: 5px
 `;
 
-const ButtonContainer = styled.div`
-  margin-left: 10px;
-  margin-top: 30px;  
-  align-items: flex-start;  
-  display: flex;
-  flex-direction: column;
-`
+const Phone = styled.img`
+    width: 23px;
+    height: 29px
+    margin-top: 2px;
+`;
 
-const SiteButton = styled.button`
-  position: absolute
-  margin-top: 100px;
-`
-
-
+const ButtonSpan = styled.span`
+    display: flex
+    justify-content: space-evenly;
+    color: #565553;
+    font-size: 26px;
+    &:hover {
+        color: #ffffff;
+    }
+`;
 
 class Lobbies extends React.Component{
     constructor() {
@@ -82,8 +74,10 @@ class Lobbies extends React.Component{
             this.buildSite()
             return true
         }
+        else{
+            return false
+        }
     }
-
 
     static getDerivedStateFromProps(props, state) {
         if (props.lobbies !== state.lobbies || props.number !== state.number) {
@@ -111,39 +105,36 @@ class Lobbies extends React.Component{
 
 
     render(){
-        return(  <div>
-            {this.state.displayedLobbies === [] ?
-                <div>There are no lobbies</div>
-                :
-                <SmallContainer>
-                    {this.state.displayedLobbies.map(lobby => {
-                        return (
-                            <LobbyContainer key={lobby.lobbyId} >
-                                 <LobbyField
-                                    lobby={lobby}
-                                />
-                                <ButtonContainer className= 'phoneCall'>
-                                    <Button
-                                        background = "none"
-                                        hover="none"
-                                        height= "30px"
-                                        boxShadow = "none"
-                                        transition = "none"
-                                        width = "20px"
-                                        color= "black"
-                                        fontSize="10px"
-
-                                        onClick={() => {this.joinLobby(lobby.lobbyId)}}> </Button>
-                                </ButtonContainer>
-                                <Number>Call</Number>
-                               <Number> *****</Number>
-                            </LobbyContainer>
-                        );
-                    })
-                }
-                </SmallContainer>
+        return(  
+        <div>
+            <SmallContainer>
+                {this.state.displayedLobbies.map(lobby => {
+                    return (
+                        <LobbyContainer key={lobby.lobbyId} >
+                                <LobbyField
+                                lobby={lobby}
+                            />
+                                <PixelButton
+                                    marginTop = "null"
+                                    border = "none"
+                                    outline = "2px solid #565553"
+                                    background = "none"
+                                    color= "#565553"
+                                    height="50px"
+                                    hoverOutline="2px solid #ffffff"
+                                    hoverBackground="#565553"
+                                    hoverColor="#000000"
+                                    onClick={() => {this.joinLobby(lobby.lobbyId)}}>
+                                        <ButtonSpan >
+                                            <Phone src={PhoneImg}/>
+                                            Join
+                                        </ButtonSpan>
+                                </PixelButton>
+                        </LobbyContainer>
+                    );
+                })
             }
-
+            </SmallContainer>
         </div>
         )
     }

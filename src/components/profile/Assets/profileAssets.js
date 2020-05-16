@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { PixelButton } from "../../../views/design/PixelButton";
 
 export const PhoneContainer = styled.div`
     margin-top: 10em;
@@ -84,25 +85,6 @@ export const ProfilePicContainer = styled.div`
     height: 150px;
     color: #ffffff;
     background: #000000;
-`;
-
-export const PixelButton = styled.button`
-    border: 2px solid black;
-    margin-top: ${props => props.marginTop || "15px"};
-    margin-left: ${props => props.marginLeft || "5px" };
-    margin-right: ${props => props.marginRight || "5px" };
-    outline: ${props => props.outline || "2px solid #32CD32"};
-    outline-offset: -7px;
-    width: ${props => props.width || "150px" };
-    height: ${props => props.height || "50px" };
-    color: ${props => props.color || "#32CD32"};
-    background: #000000;
-    text-overflow: clip;
-    &:hover {
-      outline: ${props => props.hoverOutline || "2px solid #000000"};
-      background: ${props => props.hoverBackground || "#32CD32"};
-      color: ${props => props.hoverColor || "#000000"};
-    }
 `;
 
 export const FriendsButton = styled(PixelButton)`

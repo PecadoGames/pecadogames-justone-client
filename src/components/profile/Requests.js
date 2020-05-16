@@ -1,7 +1,8 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {BackgroundContainer} from "../main/Main";
-import {WindowHeader, PhoneContainer, PixelButton, ButtonRow, ProfileContainer} from "./Assets/profileAssets";
+import {WindowHeader, PhoneContainer, ButtonRow, ProfileContainer} from "./Assets/profileAssets";
+import { PixelButton } from "../../views/design/PixelButton";
 import RequestBox from "./Assets/RequestBox";
 import {api} from "../../helpers/api";
 import styled from "styled-components";

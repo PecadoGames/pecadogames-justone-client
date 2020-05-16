@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import {withRouter} from 'react-router-dom';
 import {api, handleError} from "../../helpers/api";
-import {TextContainer, PixelButton} from "../profile/Assets/profileAssets";
+import { PixelButton } from "../../views/design/PixelButton";
+import {TextContainer} from "../profile/Assets/profileAssets";
 import {BackgroundContainer} from "../main/Main";
 
 const Container = styled.div`
