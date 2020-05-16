@@ -169,12 +169,21 @@ button {
   margin: auto
 }
 
+.tablePlain{
+  background-image: url("TablePlain.png");
+  background-size: 100% 100%, contain;
+  background-repeat: no-repeat;
+  margin: auto
+}
+
 .table{
   background-image: url("OnlyTable.png");
   background-size: 100% 100%, contain;
   background-repeat: no-repeat;
   margin: auto
 }
+
+
 
 .profilePicture{
   background-size: 150px 150px;

@@ -1,8 +1,21 @@
 import styled from "styled-components";
 import {withRouter} from "react-router-dom";
 import React from "react";
-import ShyGuy from "../Shyguys/shyguy-gif-1.gif"
 import {api} from "../../../helpers/api";
+import ShyGuyRightFront from "../Shyguys/Red/ShyGuyRightFront.png"
+import ShyGuyRightBehind from "../Shyguys/Red/ShyGuyRightBehind.png"
+import ShyGuyLeftFront from "../Shyguys/Red/ShyGuyLeftFront.png"
+import ShyGuyLeftBehind from "../Shyguys/Red/ShyGuyLeftBehind.png"
+import ShyGuyBehindRight from "../Shyguys/Red/ShyGuyBehindRight.png"
+import ShyGuyBehindLeft from "../Shyguys/Red/ShyGuyBehindLeft.png"
+import ChairBehindLeft from "../Chairs/TableClosed/TischHintererStuhlLinks.png"
+import ChairBehindRight from "../Chairs/TableClosed/TischHintererStuhlRechts.png"
+import ChairLeftBehind from "../Chairs/TableClosed/TischLinkerHintererStuhl.png"
+import ChairLeftFront from "../Chairs/TableClosed/TischLinkerVordererStuhl.png"
+import ChairRightFront from "../Chairs/TableClosed/TischRechterVordererStuhl.png"
+import ChairRightBehind from "../Chairs/TableClosed/TischRechterHintererStuhl.png"
+
+
 
 
 
@@ -18,14 +31,16 @@ const BackgroundContainer = styled.div`
     `
 
 
-const ShyGuyOne = styled.img`
+const ImageContainer = styled.img`
    position: absolute
    display: flex;
    flex-direction: column;
    align-items: flex-start;
-   margin-top: 380px;
+   height: 700px;
+   width: 800px
+   margin-top: 100px;
    margin-left: 400px;
-   `
+    `
 
 
 
@@ -77,11 +92,36 @@ class Picture extends React.Component{
     render(){
     return(
         <div>
-        <BackgroundContainer className = 'lobbyBackground'>
-            <ShyGuyOne src={ShyGuy}></ShyGuyOne>
+        <BackgroundContainer className = 'tablePlain'>
         </BackgroundContainer>
-        <BackgroundContainer className= 'table'>
-        </BackgroundContainer>
+            <ImageContainer src={ChairBehindLeft}>
+            </ImageContainer>
+            <ImageContainer src={ChairBehindRight}>
+            </ImageContainer>
+            <ImageContainer src={ChairLeftBehind}>
+            </ImageContainer>
+            <ImageContainer src={ChairLeftFront}>
+            </ImageContainer>
+            <ImageContainer src={ChairRightBehind}>
+            </ImageContainer>
+            <ImageContainer src={ChairRightFront}>
+            </ImageContainer>
+            <ImageContainer src={ShyGuyBehindLeft}>
+            </ImageContainer>
+            <ImageContainer src={ShyGuyBehindRight}>
+            </ImageContainer>
+            <ImageContainer src={ShyGuyLeftBehind}>
+            </ImageContainer>
+            <ImageContainer src={ShyGuyLeftFront}>
+            </ImageContainer>
+            <ImageContainer src={ShyGuyRightBehind}>
+            </ImageContainer>
+            <ImageContainer src={ShyGuyRightFront}>
+            </ImageContainer>
+            <BackgroundContainer className= 'table'>
+            </BackgroundContainer>
+
+
         </div>
         )
     }

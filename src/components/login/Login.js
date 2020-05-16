@@ -116,10 +116,10 @@ class Login extends React.Component {
   }
 
   async login() {
+      this.handleDoor();
     try {
         this.toggleErrorFalse();
         await new Promise(resolve => setTimeout(resolve, 1500));
-
         const requestBody = JSON.stringify({
             username: this.state.username,
             password: this.state.password,
@@ -239,7 +239,6 @@ class Login extends React.Component {
                     boxShadow = "null"
                     onClick={() => {
                         this.logging();
-                        this.handleDoor();
                         this.login();
                     }}
                 >
