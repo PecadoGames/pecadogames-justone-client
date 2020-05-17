@@ -8,12 +8,19 @@ import ShyGuyLeftFront from "../Shyguys/Red/ShyGuyLeftFront.png"
 import ShyGuyLeftBehind from "../Shyguys/Red/ShyGuyLeftBehind.png"
 import ShyGuyBehindRight from "../Shyguys/Red/ShyGuyBehindRight.png"
 import ShyGuyBehindLeft from "../Shyguys/Red/ShyGuyBehindLeft.png"
+
+import ShyGuyLeftFrontGif from "../Shyguys/Red/ShyguyLeftFront.gif"
+import ShyGuyRightFrontGif from "../Shyguys/Red/ShyGuyRightFront.gif"
+import ShyGuyLeftBehindGif from "../Shyguys/Red/ShyGuyLeftBehind.gif"
+import ShyGuyRightBehindGif from "../Shyguys/Red/ShyGuyRightBehind.gif"
+
 import ChairBehindLeft from "../Chairs/TableClosed/TischHintererStuhlLinks.png"
 import ChairBehindRight from "../Chairs/TableClosed/TischHintererStuhlRechts.png"
 import ChairLeftBehind from "../Chairs/TableClosed/TischLinkerHintererStuhl.png"
 import ChairLeftFront from "../Chairs/TableClosed/TischLinkerVordererStuhl.png"
 import ChairRightFront from "../Chairs/TableClosed/TischRechterVordererStuhl.png"
 import ChairRightBehind from "../Chairs/TableClosed/TischRechterHintererStuhl.png"
+
 import ChairRightFrontOPEN from "../Chairs/TableOpen/RightFrontChairOPEN.png"
 import ChairLeftFrontOPEN from "../Chairs/TableOpen/LeftFrontChairOPEN.png"
 
@@ -106,41 +113,18 @@ class Picture extends React.Component{
         <div>
         <BackgroundContainer className = 'tablePlain'>
         </BackgroundContainer>
-            <ImageContainer src={ChairBehindLeft}>
-            </ImageContainer>
-            <ImageContainer src={ChairBehindRight}>
-            </ImageContainer>
-            <ImageContainer src={ChairLeftBehind}>
-            </ImageContainer>
 
 
-            {this.state.counter > 1 ? <ImageContainer src={ChairLeftFrontOPEN}>
-            </ImageContainer>: null}
-            <ImageContainer src={ChairRightBehind}>
-            </ImageContainer>
-            {this.state.counter > 2 ? <ImageContainer src={ChairRightFrontOPEN}>
-            </ImageContainer>: null}
 
 
-            {this.state.counter < 3 ? <ImageContainer src={ChairRightFront}>
-            </ImageContainer>: null}
-            <ImageContainer src={ChairRightBehind}>
-            </ImageContainer>
-            {this.state.counter < 2 ? <ImageContainer src={ChairLeftFront}>
-            </ImageContainer>: null}
 
-            {this.state.counter >6 ?<ImageContainer src={ShyGuyBehindLeft}>
-            </ImageContainer>: null}
-            {this.state.counter >5 ? <ImageContainer src={ShyGuyBehindRight}>
-            </ImageContainer> : null}
-            {this.state.counter >3 ?<ImageContainer src={ShyGuyLeftBehind}>
-            </ImageContainer>: null}
-            {this.state.counter >1 ?<ImageContainer src={ShyGuyLeftFront}>
-            </ImageContainer>: null}
-            {this.state.counter >4 ?<ImageContainer src={ShyGuyRightBehind}>
-            </ImageContainer>: null}
-            {this.state.counter >2 ?<ImageContainer src={ShyGuyRightFront}>
-            </ImageContainer>: null}
+            {this.state.counter >6 ? <ImageContainer src={ShyGuyBehindRight}/> :<ImageContainer src={ChairBehindRight}/>}
+            {this.state.counter >5 ?<ImageContainer src={ShyGuyBehindLeft}/> :   <ImageContainer src={ChairBehindLeft}/>}
+            {this.state.counter >4 ?<ImageContainer src={ShyGuyRightBehindGif}/> : <ImageContainer src={ChairRightBehind}/>}
+            {this.state.counter >3 ?<ImageContainer src={ShyGuyLeftBehindGif}/> : <ImageContainer src={ChairLeftBehind}/>}
+            {this.state.counter >2 ?<ImageContainer src={ShyGuyRightFrontGif}/> : <ImageContainer src={ChairRightFront}/>}
+            {this.state.counter >1 ?<ImageContainer src={ShyGuyLeftFrontGif}/> : <ImageContainer src={ChairLeftFront}/>}
+
 
             <BackgroundContainer className= 'table'>
             </BackgroundContainer>
