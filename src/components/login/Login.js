@@ -5,7 +5,6 @@ import User from '../shared/models/User';
 import { withRouter } from 'react-router-dom';
 import { Button } from '../../views/design/Button';
 import {InputField} from "../../views/design/InputField";
-import {UserWrapper} from "../../views/design/UserWrapper";
 import Sound from 'react-sound';
 import open_creaky_door from '../login/assets/open_creaky_door.mp3'
 import { BlinkingPixelButton } from '../profile/Assets/profileAssets';
@@ -24,20 +23,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-`;
-
-
-const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  
-`;
-
-const Label = styled.label`
-  color: black;
-  font-weight: 900;
-  font-size: 40px;
-  font-family: 'Open Sans' 
 `;
 
 const PhoneContainer = styled.div`
@@ -67,11 +52,37 @@ const AdvertismentText = styled.div`
   font-size: 35px;
 `
 
+
+const DoorEnterText = styled.span`
+  cursor: pointer;
+  margin-left: 330px;
+  height: 200px;
+  width: 100px;
+  color: black;
+  font-size: 30px;
+  text-align: center;
+`
+
  export const LogoContainer = styled.div`
   display: flex;
   justify-content: center;
   margin-left: 315px;
 `
+
+  const LoginFields = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: ${props => props.marginLeft || "-30px"};
+  margin-bottom: ${props => props.marginBottom || "20px"};
+  margin-top: ${props => props.marginTop};
+  box-shadow: none;
+  border-radius: ${props => props.borderRadius || "0px"};
+  padding-left: 5px;
+  height: ${props => props.height};
+  width: ${props => props.width || "100%"};
+  color: ${props => props.color};
+  font-size: ${props => props.fontSize};
+`;
 
 class Login extends React.Component {
 
@@ -92,18 +103,17 @@ class Login extends React.Component {
   _handleKeyDown = (e) => {
       if (e.key === 'Enter'){
           this.logging();
-          this.handleDoor();
           this.login();
       }
   }
 
   toggleError = () => {
-    this.setState((prevState, props) => {return{showError: !prevState.showError}
+    this.setState(() => {return{showError: true}
     })
   };
 
   toggleErrorFalse = () => {
-    this.setState((prevState, props) => {return{showError: false}
+    this.setState(() => {return{showError: false}
     })
   };
 
@@ -116,25 +126,25 @@ class Login extends React.Component {
   }
 
   async login() {
-      this.handleDoor();
     try {
-        this.toggleErrorFalse();
-        await new Promise(resolve => setTimeout(resolve, 1500));
         const requestBody = JSON.stringify({
             username: this.state.username,
             password: this.state.password,
             token: null
         });
         const url = await api.put('/login', requestBody);
+        if(url.status === 200){
+          this.handleDoor();
+          this.toggleErrorFalse();
+          await new Promise(resolve => setTimeout(resolve, 1500));
+          const user = new User(url.data);
 
-        const user = new User(url.data);
-
-        if (user.token != null){
-            localStorage.setItem('token', user.token);
-            localStorage.setItem('id', user.id);
-            this.props.history.push(`/game`);
+          if (user.token != null){
+              localStorage.setItem('token', user.token);
+              localStorage.setItem('id', user.id);
+              this.props.history.push(`/game`);
+          }
         }
-
         if(url.status === 204){
             this.toggleError();
         }
@@ -144,11 +154,10 @@ class Login extends React.Component {
 
   }
 
-  async handleDoor(){
+  handleDoor(){
       this.toggleSound();
       this.backgroundChangeToGif();
       this.handleInputChange('musicStatus', Sound.status.STOPPED)
-      setTimeout(() => {this.backgroundChangeToPng()}, 2100 );
       setTimeout(() => {this.unToggleSound()}, 2500);
   }
 
@@ -164,7 +173,6 @@ class Login extends React.Component {
 
   backgroundChangeToPng(){
       this.handleInputChange('picture', "backgroundLogin");
-
   }
 
   logging(){
@@ -175,28 +183,30 @@ class Login extends React.Component {
       this.props.changeMusicToDim()
   }
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-      if(this.state.logIn !== nextState.logIn || this.state.playStatus !== nextState.playStatus ){
+    shouldComponentUpdate(nextState) {
+      if(
+        this.state.logIn !== nextState.logIn || 
+        this.state.playStatus !== nextState.playStatus || 
+        this.state.picture !== nextState.picture ||
+        this.state.showError !== nextState.showError){
           return true;}
       return false;
   }
 
     render() {
     return (
-        <FormContainer className={this.state.picture}
-        >
+        <FormContainer className={this.state.picture}>
           <Container>
               <Sound url={open_creaky_door}
                      playStatus={this.state.playStatus}
                      playFromPosition={100}
                      volume={20}
               />
-            {this.state.showError && <Label className="error-message">User is already logged in!</Label>}
           </Container>
           <LogoContainer>          
             <img src={require('./assets/logo_j1.gif')} width="150" alt="J1 blinking neon-sign"/>
           </LogoContainer>
-              <UserWrapper>
+              <LoginFields>
                 <InputField
                     placeholder="Enter username"
                     width="30%"
@@ -213,8 +223,8 @@ class Login extends React.Component {
                     height="1rem"
                     disabled="true"
                 />
-              </UserWrapper>
-              <UserWrapper>
+              </LoginFields>
+              <LoginFields>
                 <InputField
                     placeholder="Enter password"
                     width="30%"
@@ -225,25 +235,26 @@ class Login extends React.Component {
                     }}
                     onKeyDown={this._handleKeyDown}
                 />
-
-              </UserWrapper>
-              <ButtonContainer>
-                <Button
-                    hover = "none"
-                    marginLeft ="330px"
-                    height = "220px"
-                    width="100px"
-                    marginTop="null"
-                    background= "none"
-                    opacity= "0"
-                    boxShadow = "null"
-                    onClick={() => {
-                        this.logging();
-                        this.login();
+              </LoginFields>
+                <LoginFields
+                  marginLeft = "-25px"
+                  marginBottom="none"
+                  color="red"
+                  height="25px"
+                  fontSize="25px"
+                  >
+                    {this.state.showError && "User already logged in"}
+                </LoginFields>
+              
+                <DoorEnterText
+                  onClick={() => {
+                    this.logging();
+                    this.login();
                     }}
                 >
-                </Button>
-              </ButtonContainer>
+                  {this.state.picture === "backgroundLogin" &&
+                  "Enter"}
+                </DoorEnterText>
               <PhoneContainer 
                 className = "buttonImage">
                 <RegisterContainer>
