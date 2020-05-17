@@ -93,7 +93,7 @@ class VoteOnClueState extends React.Component{
                 currentGuesserId: props.currentGuesserId,
                 clues: props.clues,
                 players: props.players,
-                invalidClues: props.clues
+                invalidClues: props.invalidClues
             };
         }
         // Return null if the state hasn't changed
