@@ -38,7 +38,8 @@ class TransitionState extends React.Component{
             currentGuesserId: null,
             players: [],
             isGuessCorrect: null,
-            currentWord: ''
+            currentWord: '',
+            currentGuess: null
         };
     }
 
@@ -52,12 +53,14 @@ class TransitionState extends React.Component{
     //when the props from parent changes this is called to change states
     static getDerivedStateFromProps(props, state) {
         if (props.currentGuesserId !== state.currentGuesserId || props.players !== state.players
-            || props.isGuessCorrect !== state.isGuessCorrect || props.currentWord !== state.currentWord) {
+            || props.isGuessCorrect !== state.isGuessCorrect || props.currentWord !== state.currentWord
+            || props.currentGuess !== state.currentGuess) {
             return {
                 currentGuesserId: props.currentGuesserId,
                 players: props.players,
                 isGuessCorrect: props.isGuessCorrect,
-                currentWord: props.currentWord
+                currentWord: props.currentWord,
+                currentGuess: props.currentGuess
             };
         }
         // Return null if the state hasn't changed
@@ -105,6 +108,7 @@ class TransitionState extends React.Component{
                     </TextLeft>
                     </ScoreContainer>
                     <ScoreContainer> <TextLeft>The word was {this.state.currentWord}</TextLeft> </ScoreContainer>
+                    <ScoreContainer><TextLeft><div>Your teammate guessed: {this.state.currentGuess}</div></TextLeft></ScoreContainer>
                 </Container>
         )
     }
