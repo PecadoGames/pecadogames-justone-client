@@ -50,10 +50,11 @@ class Picture extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            players: null,
+            players: [],
             interval: null,
             gameState: null,
-            currentGuesserId: null
+            currentGuesserId: null,
+            counter: 0
         };
     }
 
@@ -65,13 +66,23 @@ class Picture extends React.Component{
         this.getGame()
     }
 
+    count(){
+        let counter = 0
+        for (let a in this.state.players){
+            counter = counter + 1
+        }
+        this.handleInputChange('counter', counter)
+
+    }
+
     //if we want to do something special with players or gameState
     async getGame(){
         try{
             this.state.interval = setInterval(async ()=>{const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/game?token=${localStorage.getItem('token')}`);
                 this.handleInputChange('currentGuesserId', response.data.currentGuesser.id);
                 this.handleInputChange('gameState', response.data.gameState);
-                this.handleInputChange('players', response.data.players);}
+                this.handleInputChange('players', response.data.players);
+                this.count()}
                 ,1000)
         }
         catch(error){
@@ -80,7 +91,7 @@ class Picture extends React.Component{
 
     //only updates after the state changes
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if (this.state.gameState !== nextState.gameState) {
+        if (this.state.gameState !== nextState.gameState || this.state.counter !== nextState.counter) {
             return true;}
         return false
     }
@@ -101,24 +112,36 @@ class Picture extends React.Component{
             </ImageContainer>
             <ImageContainer src={ChairLeftBehind}>
             </ImageContainer>
-            <ImageContainer src={ChairLeftFrontOPEN}>
-            </ImageContainer>
+
+
+            {this.state.counter > 1 ? <ImageContainer src={ChairLeftFrontOPEN}>
+            </ImageContainer>: null}
             <ImageContainer src={ChairRightBehind}>
             </ImageContainer>
-            <ImageContainer src={ChairRightFrontOPEN}>
+            {this.state.counter > 2 ? <ImageContainer src={ChairRightFrontOPEN}>
+            </ImageContainer>: null}
+
+
+            {this.state.counter < 3 ? <ImageContainer src={ChairRightFront}>
+            </ImageContainer>: null}
+            <ImageContainer src={ChairRightBehind}>
             </ImageContainer>
-            <ImageContainer src={ShyGuyBehindLeft}>
-            </ImageContainer>
-            <ImageContainer src={ShyGuyBehindRight}>
-            </ImageContainer>
-            <ImageContainer src={ShyGuyLeftBehind}>
-            </ImageContainer>
-            <ImageContainer src={ShyGuyLeftFront}>
-            </ImageContainer>
-            <ImageContainer src={ShyGuyRightBehind}>
-            </ImageContainer>
-            <ImageContainer src={ShyGuyRightFront}>
-            </ImageContainer>
+            {this.state.counter < 2 ? <ImageContainer src={ChairLeftFront}>
+            </ImageContainer>: null}
+
+            {this.state.counter >6 ?<ImageContainer src={ShyGuyBehindLeft}>
+            </ImageContainer>: null}
+            {this.state.counter >5 ? <ImageContainer src={ShyGuyBehindRight}>
+            </ImageContainer> : null}
+            {this.state.counter >3 ?<ImageContainer src={ShyGuyLeftBehind}>
+            </ImageContainer>: null}
+            {this.state.counter >1 ?<ImageContainer src={ShyGuyLeftFront}>
+            </ImageContainer>: null}
+            {this.state.counter >4 ?<ImageContainer src={ShyGuyRightBehind}>
+            </ImageContainer>: null}
+            {this.state.counter >2 ?<ImageContainer src={ShyGuyRightFront}>
+            </ImageContainer>: null}
+
             <BackgroundContainer className= 'table'>
             </BackgroundContainer>
 
