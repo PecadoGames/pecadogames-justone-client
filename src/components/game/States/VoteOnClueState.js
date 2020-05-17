@@ -62,7 +62,8 @@ class VoteOnClueState extends React.Component{
             clues: [],
             votes: [],
             voted: false,
-            players: []
+            players: [],
+            invalidClues: []
         };
     }
 
@@ -86,11 +87,13 @@ class VoteOnClueState extends React.Component{
 
     //when the props from parent changes this is called to change states
     static getDerivedStateFromProps(props, state) {
-        if (props.currentGuesserId !== state.currentGuesserId || props.clues !== state.clues || props.players !== state.players) {
+        if (props.currentGuesserId !== state.currentGuesserId || props.clues !== state.clues
+            || props.players !== state.players || props.invalidClues !== state.invalidClues) {
             return {
                 currentGuesserId: props.currentGuesserId,
                 clues: props.clues,
-                players: props.players
+                players: props.players,
+                invalidClues: props.clues
             };
         }
         // Return null if the state hasn't changed
@@ -155,6 +158,18 @@ class VoteOnClueState extends React.Component{
         }
     }
 
+    displayDarkClue(clue){
+        if (clue.length <= 8){
+            return <TextSignLeft style={{fontSize: 20}}>{clue}</TextSignLeft>
+        }
+        else if (clue.length <= 11){
+            return <TextSignLeft style={{fontSize: 14, marginTop: 33}}>{clue}</TextSignLeft>
+        }
+        else{
+            return <TextSignLeft style={{fontSize: 10, marginTop: 35}}>{clue}</TextSignLeft>
+        }
+    }
+
 
     render(){
         return(
@@ -172,9 +187,9 @@ class VoteOnClueState extends React.Component{
                     </Wrapper1>
                     <SignContainer>
                         {this.state.clues.map(clue => {
-                            return (<SignLeft className={"guess-sign-left"}>{this.displayClue(clue)}
-                                {this.isInList(clue) ?
-                                    <Button onClick={()=>{this.addToList(clue)}}
+                            return (<SignLeft className={"guess-sign-left"}>{this.displayClue(clue.actualClue)}
+                                {this.isInList(clue.actualClue) ?
+                                    <Button onClick={()=>{this.addToList(clue.actualClue)}}
                                             background='none'
                                             boxShadow='none'
                                             color='#008000'
@@ -182,12 +197,16 @@ class VoteOnClueState extends React.Component{
                                             weight='bold'>✓</Button>
                                     :
                                     <Button
-                                        onClick={()=>{this.removeFromList(clue)}}
+                                        onClick={()=>{this.removeFromList(clue.actualClue)}}
                                         background='none'
                                         boxShadow='none'
                                         color='#FF0000'
                                         fontSize='40px'
                                         weight='bold'>X</Button>}</SignLeft>)})}
+
+                        {this.state.invalidClues.map(clue => {
+                            return (<SignLeft className={"guess-sign-red"}>{this.displayDarkClue(clue.actualClue)}</SignLeft>)})}
+
                     </SignContainer>
                 </Wrapper>
 

@@ -74,7 +74,8 @@ class EnterGuessState extends React.Component{
         this.state = {
             clues: [],
             guess: null,
-            currentGuesserId: null
+            currentGuesserId: null,
+            invalidClues: []
         };
     }
 
@@ -114,10 +115,11 @@ class EnterGuessState extends React.Component{
 
     //when the props from parent changes this is called to change states
     static getDerivedStateFromProps(props, state) {
-        if (props.clues !== state.clues || props.currentGuesserId !== state.currentGuesserId) {
+        if (props.clues !== state.clues || props.currentGuesserId !== state.currentGuesserId || props.invalidClues !== state.invalidClues) {
             return {
                 clues: props.clues,
-                currentGuesserId: props.currentGuesserId
+                currentGuesserId: props.currentGuesserId,
+                invalidClues: props.invalidClues
             };
         }
         // Return null if the state hasn't changed
@@ -173,7 +175,7 @@ class EnterGuessState extends React.Component{
                     <div>
                         <SignContainer>
                             {this.state.clues.map(clue => {
-                                return (<SignLeft className={"guess-sign-left"}>{this.displayClue(clue)}</SignLeft>)})}
+                                return (<SignLeft className={"guess-sign-left"}>{this.displayClue(clue.actualClue)}</SignLeft>)})}
                         </SignContainer>
                     </div>
                 </Wrapper>
@@ -187,7 +189,9 @@ class EnterGuessState extends React.Component{
                     <div>
                         <SignContainer>
                             {this.state.clues.map(clue => {
-                                return (<SignLeft className={"guess-sign-left"}>{this.displayClue(clue)}</SignLeft>)})}
+                                return (<SignLeft className={"guess-sign-left"}>{this.displayClue(clue.actualClue)}</SignLeft>)})}
+                            {this.state.invalidClues.map(clue => {
+                                return (<SignLeft className={"guess-sign-red"}>{this.displayClue(clue.actualClue)}</SignLeft>)})}
                         </SignContainer>
                     </div>
                 </Wrapper>

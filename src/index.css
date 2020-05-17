@@ -211,6 +211,13 @@ button {
   margin: auto;
 }
 
+.guess-sign-red{
+  background-image: url("guess-sign-red.png");
+  background-size: 150px 80px, contain;
+  background-repeat: no-repeat;
+  margin: auto;
+}
+
 .lobbyInvitePhone{
   background-image: url("phone_small.png");
   background-size: 200px 346px, contain;

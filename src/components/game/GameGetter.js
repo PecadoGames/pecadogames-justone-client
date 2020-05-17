@@ -79,7 +79,8 @@ class GameGetter extends React.Component{
             lobbyName: '',
             clues: [],
             specialGame: false,
-            isGuessCorrect: null
+            isGuessCorrect: null,
+            invalidClues: []
         };
     }
 
@@ -126,8 +127,9 @@ class GameGetter extends React.Component{
                 this.handleInputChange('players', response.data.players);
                 this.handleInputChange('lobbyName', response.data.lobbyName);
                 this.handleInputChange('currentWord', response.data.currentWord);
-                this.handleInputChange('clues', response.data.cluesAsString);
+                this.handleInputChange('clues', response.data.enteredClues);
                 this.handleInputChange('specialGame', response.data.specialGame);
+                this.handleInputChange('invalidClues', response.data.invalidClues);
                 this.handleInputChange('isGuessCorrect', response.data.guessCorrect);
                 this.handleInputChange('score', response.data.overallScore);
                 this.handleInputChange('rounds', response.data.roundsPlayed)},500)
@@ -258,10 +260,10 @@ class GameGetter extends React.Component{
                     <BottomRightContainer>
                         <InsideContainer>
                             {this.displayPickWordState() ? <PickWordState pickWordFunction={this.pickWord} currentGuesserId = {this.state.currentGuesserId}/>:null}
-                            {this.displayEnterCluesState() ? <EnterCluesState players = {this.state.players} currentWord = {this.state.currentWord} specialGame = {this.state.specialGame} currentGuesserId = {this.state.currentGuesserId}/>:null}
-                            {this.displayVoteOnClueState() ? <VoteOnClueState  players = {this.state.players} currentGuesserId = {this.state.currentGuesserId} clues={this.state.clues}/> : null}
-                            {this.displayEnterGuessState() ? <EnterGuessState  currentGuesserId = {this.state.currentGuesserId} clues={this.state.clues}/>: null}
-                            {this.displayTransitionState()? <TransitionState currentWord = {this.state.currentWord} currentGuesserId = {this.state.currentGuesserId} players = {this.state.players} isGuessCorrect = {this.state.isGuessCorrect}/>: null}
+                            {this.displayEnterCluesState() ? <EnterCluesState  players = {this.state.players} currentWord = {this.state.currentWord} specialGame = {this.state.specialGame} currentGuesserId = {this.state.currentGuesserId}/>:null}
+                            {this.displayVoteOnClueState() ? <VoteOnClueState  invalidClues={this.state.invalidClues} players = {this.state.players} currentGuesserId = {this.state.currentGuesserId} clues={this.state.clues}/> : null}
+                            {this.displayEnterGuessState() ? <EnterGuessState  invalidClues={this.state.invalidClues} currentGuesserId = {this.state.currentGuesserId} clues={this.state.clues}/>: null}
+                            {this.displayTransitionState()? <TransitionState  currentWord = {this.state.currentWord} currentGuesserId = {this.state.currentGuesserId} players = {this.state.players} isGuessCorrect = {this.state.isGuessCorrect}/>: null}
                             {this.displayEndGameState() ? <EndGameState players = {this.state.players}/> : null}
                         </InsideContainer>
                     </BottomRightContainer>

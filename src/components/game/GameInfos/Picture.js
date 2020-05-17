@@ -2,6 +2,7 @@ import styled from "styled-components";
 import {withRouter} from "react-router-dom";
 import React from "react";
 import {api} from "../../../helpers/api";
+
 import ShyGuyRightFront from "../Shyguys/Red/ShyGuyRightFront.png"
 import ShyGuyRightBehind from "../Shyguys/Red/ShyGuyRightBehind.png"
 import ShyGuyLeftFront from "../Shyguys/Red/ShyGuyLeftFront.png"
@@ -22,9 +23,6 @@ import ChairLeftBehind from "../Chairs/TableClosed/TischLinkerHintererStuhl.png"
 import ChairLeftFront from "../Chairs/TableClosed/TischLinkerVordererStuhl.png"
 import ChairRightFront from "../Chairs/TableClosed/TischRechterVordererStuhl.png"
 import ChairRightBehind from "../Chairs/TableClosed/TischRechterHintererStuhl.png"
-
-import ChairRightFrontOPEN from "../Chairs/TableOpen/RightFrontChairOPEN.png"
-import ChairLeftFrontOPEN from "../Chairs/TableOpen/LeftFrontChairOPEN.png"
 
 
 
@@ -52,9 +50,6 @@ const ImageContainer = styled.img`
    margin-top: 100px;
 
     `
-
-
-
 
 class Picture extends React.Component{
     constructor(props) {
@@ -117,17 +112,15 @@ class Picture extends React.Component{
         <BackgroundContainer className = 'tablePlain'>
         </BackgroundContainer>
 
-            {this.state.counter >6 ? <ImageContainer src={ShyGuyBehindRightGif}/> : <ImageContainer src={ChairBehindRight}/>}
-            {this.state.counter >5 ?<ImageContainer src={ShyGuyBehindLeftGif}/> : <ImageContainer src={ChairBehindLeft}/>}
-            {this.state.counter >4 ?<ImageContainer src={ShyGuyRightBehindGif}/> : <ImageContainer src={ChairRightBehind}/>}
-            {this.state.counter >3 ?<ImageContainer src={ShyGuyLeftBehindGif}/> : <ImageContainer src={ChairLeftBehind}/>}
-            {this.state.counter >2 ?<ImageContainer src={ShyGuyRightFrontGif}/> : <ImageContainer src={ChairRightFront}/>}
-            {this.state.counter >1 ?<ImageContainer src={ShyGuyLeftFrontGif}/> : <ImageContainer src={ChairLeftFront}/>}
+            {this.state.counter > 6 ? <ImageContainer src={ShyGuyBehindRightGif}/> : <ImageContainer src={ChairBehindRight}/>}
+            {this.state.counter > 5 ? <ImageContainer src={ShyGuyBehindLeftGif}/> : <ImageContainer src={ChairBehindLeft}/>}
+            {this.state.counter > 4 ? <ImageContainer src={ShyGuyRightBehindGif}/> : <ImageContainer src={ChairRightBehind}/>}
+            {this.state.counter > 3 ? <ImageContainer src={ShyGuyLeftBehindGif}/> : <ImageContainer src={ChairLeftBehind}/>}
+            {this.state.counter > 2 ? <ImageContainer src={ShyGuyRightFrontGif}/> : <ImageContainer src={ChairRightFront}/>}
+            {this.state.counter > 1 ? <ImageContainer src={ShyGuyLeftFrontGif}/> : <ImageContainer src={ChairLeftFront}/>}
 
             <BackgroundContainer className= 'table'>
             </BackgroundContainer>
-
-
         </div>
         )
     }
