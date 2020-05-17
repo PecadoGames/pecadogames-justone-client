@@ -71,17 +71,17 @@ class VoteOnClueState extends React.Component{
     }
 
     componentDidMount() {
-        this.hasVoted()
     }
 
     hasVoted(){
         for (let a in this.state.players){
             if (this.state.players[a].id === parseInt(localStorage.getItem('id'))){
                 if(this.state.players[a].voted === true){
-                    this.handleInputChange('voted', true)
+                    return true;
                 }
             }
         }
+        return false;
     }
 
     //when the props from parent changes this is called to change states
@@ -119,6 +119,7 @@ class VoteOnClueState extends React.Component{
     catch(error){
             alert(`Something went wrong during the voting \n${handleError(error)}`)
         }
+        this.handleInputChange('voted', true)
     }
 
     addToList(clue){
@@ -157,7 +158,7 @@ class VoteOnClueState extends React.Component{
 
     render(){
         return(
-            this.renderForGuesser()  || this.state.voted ?
+            this.renderForGuesser()  || this.hasVoted() ?
                 <Text>Wait until your friends voted!</Text>
                 :
                 <Wrapper>
@@ -165,7 +166,6 @@ class VoteOnClueState extends React.Component{
                         <Button  background='#FAEBD7'
                                  boxShadow='none'
                                  width='200px'
-
                                  color='black'
                                  fontSize='30px'
                                  onClick={()=>{this.voteOnClues()}}>Send Vote</Button>

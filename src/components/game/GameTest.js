@@ -108,7 +108,7 @@ class GameTest extends React.Component{
             return <EndGameState players={this.state.players}/>
         }
         if(this.state.stateName === 'EnterCluesState'){
-            return <EnterCluesState currentWord={this.state.currentWord } specialGame={this.state.specialGame} currentGuesserId={this.state.number}/>
+            return <EnterCluesState players={this.state.players} currentWord={this.state.currentWord } specialGame={this.state.specialGame} currentGuesserId={this.state.number}/>
         }
         if(this.state.stateName === 'EnterGuessState'){
             return <EnterGuessState clues={this.state.clues} currentGuesserId={this.state.number}/>

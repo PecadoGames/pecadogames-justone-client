@@ -58,7 +58,8 @@ class EnterCluesState extends React.Component{
             clue: '',
             clue2: '',
             currentWord: '',
-            submitted: false
+            clueIsSent: false,
+            players: []
         };
     }
 
@@ -67,21 +68,28 @@ class EnterCluesState extends React.Component{
     }
 
     componentDidMount() {
+
     }
 
     //when the props from parent changes this is called to change states
     static getDerivedStateFromProps(props, state) {
         if (props.currentGuesserId !== state.currentGuesserId || props.specialGame !== state.specialGame
+            || props.players !== state.players
             || props.currentWord !== state.currentWord) {
             return {
                 currentGuesserId: props.currentGuesserId,
                 specialGame: props.specialGame,
-                currentWord: props.currentWord
+                currentWord: props.currentWord,
+                players: props.players
             };
         }
         // Return null if the state hasn't changed
         return null;
     }
+
+
+
+
 
     renderForGuesser(){
         const guesser = this.state.currentGuesserId;
@@ -92,9 +100,19 @@ class EnterCluesState extends React.Component{
         else {return false;}
     }
 
+    hasSend(){
+        for (let a in this.state.players){
+            if (this.state.players[a].id === parseInt(localStorage.getItem('id'))){
+                if(this.state.players[a].clueIsSent === true){
+                   return true;
+                }
+            }
+        }
+        return false;
+    }
+
     async submit(){
         try {
-            this.handleInputChange('submitted', true)
             const requestBody = JSON.stringify({
                 playerId: localStorage.getItem('id'),
                 playerToken: localStorage.getItem('token'),
@@ -106,6 +124,7 @@ class EnterCluesState extends React.Component{
         catch(error){
             alert(`Something went wrong during the voting \n${handleError(error)}`)
         }
+        this.handleInputChange('clueIsSent', true)
     }
 
     _handleKeyDown = (e) => {
@@ -119,7 +138,7 @@ class EnterCluesState extends React.Component{
 
     render(){
         return(
-            this.renderForGuesser() || this.state.submitted ?
+            this.renderForGuesser() || this.hasSend()?
                 <Wrapper style={{marginTop:"470px"}}>
                     <Container>
                         Your team mates are currently entering clues.

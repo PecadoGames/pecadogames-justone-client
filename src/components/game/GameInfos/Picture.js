@@ -13,6 +13,8 @@ import ShyGuyLeftFrontGif from "../Shyguys/Red/ShyguyLeftFront.gif"
 import ShyGuyRightFrontGif from "../Shyguys/Red/ShyGuyRightFront.gif"
 import ShyGuyLeftBehindGif from "../Shyguys/Red/ShyGuyLeftBehind.gif"
 import ShyGuyRightBehindGif from "../Shyguys/Red/ShyGuyRightBehind.gif"
+import ShyGuyBehindLeftGif from "../Shyguys/Red/ShyGuyBehindLeft.gif"
+import ShyGuyBehindRightGif from "../Shyguys/Red/ShyGuyBehindRight.gif"
 
 import ChairBehindLeft from "../Chairs/TableClosed/TischHintererStuhlLinks.png"
 import ChairBehindRight from "../Chairs/TableClosed/TischHintererStuhlRechts.png"
@@ -34,8 +36,8 @@ const BackgroundContainer = styled.div`
    align-items: flex-start;
    height: 700px;
    width: 800px
+   margin: auto+400px;
    margin-top: 100px;
-   margin-left: 400px;
     `
 
 
@@ -46,8 +48,9 @@ const ImageContainer = styled.img`
    align-items: flex-start;
    height: 700px;
    width: 800px
+   margin: auto+400px;
    margin-top: 100px;
-   margin-left: 400px;
+
     `
 
 
@@ -114,17 +117,12 @@ class Picture extends React.Component{
         <BackgroundContainer className = 'tablePlain'>
         </BackgroundContainer>
 
-
-
-
-
-            {this.state.counter >6 ? <ImageContainer src={ShyGuyBehindRight}/> :<ImageContainer src={ChairBehindRight}/>}
-            {this.state.counter >5 ?<ImageContainer src={ShyGuyBehindLeft}/> :   <ImageContainer src={ChairBehindLeft}/>}
+            {this.state.counter >6 ? <ImageContainer src={ShyGuyBehindRightGif}/> : <ImageContainer src={ChairBehindRight}/>}
+            {this.state.counter >5 ?<ImageContainer src={ShyGuyBehindLeftGif}/> : <ImageContainer src={ChairBehindLeft}/>}
             {this.state.counter >4 ?<ImageContainer src={ShyGuyRightBehindGif}/> : <ImageContainer src={ChairRightBehind}/>}
             {this.state.counter >3 ?<ImageContainer src={ShyGuyLeftBehindGif}/> : <ImageContainer src={ChairLeftBehind}/>}
             {this.state.counter >2 ?<ImageContainer src={ShyGuyRightFrontGif}/> : <ImageContainer src={ChairRightFront}/>}
             {this.state.counter >1 ?<ImageContainer src={ShyGuyLeftFrontGif}/> : <ImageContainer src={ChairLeftFront}/>}
-
 
             <BackgroundContainer className= 'table'>
             </BackgroundContainer>
