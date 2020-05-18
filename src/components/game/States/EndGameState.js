@@ -64,7 +64,8 @@ class EndGameState extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            players: []
+            players: [],
+            timer: 10
         };
     }
 
@@ -75,6 +76,20 @@ class EndGameState extends React.Component{
     //redirects user to lobby after 10 seconds
     componentDidMount() {
         setTimeout(() => {this.redirectToLobby()}, 10000 );
+        setTimeout(() => {this.timer()}, 1000 );
+        setTimeout(() => {this.timer()}, 2000 );
+        setTimeout(() => {this.timer()}, 3000 );
+        setTimeout(() => {this.timer()}, 4000 );
+        setTimeout(() => {this.timer()}, 5000 );
+        setTimeout(() => {this.timer()}, 6000 );
+        setTimeout(() => {this.timer()}, 7000 );
+        setTimeout(() => {this.timer()}, 8000 );
+        setTimeout(() => {this.timer()}, 9000 );
+        setTimeout(() => {this.timer()}, 10000 );
+    }
+
+    timer(){
+        this.handleInputChange('timer', this.state.timer -1)
     }
 
     redirectToLobby(){
@@ -99,7 +114,7 @@ class EndGameState extends React.Component{
             <Wrapper>
 
                 <Text>Game Over!</Text>
-                You will be redirected to the lobby in 10 seconds
+                You will be redirected to the lobby in {this.state.timer} seconds
                 <Line/>
                 <Container>
                     {this.state.players.map(player => {
