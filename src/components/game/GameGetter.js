@@ -170,7 +170,7 @@ class GameGetter extends React.Component{
         //returns true if gamestate is PICKWORDSTATE and the user is the guesser
         if (this.state.gameState) {
             let state1 = this.state.gameState
-            let state2 = "PICKWORDSTATE"
+            let state2 = "PICK_WORD_STATE"
             if (state1 === state2){
                 return true
             }
@@ -183,7 +183,7 @@ class GameGetter extends React.Component{
     displayVoteOnClueState(){
         if (this.state.gameState) {
             let state1 = this.state.gameState
-            let state2 = "VOTEONCLUESSTATE"
+            let state2 = "VOTE_ON_CLUES_STATE"
             if (state1 === state2){
                 return true
             }
@@ -196,7 +196,7 @@ class GameGetter extends React.Component{
     displayEnterCluesState(){
         if (this.state.gameState) {
             let state1 = this.state.gameState
-            let state2 = "ENTERCLUESSTATE"
+            let state2 = "ENTER_CLUES_STATE"
             if (state1 === state2){
                 return true
             }
@@ -209,7 +209,7 @@ class GameGetter extends React.Component{
     displayEndGameState(){
         if (this.state.gameState) {
             let state1 = this.state.gameState
-            let state2 = "ENDGAMESTATE"
+            let state2 = "END_GAME_STATE"
             if (state1 === state2){
                 return true
             }
@@ -222,7 +222,7 @@ class GameGetter extends React.Component{
     displayEnterGuessState(){
         if (this.state.gameState) {
             let state1 = this.state.gameState
-            let state2 = "ENTERGUESSSTATE"
+            let state2 = "ENTER_GUESS_STATE"
             if (state1 === state2){
                 return true
             }
@@ -234,7 +234,7 @@ class GameGetter extends React.Component{
     displayTransitionState(){
         if (this.state.gameState) {
             let state1 = this.state.gameState
-            let state2 = "TRANSITIONSTATE"
+            let state2 = "TRANSITION_STATE"
             if (state1 === state2){
                 return true
             }
@@ -266,7 +266,7 @@ class GameGetter extends React.Component{
                             {this.displayEnterCluesState() ? <EnterCluesState  players = {this.state.players} currentWord = {this.state.currentWord} specialGame = {this.state.specialGame} currentGuesserId = {this.state.currentGuesserId}/>:null}
                             {this.displayVoteOnClueState() ? <VoteOnClueState  invalidClues={this.state.invalidClues} players = {this.state.players} currentGuesserId = {this.state.currentGuesserId} clues={this.state.clues}/> : null}
                             {this.displayEnterGuessState() ? <EnterGuessState  invalidClues={this.state.invalidClues} currentGuesserId = {this.state.currentGuesserId} clues={this.state.clues}/>: null}
-                            {this.displayTransitionState()? <TransitionState  currentGuess= {this.state.currentGuess}currentWord = {this.state.currentWord} currentGuesserId = {this.state.currentGuesserId} players = {this.state.players} isGuessCorrect = {this.state.isGuessCorrect}/>: null}
+                            {this.displayTransitionState()? <TransitionState  currentGuess= {this.state.currentGuess} currentWord = {this.state.currentWord} currentGuesserId = {this.state.currentGuesserId} players = {this.state.players} isGuessCorrect = {this.state.isGuessCorrect}/>: null}
                             {this.displayEndGameState() ? <EndGameState players = {this.state.players}/> : null}
                         </InsideContainer>
                     </BottomRightContainer>

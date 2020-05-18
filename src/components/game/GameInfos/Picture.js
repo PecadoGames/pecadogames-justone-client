@@ -9,6 +9,12 @@ import ShyGuyLeftBehindGifPink from "../Shyguys/Pink/ShyGuyLeftBehind.gif"
 import ShyGuyRightBehindGifPink from "../Shyguys/Pink/ShyGuyRightBehind.gif"
 import ShyGuyBehindLeftGifPink from "../Shyguys/Pink/ShyGuyBehindLeft.gif"
 import ShyGuyBehindRightGifPink from "../Shyguys/Pink/ShyGuyBehindRight.gif"
+import ShyGuyLeftFrontGifPinkReverse from "../../game/Shyguys/ReverseGifs/Pink/ShyGuyLeftFront.gif"
+import ShyGuyRightFrontGifPinkReverse from "../../game/Shyguys/ReverseGifs/Pink/ShyGuyRightFront.gif"
+import ShyGuyLeftBehindGifPinkReverse from "../../game/Shyguys/ReverseGifs/Pink/ShyGuyLeftBehind.gif"
+import ShyGuyRightBehindGifPinkReverse from "../../game/Shyguys/ReverseGifs/Pink/ShyGuyRightBehind.gif"
+import ShyGuyBehindLeftGifPinkReverse from "../../game/Shyguys/ReverseGifs/Pink/ShyGuyBehindLeft.gif"
+import ShyGuyBehindRightGifPinkReverse from "../../game/Shyguys/ReverseGifs/Pink/ShyGuyBehindRight.gif"
 
 import ShyGuyLeftFrontGifViolet from "../Shyguys/Violet/ShyGuyLeftFront.gif"
 import ShyGuyRightFrontGifViolet from "../Shyguys/Violet/ShyGuyRightFront.gif"
@@ -16,6 +22,12 @@ import ShyGuyLeftBehindGifViolet from "../Shyguys/Violet/ShyGuyLeftBehind.gif"
 import ShyGuyRightBehindGifViolet from "../Shyguys/Violet/ShyGuyRightBehind.gif"
 import ShyGuyBehindLeftGifViolet from "../Shyguys/Violet/ShyGuyBehindLeft.gif"
 import ShyGuyBehindRightGifViolet from "../Shyguys/Violet/ShyGuyBehindRight.gif"
+import ShyGuyLeftFrontGifVioletReverse from "../../game/Shyguys/ReverseGifs/Violet/ShyGuyLeftFront.gif"
+import ShyGuyRightFrontGifVioletReverse from "../../game/Shyguys/ReverseGifs/Violet/ShyGuyRightFront.gif"
+import ShyGuyLeftBehindGifVioletReverse from "../../game/Shyguys/ReverseGifs/Violet/ShyGuyLeftBehind.gif"
+import ShyGuyRightBehindGifVioletReverse from "../../game/Shyguys/ReverseGifs/Violet/ShyGuyRightBehind.gif"
+import ShyGuyBehindLeftGifVioletReverse from "../../game/Shyguys/ReverseGifs/Violet/ShyGuyBehindLeft.gif"
+import ShyGuyBehindRightGifVioletReverse from "../../game/Shyguys/ReverseGifs/Violet/ShyGuyBehindRight.gif"
 
 import ShyGuyLeftFrontGifBlue from "../Shyguys/Blue/ShyguyLeftFront.gif"
 import ShyGuyRightFrontGifBlue from "../Shyguys/Blue/ShyGuyRightFront.gif"
@@ -23,6 +35,12 @@ import ShyGuyLeftBehindGifBlue from "../Shyguys/Blue/ShyGuyLeftBehind.gif"
 import ShyGuyRightBehindGifBlue from "../Shyguys/Blue/ShyGuyRightBehind.gif"
 import ShyGuyBehindLeftGifBlue from "../Shyguys/Blue/ShyGuyBehindLeft.gif"
 import ShyGuyBehindRightGifBlue from "../Shyguys/Blue/ShyGuyBehindRight.gif"
+import ShyGuyLeftFrontGifBlueReverse from "../../game/Shyguys/ReverseGifs/Blue/ShyGuyLeftFront.gif"
+import ShyGuyRightFrontGifBlueReverse from "../../game/Shyguys/ReverseGifs/Blue/ShyGuyRightFront.gif"
+import ShyGuyLeftBehindGifBlueReverse from "../../game/Shyguys/ReverseGifs/Blue/ShyGuyLeftBehind.gif"
+import ShyGuyRightBehindGifBlueReverse from "../../game/Shyguys/ReverseGifs/Blue/ShyGuyRightBehind.gif"
+import ShyGuyBehindLeftGifBlueReverse from "../../game/Shyguys/ReverseGifs/Blue/ShyGuyBehindLeft.gif"
+import ShyGuyBehindRightGifBlueReverse from "../../game/Shyguys/ReverseGifs/Blue/ShyGuyBehindRight.gif"
 
 import ShyGuyLeftFrontGifYellow from "../Shyguys/Yellow/ShyGuyLeftFront.gif"
 import ShyGuyRightFrontGifYellow from "../Shyguys/Yellow/ShyGuyRightFront.gif"
@@ -30,6 +48,12 @@ import ShyGuyLeftBehindGifYellow from "../Shyguys/Yellow/ShyGuyLeftBehind.gif"
 import ShyGuyRightBehindGifYellow from "../Shyguys/Yellow/ShyGuyRightBehind.gif"
 import ShyGuyBehindLeftGifYellow from "../Shyguys/Yellow/ShyGuyBehindLeft.gif"
 import ShyGuyBehindRightGifYellow from "../Shyguys/Yellow/ShyGuyBehindRight.gif"
+import ShyGuyLeftFrontGifYellowReverse from "../../game/Shyguys/ReverseGifs/Yellow/ShyGuyLeftFront.gif"
+import ShyGuyRightFrontGifYellowReverse from "../../game/Shyguys/ReverseGifs/Yellow/ShyGuyRightFront.gif"
+import ShyGuyLeftBehindGifYellowReverse from "../../game/Shyguys/ReverseGifs/Yellow/ShyGuyLeftBehind.gif"
+import ShyGuyRightBehindGifYellowReverse from "../../game/Shyguys/ReverseGifs/Yellow/ShyGuyRightBehind.gif"
+import ShyGuyBehindLeftGifYellowReverse from "../../game/Shyguys/ReverseGifs/Yellow/ShyGuyBehindLeft.gif"
+import ShyGuyBehindRightGifYellowReverse from "../../game/Shyguys/ReverseGifs/Yellow/ShyGuyBehindRight.gif"
 
 import ShyGuyLeftFrontGifGreen from "../Shyguys/Green/ShyguyLeftFront.gif"
 import ShyGuyRightFrontGifGreen from "../Shyguys/Green/ShyGuyRightFront.gif"
@@ -37,6 +61,12 @@ import ShyGuyLeftBehindGifGreen from "../Shyguys/Green/ShyGuyLeftBehind.gif"
 import ShyGuyRightBehindGifGreen from "../Shyguys/Green/ShyGuyRightBehind.gif"
 import ShyGuyBehindLeftGifGreen from "../Shyguys/Green/ShyGuyBehindLeft.gif"
 import ShyGuyBehindRightGifGreen from "../Shyguys/Green/ShyGuyBehindRight.gif"
+import ShyGuyLeftFrontGifGreenReverse from "../../game/Shyguys/ReverseGifs/Green/ShyGuyLeftFront.gif"
+import ShyGuyRightFrontGifGreenReverse from "../../game/Shyguys/ReverseGifs/Green/ShyGuyRightFront.gif"
+import ShyGuyLeftBehindGifGreenReverse from "../../game/Shyguys/ReverseGifs/Green/ShyGuyLeftBehind.gif"
+import ShyGuyRightBehindGifGreenReverse from "../../game/Shyguys/ReverseGifs/Green/ShyGuyRightBehind.gif"
+import ShyGuyBehindLeftGifGreenReverse from "../../game/Shyguys/ReverseGifs/Green/ShyGuyBehindLeft.gif"
+import ShyGuyBehindRightGifGreenReverse from "../../game/Shyguys/ReverseGifs/Green/ShyGuyBehindRight.gif"
 
 import ShyGuyLeftFrontGifRed from "../Shyguys/Red/ShyguyLeftFront.gif"
 import ShyGuyRightFrontGifRed from "../Shyguys/Red/ShyGuyRightFront.gif"
@@ -44,6 +74,12 @@ import ShyGuyLeftBehindGifRed from "../Shyguys/Red/ShyGuyLeftBehind.gif"
 import ShyGuyRightBehindGifRed from "../Shyguys/Red/ShyGuyRightBehind.gif"
 import ShyGuyBehindLeftGifRed from "../Shyguys/Red/ShyGuyBehindLeft.gif"
 import ShyGuyBehindRightGifRed from "../Shyguys/Red/ShyGuyBehindRight.gif"
+import ShyGuyLeftFrontGifRedReverse from "../../game/Shyguys/ReverseGifs/Red/ShyGuyLeftFront.gif"
+import ShyGuyRightFrontGifRedReverse from "../../game/Shyguys/ReverseGifs/Red/ShyGuyRightFront.gif"
+import ShyGuyLeftBehindGifRedReverse from "../../game/Shyguys/ReverseGifs/Red/ShyGuyLeftBehind.gif"
+import ShyGuyRightBehindGifRedReverse from "../../game/Shyguys/ReverseGifs/Red/ShyGuyRightBehind.gif"
+import ShyGuyBehindLeftGifRedReverse from "../../game/Shyguys/ReverseGifs/Red/ShyGuyBehindLeft.gif"
+import ShyGuyBehindRightGifRedReverse from "../../game/Shyguys/ReverseGifs/Red/ShyGuyBehindRight.gif"
 
 import ChairBehindLeft from "../Chairs/TableClosed/TischHintererStuhlLinks.png"
 import ChairBehindRight from "../Chairs/TableClosed/TischHintererStuhlRechts.png"
@@ -127,8 +163,8 @@ class Picture extends React.Component{
 
     //only updates after the state changes
     shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if (this.state.gameState !== nextState.gameState || this.state.counter !== nextState.counter
-            || this.state.players !== nextState.players) {
+        if (this.state.counter !== nextState.counter || this.state.players !== nextState.players
+            || this.state.gameState === 'END_GAME_STATE') {
             return true;}
         return false
     }
@@ -138,124 +174,232 @@ class Picture extends React.Component{
     }
 
     imageLeftFront(avatarColor){
-        if(avatarColor === "PINK"){
+        if(avatarColor === "PINK" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyLeftFrontGifPink}/>)
         }
-        if(avatarColor === "GREEN"){
+        if(avatarColor === "PINK" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyLeftFrontGifPinkReverse}/>)
+        }
+        if(avatarColor === "GREEN" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyLeftFrontGifGreen}/>)
         }
-        if(avatarColor === "RED"){
+        if(avatarColor === "GREEN" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyLeftFrontGifGreenReverse}/>)
+        }
+        if(avatarColor === "RED" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyLeftFrontGifRed}/>)
         }
-        if(avatarColor === "BLUE"){
+        if(avatarColor === "RED" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyLeftFrontGifRedReverse}/>)
+        }
+        if(avatarColor === "BLUE" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyLeftFrontGifBlue}/>)
         }
-        if(avatarColor === "VIOLET"){
+        if(avatarColor === "BLUE" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyLeftFrontGifBlueReverse}/>)
+        }
+        if(avatarColor === "PURPLE" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyLeftFrontGifViolet}/>)
         }
-        if(avatarColor === "YELLOW"){
+        if(avatarColor === "PURPLE" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyLeftFrontGifVioletReverse}/>)
+        }
+        if(avatarColor === "YELLOW" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyLeftFrontGifYellow}/>)
+        }
+        if(avatarColor === "YELLOW" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyLeftFrontGifYellowReverse}/>)
         }
 
     }
     imageRightFront(avatarColor){
-        if(avatarColor === "PINK"){
+        if(avatarColor === "PINK" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyRightFrontGifPink}/>)
         }
-        if(avatarColor === "GREEN"){
+        if(avatarColor === "PINK" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyRightFrontGifPinkReverse}/>)
+        }
+        if(avatarColor === "GREEN" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyRightFrontGifGreen}/>)
         }
-        if(avatarColor === "RED"){
+        if(avatarColor === "GREEN" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyRightFrontGifGreenReverse}/>)
+        }
+        if(avatarColor === "RED" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyRightFrontGifRed}/>)
         }
-        if(avatarColor === "BLUE"){
+        if(avatarColor === "RED" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyRightFrontGifRedReverse}/>)
+        }
+        if(avatarColor === "BLUE" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyRightFrontGifBlue}/>)
         }
-        if(avatarColor === "VIOLET"){
+        if(avatarColor === "BLUE" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyRightFrontGifBlueReverse}/>)
+        }
+        if(avatarColor === "PURPLE" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyRightFrontGifViolet}/>)
         }
-        if(avatarColor === "YELLOW"){
+        if(avatarColor === "PURPLE" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyRightFrontGifVioletReverse}/>)
+        }
+        if(avatarColor === "YELLOW" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyRightFrontGifYellow}/>)
+        }
+        if(avatarColor === "YELLOW" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyRightFrontGifYellowReverse}/>)
         }
     }
     imageLeftBehind(avatarColor){
-        if(avatarColor === "PINK"){
+        if(avatarColor === "PINK" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyLeftBehindGifPink}/>)
         }
-        if(avatarColor === "GREEN"){
+        if(avatarColor === "PINK" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyLeftBehindGifPinkReverse}/>)
+        }
+        if(avatarColor === "GREEN" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyLeftBehindGifGreen}/>)
         }
-        if(avatarColor === "RED"){
+        if(avatarColor === "GREEN" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyLeftBehindGifGreenReverse}/>)
+        }
+        if(avatarColor === "RED" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyLeftBehindGifRed}/>)
         }
-        if(avatarColor === "BLUE"){
+        if(avatarColor === "RED" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyLeftBehindGifRedReverse}/>)
+        }
+        if(avatarColor === "BLUE" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyLeftBehindGifBlue}/>)
         }
-        if(avatarColor === "VIOLET"){
+        if(avatarColor === "BLUE" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyLeftBehindGifBlueReverse}/>)
+        }
+        if(avatarColor === "PURPLE" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyLeftBehindGifViolet}/>)
         }
-        if(avatarColor === "YELLOW"){
+        if(avatarColor === "PURPLE" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyLeftBehindGifVioletReverse}/>)
+        }
+        if(avatarColor === "YELLOW" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyLeftBehindGifYellow}/>)
+        }
+        if(avatarColor === "YELLOW" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyLeftBehindGifYellowReverse}/>)
         }
     }
     imageRightBehind(avatarColor){
-        if(avatarColor === "PINK"){
+        if(avatarColor === "PINK" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyRightBehindGifPink}/>)
         }
-        if(avatarColor === "GREEN"){
+        if(avatarColor === "PINK" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyRightBehindGifPinkReverse}/>)
+        }
+        if(avatarColor === "GREEN" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyRightBehindGifGreen}/>)
         }
-        if(avatarColor === "RED"){
+        if(avatarColor === "GREEN" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyRightBehindGifGreenReverse}/>)
+        }
+        if(avatarColor === "RED" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyRightBehindGifRed}/>)
         }
-        if(avatarColor === "BLUE"){
+        if(avatarColor === "RED" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyRightBehindGifRedReverse}/>)
+        }
+        if(avatarColor === "BLUE" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyRightBehindGifBlue}/>)
         }
-        if(avatarColor === "VIOLET"){
+        if(avatarColor === "BLUE" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyRightBehindGifBlueReverse}/>)
+        }
+        if(avatarColor === "PURPLE" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyRightBehindGifViolet}/>)
         }
-        if(avatarColor === "YELLOW"){
+        if(avatarColor === "PURPLE" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyRightBehindGifVioletReverse}/>)
+        }
+        if(avatarColor === "YELLOW" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyRightBehindGifYellow}/>)
+        }
+        if(avatarColor === "YELLOW" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyRightBehindGifYellowReverse}/>)
         }
     }
     imageBehindLeft(avatarColor){
-        if(avatarColor === "PINK"){
+        if(avatarColor === "PINK" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyBehindLeftGifPink}/>)
         }
-        if(avatarColor === "GREEN"){
+        if(avatarColor === "PINK" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyBehindLeftGifPinkReverse}/>)
+        }
+        if(avatarColor === "GREEN" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyBehindLeftGifGreen}/>)
         }
-        if(avatarColor === "RED"){
+        if(avatarColor === "GREEN" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyBehindLeftGifGreenReverse}/>)
+        }
+        if(avatarColor === "RED" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyBehindLeftGifRed}/>)
         }
-        if(avatarColor === "BLUE"){
+        if(avatarColor === "RED" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyBehindLeftGifRedReverse}/>)
+        }
+        if(avatarColor === "BLUE" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyBehindLeftGifBlue}/>)
         }
-        if(avatarColor === "VIOLET"){
+        if(avatarColor === "BLUE" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyBehindLeftGifBlueReverse}/>)
+        }
+        if(avatarColor === "PURPLE" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyBehindLeftGifViolet}/>)
         }
-        if(avatarColor === "YELLOW"){
+        if(avatarColor === "PURPLE" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyBehindLeftGifVioletReverse}/>)
+        }
+        if(avatarColor === "YELLOW" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyBehindLeftGifYellow}/>)
+        }
+        if(avatarColor === "YELLOW" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyBehindLeftGifYellowReverse}/>)
         }
     }
     imageBehindRight(avatarColor){
-        if(avatarColor === "PINK"){
+        if(avatarColor === "PINK" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyBehindRightGifPink}/>)
         }
-        if(avatarColor === "GREEN"){
+        if(avatarColor === "PINK" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyBehindRightGifPinkReverse}/>)
+        }
+        if(avatarColor === "GREEN" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyBehindRightGifGreen}/>)
         }
-        if(avatarColor === "RED"){
+        if(avatarColor === "GREEN" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyBehindRightGifGreenReverse}/>)
+        }
+        if(avatarColor === "RED" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyBehindRightGifRed}/>)
         }
-        if(avatarColor === "BLUE"){
+        if(avatarColor === "RED" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyBehindRightGifRedReverse}/>)
+        }
+        if(avatarColor === "BLUE" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyBehindRightGifBlue}/>)
         }
-        if(avatarColor === "VIOLET"){
+        if(avatarColor === "BLUE" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyBehindRightGifBlueReverse}/>)
+        }
+        if(avatarColor === "PURPLE" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyBehindRightGifViolet}/>)
         }
-        if(avatarColor === "YELLOW"){
+        if(avatarColor === "PURPLE" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyBehindRightGifVioletReverse}/>)
+        }
+        if(avatarColor === "YELLOW" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyBehindRightGifYellow}/>)
+        }
+        if(avatarColor === "YELLOW" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyBehindRightGifYellowReverse}/>)
         }
     }
 
@@ -263,18 +407,16 @@ class Picture extends React.Component{
     render(){
     return(
         <div>
-        <BackgroundContainer className = 'tablePlain'>
-        </BackgroundContainer>
-
-            {this.state.counter > 5 ? this.imageBehindRight(this.state.players[5].avatarColor) : <ImageContainer src={ChairBehindRight}/>}
-            {this.state.counter > 4 ? this.imageBehindLeft(this.state.players[4].avatarColor) : <ImageContainer src={ChairBehindLeft}/>}
-            {this.state.counter > 3 ? this.imageRightBehind(this.state.players[3].avatarColor) : <ImageContainer src={ChairRightBehind}/>}
-            {this.state.counter > 2 ? this.imageLeftBehind(this.state.players[2].avatarColor) : <ImageContainer src={ChairLeftBehind}/>}
-            {this.state.counter > 1 ? this.imageRightFront(this.state.players[1].avatarColor) : <ImageContainer src={ChairRightFront}/>}
-            {this.state.counter > 0 ? this.imageLeftFront(this.state.players[0].avatarColor) : <ImageContainer src={ChairLeftFront}/>}
-
-            <BackgroundContainer className= 'table'>
-            </BackgroundContainer>
+                    <BackgroundContainer className = 'tablePlain'>
+                    </BackgroundContainer>
+                    {this.state.counter > 5 ? this.imageBehindRight(this.state.players[5].avatarColor) : <ImageContainer src={ChairBehindRight}/>}
+                    {this.state.counter > 4 ? this.imageBehindLeft(this.state.players[4].avatarColor) : <ImageContainer src={ChairBehindLeft}/>}
+                    {this.state.counter > 3 ? this.imageRightBehind(this.state.players[3].avatarColor) : <ImageContainer src={ChairRightBehind}/>}
+                    {this.state.counter > 2 ? this.imageLeftBehind(this.state.players[2].avatarColor) : <ImageContainer src={ChairLeftBehind}/>}
+                    {this.state.counter > 1 ? this.imageRightFront(this.state.players[1].avatarColor) : <ImageContainer src={ChairRightFront}/>}
+                    {this.state.counter > 0 ? this.imageLeftFront(this.state.players[0].avatarColor) : <ImageContainer src={ChairLeftFront}/>}
+                    <BackgroundContainer className= 'table'>
+                    </BackgroundContainer>
         </div>
         )
     }
