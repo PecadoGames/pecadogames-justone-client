@@ -52,7 +52,7 @@ class Timer extends React.Component{
         if (this.state.timer < 10){
             return <TimerLow>00:0{this.state.timer}</TimerLow>
         }
-        else if (this.state.timer > 10){
+        else if (this.state.timer >= 10){
             return <NormalTime>00:{this.state.timer}</NormalTime>
         }
         else{
