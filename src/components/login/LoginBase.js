@@ -58,8 +58,8 @@ class LoginBase extends Component {
                             height= "120px;"
                             width="400px;"
                             onClick={() => {
-                        localStorage.setItem("confirmed", "true");
-                        this.forceUpdate();
+                            localStorage.setItem("confirmed", "true");
+                            this.forceUpdate();
                         }}> 
                             I'm not pregnant and I have no heart problems...<br></br>  yet
                         </PixelButton>

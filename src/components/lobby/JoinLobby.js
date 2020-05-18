@@ -56,17 +56,19 @@ const LobbiesContainer = styled.div`
     height: 415px;
 `;
 
-const NavigationButton = styled(PixelButton)`
+export const NavigationButton = styled(PixelButton)`
     margin-top: 0px
     height: 45px
     background: none
     outline: 2px solid #565553
     border: none
     color: #565553
+    opacity: ${props => (props.disabled ? 0.4 : 1)}
+    cursor: ${props => (props.disabled ? "default" : "pointer")}
     &:hover {
-        outline: 2px solid white
-        background: #565553
-        color: white
+        outline: ${props => (!props.disabled ? "2px solid white" : "2px solid #565553")}
+        background: ${props => (!props.disabled ? "#565553" : "transparent")}
+        color: ${props => (!props.disabled ? "white" : "#565553")}
     }
 `;
 

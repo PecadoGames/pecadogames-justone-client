@@ -26,21 +26,21 @@ jobs:
     
     # create .netrc file for heroku authentication
     # https://devcenter.heroku.com/articles/authentication
-    - run: |+
-          cat >~/.netrc <<EOF
-          machine api.heroku.com
-              login $HEROKU_EMAIL
-              password $HEROKU_KEY
-          machine git.heroku.com
-              login $HEROKU_EMAIL
-              password $HEROKU_KEY
-          EOF
+    #- run: |+
+          # cat >~/.netrc <<EOF
+    #       machine api.heroku.com
+    #           login $HEROKU_EMAIL
+    #           password $HEROKU_KEY
+    #       machine git.heroku.com
+    #           login $HEROKU_EMAIL
+    #           password $HEROKU_KEY
+    #       EOF
     
-    # login with .netrc file
-    - run: heroku login    
+    # # login with .netrc file
+    # - run: heroku login    
       
-    # deploy code
-    - run: heroku git:remote -a $HEROKU_APP_NAME 
-    - run: git push heroku HEAD:refs/heads/master
+    # # deploy code
+    # - run: heroku git:remote -a $HEROKU_APP_NAME 
+    # - run: git push heroku HEAD:refs/heads/master
 
 
