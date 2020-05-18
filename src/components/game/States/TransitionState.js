@@ -93,6 +93,7 @@ class TransitionState extends React.Component{
                     </TextLeft>
                     </ScoreContainer>
                     <ScoreContainer> <TextLeft>The word was {this.state.currentWord}</TextLeft> </ScoreContainer>
+                    <ScoreContainer><TextLeft><div>You guessed: {this.state.currentGuess}</div></TextLeft></ScoreContainer>
                 </Container>
                 :
                 <Container>
