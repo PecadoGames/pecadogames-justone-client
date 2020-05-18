@@ -14,20 +14,31 @@ const Container = styled.div`
 `;
 const TextContainer = styled.div`
   display: flex;
-  width: 150px;
+  width: 210px;
   flex-direction: row;
+  overflow: hidden;
 `;
 
 const UsernameContainer = styled.div`
   display: flex;
   flex-direction: row;
   width: 90px;
+  overflow: hidden;
 `;
 
 const CreationContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  margin-left: 10px;
+      display: flex;
+      flex-direction: row;
+      margin-left: 10px;
+`;
+
+const Words = styled.div`
+    padding-top: 5px;
+    width: 80px;
+    height: 40px;
+    float: right;
+    font-size: 24px;
+    text-align: center;
 `;
 
 
@@ -74,7 +85,16 @@ class ChatBox extends React.Component {
         this.scrollDown()
     }
 
-
+    displayCharacters(){
+        if (this.state.chatMessage.length <= 50){
+            return <div>{this.state.chatMessage.length}/50</div>
+        }
+        else{
+            return <div style={{color:'red'}}>
+                {this.state.chatMessage.length}/50
+                </div>
+        }
+    }
 
     componentWillUnmount() {
         Events.scrollEvent.remove('begin');
@@ -87,16 +107,17 @@ class ChatBox extends React.Component {
     }
 
     formatString(message){
-        if (message.length < 50){
-        let splitMessage = message.split(" ");
-        let i;
-        for (i=0; i < splitMessage.length; i++){
-            if (splitMessage[i].length > 15){
-                splitMessage[i] = this.sliceMessage(splitMessage[i])
+        if (message.length <= 50){
+            //splits string into array at " "
+            let splitMessage = message.split(" ");
+            let i;
+            for (i=0; i < splitMessage.length; i++){
+                if (splitMessage[i].length > 25){
+                    splitMessage[i] = this.sliceMessage(splitMessage[i])
+                }
             }
-        }
-        console.log("sending message:" + splitMessage.join(" "))
-        return splitMessage.join(" ");
+            console.log("sending message:" + splitMessage.join(" "))
+                return splitMessage.join(" ");
         }
         else{
             alert("Message too long!")
@@ -104,11 +125,10 @@ class ChatBox extends React.Component {
     }
 
     sliceMessage(messageToBeSpliced){
-        let part1 = messageToBeSpliced.slice(0, 15)
-        let part2 = messageToBeSpliced.slice(15, messageToBeSpliced.length)
-        if (part2.length > 15){
-            alert("brudi don't spam")
-            
+        let part1 = messageToBeSpliced.slice(0, 24)
+        let part2 = messageToBeSpliced.slice(25, messageToBeSpliced.length-1)
+        if (part2.length > 26){
+            alert("Spamming a long message won't help anybody. You're probably hangry, just eat a snickers™")
         }
         else{
             let words = [part1, part2]
@@ -126,11 +146,22 @@ class ChatBox extends React.Component {
         this.handleInputChange('chatMessage', '')
     }
 
+    displayUsername(username){
+        if (username.length > 8){
+            let adjustedName = username.slice(0, 8)
+            return adjustedName + "..:"
+        }
+        else{
+            return username + ":"
+        }
+    }
+
     _handleKeyDown= (e) => {
         if (e.key === 'Enter'){
             this.sendMessage()
         }
     }
+
 
     scrollDown(){
         //gets chatbox
@@ -155,18 +186,19 @@ class ChatBox extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{border: '2px solid #202120'}}>
                 <Element name="chatBox" className="element" id="containerElement" style={{
                     display: 'block',
                     position: 'relative',
                     height: '300px',
                     overflow: 'auto',
+                    padding: '2px'
                 }}>
                     {/* start of messages */}
                     {this.state.messages.map(message => {return(
                         <Element key = {message.messageId} name={message.user} style={{marginTop: '5px'}}>
                             <Container>
-                            <UsernameContainer>{message.authorUsername}:</UsernameContainer>
+                            <UsernameContainer>{this.displayUsername(message.authorUsername)}</UsernameContainer>
                             <TextContainer>{message.text}</TextContainer>
                             <CreationContainer>  {message.creationDate}</CreationContainer>
                             </Container>
@@ -177,7 +209,7 @@ class ChatBox extends React.Component {
                 </Element>
                 <InputField
                     placeholder="chat"
-                    width="30%"
+                    width="220px"
                     value={this.state.chatMessage}
                     onChange={e => {
                         this.handleInputChange('chatMessage', e.target.value);
@@ -186,7 +218,11 @@ class ChatBox extends React.Component {
                 >
                 </InputField>
                 <Button
+                    disabled={this.state.chatMessage.length > 50}
                     onClick={()=>this.sendMessage()}>Send</Button>
+                <Words>
+                    {this.displayCharacters()}
+                </Words>
             </div>
         );
     }

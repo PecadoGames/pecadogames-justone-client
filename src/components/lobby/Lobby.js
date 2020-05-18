@@ -164,7 +164,6 @@ class Lobby extends React.Component{
             }
         }
         , 400)
-
     }
 
     async getHostName(hostId){
@@ -225,7 +224,7 @@ class Lobby extends React.Component{
                         onClick={()=>this.startGame()}>Start Game
                         </Button> :  null}
                     <text>Chat</text>
-                    <ChatBox></ChatBox>
+                    <ChatBox/>
                 </LeftContainer>
                 <RightContainer>
                     <TopRightContainer>
