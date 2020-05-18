@@ -9,6 +9,7 @@ class User {
     this.logged_in = null;
     this.creation_date = null;
     this.birthday = null;
+    this.avatarColor = null;
     Object.assign(this, data);
   }
 }
