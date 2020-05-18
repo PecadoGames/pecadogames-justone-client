@@ -126,7 +126,7 @@ class ChatBox extends React.Component {
 
     sliceMessage(messageToBeSpliced){
         let part1 = messageToBeSpliced.slice(0, 24)
-        let part2 = messageToBeSpliced.slice(25, messageToBeSpliced.length-1)
+        let part2 = messageToBeSpliced.slice(25, messageToBeSpliced.length)
         if (part2.length > 26){
             alert("Spamming a long message won't help anybody. You're probably hangry, just eat a snickers™")
         }
