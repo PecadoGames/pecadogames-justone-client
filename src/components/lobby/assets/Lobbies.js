@@ -32,6 +32,20 @@ const Phone = styled.img`
     margin-top: 2px;
 `;
 
+const JoinButton = styled(PixelButton)`
+    margin-top: null;
+    border: none;
+    outline: 2px solid #565553;
+    background: none;
+    color: #565553;
+    height: 50px;
+    &:hover {
+        outline: 2px solid #ffffff;
+        background: #565553;
+        color: #000000;
+      }
+`;
+
 const ButtonSpan = styled.span`
     display: flex
     justify-content: space-evenly;
@@ -40,7 +54,12 @@ const ButtonSpan = styled.span`
     &:hover {
         color: #ffffff;
     }
+    ${JoinButton}:hover & {
+        color: #ffffff;
+    }
 `;
+
+
 
 class Lobbies extends React.Component{
     constructor() {
@@ -114,22 +133,13 @@ class Lobbies extends React.Component{
                                 <LobbyField
                                 lobby={lobby}
                             />
-                                <PixelButton
-                                    marginTop = "null"
-                                    border = "none"
-                                    outline = "2px solid #565553"
-                                    background = "none"
-                                    color= "#565553"
-                                    height="50px"
-                                    hoverOutline="2px solid #ffffff"
-                                    hoverBackground="#565553"
-                                    hoverColor="#000000"
+                                <JoinButton
                                     onClick={() => {this.joinLobby(lobby.lobbyId)}}>
-                                        <ButtonSpan >
+                                        <ButtonSpan>
                                             <Phone src={PhoneImg}/>
                                             Join
                                         </ButtonSpan>
-                                </PixelButton>
+                                </JoinButton>
                         </LobbyContainer>
                     );
                 })

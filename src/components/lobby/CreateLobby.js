@@ -3,11 +3,14 @@ import styled from 'styled-components';
 import {withRouter} from 'react-router-dom';
 import {api, handleError} from "../../helpers/api";
 import InviteLobbyPhone from "./InviteLobbyPhone";
+import {ButtonRow} from "../profile/Assets/profileAssets";
+import {NavigationButton} from "../lobby/JoinLobby";
 
 const MenuWrapper = styled.div`
     margin-left: 160px;
     margin-top: 150px;
-    width: 400px;
+    width: 410px;
+    height: 540px;
 `;
 
 const Background = styled.div`
@@ -29,27 +32,35 @@ const Paper = styled.div`
 `;
 
 const Title = styled.div`
-    font-size:48px;
-    font-weight:bold;
+    color: #565553
+    font-size: 48px;
+    font-weight: medium;
     margin-bottom: 0px;
     margin-left: 0px;
+    border-bottom: 2px solid #565553;
+    width: 270px;
 `;
 
 const Input = styled.input`
-    background: #ebd7b9;
-    height: 40px;
-    width: 80%;
-    margin-bottom: 30px;
-    margin-left: 5px;
-    padding-left: 5px;
+    background: transparent;
     border: none;
-    border-bottom: 2px solid black;
-    font-size: 20px;
-    
+    color: #565553;
+    border-bottom: 2px solid #565553;
+    font-size: 22px;    
+`;
+
+const Row = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
+    margin-top: ${props => props.marginTop || "50px"};
+    color: #565553;
 `;
 
 const TextWrapper = styled.div`
-    background: #ebd7b9;
+    background: transparent;
     height: 40px;
     width: 120px;
     margin-bottom: 30px;
@@ -60,42 +71,10 @@ const TextWrapper = styled.div`
     padding:2px;
 `;
 
-const TextWrapper2 = styled(TextWrapper)`
-    column-count: 2;
-    width: 80px;
-    margin-bottom: 20px;
-    margin-right: 20px;
-`;
-
-const InputWrapper = styled.div`
-   column-count:2;
-   width: 400px;
-`;
-
-const ButtonContainer = styled.div`
-    width: 300px;
-`;
-const Button = styled.button`
-  padding-top: 0px;
-  width: 200px;
-  height: 40px;
-  font-size: 28px;
-  margin-top: 4px;
-  border: 2px solid black;
-  background: ${props => props.background|| "white"};
-  &:hover {
-    background: ${props => props.backgroundHover || "white"}
-  }
-  cursor: ${props => (props.disabled ? "default" : "pointer")};
-  opacity: ${props => (props.disabled ? 0.4 : 1)};
-`;
-
-const Text = styled.body`
+const Text = styled.div`
     font-size: 24px;
-    margin-bottom: 5px;
     background: transparent;
-    margin-left: 6px;
-    float:left;
+    color: #565553;
 `;
 
 const Number = styled.body`
@@ -104,12 +83,6 @@ const Number = styled.body`
     margin-left: 6px;
     margin-right: 6px;
     height: 100%
-`;
-const Line = styled.hr`
-  border: 2px solid black;
-  width: 80%;
-  margin-left: 0px;
-  margin-bottom: 5px;
 `;
 
 const SmallButton = styled.button`
@@ -125,6 +98,8 @@ const SmallButton = styled.button`
 `;
 
 const YesNoButton = styled(SmallButton)`
+    color: black;
+    margin-left: ${props => props.marginLeft};
     opacity: ${props => (props.disabled ? 1 : 0.4)};
     cursor: ${props => (props.disabled ? "default" : "pointer")}
 `;
@@ -136,7 +111,7 @@ class CreateLobby extends React.Component {
             lobbyName: null,
             numberOfPlayers: 4,
             voiceChat: true,
-            isPrivate:false,
+            isPrivate: false,
             phone: null
         }
         ;
@@ -266,25 +241,26 @@ class CreateLobby extends React.Component {
                 <Paper className={"paperLobby"}>
                     <MenuWrapper>
                         <Title>Create lobby</Title>
-                        <Line/>
-                        <Text>Lobby Name</Text>
-                        <Input
-                            placeholder={"Enter here..."}
-                            onChange={e =>{
-                                this.handleInputChange('lobbyName', e.target.value)
-                            }}
-                        />
-                        <Text>Enter number of players:     </Text>
+                        <Row>
+                            <Text>Name</Text>
+                            <Input
+                                placeholder={"Enter name"}
+                                onChange={e =>{
+                                    this.handleInputChange('lobbyName', e.target.value)
+                                }}
+                            />
+                        </Row>
+                        <Row>
+                            <Text>Number of players</Text>
                             <TextWrapper>
                                 {this.removePlayers()}
                                     <Number>{this.state.numberOfPlayers}</Number>
                                 {this.addPlayers()}
-                            </TextWrapper>
-
-                        <InputWrapper>
-                        <div>
-                            <Text>Private lobby?</Text>
-                                <TextWrapper2>
+                            </TextWrapper>            
+                        </Row>
+                        <Row>
+                            <Text>Private</Text>
+                                <TextWrapper>
                                     <YesNoButton
                                         background={"#5cb349"}
                                         disabled={this.state.isPrivate}
@@ -297,17 +273,18 @@ class CreateLobby extends React.Component {
                                     <YesNoButton
                                         background={"#b03739"}
                                         disabled={!this.state.isPrivate}
+                                        marginLeft="44px"
                                         onClick={()=>{
                                             this.setState({isPrivate:false})
                                         }}
                                     >
                                         X
                                     </YesNoButton>
-                                </TextWrapper2>
-                        </div>
-                        <div>
-                            <Text>Voice chat??</Text>
-                            <TextWrapper2>
+                                </TextWrapper>    
+                        </Row>
+                        <Row>
+                            <Text>Voice-chat</Text>
+                            <TextWrapper>
                                 <YesNoButton
                                     background={"#5cb349"}
                                     disabled={this.state.voiceChat}
@@ -318,6 +295,7 @@ class CreateLobby extends React.Component {
                                     ✓
                                 </YesNoButton>
                                 <YesNoButton
+                                    marginLeft="44px"
                                     background={"#b03739"}
                                     disabled={!this.state.voiceChat}
                                     onClick={()=>{
@@ -326,26 +304,24 @@ class CreateLobby extends React.Component {
                                 >
                                     X
                                 </YesNoButton>
-                            </TextWrapper2>
-                        </div>
-                        </InputWrapper>
-                        <ButtonContainer>
-                            <Button
-                                background={"#e3b268"}
-                                backgroundHover={"#e3bc81"}
+                            </TextWrapper>                
+                        </Row>
+                        <ButtonRow
+                            marginTop="50px">
+                            <NavigationButton                                
+                                    onClick={()=>{
+                                        this.props.history.push(`/game`)
+                                }}>
+                                    Main Menu
+                            </NavigationButton>
+                            <NavigationButton
                                 disabled={!this.state.lobbyName}
                                 onClick={()=>{
                                     this.createLobby();
-                                }}
-                            >Create Lobby</Button>
-                            <Button
-                                background={"#c9c3bb"}
-                                backgroundHover={"#d6d3d0"}
-                                onClick={()=>{
-                                    this.props.history.push(`/game`)
-                                }}
-                            >Back</Button>
-                        </ButtonContainer>
+                                }}>
+                                Create 
+                            </NavigationButton>
+                        </ButtonRow>
                     </MenuWrapper>
                 </Paper>
                 <InviteLobbyPhone changePhoneToOff={this.props.changePhoneToOff}
