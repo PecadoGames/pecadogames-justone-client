@@ -242,9 +242,9 @@ class Profile extends React.Component {
                 .then(data => this.setState(
                     {user: data,
                         username: data.username,
-                        birthday: this.parseDate(data.birthday),
+                        birthday: (data.birthday),
                         status: data.logged_in,
-                        creation_date: this.parseDate(data.creation_date),
+                        creation_date: (data.creation_date),
                         score: data.score,
                         avatarColor: data.avatarColor,
                     })

@@ -204,8 +204,8 @@ class VoteOnClueState extends React.Component{
                                         fontSize='40px'
                                         weight='bold'>X</Button>}</SignLeft>)})}
 
-                        {this.state.invalidClues.map(clue => {
-                            return (<SignLeft className={"guess-sign-red"}>{this.displayDarkClue(clue.actualClue)}</SignLeft>)})}
+                        {/*{this.state.invalidClues.map(clue => {*/}
+                        {/*    return (<SignLeft className={"guess-sign-red"}>{this.displayDarkClue(clue.actualClue)}</SignLeft>)})}*/}
 
                     </SignContainer>
                 </Wrapper>
