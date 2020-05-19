@@ -154,7 +154,7 @@ class Scoreboard extends React.Component{
                         {this.state.lobbies.map(lobbies => {return(
                             <Wrapper>
                                 <ScoreTextLeft>{lobbies.lobbyName}</ScoreTextLeft>
-                                <ScoreTextRight>{lobbies.lobbyScore}</ScoreTextRight>
+                                <ScoreTextRight>{lobbies.score}</ScoreTextRight>
                             </Wrapper>
                         )})}
                     </ScoreContainer>
