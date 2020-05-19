@@ -230,6 +230,22 @@ button {
   background-repeat: no-repeat;
 }
 
+.rules::-webkit-scrollbar {
+  width: 1em;
+}
+
+.rules::-webkit-scrollbar-track {
+  box-shadow: inset 5px 10px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.rules::-webkit-scrollbar-thumb {
+  background-color: Red;
+  outline: 1px solid slategrey;
+  border-radius: 10px;
+  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.4);
+}
+
 @keyframes blinkingAnimation {
   0% {outline: 2px solid #ffff00;
     color: #ffff00;}

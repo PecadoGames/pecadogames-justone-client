@@ -257,8 +257,10 @@ class GameGetter extends React.Component{
                 <RightContainer>
                     <TopRightContainer>
                         <Timer></Timer>
-                        <Score score = {this.state.score}></Score>
-                        <Round rounds = {this.state.rounds}></Round>
+                        <Score score = {this.state.score}>
+                        </Score>
+                        <Round rounds = {this.state.rounds}>
+                        </Round>
                     </TopRightContainer>
                     <BottomRightContainer>
                         <InsideContainer>

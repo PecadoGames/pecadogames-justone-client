@@ -197,6 +197,7 @@ class CreateLobby extends React.Component {
 
     componentDidMount() {
         this.lobby()
+        this.props.changeBottleToOn()
 
     }
 
@@ -208,6 +209,7 @@ class CreateLobby extends React.Component {
 
     componentWillUnmount() {
         clearInterval(this.state.phone)
+        this.props.changeBottleToOff()
     }
 
     async createLobby(){
