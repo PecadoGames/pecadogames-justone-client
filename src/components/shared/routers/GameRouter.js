@@ -20,6 +20,9 @@ import Sound from "react-sound";
 import PhoneRing from "../../lobby/assets/Digital Ringing.mp3"
 import Shyguy from "../../lobby/assets/Shyguy talking.mp3"
 import Rules from "../../Rules/Rules";
+import Bottle from "../../../Music/SoundEffects/Bottle.mp3"
+import Ice from "../../../Music/SoundEffects/Ice.mp3"
+import Arcade from "../../../Music/SoundEffects/ArcadeSound.mp3"
 
 
 const Container = styled.div`
@@ -34,11 +37,25 @@ class GameRouter extends React.Component {
         this.state = {
             flip: Sound.status.STOPPED,
             phoneRing: Sound.status.STOPPED,
-            talking: Sound.status.STOPPED
+            talking: Sound.status.STOPPED,
+            bottle: Sound.status.STOPPED,
+            arcade: Sound.status.STOPPED
 
         }
     }
 
+    changeArcadeToOn=()=>{
+        this.setState({ arcade: Sound.status.PLAYING });
+    }
+    changeArcadeToOff=()=>{
+        this.setState({ arcade: Sound.status.STOPPED });
+    }
+    changeBottleToOn=()=>{
+        this.setState({ bottle: Sound.status.PLAYING });
+    }
+    changeBottleToOff=()=>{
+        this.setState({ bottle: Sound.status.STOPPED });
+    }
     changeFlipToOn=()=>{
         this.setState({ flip: Sound.status.PLAYING });
     }
@@ -60,10 +77,6 @@ class GameRouter extends React.Component {
 
 
 
-
-
-
-
     render() {
     /**
      * "this.props.base" is "/game" because as been passed as a prop in the parent of GameRouter, i.e., App.js
@@ -71,6 +84,11 @@ class GameRouter extends React.Component {
     return (
       <Container>
           {/* Sound effects for Game */}
+          <Sound url={Arcade}
+                 playStatus={this.state.arcade}
+                 volume={15}
+                 playFromPosition={0}
+          />
           <Sound url={FlipNewspaper}
                  playStatus={this.state.flip}
                  volume={15}
@@ -80,6 +98,21 @@ class GameRouter extends React.Component {
                  playStatus={this.state.phoneRing}
                  volume={7}
                  loop={true}
+                 playFromPosition={0}
+          />
+          <Sound url={Shyguy}
+                 playStatus={this.state.talking}
+                 volume={40}
+                 playFromPosition={15000}
+          />
+          <Sound url={Bottle}
+                 playStatus={this.state.bottle}
+                 volume={20}
+                 playFromPosition={0}
+          />
+          <Sound url={Ice}
+                 playStatus={this.state.bottle}
+                 volume={40}
                  playFromPosition={0}
           />
           <Sound url={Shyguy}
@@ -122,7 +155,9 @@ class GameRouter extends React.Component {
                           changePhoneToOff={this.changePhoneToOff}
                           changePhoneToOn={this.changePhoneToOn}
                           changeTalkingToOff={this.changeTalkingToOff}
-                          changeTalkingToOn={this.changeTalkingToOn}/>
+                          changeTalkingToOn={this.changeTalkingToOn}
+                           changeArcadeToOn={this.changeArcadeToOn}
+                           changeArcadeToOff={this.changeArcadeToOff}/>
                 </LoggedInUser>
             )}
         />
@@ -207,7 +242,9 @@ class GameRouter extends React.Component {
                                    changePhoneToOff={this.changePhoneToOff}
                                    changePhoneToOn={this.changePhoneToOn}
                                    changeTalkingToOff={this.changeTalkingToOff}
-                                   changeTalkingToOn={this.changeTalkingToOn}/>
+                                   changeTalkingToOn={this.changeTalkingToOn}
+                                   changeBottleToOn={this.changeBottleToOn}
+                                   changeBottleToOff={this.changeBottleToOff}/>
                   </LoggedInUser>
               )}
           />

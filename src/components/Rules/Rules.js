@@ -53,8 +53,10 @@ class Scoreboard extends React.Component{
     }
 
     componentWillUnmount() {
+        this.props.changeArcadeToOff()
         clearInterval(this.state.phone)
     }
+
 
     render() {
         return(
@@ -73,7 +75,8 @@ class Scoreboard extends React.Component{
                 <LogoutButton onClick={() => {this.props.history.push(`main`)}}>
                     Back
                 </LogoutButton>
-                <RuleBox></RuleBox>
+                <RuleBox changeArcadeToOn={this.props.changeArcadeToOn} changeArcadeToOff={this.props.changeArcadeToOff}>
+                </RuleBox>
             </Background>
             </div>
 

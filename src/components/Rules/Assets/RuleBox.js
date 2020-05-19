@@ -58,7 +58,7 @@ class RuleBox extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            y: 25
+            y: 60
         }
     }
 
@@ -110,7 +110,7 @@ class RuleBox extends React.Component {
     render() {
         return (
             <Container>
-                <Element name="chatBox" className="element" id="containerElement" style={{
+                <Element name="chatBox" className="rules" id="containerElement" style={{
                     display: 'block',
                     position: 'relative',
                     height: '350px',
@@ -282,9 +282,11 @@ class RuleBox extends React.Component {
                         your points for the respective round. The rest is our secret formula ;) Good luck! </Text>
                     </Element>
                 </Element>
-                <DownContainer onClick={() => {this.scrollDown()}}>
+                <DownContainer onClick={() => { this.scrollDown()
+                                                this.props.changeArcadeToOn()}}>
                 </DownContainer>
-                <UpContainer onClick={() => {this.scrollUp()}}>
+                <UpContainer onClick={() => { this.scrollUp()
+                                              this.props.changeArcadeToOn()}}>
                 </UpContainer>
             </Container>
 
