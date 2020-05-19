@@ -113,7 +113,9 @@ class Scoreboard extends React.Component{
     }
 
     async getLobbies(){
-        const response = await api.get('lobbies/scores?token=${localStorage.getItem(token)}')
+        const response = await api.get(`lobbies/scores?token=${localStorage.getItem('token')}`)
+        const lobbies = response.data;
+        this.setState({['lobbies']: lobbies})
     }
 
     lobby(){
@@ -148,6 +150,13 @@ class Scoreboard extends React.Component{
                     </ScoreContainer>
                     <ScoreContainer
                         marginLeft={"581px"}>
+                        <Title>Players</Title>
+                        {this.state.lobbies.map(lobbies => {return(
+                            <Wrapper>
+                                <ScoreTextLeft>{lobbies.lobbyName}</ScoreTextLeft>
+                                <ScoreTextRight>{lobbies.lobbyScore}</ScoreTextRight>
+                            </Wrapper>
+                        )})}
                     </ScoreContainer>
                     <InviteLobbyPhone changePhoneToOff={this.props.changePhoneToOff}
                                       changePhoneToOn={this.props.changePhoneToOn}
