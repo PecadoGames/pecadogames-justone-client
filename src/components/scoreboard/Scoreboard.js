@@ -7,8 +7,8 @@ import InviteLobbyPhone from "../lobby/InviteLobbyPhone";
 const Background = styled.div`
   display: inline-block;
   flex-direction: column;
-  width: 1200px;
-  height: 800px;
+  width: 1196px;
+  height: 768px;
   border-radius: 20px;
 `;
 
@@ -47,9 +47,11 @@ const ScoreTextRight = styled(ScoreTextLeft)`
 
 const NeonButton = styled.button`
     position: absolute;
-    top: 5px;
-    left: 5px;
+    top: 710px;
+    left: 922px;
     z: 3;
+    outline: 2px solid #008000
+    outline-offset: -7px
     height: 50px;
     width: 100px;
     display: inline-block;
@@ -165,6 +167,14 @@ class Scoreboard extends React.Component{
                             </Wrapper>
                         )})}
                     </ScoreContainer>
+                    <InviteLobbyPhone
+                        marginTop="415px"
+                        showRules={true}
+                        showLogout={true}
+                        changePhoneToOff={this.props.changePhoneToOff}
+                        changePhoneToOn={this.props.changePhoneToOn}
+                        changeTalkingToOff={this.props.changeTalkingToOff}
+                        changeTalkingToOn={this.props.changeTalkingToOn}/>
                 </Background>
             </BackgroundWrapper>
         );

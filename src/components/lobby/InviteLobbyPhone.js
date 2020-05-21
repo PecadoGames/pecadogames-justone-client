@@ -14,6 +14,7 @@ const PhoneContainerWithMessage = styled.div`
     padding-left: 10px;
     padding-top: 30px;
     margin-top: ${props => props.marginTop};
+    margin-left: ${props => props.marginLeft};
 `;
 
 const PhoneScreenContainer = styled.div`

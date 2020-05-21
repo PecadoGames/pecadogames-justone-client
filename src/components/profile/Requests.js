@@ -1,36 +1,13 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import {BackgroundContainer} from "../main/Main";
-import {WindowHeader, PhoneContainer, ButtonRow, ProfileContainer} from "./Assets/profileAssets";
+import {WindowHeader, PhoneContainer, ButtonRow, ProfileContainer, PhoneScreenContainer, InvitationContainer} from "./Assets/profileAssets";
 import { PixelButton } from "../../views/design/PixelButton";
+import {AcceptButton, DeclineButton} from "../profile/Assets/RequestBox";
+import {InvitationText} from "../lobby/InviteLobbyPhone"
 import RequestBox from "./Assets/RequestBox";
 import {api} from "../../helpers/api";
 import styled from "styled-components";
-
-const Container = styled.div`
-    position: absolute;
-    left: 0px;
-    top: 700px;
-    width: 100px;
-    height: 100px;
-    border: 2px solid red;
-`;
-
-const AcceptButton = styled.button`
-    border: 2px solid black;
-    height: 30%;
-    width: 80%;
-    font-size: 10px;
-`;
-
-const DeclineButton = styled(AcceptButton)`
-    
-`;
-
-
-const Text = styled.div`
-    color: white;
-`;
 
 class Requests extends React.Component {
     constructor() {
@@ -134,45 +111,57 @@ class Requests extends React.Component {
     render() {
         return (
             <BackgroundContainer className={"backgroundMain"}>
-
-
-                {this.state.phoneCheck && !this.state.accepted ?  <Container>
-                    {this.state.lobbies.map(lobby => {return(
-                            <div>
-                                <Text>Lobby: {lobby.lobbyName}</Text>
-                                <Text>HostName: {lobby.hostName}</Text>
-                                <AcceptButton
-                                    onClick={() => {this.accept(lobby.lobbyId);}}
-                                >accept
-                                </AcceptButton>
-                                <DeclineButton
-                                    onClick={() => {this.decline(lobby.lobbyId);}}
-                                >decline
-                                </DeclineButton>
-
-                            </div>
-                        )}
-                    )}
-                </Container> : null}
-
-
                 <PhoneContainer className={"phoneProfile"}>
-                    <WindowHeader>
-                    ..\Profile\Requests.js
-                    </WindowHeader>
-                    <ProfileContainer>
-                        <RequestBox/>
-                            <ButtonRow>
-                                <PixelButton
-                                    width="200px"
-                                    onClick={() => {
-                                        window.history.back();
-                                    }}
-                                >
-                                    Back
-                                </PixelButton>
-                            </ButtonRow>
-                    </ProfileContainer>
+                    {this.state.phoneCheck && !this.state.accepted ?  
+                        <PhoneScreenContainer>
+                            <WindowHeader>
+                                ..\LobbyInvitation.js
+                            </WindowHeader>
+                            {this.state.lobbies.map(lobby => {return(
+                                <InvitationContainer>
+                                    <InvitationText
+                                        width="300px"
+                                        fontSize="30px">
+                                        Invitation to lobby "{lobby.lobbyName}"
+                                    </InvitationText>
+                                    <ButtonRow
+                                    marginTop="20px">
+                                        <AcceptButton
+                                            marginTop = "0px"
+                                            height = "50px"
+                                            onClick={() => {this.accept(lobby.lobbyId);}}>
+                                            Accept
+                                        </AcceptButton>
+                                        <DeclineButton
+                                            marginTop = "0px"
+                                            onClick={() => {this.decline(lobby.lobbyId);}}>
+                                            Reject
+                                        </DeclineButton>
+                                    </ButtonRow>
+                                </InvitationContainer>
+                                                    )}
+                                                    )}
+                        </PhoneScreenContainer> 
+                        :
+                        <PhoneScreenContainer>
+                            <WindowHeader>
+                            ..\Profile\Requests.js
+                            </WindowHeader>
+                            <ProfileContainer>
+                                <RequestBox/>
+                                    <ButtonRow>
+                                        <PixelButton
+                                            width="200px"
+                                            onClick={() => {
+                                                window.history.back();
+                                            }}
+                                        >
+                                            Back
+                                        </PixelButton>
+                                    </ButtonRow>
+                            </ProfileContainer>
+                        </PhoneScreenContainer>
+                        }
                 </PhoneContainer>
             </BackgroundContainer>
         );
