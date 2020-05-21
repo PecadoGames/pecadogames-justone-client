@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { PixelButton } from "../../../views/design/PixelButton";
 
 export const PhoneContainer = styled.div`
-    margin-top: 10em;
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     height: 600px; 

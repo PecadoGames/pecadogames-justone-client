@@ -26,14 +26,8 @@ const LobbyContainer = styled.li`
   margin-top: 5px
 `;
 
-const Phone = styled.img`
-    width: 23px;
-    height: 29px
-    margin-top: 2px;
-`;
-
 const JoinButton = styled(PixelButton)`
-    margin-top: null;
+    margin-top: 0px;
     border: none;
     outline: 2px solid #565553;
     background: none;
@@ -44,6 +38,15 @@ const JoinButton = styled(PixelButton)`
         background: #565553;
         color: #000000;
       }
+`;
+
+const Phone = styled.img`
+    width: 23px;
+    height: 29px
+    margin-top: 2px;
+    ${JoinButton}:hover & {
+        filter: invert(100%)
+    }
 `;
 
 const ButtonSpan = styled.span`

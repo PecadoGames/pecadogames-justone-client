@@ -6,7 +6,6 @@ import { PixelButton } from "../../views/design/PixelButton";
 import {InputField} from "../../views/design/InputField";
 import Sound from "react-sound";
 import commercial from "../login/assets/CommercialFunnyMusic.mp3"
-import {LogoContainer} from "../login/Login"
 
 const FormContainer = styled.div`
   display: flex;
@@ -141,9 +140,6 @@ class Register extends React.Component {
     render() {
         return (
             <FormContainer className={'backgroundLogin'}>
-                <LogoContainer>
-                    <img src={require('./assets/logo_j1.gif')} width="150" alt="J1 blinking neon-sign"/>
-                </LogoContainer>
                 <HandyContainer className={'handyImage'}>
                     <Sound url={commercial}
                            playStatus={Sound.status.PLAYING}

@@ -3,74 +3,43 @@ import styled from 'styled-components';
 import {withRouter} from 'react-router-dom';
 import {api, handleError} from "../../helpers/api";
 import { PixelButton } from "../../views/design/PixelButton";
-import {TextContainer} from "../profile/Assets/profileAssets";
-import {BackgroundContainer} from "../main/Main";
-
-const Container = styled.div`
-    position: fixed;
-    bottom: 0px;
-`;
-
-const AcceptButton = styled.button`
-    height: 30px;
-    float:left;
-    width: 30px;
-    border: 2px solid black;
-    padding-top: -3px;
-    font-size: 20px;
-    text-align: center;
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 5px;
-    background-color: #1d9c06;
-`;
-
-const ButtonContainer = styled.div`
-    display: inline-block;
-    width: 100px;
-    height: 35px;
-    text-align: center;
-`;
-
-const DeclineButton = styled(AcceptButton)`
-        background-color: #a8120a;
-`;
-
-const Wrapper = styled.div`
-    margin-left: 20px;
-    width: 140px;
-    text-align: center;
-    overflow: auto;
-    height: 290px;
-`;
+import { AcceptButton, DeclineButton} from "../profile/Assets/RequestBox";
+import {Row} from "../lobby/CreateLobby";
 
 const PhoneContainerWithMessage = styled.div`
-    width: 200px;
+    display: flex;
+    float: right;
     height: 346px;
-    padding: 10px;
-    padding-top: 30px;
-    margin-top: 0px;
-`;
-
-const PhoneContainerNoMessage = styled.div`
     width: 200px;
-    height: 146px;
-    margin-top: 195px;
+    padding-left: 10px;
+    padding-top: 30px;
+    margin-top: 350px;
 `;
 
-const MessageWrapper = styled.div`
+const PhoneScreenContainer = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-left: 16px;
+    width: 148px;
+    height: 290px;
+`
+
+const InvitationWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 105px;
+    width: 100%;
+    margin-top: 10px;
+`
+
+const InvitationText = styled.div`
     text-align: center;
-    background-color:#5c5b5b;
-    border-radius: 10px;
-    width: 95%;
-    padding-bottom: 5px;
-    margin-bottom: 5px;
-`;
-
-
-const Text = styled.div`
-    color: white;
-`;
+    color: #ffff00;
+    width: 140px;
+`
 
 class InviteLobbyPhone extends React.Component {
     constructor() {
@@ -160,6 +129,22 @@ class InviteLobbyPhone extends React.Component {
         }
     }
 
+    async logout() {
+        try{
+            const requestBody = JSON.stringify({
+                id: localStorage.getItem("id"),
+                token: localStorage.getItem("token")
+            });
+            await api.put('/logout', requestBody);
+            localStorage.removeItem('token');
+            localStorage.removeItem('id');
+            this.props.history.push('/login');
+        }
+        catch(error){
+            alert(`Something went wrong during the logout \n${handleError(error)}`)
+        }
+    }
+
     componentWillUnmount() {
         clearInterval(this.state.phone)
         this.props.changePhoneToOff()
@@ -167,38 +152,76 @@ class InviteLobbyPhone extends React.Component {
     }
 
     render(){
-    return (
-        this.state.phoneCheck && !this.state.accepted ?
-            <Container>
+    return (        
+                // <PhoneContainerWithMessage className={"lobbyInvitePhone"}>
+                //   <Wrapper>
+                //     <Text style={{fontSize: "28px"}}>Invitations</Text>
+                //         {this.state.lobbies.map(lobby => {return(
+                //             <MessageWrapper>
+                //                     <Text>Lobby: {lobby.lobbyName}</Text>
+                //                     <Text>HostName: {lobby.hostName}</Text>
+                //                     <ButtonContainer>
+                //                         <AcceptButton
+                //                             onClick={() => {this.accept(lobby.lobbyId);}}
+                //                         >✓
+                //                         </AcceptButton>
+                //                         <DeclineButton
+                //                             onClick={() => {this.decline(lobby.lobbyId);}}
+                //                         >X
+                //                         </DeclineButton>
+                //                     </ButtonContainer>
+                //             </MessageWrapper>
+                //         )}
+                //         )}
+                //     </Wrapper>
+                // </PhoneContainerWithMessage>
                 <PhoneContainerWithMessage className={"lobbyInvitePhone"}>
-                    <Wrapper>
-                    <Text style={{fontSize: "28px"}}>Invitations</Text>
+                    <PhoneScreenContainer>
+                        <Row
+                            marginTop="5px"
+                            justifyContent="center">
+                        <PixelButton
+                            width="100px"
+                            onClick={() => {this.props.history.push(`rules`)}}>
+                            Rules
+                        </PixelButton>
+                        </Row>
+                        <Row
+                            marginTop="5px"
+                            justifyContent="center">
+                        <PixelButton
+                            width="100px"
+                            onClick={()=>{
+                                this.logout();
+                            }}
+                            >
+                            Logout
+                        </PixelButton>
+                        </Row>
                         {this.state.lobbies.map(lobby => {return(
-                            <MessageWrapper>
-                                    <Text>Lobby: {lobby.lobbyName}</Text>
-                                    <Text>HostName: {lobby.hostName}</Text>
-                                    <ButtonContainer>
-                                        <AcceptButton
-                                            onClick={() => {this.accept(lobby.lobbyId);}}
-                                        >✓
-                                        </AcceptButton>
-                                        <DeclineButton
-                                            onClick={() => {this.decline(lobby.lobbyId);}}
-                                        >X
-                                        </DeclineButton>
-                                    </ButtonContainer>
-                            </MessageWrapper>
-                        )}
-                        )}
-                    </Wrapper>
+                            <InvitationWrapper>
+                                <InvitationText>
+                                    Invitation to lobby "{lobby.lobbyName}"
+                                </InvitationText>
+                                <Row
+                                    marginTop="5px">
+                                    <AcceptButton
+                                        marginTop = "0px"
+                                        height = "50px"
+                                        onClick={() => {this.accept(lobby.lobbyId);}}>
+                                        ✓
+                                    </AcceptButton>
+                                    <DeclineButton
+                                        marginTop = "0px"
+                                        onClick={() => {this.decline(lobby.lobbyId);}}>
+                                        X
+                                    </DeclineButton>
+                                </Row>
+                            </InvitationWrapper>
+                                                )}
+                                                )}
+                    </PhoneScreenContainer>
                 </PhoneContainerWithMessage>
-            </Container>
-            :
-            <Container>
-                <PhoneContainerNoMessage className={"lobbyInvitePhone"}>
-
-                </PhoneContainerNoMessage>
-            </Container>
     );
     }
 }
