@@ -18,8 +18,8 @@ const PlayersContainer = styled.div`
   height: 330px;
   width: 400px
   margin: 0px;
-  margin-bottom: 50px;
-  margin-top: 50px;
+  margin-bottom: 20px;
+  margin-top: 10px;
  `
 
 const PlayerContainer = styled.div`
