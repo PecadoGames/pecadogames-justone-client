@@ -41,8 +41,6 @@ export const TextRight = styled(TextLeft)`
 `;
 
 export const ProfileContainer = styled.div`
-
-  margin-left: 140px;
   width: 840px;
   height:360px;
   background: #000000;
@@ -133,11 +131,19 @@ export const FriendRequestBanner = styled.button`
   margin-left: 140px;
   background: #AE3C3C
 `
+export const PhoneScreenContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+    margin-left: 70px;
+    height: 440px;
+    width: 985px;
+`
+
 export const WindowHeader = styled.div`
   height: 70px
   width: 840px
-  margin-top: 83px;
-  margin-left: 140px;
   border-bottom: solid 2px #c0c0c0;
   background: #000000;
   text-align: center;
@@ -170,4 +176,14 @@ export const ButtonRow = styled.div`
     flexDirection: row;
     width: 100%;
     justify-content: space-evenly;
+`;
+
+export const InvitationContainer = styled.div`
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    width auto;
+    height: 355px;
+    margin-top: 5px;
 `;

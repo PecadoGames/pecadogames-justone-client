@@ -6,33 +6,10 @@ import { PhoneContainer, ProfileContainer} from "./Assets/profileAssets";
 import { PixelButton } from "../../views/design/PixelButton";
 import FriendBox from "./Assets/FriendBox";
 import UsersBox from "./Assets/UsersBox";
-import {WindowHeader, ButtonRow} from "./Assets/profileAssets";
+import {WindowHeader, ButtonRow, PhoneScreenContainer, InvitationContainer} from "./Assets/profileAssets";
+import {AcceptButton, DeclineButton} from "../profile/Assets/RequestBox";
+import {InvitationText} from "../lobby/InviteLobbyPhone";
 import styled from "styled-components";
-
-const Container = styled.div`
-    position: absolute;
-    left: 0px;
-    top: 700px;
-    width: 100px;
-    height: 100px;
-    border: 2px solid red;
-`;
-
-const AcceptButton = styled.button`
-    border: 2px solid black;
-    height: 30%;
-    width: 80%;
-    font-size: 10px;
-`;
-
-const DeclineButton = styled(AcceptButton)`
-    
-`;
-
-
-const Text = styled.div`
-    color: white;
-`;
 
 class Friends extends React.Component {
     constructor() {
@@ -158,28 +135,39 @@ class Friends extends React.Component {
     render() {
         return (
             <BackgroundContainer className={"backgroundMain"}>
-
-                {this.state.phoneCheck && !this.state.accepted ?  <Container>
-                    {this.state.lobbies.map(lobby => {return(
-                            <div>
-                                <Text>Lobby: {lobby.lobbyName}</Text>
-                                <Text>HostName: {lobby.hostName}</Text>
-                                <AcceptButton
-                                    onClick={() => {this.accept(lobby.lobbyId);}}
-                                >accept
-                                </AcceptButton>
-                                <DeclineButton
-                                    onClick={() => {this.decline(lobby.lobbyId);}}
-                                >decline
-                                </DeclineButton>
-
-                            </div>
-                        )}
-                    )}
-                </Container> : null}
-
-
                 <PhoneContainer className={"phoneProfile"}>
+                {this.state.phoneCheck && !this.state.accepted ?  
+                    <PhoneScreenContainer>
+                        <WindowHeader>
+                            ..\LobbyInvitation.js
+                        </WindowHeader>
+                        {this.state.lobbies.map(lobby => {return(
+                            <InvitationContainer>
+                                <InvitationText
+                                    width="300px"
+                                    fontSize="30px">
+                                    Invitation to lobby "{lobby.lobbyName}"
+                                </InvitationText>
+                                <ButtonRow
+                                marginTop="20px">
+                                    <AcceptButton
+                                        marginTop = "0px"
+                                        height = "50px"
+                                        onClick={() => {this.accept(lobby.lobbyId);}}>
+                                        Accept
+                                    </AcceptButton>
+                                    <DeclineButton
+                                        marginTop = "0px"
+                                        onClick={() => {this.decline(lobby.lobbyId);}}>
+                                        Reject
+                                    </DeclineButton>
+                                </ButtonRow>
+                            </InvitationContainer>
+                                                )}
+                                                )}
+                    </PhoneScreenContainer> 
+                    :
+                    <PhoneScreenContainer>
                     <WindowHeader>
                     {!this.state.addUser ? ("..\\Profile\\Friends.js") : ("..\\Profile\\Users.js")}
                     </WindowHeader>
@@ -209,6 +197,8 @@ class Friends extends React.Component {
                                 
                             </ButtonRow>
                         </ProfileContainer>
+                    </PhoneScreenContainer>
+                    }
                 </PhoneContainer>
 
             </BackgroundContainer>

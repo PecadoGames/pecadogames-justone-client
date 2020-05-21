@@ -19,15 +19,16 @@ const HandPhoneWrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin-top: 77px;
     margin-left:450px;
     height:700px;
-    width: 730px;
+    width: 728px;
 `
 
 const HandContainer = styled.div`
     height:500px;
     width:400px;
-    margin-top:200px;
+    margin-top:185px;
 `;
 
 const ButtonContainer = styled.div`
@@ -109,17 +110,6 @@ class Main extends React.Component {
     render(){
         return (
             <BackgroundContainer className ={"backgroundMain"}>
-                <LogoutButton
-                    onClick={()=>{
-                        this.logout();
-                    }}
-                >Logout</LogoutButton>
-                <LogoutButton onClick={() => {this.props.history.push(`states`)}}>
-                    States
-                    </LogoutButton>
-                <LogoutButton onClick={() => {this.props.history.push(`rules`)}}>
-                    Rules
-                </LogoutButton>
                 <HandPhoneWrapper>
                     <HandContainer
                         className={"handWithCard"}>
@@ -149,14 +139,15 @@ class Main extends React.Component {
                                 Scoreboard</MainMenuButton>
                         </ButtonContainer>
                     </HandContainer>
-                    <InviteLobbyPhone 
+                    <InviteLobbyPhone
+                        marginTop="338px"
+                        showRules={true}
+                        showLogout={true} 
                         history={this.props.history}
                         changePhoneToOff={this.props.changePhoneToOff}
                         changePhoneToOn={this.props.changePhoneToOn}
                         changeTalkingToOff={this.props.changeTalkingToOff}
-                        changeTalkingToOn={this.props.changeTalkingToOn}
-                        >
-                    </InviteLobbyPhone>
+                        changeTalkingToOn={this.props.changeTalkingToOn}/>
                 </HandPhoneWrapper>
             </BackgroundContainer>
         );

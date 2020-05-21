@@ -10,58 +10,10 @@ import BlueShyguy from "./Assets/ProfilePictures/blue.png";
 import YellowShyguy from "./Assets/ProfilePictures/yellow.png";
 import PurpleShyguy from "./Assets/ProfilePictures/purple.png";
 import PinkShyguy from "./Assets/ProfilePictures/pink.png";
-import {WindowHeader, PhoneContainer, TextLeft, TextContainer, One, Two, ProfilePicContainer, ProfileContainer, ButtonRow, RowContainer} from "./Assets/profileAssets";
+import {WindowHeader, PhoneContainer, TextLeft, TextContainer, One, Two, ProfilePicContainer, ProfileContainer, ButtonRow, RowContainer, InvitationContainer, PhoneScreenContainer} from "./Assets/profileAssets";
 import { PixelButton } from "../../views/design/PixelButton";
-
-const Container = styled.div`
-    position: absolute;
-    left: 200px;
-    top: 247px;
-    width: 250px;
-    height: 100px;
-    z-index: 9;
-`;
-
-const AcceptButton = styled.button`
-    height: 30px;
-    float:left;
-    width: 30px;
-    border: 2px solid black;
-    padding-top: -3px;
-    font-size: 20px;
-    text-align: center;
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 5px;
-    background-color: #1d9c06;
-`;
-
-const ButtonContainer = styled.div`
-    display: inline-block;
-    width: 100px;
-    height: 35px;
-    text-align: center;
-`;
-
-const DeclineButton = styled(AcceptButton)`
-        background-color: #a8120a;
-`;
-
-
-const LobbyInvitationWrapper = styled.div`
-    text-align: center;
-    background-color:#5c5b5b;
-    border-radius: 10px;
-    width: 95%;
-    padding-bottom: 5px;
-    margin-bottom: 5px;   
-    border: 2px solid black;
-`;
-
-
-const Text = styled.div`
-    color: white;
-`;
+import {AcceptButton, DeclineButton} from "../profile/Assets/RequestBox";
+import {InvitationText} from "../lobby/InviteLobbyPhone"
 
 const InputField = styled.input`
   background: transparent;
@@ -312,127 +264,140 @@ class Profile extends React.Component {
 
     render() {
         return (
-
             <BackgroundContainer className={"backgroundMain"}>
             <PhoneContainer className={"phoneProfile"}>
-                {this.state.phoneCheck && !this.state.accepted ?  <Container>
-                    {this.state.lobbies.map(lobby => {return(
-                            <LobbyInvitationWrapper>
-                                <Text>Lobby: {lobby.lobbyName} | HostName: {lobby.hostName}</Text>
-                                <ButtonContainer>
+            {this.state.phoneCheck && !this.state.accepted ?  
+                    <PhoneScreenContainer>
+                        <WindowHeader>
+                            ..\LobbyInvitation.js
+                        </WindowHeader>
+                        {this.state.lobbies.map(lobby => {return(
+                            <InvitationContainer>
+                                <InvitationText
+                                    width="300px"
+                                    fontSize="30px">
+                                    Invitation to lobby "{lobby.lobbyName}"
+                                </InvitationText>
+                                <ButtonRow
+                                marginTop="20px">
                                     <AcceptButton
-                                        onClick={() => {this.accept(lobby.lobbyId);}}
-                                    >✓
+                                        marginTop = "0px"
+                                        height = "50px"
+                                        onClick={() => {this.accept(lobby.lobbyId);}}>
+                                        Accept
                                     </AcceptButton>
                                     <DeclineButton
-                                        onClick={() => {this.decline(lobby.lobbyId);}}
-                                    >X
+                                        marginTop = "0px"
+                                        onClick={() => {this.decline(lobby.lobbyId);}}>
+                                        Reject
                                     </DeclineButton>
-                                </ButtonContainer>
-                            </LobbyInvitationWrapper>
-                        )}
-                    )}
-
-
-                </Container> : null}
-                <WindowHeader>..\Profile\Edit.js</WindowHeader>
-                <ProfileContainer className={"profileContainer"}>
-                    <One>
-                        <ProfilePicContainer className={"profilePicContainer"}>
-                            <img src={this.getProfilePic()} alt={"Avatar"} className={"profilePicture"}/>
-                            </ProfilePicContainer>
-                    </One>
-                    <Two>
-                        <TextContainer>
-                            <TextLeft>Username:</TextLeft>
-                            <InputField
-                            placeholder={this.state.username}
-                            onChange={e =>{
-                                this.handleInputChange('username', e.target.value)
-                            }}
-                            />
-                        </TextContainer>
-                        <TextContainer>
-                            <TextLeft>Birthday:</TextLeft>
-                            <InputFieldDate
-                                placeholder={"dd.mm.jjjj"}
-                                defaultValue={this.state.birthday}
-                            onChange={e =>{
-                                this.handleInputChange('birthday', e.target.value)
-                            }}
-                            />
-                        </TextContainer>
-                        <ColorContainer>
-                            <TextLeft>Pick a color for your profile picture:</TextLeft>
-                            <ColorButtonContainer>
-                                <ColorButton id="RED"
-                                             background={"#b31a1a"}
-                                             borderWidth={(this.colorMatcher("RED")) ? "1px" : "3px"}
-                                             onClick={()=>{
-                                                 this.setState({avatarColor: "RED"})
-                                             }}
-                                />
-                                <ColorButton id="GREEN"
-                                             background={"#008a0e"}
-                                             borderWidth={(this.colorMatcher("GREEN")) ? "1px" : "3px"}
-                                             onClick={()=>{
-                                                 this.setState({avatarColor: "GREEN"})
-                                             }}
-                                />
-                                <ColorButton id="YELLOW"
-                                             background={"#dece38"}
-                                             borderWidth={(this.colorMatcher("YELLOW")) ? "1px" : "3px"}
-                                             onClick={()=>{
-                                                 this.setState({avatarColor: "YELLOW"})
-                                             }}
-                                />
-                                <ColorButton id="BLUE"
-                                             background={"#2b37a8"}
-                                             borderWidth={(this.colorMatcher("BLUE")) ? "1px" : "3px"}
-                                             onClick={()=>{
-                                                 this.setState({avatarColor: "BLUE"})
-                                             }}
-                                />
-                                <ColorButton id="PURPLE"
-                                             background={"#562ba8"}
-                                             borderWidth={(this.colorMatcher("PURPLE")) ? "1px" : "3px"}
-                                             onClick={()=>{
-                                                 this.setState({avatarColor: "PURPLE"})
-                                             }}
-                                />
-                                <ColorButton id="PINK"
-                                             background={"#cf71dc"}
-                                             borderWidth={(this.colorMatcher("PINK")) ? "1px" : "3px"}
-                                             onClick={()=>{
-                                                 this.setState({avatarColor: "PINK"})
-                                             }}
-                                />
-                            </ColorButtonContainer>
-                        </ColorContainer>
-                        <ButtonRow
-                            marginTop="44px">
-                            <RowContainer>
-                                <PixelButton
-                                    onClick={() => {
-                                        this.props.history.push(`/game/users/${this.state.id}`);
+                                </ButtonRow>
+                            </InvitationContainer>
+                                                )}
+                                                )}
+                    </PhoneScreenContainer> 
+                    :
+                    <PhoneScreenContainer>
+                        <WindowHeader>..\Profile\Edit.js</WindowHeader>
+                        <ProfileContainer className={"profileContainer"}>
+                            <One>
+                                <ProfilePicContainer className={"profilePicContainer"}>
+                                    <img src={this.getProfilePic()} alt={"Avatar"} className={"profilePicture"}/>
+                                    </ProfilePicContainer>
+                            </One>
+                            <Two>
+                                <TextContainer>
+                                    <TextLeft>Username:</TextLeft>
+                                    <InputField
+                                    placeholder={this.state.username}
+                                    onChange={e =>{
+                                        this.handleInputChange('username', e.target.value)
                                     }}
-                                >
-                                    Back
-                                </PixelButton>
-                            </RowContainer>
-                            <RowContainer>
-                                <SaveButton
-                                    disabled={!this.state.username || this.state.username.length > 16}
-                                    onClick={()=>{
-                                        this.updateProfile();
+                                    />
+                                </TextContainer>
+                                <TextContainer>
+                                    <TextLeft>Birthday:</TextLeft>
+                                    <InputFieldDate
+                                        placeholder={"dd.mm.jjjj"}
+                                        defaultValue={this.state.birthday}
+                                    onChange={e =>{
+                                        this.handleInputChange('birthday', e.target.value)
                                     }}
-                                >
-                                    Save Profile
-                                </SaveButton>
-                            </RowContainer>
-                        </ButtonRow>
-                    </Two>
-                </ProfileContainer>
+                                    />
+                                </TextContainer>
+                                <ColorContainer>
+                                    <TextLeft>Pick a color for your profile picture:</TextLeft>
+                                    <ColorButtonContainer>
+                                        <ColorButton id="RED"
+                                                    background={"#b31a1a"}
+                                                    borderWidth={(this.colorMatcher("RED")) ? "1px" : "3px"}
+                                                    onClick={()=>{
+                                                        this.setState({avatarColor: "RED"})
+                                                    }}
+                                        />
+                                        <ColorButton id="GREEN"
+                                                    background={"#008a0e"}
+                                                    borderWidth={(this.colorMatcher("GREEN")) ? "1px" : "3px"}
+                                                    onClick={()=>{
+                                                        this.setState({avatarColor: "GREEN"})
+                                                    }}
+                                        />
+                                        <ColorButton id="YELLOW"
+                                                    background={"#dece38"}
+                                                    borderWidth={(this.colorMatcher("YELLOW")) ? "1px" : "3px"}
+                                                    onClick={()=>{
+                                                        this.setState({avatarColor: "YELLOW"})
+                                                    }}
+                                        />
+                                        <ColorButton id="BLUE"
+                                                    background={"#2b37a8"}
+                                                    borderWidth={(this.colorMatcher("BLUE")) ? "1px" : "3px"}
+                                                    onClick={()=>{
+                                                        this.setState({avatarColor: "BLUE"})
+                                                    }}
+                                        />
+                                        <ColorButton id="PURPLE"
+                                                    background={"#562ba8"}
+                                                    borderWidth={(this.colorMatcher("PURPLE")) ? "1px" : "3px"}
+                                                    onClick={()=>{
+                                                        this.setState({avatarColor: "PURPLE"})
+                                                    }}
+                                        />
+                                        <ColorButton id="PINK"
+                                                    background={"#cf71dc"}
+                                                    borderWidth={(this.colorMatcher("PINK")) ? "1px" : "3px"}
+                                                    onClick={()=>{
+                                                        this.setState({avatarColor: "PINK"})
+                                                    }}
+                                        />
+                                    </ColorButtonContainer>
+                                </ColorContainer>
+                                <ButtonRow
+                                    marginTop="44px">
+                                    <RowContainer>
+                                        <PixelButton
+                                            onClick={() => {
+                                                this.props.history.push(`/game/users/${this.state.id}`);
+                                            }}
+                                        >
+                                            Back
+                                        </PixelButton>
+                                    </RowContainer>
+                                    <RowContainer>
+                                        <SaveButton
+                                            disabled={!this.state.username || this.state.username.length > 16}
+                                            onClick={()=>{
+                                                this.updateProfile();
+                                            }}
+                                        >
+                                            Save Profile
+                                        </SaveButton>
+                                    </RowContainer>
+                                </ButtonRow>
+                            </Two>
+                        </ProfileContainer>
+                </PhoneScreenContainer>
+                }
             </PhoneContainer>
             </BackgroundContainer>
         );

@@ -6,16 +6,10 @@ import InviteLobbyPhone from "./InviteLobbyPhone";
 import {ButtonRow} from "../profile/Assets/profileAssets";
 import {NavigationButton} from "../lobby/JoinLobby";
 
-const MenuWrapper = styled.div`
-    margin-left: 160px;
-    margin-top: 150px;
-    width: 410px;
-    height: 540px;
-`;
+
 
 const Background = styled.div`
   display: flex;
-  flex-direction: column;
   height: 768px;
   width: 1200px;
   border-radius: 20px;
@@ -23,12 +17,19 @@ const Background = styled.div`
   padding-left: 20px;
 `;
 
-const Paper = styled.div`
-    height: 900px;
-    width: 900px;
-    margin-left: 0px;
-    flex-direction: column;
-    align-items: flex-start;  
+const TableContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 768px;
+    width: 1175px;
+`;
+
+const MenuWrapper = styled.div`
+    margin-left: 160px;
+    margin-top: 150px;
+    width: 410px;
+    height: 540px;
 `;
 
 const Title = styled.div`
@@ -240,7 +241,7 @@ class CreateLobby extends React.Component {
     render(){
         return (
             <Background className={"lobbyCreation"}>
-                <Paper className={"paperLobby"}>
+                <TableContainer className={"paperLobby"}>
                     <MenuWrapper>
                         <Title>Create lobby</Title>
                         <Row>
@@ -325,13 +326,16 @@ class CreateLobby extends React.Component {
                             </NavigationButton>
                         </ButtonRow>
                     </MenuWrapper>
-                </Paper>
-                <InviteLobbyPhone changePhoneToOff={this.props.changePhoneToOff}
-                                  changePhoneToOn={this.props.changePhoneToOn}
-                                  changeTalkingToOff={this.props.changeTalkingToOff}
-                                  changeTalkingToOn={this.props.changeTalkingToOn}
-                >
-                </InviteLobbyPhone>
+                    <InviteLobbyPhone
+                        marginTop="415px"
+                        showRules={true}
+                        showLogout={true} 
+                        history={this.props.history}
+                        changePhoneToOff={this.props.changePhoneToOff}
+                        changePhoneToOn={this.props.changePhoneToOn}
+                        changeTalkingToOff={this.props.changeTalkingToOff}
+                        changeTalkingToOn={this.props.changeTalkingToOn}/>
+                </TableContainer>
             </Background>
         );
     }}

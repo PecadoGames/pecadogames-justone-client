@@ -15,16 +15,17 @@ const FormContainer = styled.div`
   height: 768px;
   width: 1200px;
   border-radius: 20px;
-  align-items: flex-start; 
+  align-items: flex-start;
 `;
 
 const Container = styled.div`
   display: flex;
-  width: 848px;
-  height: 620px;
-  align-items: flex-start;  
+  flex-direction: row;
+  justify-content: space-between;
+  width: 928px;
+  height: 610px;
   margin-left: 270px;
-  margin-top: 150px;
+  margin-top: 152px;
 `;
 
 const PageContainer = styled.div`
@@ -164,11 +165,6 @@ class JoinLobby extends React.Component {
     render() {
         return (
             <FormContainer className={"backgroundMain"}>
-                <LogoutButton
-                    onClick={()=>{
-                        this.logout();
-                    }}
-                >Logout</LogoutButton>
                 <Container className={"blankNewsPaper"}>
                     <PageContainer>
                         <Text>Lobbies</Text>
@@ -201,13 +197,16 @@ class JoinLobby extends React.Component {
                         </ButtonRow>
                         <PageNumber>{this.state.number/5}/{Math.ceil(this.getLobbyLength())}</PageNumber>
                     </PageContainer>
+                    <InviteLobbyPhone 
+                        marginTop="263px"
+                        history={this.props.history}
+                        showRules={true}
+                        showLogout={true}
+                        changePhoneToOff={this.props.changePhoneToOff}
+                        changePhoneToOn={this.props.changePhoneToOn}
+                        changeTalkingToOff={this.props.changeTalkingToOff}
+                        changeTalkingToOn={this.props.changeTalkingToOn}/>
                 </Container>
-                <InviteLobbyPhone changePhoneToOff={this.props.changePhoneToOff}
-                                  changePhoneToOn={this.props.changePhoneToOn}
-                                  changeTalkingToOff={this.props.changeTalkingToOff}
-                                  changeTalkingToOn={this.props.changeTalkingToOn}
-                >
-                </InviteLobbyPhone>
             </FormContainer>
         )
     }

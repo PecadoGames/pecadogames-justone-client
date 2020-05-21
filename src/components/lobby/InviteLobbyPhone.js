@@ -13,20 +13,20 @@ const PhoneContainerWithMessage = styled.div`
     width: 200px;
     padding-left: 10px;
     padding-top: 30px;
-    margin-top: 350px;
+    margin-top: ${props => props.marginTop};
 `;
 
 const PhoneScreenContainer = styled.div`
     display: flex;
     align-items: center;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     margin-left: 16px;
     width: 148px;
     height: 290px;
 `
 
-const InvitationWrapper = styled.div`
+export const InvitationWrapper = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -35,10 +35,11 @@ const InvitationWrapper = styled.div`
     margin-top: 10px;
 `
 
-const InvitationText = styled.div`
+export const InvitationText = styled.div`
     text-align: center;
+    font-size: ${props => props.fontSize || "15px"}
     color: #ffff00;
-    width: 140px;
+    width: ${props => props.width || "140px"};
 `
 
 class InviteLobbyPhone extends React.Component {
@@ -175,29 +176,35 @@ class InviteLobbyPhone extends React.Component {
                 //         )}
                 //     </Wrapper>
                 // </PhoneContainerWithMessage>
-                <PhoneContainerWithMessage className={"lobbyInvitePhone"}>
+                <PhoneContainerWithMessage className={"lobbyInvitePhone"}
+                    marginTop={this.props.marginTop}>
                     <PhoneScreenContainer>
+                        {this.props.showRules &&
                         <Row
-                            marginTop="5px"
+                            marginTop="0px"
                             justifyContent="center">
                         <PixelButton
+                            marginTop="0px"
                             width="100px"
                             onClick={() => {this.props.history.push(`rules`)}}>
                             Rules
                         </PixelButton>
-                        </Row>
+                        </Row>}
+                        {this.props.showLogout &&
                         <Row
-                            marginTop="5px"
+                            marginTop="0px"
                             justifyContent="center">
-                        <PixelButton
+                        <DeclineButton
+                            marginTop="0px"
                             width="100px"
                             onClick={()=>{
                                 this.logout();
                             }}
                             >
                             Logout
-                        </PixelButton>
+                        </DeclineButton>
                         </Row>
+                        }
                         {this.state.lobbies.map(lobby => {return(
                             <InvitationWrapper>
                                 <InvitationText>

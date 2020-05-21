@@ -4,8 +4,10 @@ import {withRouter} from 'react-router-dom';
 import User from "../shared/models/User";
 import {BackgroundContainer} from "../main/Main";
 import {PhoneContainer, TextRight, TextLeft, TextContainer, EditProfileButton, One, Two, ProfilePicContainer, ProfileContainer, Row, ButtonRow,
-    WindowHeader, FriendsButton, BlinkingPixelButton} from "./Assets/profileAssets";
+    WindowHeader, FriendsButton, BlinkingPixelButton, PhoneScreenContainer, InvitationContainer} from "./Assets/profileAssets";
 import { PixelButton } from "../../views/design/PixelButton";
+import {AcceptButton, DeclineButton} from "../profile/Assets/RequestBox";
+import {InvitationText} from "../lobby/InviteLobbyPhone"
 import GreenShyguy from "./Assets/ProfilePictures/green.png";
 import BlueShyguy from "./Assets/ProfilePictures/blue.png";
 import PinkShyguy from "./Assets/ProfilePictures/pink.png";
@@ -13,55 +15,6 @@ import PurpleShyguy from "./Assets/ProfilePictures/purple.png";
 import YellowShyguy from "./Assets/ProfilePictures/yellow.png";
 import RedShyguy from "./Assets/ProfilePictures/red.png";
 import styled from "styled-components";
-
-const Container = styled.div`
-    position: absolute;
-    left: 200px;
-    top: 247px;
-    width: 250px;
-    height: 100px;
-    z-index: 9;
-`;
-
-const AcceptButton = styled.button`
-    height: 30px;
-    float:left;
-    width: 30px;
-    border: 2px solid black;
-    padding-top: -3px;
-    font-size: 20px;
-    text-align: center;
-    margin-right: 10px;
-    margin-left: 10px;
-    margin-top: 5px;
-    background-color: #1d9c06;
-`;
-
-const ButtonContainer = styled.div`
-    display: inline-block;
-    width: 100px;
-    height: 35px;
-    text-align: center;
-`;
-
-const DeclineButton = styled(AcceptButton)`
-        background-color: #a8120a;
-`;
-
-
-const Text = styled.div`
-    color: white;
-`;
-
-const LobbyInvitationWrapper = styled.div`
-    text-align: center;
-    background-color:#5c5b5b;
-    border-radius: 10px;
-    width: 95%;
-    padding-bottom: 5px;
-    margin-bottom: 5px;   
-    border: 2px solid black;
-`;
 
 
 class Profile extends React.Component {
@@ -281,88 +234,101 @@ class Profile extends React.Component {
         return (
             <BackgroundContainer className={"backgroundMain"}>
                 <PhoneContainer className={"phoneProfile"}>
-
-                    {this.state.phoneCheck && !this.state.accepted ?  <Container>
+                    {this.state.phoneCheck && !this.state.accepted ?  
+                    <PhoneScreenContainer>
+                        <WindowHeader>
+                            ..\LobbyInvitation.js
+                        </WindowHeader>
                         {this.state.lobbies.map(lobby => {return(
-                                <LobbyInvitationWrapper>
-                                    <Text>Lobby: {lobby.lobbyName} | HostName: {lobby.hostName}</Text>
-                                    <ButtonContainer>
-                                        <AcceptButton
-                                            onClick={() => {this.accept(lobby.lobbyId);}}
-                                        >✓
-                                        </AcceptButton>
-                                        <DeclineButton
-                                            onClick={() => {this.decline(lobby.lobbyId);}}
-                                        >X
-                                        </DeclineButton>
-                                    </ButtonContainer>
-                                </LobbyInvitationWrapper>
-                            )}
-                        )}
-
-
-                    </Container> : null}
-                    <WindowHeader>
-                        ..\Profile.js
-                    </WindowHeader>
-                    <ProfileContainer className={"profileContainer"}>
-                        <One>
-                            <ProfilePicContainer className={"profilePicContainer"}>
-                                <img src={this.getProfilePic()} alt={"Profile picture"} className={"profilePicture"}/>
-                            </ProfilePicContainer>
-                            {this.state.editable ? (
-                            <FriendsButton
-                                onClick={()=> {this.props.history.push(window.location.pathname + `/friends`)}}
-                            >
-                                Friends
-                            </FriendsButton>
-                            ):(null)}
-                            {this.counter()}
-                            {!this.state.friendsRequest.length || (localStorage.getItem('id') !== this.state.id) ? (null):
-                                (<BlinkingPixelButton
-                                    onClick={() => {this.props.history.push(window.location.pathname+ `/requests`)}}>
-                                    New Requests ({this.state.count})
-                                </BlinkingPixelButton>)
-                            }
-                        </One>
-                        <Two>
-                            <TextContainer>
-                                <TextLeft>Username:</TextLeft>
-                                <TextRight>{this.state.username}</TextRight>
-                            </TextContainer>
-                            <TextContainer>
-                                <TextLeft>Score:</TextLeft>
-                                <TextRight>{this.state.score}</TextRight>
-                            </TextContainer>
-                            <TextContainer>
-                                <TextLeft>Joined on:</TextLeft>
-                                <TextRight>{this.state.creation_date}</TextRight>
-                            </TextContainer>
-                            <TextContainer>
-                                <TextLeft>Birthday:</TextLeft>
-                                <TextRight>{this.state.birthday}</TextRight>
-                            </TextContainer>
-                            <TextContainer>
-                                <TextLeft>Status:</TextLeft>
-                                <TextRight>{this.parseStatus(this.state.status)}</TextRight>
-                            </TextContainer>
-                            <Row>
-                                <ButtonRow>
-                                    <PixelButton
-                                        marginLeft = "0px"
-                                        onClick={() => {
-                                            this.back();
-                                        }}
-                                    >
-                                        Back
-                                    </PixelButton>
+                            <InvitationContainer>
+                                <InvitationText
+                                    width="300px"
+                                    fontSize="30px">
+                                    Invitation to lobby "{lobby.lobbyName}"
+                                </InvitationText>
+                                <ButtonRow
+                                marginTop="20px">
+                                    <AcceptButton
+                                        marginTop = "0px"
+                                        height = "50px"
+                                        onClick={() => {this.accept(lobby.lobbyId);}}>
+                                        Accept
+                                    </AcceptButton>
+                                    <DeclineButton
+                                        marginTop = "0px"
+                                        onClick={() => {this.decline(lobby.lobbyId);}}>
+                                        Reject
+                                    </DeclineButton>
                                 </ButtonRow>
-                                <ButtonRow>
-                                {this.canEdit()}
-                                </ButtonRow>
-                            </Row>
-                        </Two>
-                    </ProfileContainer>
+                            </InvitationContainer>
+                                                )}
+                                                )}
+                    </PhoneScreenContainer> 
+                    :
+                    <PhoneScreenContainer>
+                        <WindowHeader>
+                            ..\Profile.js
+                        </WindowHeader>
+                        <ProfileContainer className={"profileContainer"}>
+                            <One>
+                                <ProfilePicContainer className={"profilePicContainer"}>
+                                    <img src={this.getProfilePic()} alt={"Profile picture"} className={"profilePicture"}/>
+                                </ProfilePicContainer>
+                                {this.state.editable ? (
+                                <FriendsButton
+                                    onClick={()=> {this.props.history.push(window.location.pathname + `/friends`)}}
+                                >
+                                    Friends
+                                </FriendsButton>
+                                ):(null)}
+                                {this.counter()}
+                                {!this.state.friendsRequest.length || (localStorage.getItem('id') !== this.state.id) ? (null):
+                                    (<BlinkingPixelButton
+                                        onClick={() => {this.props.history.push(window.location.pathname+ `/requests`)}}>
+                                        New Requests ({this.state.count})
+                                    </BlinkingPixelButton>)
+                                }
+                            </One>
+                            <Two>
+                                <TextContainer>
+                                    <TextLeft>Username:</TextLeft>
+                                    <TextRight>{this.state.username}</TextRight>
+                                </TextContainer>
+                                <TextContainer>
+                                    <TextLeft>Score:</TextLeft>
+                                    <TextRight>{this.state.score}</TextRight>
+                                </TextContainer>
+                                <TextContainer>
+                                    <TextLeft>Joined on:</TextLeft>
+                                    <TextRight>{this.state.creation_date}</TextRight>
+                                </TextContainer>
+                                <TextContainer>
+                                    <TextLeft>Birthday:</TextLeft>
+                                    <TextRight>{this.state.birthday}</TextRight>
+                                </TextContainer>
+                                <TextContainer>
+                                    <TextLeft>Status:</TextLeft>
+                                    <TextRight>{this.parseStatus(this.state.status)}</TextRight>
+                                </TextContainer>
+                                <Row>
+                                    <ButtonRow>
+                                        <PixelButton
+                                            marginLeft = "0px"
+                                            onClick={() => {
+                                                this.back();
+                                            }}
+                                        >
+                                            Back
+                                        </PixelButton>
+                                    </ButtonRow>
+                                    <ButtonRow>
+                                    {this.canEdit()}
+                                    </ButtonRow>
+                                </Row>
+                            </Two>
+                        </ProfileContainer>
+                    </PhoneScreenContainer>
+                    }
                 </PhoneContainer>
             </BackgroundContainer>
         );
