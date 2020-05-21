@@ -27,7 +27,7 @@ const TextSignLeft = styled.div`
     margin-left: 30px;
     font-size: 20px;
     color:black;
-    transform:rotate(-3.5deg)
+    transform:rotate(-3.5deg);
 `;
 
 const SignContainer = styled.div`

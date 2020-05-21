@@ -151,6 +151,7 @@ class Lobby extends React.Component{
             localStorage.setItem('gameId', response.data.lobbyId)
             this.props.history.push(window.location.pathname +'/game')
         }
+
         this.getHostName(response.data.hostId);
         let isInList = false;
         for (let a in response.data.playersInLobby){
@@ -168,6 +169,7 @@ class Lobby extends React.Component{
 
     async getHostName(hostId){
         const response = await api.get(`/users/${hostId}?token=${localStorage.getItem('token')}`)
+        this.handleInputChange('hostId', response.data.id)
         this.handleInputChange('hostName', response.data.username)
     }
 

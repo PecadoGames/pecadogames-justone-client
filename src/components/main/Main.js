@@ -75,19 +75,19 @@ class Main extends React.Component {
 
 
     async logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('id');
         try{
             const requestBody = JSON.stringify({
                 id: localStorage.getItem("id"),
                 token: localStorage.getItem("token")
             });
             await api.put('/logout', requestBody);
-            localStorage.removeItem('token');
-            localStorage.removeItem('id');
-            this.props.history.push('/login');
         }
         catch(error){
             alert(`Something went wrong during the logout \n${handleError(error)}`)
         }
+        this.props.history.push('/login');
     }
 
 
