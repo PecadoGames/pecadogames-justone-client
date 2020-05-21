@@ -7,7 +7,7 @@ import InviteLobbyPhone from "../lobby/InviteLobbyPhone";
 const Background = styled.div`
   display: inline-block;
   flex-direction: column;
-  width: 1196px;
+  width: 1200px;
   height: 768px;
   border-radius: 20px;
 `;
@@ -45,27 +45,25 @@ const ScoreTextRight = styled(ScoreTextLeft)`
     width: 30%
 `;
 
-const NeonButton = styled.button`
-    position: absolute;
-    top: 710px;
-    left: 922px;
-    z: 3;
-    outline: 2px solid #008000
+export const NeonButton = styled.button`
+    outline: 2px solid ${props => props.outline || '#008000'}
     outline-offset: -7px
     height: 50px;
     width: 100px;
     display: inline-block;
-    color: #008000
+    color: ${props => props.color || '#008000'}
+    box-shadow: ${props => props.boxShadow || '0 0 50px #5ccc2f'}
     letter-space: 2px;
     text-transform: uppercase;
     font-size: 30px;
     overflow: hidden;
-    background: none;
+    background: ${props => props.background || '#5ccc2f'};
     border: none;
     &:hover {
-        color: ${props => props.color || '#111'}
-        background: ${props => props.background || '#39ff14'}
-        box-shadow: ${props => props.boxShadow || '0 0 50px #39ff14'}
+        outline: ${props => props.hoverOutline}
+        color: ${props => props.hoverColor || '#111'}
+        background: ${props => props.hoverBackground || '#5ccc2f'}
+        box-shadow: ${props => props.hoverBoxShadow}
   }
 `;
 
@@ -86,6 +84,15 @@ const Title = styled.div`
     font-size:36px;
     border-bottom: 2px solid white;
 `;
+
+const BackButtonContainer = styled.div`
+    margin-left: 570px;
+    margin-top: 698px;
+    display: flex;
+    flex-direction: column; 
+    height: auto;
+    width: 104px;
+`
 
 
 
@@ -141,11 +148,6 @@ class Scoreboard extends React.Component{
         return(
             <BackgroundWrapper>
                 <Background className={"scoreboard"}>
-                    <NeonButton
-                        onClick={() => {
-                            this.props.history.push(`/game/main`);
-                        }}
-                    >EXIT</NeonButton>
                     <ScoreContainer
                         className={"scoreboardScroller"}
                         marginLeft={"280px"}>
@@ -167,8 +169,25 @@ class Scoreboard extends React.Component{
                             </Wrapper>
                         )})}
                     </ScoreContainer>
+                    <BackButtonContainer>
+                        <NeonButton
+                            outline="white"
+                            color="white"
+                            hoverColor="black"
+                            hoverBackground="#0a5c03"
+                            boxShadow="0 0 50px #0a5c03"
+                            hoverBoxShadow="none"
+                            hoverOutline="2px solid black"
+                            onClick={() => {
+                                this.props.history.push(`/game/main`);
+                            }}
+                        >
+                            EXIT
+                        </NeonButton>
+                    </BackButtonContainer>
                     <InviteLobbyPhone
-                        marginTop="415px"
+                        marginTop="-333px"
+                        history={this.props.history}
                         showRules={true}
                         showLogout={true}
                         changePhoneToOff={this.props.changePhoneToOff}

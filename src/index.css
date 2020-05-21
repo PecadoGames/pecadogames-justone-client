@@ -247,19 +247,17 @@ button {
 }
 
 .rules::-webkit-scrollbar {
+  margin-left: 10px;
   width: 1em;
 }
 
 .rules::-webkit-scrollbar-track {
-  box-shadow: inset 5px 10px 10px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
+  border: 2px solid #c0c0c0;
 }
 
 .rules::-webkit-scrollbar-thumb {
-  background-color: Red;
-  outline: 1px solid slategrey;
-  border-radius: 10px;
-  box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.4);
+  background-color: red;
+  border: 2px solid #c0c0c0;
 }
 
 .chatBox::-webkit-scrollbar {

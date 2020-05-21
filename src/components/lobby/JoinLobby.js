@@ -22,7 +22,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 928px;
+  width: 930px;
   height: 610px;
   margin-left: 270px;
   margin-top: 152px;

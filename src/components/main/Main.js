@@ -22,7 +22,7 @@ const HandPhoneWrapper = styled.div`
     margin-top: 77px;
     margin-left:450px;
     height:700px;
-    width: 728px;
+    width: 730px;
 `
 
 const HandContainer = styled.div`

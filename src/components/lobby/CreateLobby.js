@@ -22,7 +22,7 @@ const TableContainer = styled.div`
     flex-direction: row;
     justify-content: space-between;
     height: 768px;
-    width: 1175px;
+    width: 1179px;
 `;
 
 const MenuWrapper = styled.div`
