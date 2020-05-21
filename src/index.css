@@ -168,7 +168,7 @@ button {
   margin: auto
 }
 
-.
+
 
 .tablePlain{
   background-image: url("TablePlain.png");
@@ -275,6 +275,13 @@ button {
   background-color: #4CAF50;
   outline: 1px solid slategrey;
   border-radius: 10px;
+}
+
+.tv{
+  background-image: url("tvlobby.png");
+  background-size: 400px 300px, contain;
+  background-repeat: no-repeat;
+  margin: auto;
 }
 
 @keyframes blinkingAnimation {
