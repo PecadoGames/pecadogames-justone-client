@@ -246,7 +246,7 @@ class Login extends React.Component {
                     {this.state.showError && "User already logged in"}
                 </LoginFields>
               
-                <DoorEnterText
+              {this.state.picture === "backgroundLogin" ? <DoorEnterText
                   onClick={() => {
                     this.logging();
                     this.login();
@@ -254,7 +254,8 @@ class Login extends React.Component {
                 >
                   {this.state.picture === "backgroundLogin" &&
                   "Enter"}
-                </DoorEnterText>
+                </DoorEnterText>:<DoorEnterText>
+              </DoorEnterText>}
               <PhoneContainer 
                 className = "buttonImage">
                 <RegisterContainer>
