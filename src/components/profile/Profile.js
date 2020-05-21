@@ -87,6 +87,8 @@ class Profile extends React.Component {
                 const response = await api.get(`/users/${localStorage.getItem('id')}/invitations?token=${localStorage.getItem('token')}`);
                 this.handleInputChange('lobbies', response.data)
                 this.checkPhone()
+                const requests = await api.get(`/users/${localStorage.getItem('id')}/friendRequests?token=${localStorage.getItem('token')}`)
+                this.handleInputChange('friendsRequest', requests.data)
                 if(this.state.accepted){
                     clearInterval(this.state.phone)
                 }

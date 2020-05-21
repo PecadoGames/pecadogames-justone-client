@@ -15,11 +15,12 @@ const SignLeft = styled.div`
 `;
 
 const Text = styled.div`
-    text-align: center;
-    position: relative;
-    top: 150px;
-    font-size: 36px;
-    border: 1px solid black;
+    height: auto;
+    width: 300px;
+    color: white;
+    font-size: 25px;
+  
+  
 `;
 
 const TextSignLeft = styled.div`
@@ -42,7 +43,7 @@ const Wrapper = styled.div`
     background-color: none;
     padding: 10px;
     text-align: center;
-    margin-top: 500px;
+    margin-top: 448px;
     margin-left: 170px;
     display: flex;
     flex-direction: column;
@@ -52,6 +53,17 @@ const Wrapper1 = styled.div`
     display: inline;
     padding-right: 40px;
    
+`;
+
+const Wrapper2 = styled.div`
+    display: flex;
+    flex-direction: row;
+    background-color: hsla(220, 3%, 19%, 0.8);
+    width: 60%;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-left: 65px;
+
 `;
 
 class VoteOnClueState extends React.Component{
@@ -174,16 +186,22 @@ class VoteOnClueState extends React.Component{
     render(){
         return(
             this.renderForGuesser()  || this.hasVoted() ?
-                <Text>Wait until your friends voted!</Text>
+                <Wrapper>
+                    <Wrapper2>
+                        <Text>Wait until your friends voted!</Text>
+                    </Wrapper2>
+                </Wrapper>
                 :
                 <Wrapper>
                     <Wrapper1>
-                        <Button  background='#FAEBD7'
+                        <Button  background='hsla(220, 3%, 19%, 0.8);'
                                  boxShadow='none'
-                                 width='200px'
-                                 color='black'
+                                 width='100px'
+                                 color='white'
                                  fontSize='30px'
-                                 onClick={()=>{this.voteOnClues()}}>Send Vote</Button>
+                                 border='2px,red'
+                                 height='47px'
+                                 onClick={()=>{this.voteOnClues()}}>Vote</Button>
                     </Wrapper1>
                     <SignContainer>
                         {this.state.clues.map(clue => {

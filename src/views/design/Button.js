@@ -14,7 +14,7 @@ export const Button = styled.button`
   color: ${props => props.color || "#ffffff"};
   width: ${props => props.width || null};
   height: ${props => props.height || "40px"};
-  border: none;
+  border: ${props => props.border || 'none'};
   border-radius: ${props => props.borderRadius || "3px"};
   cursor: ${props => (props.disabled ? "default" : "pointer")};
   opacity: ${props => (props.opacity ? 0.4 : 1)};

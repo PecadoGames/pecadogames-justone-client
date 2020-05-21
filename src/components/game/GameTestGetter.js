@@ -90,7 +90,7 @@ class GameTestGetter extends React.Component{
         super(props);
         this.state = {
             game: null,
-            players: [{'username': 'ramon', 'score': '420', 'avatarColor': 'BLUE'},{'username': 'marion', 'score':'69', 'avatarColor': 'BLUE'}],
+            players: [{'username': 'asdf', 'score': '420', 'avatarColor': 'BLUE'},{'username': 'fdsa', 'score': '420', 'avatarColor': 'BLUE'}, {'username': 'ramon', 'score': '420', 'avatarColor': 'BLUE'},{'username': 'marion', 'score':'69', 'avatarColor': 'BLUE'}],
             gameState: null,
             interval: null,
             currentGuesserId: parseInt(localStorage.getItem('id')),

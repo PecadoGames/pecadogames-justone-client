@@ -11,25 +11,41 @@ const Wrapper = styled.div`
     background-color: none;
     padding: 10px;
     text-align: center;
-    margin-top: 400px;
+    margin-top: 397px;
     margin-left: 225px;
     display: flex;
     flex-direction: column;
 `;
 
 const Container = styled.div`
+    padding-top: 10px;
+    margin-top: 20px;
     height: auto;
     width: 300px;
-    background-color: hsla(44, 49%, 84%, 0.8);
-    color: black;
+    background-color: hsla(220, 3%, 19%, 0.8);
+    border: 2px solid black;
+    color: white;
     border-radius: 8px;
     border: 2px solid black;
+`;
+
+const Wrapper1 = styled.div`
+    margin-top: 20px;
+    height: auto;
+    width: 300px;
+    background-color: hsla(220, 3%, 19%, 0.8);
+    border: 2px solid black;
+    color: white;
+    border-radius: 8px;
+    border: 2px solid black;
+    font-size: 26px;
 `;
 
 const Text = styled.div`
     align-text: center;
     font-size: 26px;
-    color:black;
+    color:white;
+    
 `;
 
 const SubmitButton = styled.div`
@@ -140,10 +156,9 @@ class EnterCluesState extends React.Component{
         return(
             this.renderForGuesser() || this.hasSend()?
                 <Wrapper style={{marginTop:"470px"}}>
-                    <Container>
-                        Your team mates are currently entering clues.
-                        Please wait until they are finished
-                    </Container>
+                    <Wrapper1>
+                        Your team mates are currently entering clues
+                    </Wrapper1>
                 </Wrapper>
                 :
                 this.state.specialGame ?
@@ -151,13 +166,14 @@ class EnterCluesState extends React.Component{
                         <Container>
                             The word is:
                             <Text>{this.state.currentWord}</Text>
-                            Enter a clue to help your team mate correctly guess {this.state.currentWord}.
+                            Enter two clues to help your mate
                             <br/>
                             <div style={{display: "block"}}>
                                 <InputField width = '80%'
-                                            marginTop = '10px'
+
+                                            marginTop = '5px'
                                             placeholder= 'Your first clue...'
-                                            color={"black"}
+                                            color={"white"}
                                             onChange={e => {
                                                 this.handleInputChange('clue', e.target.value)
                                             }}
@@ -166,7 +182,7 @@ class EnterCluesState extends React.Component{
                                 <InputField width = '80%'
                                             marginTop = '10px'
                                             placeholder= 'Your second clue...'
-                                            color={"black"}
+                                            color={"white"}
                                             onChange={e => {
                                                 this.handleInputChange('clue2', e.target.value)
                                             }}
@@ -187,13 +203,13 @@ class EnterCluesState extends React.Component{
                         <Container>
                             The word is:
                             <Text>{this.state.currentWord}</Text>
-                            Enter a clue to help your team mate correctly guess {this.state.currentWord}.
+                            Enter a clue to help your mate
                             <br/>
                                 <div style={{display: "flex"}}>
                                 <InputField width = '60%'
                                             marginTop = '10px'
                                             placeholder= 'Your clue...'
-                                            color={"black"}
+                                            color={"white"}
                                             onChange={e => {
                                                 this.handleInputChange('clue', e.target.value)
                                             }}

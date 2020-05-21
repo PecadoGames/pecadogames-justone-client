@@ -29,6 +29,18 @@ const TextRight = styled(TextLeft)`
     margin-right: 10px;
 `;
 
+const Green = styled.div`
+    color: green
+    float: right;
+    margin-left: 10px;
+`;
+
+const Red = styled.div`
+    color: red
+    float: right;
+    margin-left: 10px;
+`;
+
 
 
 class TransitionState extends React.Component{
@@ -92,8 +104,8 @@ class TransitionState extends React.Component{
                         <div>You guessed wrong! </div>}
                     </TextLeft>
                     </ScoreContainer>
-                    <ScoreContainer> <TextLeft>The word was {this.state.currentWord}</TextLeft> </ScoreContainer>
-                    <ScoreContainer><TextLeft><div>You guessed: {this.state.currentGuess}</div></TextLeft></ScoreContainer>
+                    <ScoreContainer> <TextLeft>The word was <Green>{this.state.currentWord}</Green></TextLeft> </ScoreContainer>
+                    <ScoreContainer><TextLeft><div>You guessed: {!this.state.isGuessCorrect ? <Red>{this.state.currentGuess}</Red> : <Green>{this.state.currentGuess}</Green>}</div></TextLeft></ScoreContainer>
                 </Container>
                 :
                 <Container>
@@ -108,8 +120,8 @@ class TransitionState extends React.Component{
                         <div>Your teammate guessed wrong!</div>}
                     </TextLeft>
                     </ScoreContainer>
-                    <ScoreContainer> <TextLeft>The word was {this.state.currentWord}</TextLeft> </ScoreContainer>
-                    <ScoreContainer><TextLeft><div>Your teammate guessed: {this.state.currentGuess}</div></TextLeft></ScoreContainer>
+                    <ScoreContainer> <TextLeft>The word was <Green>{this.state.currentWord}</Green></TextLeft> </ScoreContainer>
+                    <ScoreContainer><TextLeft><div>Your teammate guessed: {!this.state.isGuessCorrect ? <Red>{this.state.currentGuess}</Red> : <Green>{this.state.currentGuess}</Green>}</div></TextLeft></ScoreContainer>
                 </Container>
         )
     }

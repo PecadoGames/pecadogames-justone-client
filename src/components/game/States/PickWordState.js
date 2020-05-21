@@ -4,16 +4,28 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
     height: 200px;
-    width: 400px;
-    background-color: #9c6f1c;
+    width: 470px;
+    background-color: none;
     padding: 10px;
     text-align: center;
-    margin-left: 200px;
-    margin-top: 480px;
-    bottom: 21px;
-    left: 0px;
+    margin-top: 450px;
+    margin-left: 170px;
+    display: flex;
+    flex-direction: column;
 `;
 
+const Wrapper1 = styled.div`
+    display: flex;
+    flex-direction: row;
+    background-color: hsla(220, 3%, 19%, 0.8);
+    width: 60%;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-left: 65px;
+    padding-right:10px;
+    padding-left: 10px;
+
+`;
 const Container = styled.div`
     display: table;
     column-count: 1;
@@ -25,18 +37,19 @@ const Container = styled.div`
 `;
 
 const Text = styled.div`
-    text-align: center;
-    position: relative;
-    top: 150px;
-    font-size: 36px;
-    border: 1px solid black;
+    height: auto;
+    width: 300px;
+    color: white;
+    font-size: 25px;
+  
+  
 `;
 
 const HandContainer = styled.div`
   margin-left:300px;
-  height:445px;
+  height:450px;
   width:450px;
-  margin-top:200px;
+  margin-top:250px;
 `;
 
 const PickWordButton = styled.button`
@@ -125,7 +138,7 @@ class PickWordState extends React.Component{
         return(
             this.renderForGuesser() ?
                 <div>
-                    <Text>Pick a word to start the game</Text>
+
                     <HandContainer className={"smallHandWithCard"}>
                         <Container>
                             {this.state.number.map(n => {
@@ -135,9 +148,11 @@ class PickWordState extends React.Component{
                     </HandContainer>
                 </div>
                 :
-                <div>
-                    <Text>The guesser is currently picking a word</Text>
-                </div>
+                <Wrapper>
+                    <Wrapper1>
+                    <Text>The guesser is picking a word</Text>
+                    </Wrapper1>
+                </Wrapper>
         )
     }
 }

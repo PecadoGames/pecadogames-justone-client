@@ -11,37 +11,65 @@ const Wrapper = styled.div`
     background-color: none;
     padding: 10px;
     text-align: center;
-    margin-top: 420px;
-    margin-left: 150px;
+    margin-top: 450px;
+    margin-left: 170px;
     display: flex;
     flex-direction: column;
 `;
 
-const Wrapper2 = styled.div`
-    height: 200px;
-    width: 600px;
-    background-color: none;
-    padding: 10px;
-    text-align: center;
-    margin-top: 530px;
-    margin-left: 150px;
-    text-align: center;
+const SubmitButton = styled.div`
+     cursor: ${props => (props.disabled ? "default" : "pointer")};
+     opacity: ${props => (props.disabled ? 0.4 : 1)};
+     background-color: #2e2d2c;
+     border: 2px solid black;
+     color: white;
+     border-radius: 3px;
+     height: 30px;
+     margin-top: 5px;
+     padding-top: 3px;
+     margin-left: 7px;
+     width: ${props => (props.width || "80px")}
+   
+   
+
+`;
+
+const Text = styled.div`
+    height: auto;
+    width: 300px;
+    color: white;
+    font-size: 25px;
+  
+  
 `;
 
 const Wrapper1 = styled.div`
-    display: inline;
+    display: flex;
+    flex-direction: row;
     background-color: hsla(220, 3%, 19%, 0.8);
     width: 60%;
     border: 2px solid black;
     border-radius: 5px;
-    margin-left: 85px;
+    margin-left: 65px;
+
+`;
+
+const Wrapper2 = styled.div`
+    display: flex;
+    flex-direction: row;
+    background-color: hsla(220, 3%, 19%, 0.8);
+    width: 60%;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-left: 65px;
+    height: 65px;
+    padding-top: 4.5px;
+    padding-bottom: 4px;
+    align-items: center;  
 `;
 
 
 
-const Text = styled.div`
-    font-size: 20px;
-`;
 
 const SignLeft = styled.div`
   display: flex;
@@ -49,13 +77,15 @@ const SignLeft = styled.div`
   width: 150px;
   align-items: flex-start;  
   float:left;
+ 
+  
 `;
 
 const TextSignLeft = styled.div`
     margin-top: 30px;
     margin-left: 30px;
     color:black;
-    transform:rotate(-4deg)
+    transform:rotate(-3.5deg);
     font-size: ${props => (props.fontSize || '20px')};
 `;
 
@@ -154,23 +184,24 @@ class EnterGuessState extends React.Component{
 
                 <Wrapper>
                     <Wrapper1>
-                    <Text>Guess:</Text>
                     <InputField
+                                height= '22px'
                                 width={"60%"}
-                                placeholder= 'Your guess...'
+                                placeholder= 'Your Guess...'
                                 onChange={e => {
                                     this.handleInputChange('guess', e.target.value);
 
                                 }}
+                                marginTop={'7px'}
                                 onKeyDown={this._handleKeyDown}>
 
                     </InputField>
-                    <Button
+                    <SubmitButton
                         guess={this.state.guess}
                         disabled={this.props.guess}
                         onClick={()=>this.submitGuess()}
                     >Submit
-                    </Button>
+                    </SubmitButton>
                     </Wrapper1>
                     <div>
                         <SignContainer>
@@ -181,11 +212,10 @@ class EnterGuessState extends React.Component{
                 </Wrapper>
                 :
                 <Wrapper>
-                    <Wrapper1>
-                        Your team mate is currently guessing.
-                        Please be patient.
-                        <div style={{fontSize: "10px"}}>or be impatient, i don't care, I'm just a html element</div>
-                    </Wrapper1>
+                    <Wrapper2>
+                        <Text>Your mate is guessing..
+                        </Text>
+                    </Wrapper2>
                     <div>
                         <SignContainer>
                             {this.state.clues.map(clue => {

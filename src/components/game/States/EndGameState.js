@@ -3,7 +3,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-
+    display: flex
+    flex-direction: column
     margin:auto;
     width: 500px;
     height: auto;
@@ -112,7 +113,6 @@ class EndGameState extends React.Component{
     render(){
         return(
             <Wrapper>
-
                 <Text>Game Over!</Text>
                 You will be redirected to the lobby in {this.state.timer} seconds
                 <Line/>
