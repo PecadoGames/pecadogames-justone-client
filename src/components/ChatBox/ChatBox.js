@@ -17,6 +17,7 @@ const TextContainer = styled.div`
   width: 210px;
   flex-direction: row;
   overflow: hidden;
+  white-space:initial;
 `;
 
 const UsernameContainer = styled.div`
@@ -121,12 +122,13 @@ class ChatBox extends React.Component {
         }
         else{
             alert("Message too long!")
+            return "";
         }
     }
 
     sliceMessage(messageToBeSpliced){
-        let part1 = messageToBeSpliced.slice(0, 24)
-        let part2 = messageToBeSpliced.slice(25, messageToBeSpliced.length-1)
+        let part1 = messageToBeSpliced.slice(0, 25)
+        let part2 = messageToBeSpliced.slice(25, messageToBeSpliced.length)
         if (part2.length > 26){
             alert("Spamming a long message won't help anybody. You're probably hangry, just eat a snickers™")
         }
@@ -137,13 +139,20 @@ class ChatBox extends React.Component {
     }
 
     async sendMessage(){
-        const requestBody = JSON.stringify({
-            playerId: localStorage.getItem('id'),
-            playerToken: localStorage.getItem('token'),
-            message: this.formatString(this.state.chatMessage),
-        })
-        await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/chat`, requestBody)
-        this.handleInputChange('chatMessage', '')
+        if (this.formatString(this.state.chatMessage)){
+            try{
+                const requestBody = JSON.stringify({
+                    playerId: localStorage.getItem('id'),
+                    playerToken: localStorage.getItem('token'),
+                    message: this.formatString(this.state.chatMessage),
+                })
+                await api.put(`/lobbies/${localStorage.getItem('lobbyId')}/chat`, requestBody)
+                this.handleInputChange('chatMessage', '')
+            }
+            catch(error){
+                alert("could not send chat message" + error)
+            }
+        }
     }
 
     displayUsername(username){
@@ -157,14 +166,14 @@ class ChatBox extends React.Component {
     }
 
     _handleKeyDown= (e) => {
-        if (e.key === 'Enter'){
+        if (e.key === 'Enter' && this.state.chatMessage){
             this.sendMessage()
         }
     }
 
 
     scrollDown(){
-        //gets chatbox
+        //gets chatBox
         const element = document.getElementById("containerElement")
         //gets height
         if (element){
@@ -175,7 +184,7 @@ class ChatBox extends React.Component {
 
             //if this is true the user is at the bottom with 5 percent error margin
             console.log(clientHeight + "+" + currentPosition + ">=" + tolerance )
-            console.log("scrolling down to chatbox: " + (clientHeight + currentPosition >= tolerance))
+            console.log("scrolling down to chatBox: " + (clientHeight + currentPosition >= tolerance))
             if (clientHeight + currentPosition >= tolerance){
                 setTimeout(()=>{
                     element.scrollBy(0, element.clientHeight)
@@ -187,7 +196,7 @@ class ChatBox extends React.Component {
     render() {
         return (
             <div style={{border: '2px solid #202120'}}>
-                <Element name="chatBox" className="element" id="containerElement" style={{
+                <Element name="chatBox" className="chatBox" id="containerElement" style={{
                     display: 'block',
                     position: 'relative',
                     height: '300px',
@@ -218,7 +227,7 @@ class ChatBox extends React.Component {
                 >
                 </InputField>
                 <Button
-                    disabled={this.state.chatMessage.length > 50}
+                    disabled={!this.state.chatMessage.length}
                     onClick={()=>this.sendMessage()}>Send</Button>
                 <Words>
                     {this.displayCharacters()}

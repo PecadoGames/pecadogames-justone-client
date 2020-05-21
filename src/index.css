@@ -168,6 +168,8 @@ button {
   margin: auto
 }
 
+.
+
 .tablePlain{
   background-image: url("TablePlain.png");
   background-size: 100% 100%, contain;
@@ -198,9 +200,24 @@ button {
 
 .scoreboard{
   background-image: url("scoreboard.png");
-  background-size: 1000px 625px, contain;
+  background-size: 1200px 750px, contain;
   background-repeat: no-repeat;
   margin: auto;
+}
+
+.scoreboardScroller::-webkit-scrollbar {
+  width: 1em;
+}
+
+.scoreboardScroller::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: black;
+  border-left: 2px solid white;
+}
+
+.scoreboardScroller::-webkit-scrollbar-thumb {
+  background-color: white;
+  width: 10px;
 }
 
 .guess-sign-left{
@@ -243,6 +260,21 @@ button {
   outline: 1px solid slategrey;
   border-radius: 10px;
   box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.4);
+}
+
+.chatBox::-webkit-scrollbar {
+  width: 1em;
+}
+
+.chatBox::-webkit-scrollbar-track {
+  box-shadow: inset 5px 10px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.chatBox::-webkit-scrollbar-thumb {
+  background-color: #4CAF50;
+  outline: 1px solid slategrey;
+  border-radius: 10px;
 }
 
 @keyframes blinkingAnimation {

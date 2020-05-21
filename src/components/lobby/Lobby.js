@@ -226,7 +226,7 @@ class Lobby extends React.Component{
                         onClick={()=>this.startGame()}>Start Game
                         </Button> :  null}
                     <text>Chat</text>
-                    <ChatBox/>
+                    <ChatBox className={"chatBox"}/>
                 </LeftContainer>
                 <RightContainer>
                     <TopRightContainer>

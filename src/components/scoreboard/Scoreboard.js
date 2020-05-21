@@ -7,8 +7,8 @@ import InviteLobbyPhone from "../lobby/InviteLobbyPhone";
 const Background = styled.div`
   display: flex;
   flex-direction: column;
-  width: 1000px;
-  height: 700px;
+  width: 100%;
+  height: 100%;
   border-radius: 20px;
   align-items: flex-start;  
   padding-left: 20px;
@@ -17,17 +17,17 @@ const Background = styled.div`
 const ScoreContainer = styled.div`
   position: absolute;
   background: black;
-  height: 243px;
-  width: 195px;
+  height: 290px;
+  width: 238px;
   overflow-x: hidden;
   margin-left: ${props => props.marginLeft|| "0px"};
-  margin-top: 147px;
+  margin-top: 175px;
   text-align: center;
   overflow-y: scroll;
 `;
 
 const ScoreTextLeft = styled.body`
-    width: 75px;
+    width: 60%
     overflow: hidden;
     text-align: left;
     font-size: 24px;
@@ -40,6 +40,7 @@ const ScoreTextLeft = styled.body`
 const ScoreTextRight = styled(ScoreTextLeft)`
     text-align: right;
     float: right;
+    width: 30%
 `;
 
 const NeonButton = styled.button`
@@ -66,16 +67,20 @@ const NeonButton = styled.button`
 
 const Wrapper = styled.div`
     display: inline-block;
-    width: 170px;
-    height: 40px;
-    border-top: 1px solid white;
-    margin-bottom: 5px;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid white;
+    margin-bottom: 2px;
+    padding-bottom: 5px;
 `;
 
 const Title = styled.div`
     text-align: center;
     width: 100%;
     margin: center;
+    color: white;
+    font-size:36px;
+    border-bottom: 2px solid white;
 `;
 
 
@@ -97,7 +102,7 @@ class Scoreboard extends React.Component{
     }
 
     async getUsers(){
-        const response = await api.get('/users')
+        const response = await api.get(`/users/scores?token=${localStorage.getItem('token')}`)
         let parsedUsers = response.data
         /**
          for (let user in parsedUsers){
@@ -131,15 +136,15 @@ class Scoreboard extends React.Component{
     render() {
         return(
             <div>
-                <NeonButton
-                    onClick={() => {
-                        this.props.history.push(`/game/main`);
-                    }}
-                >EXIT</NeonButton>
                 <Background className={"scoreboard"}>
+                    <NeonButton
+                        onClick={() => {
+                            this.props.history.push(`/game/main`);
+                        }}
+                    >EXIT</NeonButton>
                     <ScoreContainer
-                        style={{color:"white", fontSize:"36px"}}
-                        marginLeft={"215px"}>
+                        className={"scoreboardScroller"}
+                        marginLeft={"260px"}>
                         <Title>Players</Title>
                         {this.state.users.map(users => {return(
                             <Wrapper>
@@ -148,9 +153,9 @@ class Scoreboard extends React.Component{
                             </Wrapper>
                         )})}
                     </ScoreContainer>
-                    <ScoreContainer
-                        marginLeft={"581px"}>
-                        <Title>Players</Title>
+                    <ScoreContainer className={"scoreboardScroller"}
+                        marginLeft={"700px"}>
+                        <Title>Lobbies</Title>
                         {this.state.lobbies.map(lobbies => {return(
                             <Wrapper>
                                 <ScoreTextLeft>{lobbies.lobbyName}</ScoreTextLeft>
