@@ -5,13 +5,15 @@ import {withRouter} from 'react-router-dom';
 import InviteLobbyPhone from "../lobby/InviteLobbyPhone";
 
 const Background = styled.div`
-  display: flex;
+  display: inline-block;
   flex-direction: column;
-  width: 100%;
-  height: 100%;
+  width: 1200px;
+  height: 800px;
   border-radius: 20px;
-  align-items: flex-start;  
-  padding-left: 20px;
+`;
+
+const BackgroundWrapper = styled.div`
+    text-align: center;
 `;
 
 const ScoreContainer = styled.div`
@@ -135,7 +137,7 @@ class Scoreboard extends React.Component{
 
     render() {
         return(
-            <div>
+            <BackgroundWrapper>
                 <Background className={"scoreboard"}>
                     <NeonButton
                         onClick={() => {
@@ -144,7 +146,7 @@ class Scoreboard extends React.Component{
                     >EXIT</NeonButton>
                     <ScoreContainer
                         className={"scoreboardScroller"}
-                        marginLeft={"260px"}>
+                        marginLeft={"280px"}>
                         <Title>Players</Title>
                         {this.state.users.map(users => {return(
                             <Wrapper>
@@ -154,7 +156,7 @@ class Scoreboard extends React.Component{
                         )})}
                     </ScoreContainer>
                     <ScoreContainer className={"scoreboardScroller"}
-                        marginLeft={"700px"}>
+                        marginLeft={"720px"}>
                         <Title>Lobbies</Title>
                         {this.state.lobbies.map(lobbies => {return(
                             <Wrapper>
@@ -163,14 +165,8 @@ class Scoreboard extends React.Component{
                             </Wrapper>
                         )})}
                     </ScoreContainer>
-                    <InviteLobbyPhone changePhoneToOff={this.props.changePhoneToOff}
-                                      changePhoneToOn={this.props.changePhoneToOn}
-                                      changeTalkingToOff={this.props.changeTalkingToOff}
-                                      changeTalkingToOn={this.props.changeTalkingToOn}
-                    >
-                    </InviteLobbyPhone>
                 </Background>
-            </div>
+            </BackgroundWrapper>
         );
     }
 }
