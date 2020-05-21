@@ -49,14 +49,6 @@ const BottomRightContainer = styled.div`
   width: 800px
  `
 
-const PlayerContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  height: 400px;
-  width: 400px
- `
-
 
 class Lobby extends React.Component{
     constructor() {
@@ -218,9 +210,9 @@ class Lobby extends React.Component{
                     <LogoutButton
                         onClick={()=>this.leaveLobby()}>Leave
                     </LogoutButton>
-                    <PlayerContainer>
+
                         <LobbyInfos players={this.state.players} lobbyName={this.state.lobbyName} hostId={this.state.hostId}/>
-                    </PlayerContainer>
+
                     {this.isHost() ? <Button
                         onClick={()=>this.startGame()}>Start Game
                         </Button> :  null}

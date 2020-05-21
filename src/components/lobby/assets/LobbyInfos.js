@@ -15,8 +15,11 @@ const PlayersContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-  height: 300px;
+  height: 330px;
   width: 400px
+  margin: 0px;
+  margin-bottom: 50px;
+  margin-top: 50px;
  `
 
 const PlayerContainer = styled.div`
