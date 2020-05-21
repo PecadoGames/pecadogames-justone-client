@@ -27,6 +27,24 @@ export const TextFriend = styled.body`
   font-size:25px;
 `;
 
+export const AcceptButton = styled(PixelButton)`
+    margin-top : ${props => props.marginTop};
+    outline: 2px solid #1D6F42
+    color: #1D6F42
+    &:hover{
+        background: #1D6F42
+    }
+`;
+
+export const DeclineButton = styled(PixelButton)`
+    margin-top : ${props => props.marginTop};
+    outline: 2px solid #F03A17
+    color: #F03A17
+    &:hover{
+        background: #F03A17
+    }
+`
+
 class RequestBox extends React.Component {
 
     constructor(props) {
@@ -106,24 +124,18 @@ class RequestBox extends React.Component {
                                     </PixelButton>
                                 </RowContainer>
                                 <RowContainer>
-                                <PixelButton
-                                    outline="2px solid #1D6F42"
-                                    color="#1D6F42"
-                                    hoverBackground="#1D6F42"
+                                <AcceptButton
                                     marginTop="null" 
                                     onClick={()=>this.accept(user.id)}>
                                         Accept
-                                </PixelButton>
+                                </AcceptButton>
                                 </RowContainer>
                                 <RowContainer>
-                                    <PixelButton
-                                    outline="2px solid #F03A17"
-                                    color="#F03A17"
-                                    hoverBackground="#F03A17"
+                                    <DeclineButton
                                     marginTop="null" 
                                     onClick={()=>this.decline(user.id)}>
                                         Decline
-                                    </PixelButton>
+                                    </DeclineButton>
                                 </RowContainer>
                             </Row>
                         </Element>);

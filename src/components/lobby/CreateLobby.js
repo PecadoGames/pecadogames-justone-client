@@ -16,8 +16,8 @@ const MenuWrapper = styled.div`
 const Background = styled.div`
   display: flex;
   flex-direction: column;
-  height: 860px;
-  width: 1290px;
+  height: 768px;
+  width: 1200px;
   border-radius: 20px;
   align-items: flex-start;  
   padding-left: 20px;
@@ -49,10 +49,10 @@ const Input = styled.input`
     font-size: 22px;    
 `;
 
-const Row = styled.div`
+export const Row = styled.div`
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: ${props => props.justifyContent || "space-between"};
     width: 100%;
     height: 40px;
     margin-top: ${props => props.marginTop || "50px"};

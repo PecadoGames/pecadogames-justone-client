@@ -4,20 +4,17 @@ import {withRouter} from 'react-router-dom';
 import InviteLobbyPhone from "../lobby/InviteLobbyPhone";
 import RuleBox from "./Assets/RuleBox";
 import {LogoutButton} from "../../views/design/LogoutButton";
-import {BackgroundContainer} from "../main/Main";
 
 
 const Background = styled.div`
   display: flex;
   flex-direction: column;
   width: 1200px;
-  height: 800px;
+  height: 768px;
   border-radius: 20px;
   align-items: flex-start;  
   margin: auto
 `;
-
-
 
 const Container = styled.div`
     position: absolute
@@ -25,14 +22,12 @@ const Container = styled.div`
     margin-right: 100px
     margin-top: 10px
 `;
+
 const BoxContainer = styled.div`
     position: absolute
     margin-right: 100px
     margin-top: 10px
 `;
-
-
-
 
 class Scoreboard extends React.Component{
     constructor() {
@@ -41,9 +36,8 @@ class Scoreboard extends React.Component{
             phone: null
         };
     }
-
+    
     async componentDidMount() {   this.lobby()
-
     }
 
     lobby(){

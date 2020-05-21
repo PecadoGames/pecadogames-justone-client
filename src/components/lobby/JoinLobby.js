@@ -12,10 +12,10 @@ import { PixelButton } from '../../views/design/PixelButton';
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 800px;
+  height: 768px;
   width: 1200px;
   border-radius: 20px;
-  align-items: flex-start;  
+  align-items: flex-start; 
 `;
 
 const Container = styled.div`

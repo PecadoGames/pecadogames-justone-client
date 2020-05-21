@@ -110,7 +110,6 @@ button {
   background-image:url("handCard.png");
   background-size: 600px 700px, contain;
   background-repeat: no-repeat;
-  margin:auto;
 }
 
 .smallHandWithCard{

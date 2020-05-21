@@ -6,20 +6,28 @@ import {api, handleError} from "../../helpers/api";
 import InviteLobbyPhone from "../lobby/InviteLobbyPhone"
 
 export const BackgroundContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 800px;
-  width: 1200px;
-  border-radius: 20px;
-  align-items: flex-start;  
-  padding-left: 20px;
+    display: flex;
+    flex-direction: column;
+    height: 768px;
+    width: 1200px;
+    border-radius: 20px;
+    align-items: flex-start;  
+    padding-left: 20px;
 `;
 
+const HandPhoneWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left:450px;
+    height:700px;
+    width: 730px;
+`
+
 const HandContainer = styled.div`
-  margin-left:450px;
-  height:700px;
-  width:600px;
-  margin-top:200px;
+    height:500px;
+    width:400px;
+    margin-top:200px;
 `;
 
 const ButtonContainer = styled.div`
@@ -52,7 +60,6 @@ class Main extends React.Component {
         this.state = {
             id : localStorage.getItem("id"),
             phone: null
-
         };
     }
 
@@ -110,41 +117,44 @@ class Main extends React.Component {
                 <LogoutButton onClick={() => {this.props.history.push(`rules`)}}>
                     Rules
                 </LogoutButton>
-                <HandContainer
-                    className={"handWithCard"}
-                >
-                    <ButtonContainer>
-                        <MainMenuButton
-                            onClick={() => {this.props.history.push(`lobbies`)}}
-                             borderColor="#2273f5"
-                        >Join Lobby</MainMenuButton>
-                        <MainMenuButton
-                            borderColor="#0bb845"
-                            onClick={() => {
-                                this.props.history.push(`createLobby`)
-                            }}
-                        >Create Lobby</MainMenuButton>
-                        <MainMenuButton
-                            borderColor="#c73110"
-                            onClick={() => {
-                                this.props.history.push(`users/${this.state.id}`)
-                            }}
-                        >Profile</MainMenuButton>
-                        <MainMenuButton
-                            borderColor="#e0dd16"
-                            onClick={() => {
-                                this.props.history.push(`scoreboard`)
-                            }}
+                <HandPhoneWrapper>
+                    <HandContainer
+                        className={"handWithCard"}>
+                        <ButtonContainer>
+                            <MainMenuButton
+                                onClick={() => {this.props.history.push(`lobbies`)}}
+                                borderColor="#2273f5"
+                            >Join Lobby</MainMenuButton>
+                            <MainMenuButton
+                                borderColor="#0bb845"
+                                onClick={() => {
+                                    this.props.history.push(`createLobby`)
+                                }}
+                            >Create Lobby</MainMenuButton>
+                            <MainMenuButton
+                                borderColor="#c73110"
+                                onClick={() => {
+                                    this.props.history.push(`users/${this.state.id}`)
+                                }}
+                            >Profile</MainMenuButton>
+                            <MainMenuButton
+                                borderColor="#e0dd16"
+                                onClick={() => {
+                                    this.props.history.push(`scoreboard`)
+                                }}
+                            >
+                                Scoreboard</MainMenuButton>
+                        </ButtonContainer>
+                    </HandContainer>
+                    <InviteLobbyPhone 
+                        history={this.props.history}
+                        changePhoneToOff={this.props.changePhoneToOff}
+                        changePhoneToOn={this.props.changePhoneToOn}
+                        changeTalkingToOff={this.props.changeTalkingToOff}
+                        changeTalkingToOn={this.props.changeTalkingToOn}
                         >
-                            Scoreboard</MainMenuButton>
-                    </ButtonContainer>
-                </HandContainer>
-                <InviteLobbyPhone changePhoneToOff={this.props.changePhoneToOff}
-                                  changePhoneToOn={this.props.changePhoneToOn}
-                                  changeTalkingToOff={this.props.changeTalkingToOff}
-                                  changeTalkingToOn={this.props.changeTalkingToOn}
-                                  >
-                </InviteLobbyPhone>
+                    </InviteLobbyPhone>
+                </HandPhoneWrapper>
             </BackgroundContainer>
         );
     }

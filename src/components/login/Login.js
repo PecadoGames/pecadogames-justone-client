@@ -12,7 +12,7 @@ import { BlinkingPixelButton } from '../profile/Assets/profileAssets';
 const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 885px;
+  height: 768px;
   width: 800px;
   border-radius: 20px;
   align-items: flex-start;  
@@ -26,7 +26,7 @@ const Container = styled.div`
 `;
 
 const PhoneContainer = styled.div`
-  margin-top: -10px;
+  margin-top: -120px;
   display: flex;
   justify-content: center;
   margin-left 600px;
@@ -252,8 +252,8 @@ class Login extends React.Component {
                     this.login();
                     }}
                 >
-                  {this.state.picture === "backgroundLogin" &&
-                  "Enter"}
+              {this.state.picture === "backgroundLogin" &&
+                  "ENTER"}
                 </DoorEnterText>:<DoorEnterText>
               </DoorEnterText>}
               <PhoneContainer 
