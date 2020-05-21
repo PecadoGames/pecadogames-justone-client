@@ -7,8 +7,6 @@ const PlayersContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-  height: 300px;
-  width: 400px
  `
 
 const PlayerContainer = styled.div`
@@ -64,20 +62,19 @@ class Infos extends React.Component{
 
     render(){
         return(
-            <PlayersContainer>
+            <PlayersContainer className={'tv'}>
                 LobbyName: {this.state.lobbyName}
                 {this.state.players.map(player => {return(
                     <PlayerContainer>
                         <MiniContainer>
-                        <div>Username: {player.username}</div>{this.state.currentGuesserId === player.id ?
-                        <div>Guesser</div>
-                        :
-                        null}
-                        <div></div>
+                            <div>Username: {player.username}</div>{this.state.currentGuesserId === player.id ?
+                            <div>Guesser</div>
+                            :
+                            null}
+                            <div></div>
                         </MiniContainer>
-                        </PlayerContainer>
+                    </PlayerContainer>
                 )})}
-
             </PlayersContainer>
         )
     }

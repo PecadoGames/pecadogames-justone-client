@@ -218,7 +218,6 @@ class Lobby extends React.Component{
                     <LogoutButton
                         onClick={()=>this.leaveLobby()}>Leave
                     </LogoutButton>
-                    <text>Host: {this.state.lobby ? this.state.hostName : null}</text>
                     <PlayerContainer>
                         <LobbyInfos players={this.state.players} lobbyName={this.state.lobbyName} hostId={this.state.hostId}/>
                     </PlayerContainer>
