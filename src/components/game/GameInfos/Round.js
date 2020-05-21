@@ -1,6 +1,21 @@
 import {withRouter} from "react-router-dom";
 import React from "react";
+import styled from "styled-components";
 
+const Box = styled.div`
+    border: 2px solid white;
+    width: 90px;
+    height: auto;
+    text-align: center;
+    font-size: 18px;
+    color: white;
+`;
+
+const Wrapper = styled.div`
+    text-align: center;
+    width: 90px;
+    font-size: 18px;
+`;
 
 
 
@@ -33,8 +48,12 @@ class Round extends React.Component{
 
     render(){
         return(
-            <div>Round: {this.state.rounds}/13</div>
-
+            <Wrapper>
+                ROUND
+                <Box>
+                    {this.state.rounds}/13
+                </Box>
+            </Wrapper>
         )
     }
 }

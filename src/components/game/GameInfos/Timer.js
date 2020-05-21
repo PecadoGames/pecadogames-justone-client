@@ -5,18 +5,26 @@ import {withRouter} from "react-router-dom";
 
 const Box = styled.div`
     border: 2px solid white;
-    width: 110px;
+    width: 90px;
     height: auto;
     text-align: center;
+    font-size: 18px;
+    color: white;
 `;
 
 const NormalTime = styled.text`
-    font-size: 40px;
+    font-size: 32px;
     color: white;
 `;
 
 const TimerLow = styled(NormalTime)`
     color: #ad151c;
+`;
+
+const Wrapper = styled.div`
+    text-align: center;
+    width: 90px;
+    font-size: 18px;
 `;
 
 class Timer extends React.Component{
@@ -62,7 +70,12 @@ class Timer extends React.Component{
 
     render(){
         return(
-            <Box>{this.displayTime()}</Box>
+            <Wrapper>
+                TIME
+                <Box>
+                    {this.displayTime()}
+                </Box>
+            </Wrapper>
         )
     }
 }

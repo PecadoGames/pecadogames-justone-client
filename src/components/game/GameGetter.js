@@ -249,19 +249,17 @@ class GameGetter extends React.Component{
             <FormContainer>
                 <LeftContainer>
                     <Infos
-                        players ={this.state.players} lobbyName={this.state.lobbyName} currentGuesserId = {this.state.currentGuesserId}>
+                        players ={this.state.players}
+                        lobbyName={this.state.lobbyName}
+                        currentGuesserId = {this.state.currentGuesserId}
+                        score = {this.state.score}
+                        rounds = {this.state.rounds}
+                    >
                     </Infos>
                     <text>Chat</text>
                     <ChatBox></ChatBox>
                 </LeftContainer>
                 <RightContainer>
-                    <TopRightContainer>
-                        <Timer></Timer>
-                        <Score score = {this.state.score}>
-                        </Score>
-                        <Round rounds = {this.state.rounds}>
-                        </Round>
-                    </TopRightContainer>
                     <BottomRightContainer>
                         <InsideContainer>
                             {this.displayPickWordState() ? <PickWordState pickWordFunction={this.pickWord} currentGuesserId = {this.state.currentGuesserId}/>:null}
