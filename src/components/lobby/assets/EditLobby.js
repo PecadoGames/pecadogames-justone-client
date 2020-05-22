@@ -117,6 +117,7 @@ class EditLobby extends React.Component{
             //this disables the button temporarily to avoid too many updates
             setTimeout(() => {this.handleInputChange('sentUpdate', false)}, 2500);
             await api.put(`/lobbies/${this.state.lobby.lobbyId}`, requestBody);
+            this.props.isEditingLobby();
         }catch (error) {
             alert(`Could not update lobby: \n${handleError(error)}`);
         }
@@ -182,24 +183,14 @@ class EditLobby extends React.Component{
     }
 
     updateLobbyButton(){
-        if (!this.state.sentUpdate){
-            return (
-                <SubmitButton
-                    width={"200px"}
-                    marginTop={"10px"}
-                    onClick={()=>this.updateLobby()}
-                >Update Lobby</SubmitButton>)
-        }
-        else {
-            return(
-                <SubmitButton
-                    width={"200px"}
-                    marginTop={"10px"}
-                    disabled={"true"}
-                    onClick={()=>this.updateLobby()}
-                >Updated Lobby!</SubmitButton>
-            )
-        }
+        return (
+            <SubmitButton
+                width={"200px"}
+                marginTop={"10px"}
+                onClick={() =>
+                    this.updateLobby()}>
+                        Update Lobby
+            </SubmitButton>)
     }
 
     totalPlayers(){
@@ -215,8 +206,6 @@ class EditLobby extends React.Component{
         if (props.lobby !== state.lobby) {
             return {
                 lobby: props.lobby,
-                maxPlayersAndBots: props.lobby.maxPlayersAndBots,
-                playerAmount: props.lobby.currentNumPlayers,
             };
         }
         // Return null if the state hasn't changed
@@ -269,7 +258,9 @@ class EditLobby extends React.Component{
                                 -
                             </MinusButton>
                             <Amount>
-                                {this.state.botAmount} / {this.state.maxPlayersAndBots - this.state.playerAmount}
+                                {(this.state.maxPlayersAndBots - this.props.lobby.currentNumPlayers) <= this.state.botAmount ?
+                                (this.state.maxPlayersAndBots - this.props.lobby.currentNumPlayers)+" " : (this.state.botAmount)+" "}
+                                / {this.state.maxPlayersAndBots - this.props.lobby.currentNumPlayers}
                             </Amount>
                             <PlusButton                        
                                 marginTop="0px"
