@@ -217,7 +217,6 @@ class EditLobby extends React.Component{
                 lobby: props.lobby,
                 maxPlayersAndBots: props.lobby.maxPlayersAndBots,
                 playerAmount: props.lobby.currentNumPlayers,
-                botAmount: props.lobby.currentNumBots,
             };
         }
         // Return null if the state hasn't changed
