@@ -16,6 +16,19 @@ import ShyGuyRightBehindGifPinkReverse from "../../game/Shyguys/ReverseGifs/Pink
 import ShyGuyBehindLeftGifPinkReverse from "../../game/Shyguys/ReverseGifs/Pink/ShyGuyBehindLeft.gif"
 import ShyGuyBehindRightGifPinkReverse from "../../game/Shyguys/ReverseGifs/Pink/ShyGuyBehindRight.gif"
 
+import ShyGuyLeftFrontGifBot from "../Shyguys/Bot/ShyguyLeftFront.gif"
+import ShyGuyRightFrontGifBot from "../Shyguys/Bot/ShyGuyRightFront.gif"
+import ShyGuyLeftBehindGifBot from "../Shyguys/Bot/ShyGuyLeftBehind.gif"
+import ShyGuyRightBehindGifBot from "../Shyguys/Bot/ShyGuyRightBehind.gif"
+import ShyGuyBehindLeftGifBot from "../Shyguys/Bot/ShyGuyBehindLeft.gif"
+import ShyGuyBehindRightGifBot from "../Shyguys/Bot/ShyGuyBehindRight.gif"
+import ShyGuyLeftFrontGifBotReverse from "../../game/Shyguys/ReverseGifs/Bot/ShyGuyLeftFront.gif"
+import ShyGuyRightFrontGifBotReverse from "../../game/Shyguys/ReverseGifs/Bot/ShyGuysRightFront.gif"
+import ShyGuyLeftBehindGifBotReverse from "../../game/Shyguys/ReverseGifs/Bot/ShyGuyLeftBehind.gif"
+import ShyGuyRightBehindGifBotReverse from "../../game/Shyguys/ReverseGifs/Bot/ShyGuyRightBehind.gif"
+import ShyGuyBehindLeftGifBotReverse from "../../game/Shyguys/ReverseGifs/Bot/ShyGuyBehindLeft.gif"
+import ShyGuyBehindRightGifBotReverse from "../../game/Shyguys/ReverseGifs/Bot/ShyGuyBehindRight.gif"
+
 import ShyGuyLeftFrontGifViolet from "../Shyguys/Violet/ShyGuyLeftFront.gif"
 import ShyGuyRightFrontGifViolet from "../Shyguys/Violet/ShyGuyRightFront.gif"
 import ShyGuyLeftBehindGifViolet from "../Shyguys/Violet/ShyGuyLeftBehind.gif"
@@ -180,6 +193,12 @@ class Picture extends React.Component{
         if(avatarColor === "PINK" && this.state.gameState === 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyLeftFrontGifPinkReverse}/>)
         }
+        if(avatarColor === "BOT" && this.state.gameState !== 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyLeftFrontGifBot}/>)
+        }
+        if(avatarColor === "BOT" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyLeftFrontGifBotReverse}/>)
+        }
         if(avatarColor === "GREEN" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyLeftFrontGifGreen}/>)
         }
@@ -219,6 +238,12 @@ class Picture extends React.Component{
         if(avatarColor === "PINK" && this.state.gameState === 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyRightFrontGifPinkReverse}/>)
         }
+        if(avatarColor === "BOT" && this.state.gameState !== 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyRightFrontGifBot}/>)
+        }
+        if(avatarColor === "BOT" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyRightFrontGifBotReverse}/>)
+        }
         if(avatarColor === "GREEN" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyRightFrontGifGreen}/>)
         }
@@ -256,6 +281,12 @@ class Picture extends React.Component{
         }
         if(avatarColor === "PINK" && this.state.gameState === 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyLeftBehindGifPinkReverse}/>)
+        }
+        if(avatarColor === "BOT" && this.state.gameState !== 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyLeftBehindGifBot}/>)
+        }
+        if(avatarColor === "BOT" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyLeftBehindGifBotReverse}/>)
         }
         if(avatarColor === "GREEN" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyLeftBehindGifGreen}/>)
@@ -295,6 +326,12 @@ class Picture extends React.Component{
         if(avatarColor === "PINK" && this.state.gameState === 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyRightBehindGifPinkReverse}/>)
         }
+        if(avatarColor === "BOT" && this.state.gameState !== 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyRightBehindGifBot}/>)
+        }
+        if(avatarColor === "BOT" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyRightBehindGifBotReverse}/>)
+        }
         if(avatarColor === "GREEN" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyRightBehindGifGreen}/>)
         }
@@ -333,6 +370,12 @@ class Picture extends React.Component{
         if(avatarColor === "PINK" && this.state.gameState === 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyBehindLeftGifPinkReverse}/>)
         }
+        if(avatarColor === "BOT" && this.state.gameState !== 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyBehindLeftGifBot}/>)
+        }
+        if(avatarColor === "BOT" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyBehindLeftGifBotReverse}/>)
+        }
         if(avatarColor === "GREEN" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyBehindLeftGifGreen}/>)
         }
@@ -370,6 +413,12 @@ class Picture extends React.Component{
         }
         if(avatarColor === "PINK" && this.state.gameState === 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyBehindRightGifPinkReverse}/>)
+        }
+        if(avatarColor === "BOT" && this.state.gameState !== 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyBehindRightGifBot}/>)
+        }
+        if(avatarColor === "BOT" && this.state.gameState === 'END_GAME_STATE'){
+            return( <ImageContainer src={ShyGuyBehindRightGifBotReverse}/>)
         }
         if(avatarColor === "GREEN" && this.state.gameState !== 'END_GAME_STATE'){
             return( <ImageContainer src={ShyGuyBehindRightGifGreen}/>)

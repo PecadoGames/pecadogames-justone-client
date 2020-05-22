@@ -102,7 +102,7 @@ class EnterGuessState extends React.Component{
         super(props);
         this.state = {
             clues: [],
-            guess: null,
+            guess: "",
             currentGuesserId: null,
             invalidClues: [],
             disabled: false
