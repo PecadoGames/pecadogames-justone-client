@@ -25,7 +25,7 @@ const SubmitButton = styled.div`
      color: white;
      border-radius: 3px;
      height: 30px;
-     margin-top: 5px;
+     margin-top: 10px;
      padding-top: 3px;
      margin-left: 7px;
      width: ${props => (props.width || "80px")}
@@ -48,6 +48,7 @@ const Wrapper1 = styled.div`
     flex-direction: row;
     background-color: hsla(220, 3%, 19%, 0.8);
     width: 60%;
+    margin-top: -11px;
     border: 2px solid black;
     border-radius: 5px;
     margin-left: 65px;
@@ -105,7 +106,8 @@ class EnterGuessState extends React.Component{
             clues: [],
             guess: null,
             currentGuesserId: null,
-            invalidClues: []
+            invalidClues: [],
+            disabled: false
         };
     }
 
@@ -116,6 +118,7 @@ class EnterGuessState extends React.Component{
     }
 
     async submitGuess(){
+        this.handleInputChange('disabled', true)
         try {
             const requestBody = JSON.stringify({
                 playerId: localStorage.getItem('id'),
@@ -185,7 +188,7 @@ class EnterGuessState extends React.Component{
                 <Wrapper>
                     <Wrapper1>
                     <InputField
-                                height= '22px'
+                                height= '33px'
                                 width={"60%"}
                                 placeholder= 'Your Guess...'
                                 onChange={e => {
@@ -198,7 +201,7 @@ class EnterGuessState extends React.Component{
                     </InputField>
                     <SubmitButton
                         guess={this.state.guess}
-                        disabled={this.props.guess}
+                        disabled={this.state.disabled}
                         onClick={()=>this.submitGuess()}
                     >Submit
                     </SubmitButton>

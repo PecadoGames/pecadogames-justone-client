@@ -135,7 +135,7 @@ class Infos extends React.Component{
         return(
             <PlayersContainer className={"tv"}>
                 <ContentWrapper>
-                    <div style={{fontSize: "28px", textAlign:"center"}}>{this.state.lobbyName}</div>
+                    <div style={{fontSize: "28px", textAlign:"center"}}>Channel: {this.state.lobbyName}</div>
                     <PlayerInfo>
                         {this.state.players.map(player => {return(
                             <PlayerContainer>
