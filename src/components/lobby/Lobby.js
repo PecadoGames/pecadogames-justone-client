@@ -5,14 +5,17 @@ import {LogoutButton} from "../../views/design/LogoutButton";
 import {api, handleError} from "../../helpers/api";
 import ChatBox from "../ChatBox/ChatBox";
 import LobbyInfos from "./assets/LobbyInfos";
-import {Button} from "../../views/design/Button";
 import EditLobby from "./assets/EditLobby"
 import LobbyInvite from "./assets/LobbyInvite";
+import { AcceptButton, DeclineButton} from "../profile/Assets/RequestBox";
+import LargePhoneImg from '../../phone.png';
+import { PixelButton } from "../../views/design/PixelButton";
+import { PhoneScreenContainer } from "../profile/Assets/profileAssets";
 
 const FormContainer = styled.div`
   display: flex;
   flex-direction: row;
-  height: 800px;
+  height: 768px;
   width: 1200px;
   align-items: flex-start;  
   color: white;
@@ -23,14 +26,14 @@ const RightContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-  height: 800px;
+  height: 768px;
   width: 800px; `;
 
 const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-  height: 800px;
+  height: 768px;
   width: 400px
  `
 const TopRightContainer = styled.div`
@@ -42,12 +45,31 @@ const TopRightContainer = styled.div`
   
  `
 const BottomRightContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: left;
-  height: 700px;
-  width: 800px
- `
+    display: flex;
+    justify-content: center;
+    height: 700px;
+    width: 800px;
+ `;
+ 
+ const PhoneContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0px;
+    margin-top: 70px;    
+    width: 324px;
+    height: 560px;
+ `;
+
+ export const PhoneScreen = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 240px;
+    height: 480px;
+ `;
 
 
 class Lobby extends React.Component{
@@ -59,7 +81,7 @@ class Lobby extends React.Component{
             lobbyName: '',
             interval: null,
             hostName: '',
-            inviteFriends: false,
+            isEditingLobby: false,
             hostId: null
         };
     }
@@ -165,15 +187,10 @@ class Lobby extends React.Component{
         this.handleInputChange('hostName', response.data.username)
     }
 
-    editLobby(){
-        if (this.state.lobby){
-            if (this.state.lobby.hostId.toString() === localStorage.getItem("id")){
-                return <EditLobby
-                        lobby={this.state.lobby} toggleInviteFriends={this.toggleInviteFriends}
-                />
-            }
-
-        }
+    editLobby=()=>{
+        this.setState(prevState => ({
+            isEditingLobby: !prevState.isEditingLobby
+        }))
     }
 
     isHost(){
@@ -184,12 +201,6 @@ class Lobby extends React.Component{
         return false;
         }
     }
-
-    toggleInviteFriends=()=>{
-        this.setState(prevState => ({
-        inviteFriends: !prevState.inviteFriends
-      }));}
-
 
     componentDidMount() {
         this.getLobby()
@@ -204,31 +215,58 @@ class Lobby extends React.Component{
         return(
             <FormContainer>
                 <LeftContainer>
-                    <LogoutButton
+                    {/* <LogoutButton
                         onClick={()=>this.logout()}>Logout
                     </LogoutButton>
                     <LogoutButton
                         onClick={()=>this.leaveLobby()}>Leave
-                    </LogoutButton>
-
-                        <LobbyInfos players={this.state.players} lobbyName={this.state.lobbyName} hostId={this.state.hostId}/>
-
-                    {this.isHost() ? <Button
+                    </LogoutButton> */}
+                    <LobbyInfos 
+                        players={this.state.players} 
+                        lobbyName={this.state.lobbyName} 
+                        hostId={this.state.hostId}/>
+                    {/* {this.isHost() && 
+                    <PixelButton
                         onClick={()=>this.startGame()}>Start Game
-                        </Button> :  null}
-                    <text>Chat</text>
+                    </PixelButton> 
+                    } */}
                     <ChatBox className={"chatBox"}/>
                 </LeftContainer>
                 <RightContainer>
                     <TopRightContainer>
-                        {this.editLobby()}
+                        {/* {this.editLobby()} */}
                     </TopRightContainer>
                     <BottomRightContainer className = 'lobbyBackground'>
+                        <PhoneContainer 
+                        className= 'phoneImageLobby'>
+                            {!this.state.isEditingLobby ? 
+                            <PhoneScreen>
+                                <DeclineButton
+                                    onClick={()=>this.leaveLobby()}>
+                                        Leave Lobby
+                                </DeclineButton>
+                                {this.isHost() &&
+                                    <PixelButton
+                                        onClick={()=>this.editLobby()}>
+                                            Edit Lobby
+                                    </PixelButton>}
+                                {this.isHost() && 
+                                    <PixelButton
+                                        width="180px"
+                                        onClick={()=>this.startGame()}>
+                                            Start Game
+                                    </PixelButton>
+                                    }
+                            </PhoneScreen>                                    
+                            :
+                            <EditLobby
+                                lobby={this.state.lobby}
+                                isEditingLobby={this.editLobby}/>}
+                        </PhoneContainer>
                         {this.state.inviteFriends &&
                         <LobbyInvite/>}
                     </BottomRightContainer>
                 </RightContainer>
-
             </FormContainer>
         )
     }

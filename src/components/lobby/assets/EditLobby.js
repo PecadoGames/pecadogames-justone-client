@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import React from "react";
-import {Button} from "../../../views/design/Button";
+import {PixelButton} from "../../../views/design/PixelButton";
+import { AcceptButton, DeclineButton} from "../../profile/Assets/RequestBox";
+import {PhoneScreen} from "../Lobby";
+import LobbyInvite from "../assets/LobbyInvite";
 import {api, handleError} from "../../../helpers/api";
 
 const Wrapper = styled.div`
@@ -50,18 +53,7 @@ const SmallButton = styled.button`
   background: ${props => props.background|| "white"};
 `;
 
-const Text2 = styled.div`
-    color: white;
-    font-size: 20px;
-    width: 30px;
-    padding: 0px;
-    float:left;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 4px;
-`;
-
-const SubmitButton = styled(Button)`
+const SubmitButton = styled(PixelButton)`
     opacity: ${props => (props.disabled ? 0.6 : 1)};
     cursor: ${props => (props.disabled ? "default" : "pointer")};
 `;
@@ -71,12 +63,36 @@ const AddPlayerButton = styled(SmallButton)`
     cursor: ${props => (props.disabled ? "default" : "pointer")};
 `;
 
+const RowTitle = styled.div`
+    display: flex;
+    height: 30px;
+    font-size: 25px;
+    color: #c0c0c0;
+`;
+
+const AddRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 55px;
+`;
+
+const Amount = styled.div`
+    color: #c0c0c0;
+    font-size: 25px;
+    height: 30px;
+    width: 70px;
+    margin-left: 10px;
+`;
+
 class EditLobby extends React.Component{
     constructor() {
         super();
         this.state = {
             lobby: [],
             maxPlayersAndBots: null,
+            isInvitingFriends: false,
             sentUpdate: false,
         };
     }
@@ -117,7 +133,7 @@ class EditLobby extends React.Component{
 
     //returns true if there are more than 3 players and fewer than the max amount of players
     canRemovePlayer(){
-        if (this.state.maxPlayersAndBots > this.state.lobby.currentNumPlayersAndBots && this.state.maxPlayersAndBots > 3){
+        if (this.state.maxPlayersAndBots > (this.totalPlayers()) && this.state.maxPlayersAndBots > 3){
             return true;
         }
         else{return false;}
@@ -146,7 +162,7 @@ class EditLobby extends React.Component{
         if (!this.state.sentUpdate){
             return (
                 <SubmitButton
-                    width={"50%"}
+                    width={"200px"}
                     marginTop={"10px"}
                     onClick={()=>this.updateLobby()}
                 >Update Lobby</SubmitButton>)
@@ -154,7 +170,7 @@ class EditLobby extends React.Component{
         else {
             return(
                 <SubmitButton
-                    width={"50%"}
+                    width={"200px"}
                     marginTop={"10px"}
                     disabled={"true"}
                     onClick={()=>this.updateLobby()}
@@ -163,64 +179,139 @@ class EditLobby extends React.Component{
         }
     }
 
+    totalPlayers(){
+        return parseInt(this.state.lobby.currentNumPlayers) + parseInt(this.state.lobby.currentNumBots);
+    }
+
+    toggleInviteFriends=()=>{
+        this.setState(prevState => ({
+        isInvitingFriends: !prevState.isInvitingFriends
+      }));}
+
     render(){
         return(
-            <Wrapper>
-                <Text>Edit Lobby</Text>
-                <ButtonContainer>
-                    <SmallContainer>
-                        <AdjustableContainer
-                            marginLeft={"30px"}
-                            marginTop={"13px"}
-                        >
-                            <AddPlayerButton
-                                onClick={()=>this.removePlayer()}
-                                disabled={!this.canRemovePlayer()}
-                                background={"#b03739"}
+            <div>
+            {!this.state.isInvitingFriends ? 
+            <PhoneScreen>
+                <RowTitle>
+                    Players 
+                </RowTitle>
+                <AddRow>
+                        <DeclineButton
+                            marginTop="0px"
+                            width="50px"
+                            disabled={!this.canRemovePlayer()}
+                            onClick={() => this.removePlayer()}>
+                            -
+                        </DeclineButton>
+                        <Amount>
+                            {this.totalPlayers()} / {this.state.maxPlayersAndBots}
+                        </Amount>
+                        <AcceptButton                        
+                            marginTop="0px"
+                            width="50px"
+                            onClick={()=>this.addPlayer()}
+                            disabled={!this.canAddPlayer()}>
+                            +
+                        </AcceptButton>
+                </AddRow>
+                <RowTitle>
+                    Bots 
+                </RowTitle>
+                <AddRow>
+                        <DeclineButton
+                            marginTop="0px"
+                            width="50px"
+                            // disabled={!this.canRemovePlayer()}
+                            // onClick={() => this.removePlayer()}
                             >
-                                -
-                            </AddPlayerButton>
-                                <Text2>
-                                    {this.state.lobby.currentNumPlayersAndBots}/{this.state.maxPlayersAndBots}
-                                </Text2>
-                            <AddPlayerButton
-                                onClick={()=>this.addPlayer()}
-                                disabled={!this.canAddPlayer()}
-                                background={"#5cb349"}
+                            -
+                        </DeclineButton>
+                        <Amount>
+                            {this.totalPlayers()} / {this.state.maxPlayersAndBots}
+                        </Amount>
+                        <AcceptButton                        
+                            marginTop="0px"
+                            width="50px"
+                            // onClick={()=>this.addPlayer()}
+                            // disabled={!this.canAddPlayer()}
                             >
-                                +
-                            </AddPlayerButton>
-                        </AdjustableContainer>
-                    </SmallContainer>
-                    <SmallContainer>
-                        <AdjustableContainer marginTop={"8px"}>
-                        <Button
-                            onClick={
-                                () => 
-                                this.props.toggleInviteFriends()}>
-                            Invite Friend
-                        </Button>
-                        </AdjustableContainer>
-                    </SmallContainer>
-                    <SmallContainer>
-                        <AdjustableContainer marginTop={"8px"}>
-                        <Button>
-                            Add Bot
-                        </Button>
-                        </AdjustableContainer>
-                    </SmallContainer>
-                </ButtonContainer>
-                <SmallContainer>
-                    <AdjustableContainer marginTop={"8px"}>
-                        <Button>
-                            Kick Bot
-                        </Button>
-                    </AdjustableContainer>
-                </SmallContainer>
+                            +
+                        </AcceptButton>
+                </AddRow>
+                <PixelButton
+                    onClick = {() => this.toggleInviteFriends()}>
+                    Invite Friend
+                </PixelButton>
                 {this.updateLobbyButton()}
-            </Wrapper>
-        )
-    }
+                <DeclineButton
+                    width = "190px"
+                    onClick = {() => this.props.isEditingLobby()}>
+                    {"Discard Changes"}
+                </DeclineButton>
+            </PhoneScreen> 
+            :
+            <LobbyInvite
+                toggleInviteFriends={this.toggleInviteFriends}/>   
+        }
+        </div> 
+
+        //     <Wrapper>
+        //         <Text>Edit Lobby</Text>
+        //         <ButtonContainer>
+        //             <SmallContainer>
+        //                 <AdjustableContainer
+        //                     marginLeft={"30px"}
+        //                     marginTop={"13px"}
+        //                 >
+        //                     <AddPlayerButton
+        //                         onClick={()=>this.removePlayer()}
+        //                         disabled={!this.canRemovePlayer()}
+        //                         background={"#b03739"}
+        //                     >
+        //                         -
+        //                     </AddPlayerButton>
+        //                         <Text2>
+        //                             {(this.state.lobby.currentNumBots + this.state.currentNumPlayers)/this.state.maxPlayersAndBots}
+        //                         </Text2>
+        //                     <AddPlayerButton
+        //                         onClick={()=>this.addPlayer()}
+        //                         disabled={!this.canAddPlayer()}
+        //                         background={"#5cb349"}
+        //                     >
+        //                         +
+        //                     </AddPlayerButton>
+        //                 </AdjustableContainer>
+        //             </SmallContainer>
+        //             <SmallContainer>
+        //                 <AdjustableContainer marginTop={"8px"}>
+        //                 <PixelButton
+        //                     onClick={
+        //                         () => 
+        //                         this.props.toggleInviteFriends()}>
+        //                     Invite Friend
+        //                 </PixelButton>
+        //                 </AdjustableContainer>
+        //             </SmallContainer>
+        //             <SmallContainer>
+        //                 <AdjustableContainer marginTop={"8px"}>
+        //                 <PixelButton>
+        //                     Add Bot
+        //                 </PixelButton>
+        //                 </AdjustableContainer>
+        //             </SmallContainer>
+        //         </ButtonContainer>
+        //         <SmallContainer>
+        //             <AdjustableContainer marginTop={"8px"}>
+        //                 <PixelButton>
+        //                     Kick Bot
+        //                 </PixelButton>
+        //             </AdjustableContainer>
+        //         </SmallContainer>
+        //         {this.updateLobbyButton()}
+        //     </Wrapper>
+        // )
+        )}
 }
 
 export default EditLobby;

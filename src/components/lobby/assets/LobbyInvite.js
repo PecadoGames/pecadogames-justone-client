@@ -1,38 +1,26 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Element, Events, animateScroll as scroll } from 'react-scroll'
+import { Element, Events, animateScroll as scroll } from 'react-scroll';
 import {withRouter} from "react-router-dom";
 import {api, handleError} from "../../../helpers/api";
 import styled from "styled-components";
 import { Row, RowContainer } from "../../profile/Assets/profileAssets";
 import { PixelButton } from "../../../views/design/PixelButton";
 
-const HandyContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 730px;
-  width: 400px;
-`;
-
-const PhoneScreen = styled.div`
+export const PhoneScreen = styled.div`
     display: flex;
     flex-direction: column;
-    width: 294px;
-    height: 590px;
-    margin-top: 54px;
-    margin-left: 53px;
-` 
+    align-items: center;
+    justify-content: center;
+    width: 240px;
+    height: 480px;
+`;
 
-const LargePhoneTitle = styled.div`
-    margin-left: 0px;
+const NotOnlineMessage = styled.div`
     width: 100%;
-    font-size: 50px;
-    height: auto;
-    background: #000000;
-    border-bottom: 2px solid #c0c0c0;
-    color: #c0c0c0;
     text-align: center;
+    font-size: 20px;
+    color: #c0c0c0;
 `
 
 class LobbyInvite extends React.Component {
@@ -41,7 +29,8 @@ class LobbyInvite extends React.Component {
         super(props);
         this.state = {
             id: null,
-            friends: []
+            friends: [],
+            sentInvites:[]
         }
     }
 
@@ -82,6 +71,38 @@ class LobbyInvite extends React.Component {
         await api.put(`/lobbies/${idOfLobby}/invitations`, requestBody)
     }
 
+    displaySentOrRequestButton(userId){
+        for (let index in this.state.sentInvites){
+            if (this.state.sentInvites[index] === userId){
+                return(
+                <RowContainer
+                    height="50px"
+                    width="90px">
+                    Sent
+                </RowContainer>
+                )
+                }
+            }            
+        return(
+            <RowContainer>
+                <PixelButton
+                    marginTop="null"
+                    width="90px"
+                    onClick={() =>{
+                        this.sendInvite(userId);
+                        this.addSentRequest(userId)}}>
+                        Invite
+                </PixelButton>
+        </RowContainer>
+        )
+    }
+
+    addSentRequest(userId){
+        let sentInvites = this.state.sentInvites
+        sentInvites.push(userId)
+        this.setState({['sentInvites']: sentInvites})
+    }
+
     componentWillUnmount() {
         Events.scrollEvent.remove('begin');
         Events.scrollEvent.remove('end');
@@ -89,41 +110,38 @@ class LobbyInvite extends React.Component {
 
     render() {
         return (
-            <div>
-                <HandyContainer className={'handyImageSmall'}>
-                    <PhoneScreen>
-                        <LargePhoneTitle>
-                            ../Friends.js
-                        </LargePhoneTitle>
-                        <Element name="FriendsBox" className="element" id="containerElement" style={{
-                            width:"100%",
-                            height:"500px",
-                            overflow: 'auto',
-                        }}>
-                            {this.state.friends.map(friends => {
-                                return(
-                                    <Element key = {friends.id} name={friends.user} style={{}}>
-                                        <Row>
-                                            <RowContainer
-                                                width="200px">
-                                                {friends.username}
-                                            </RowContainer>
-                                            <RowContainer>
-                                                <PixelButton
-                                                    marginTop="null"
-                                                    width="90px"
-                                                    onClick={() =>
-                                                        this.sendInvite(friends.id)}>
-                                                        Invite
-                                                </PixelButton>
-                                            </RowContainer>
-                                        </Row>
-                                    </Element>);
-                            })}
-                            </Element>
-                    </PhoneScreen>
-                </HandyContainer>
-            </div>
+                <PhoneScreen>
+                    <Element name="FriendsBox" className="element" id="containerElement" style={{
+                        marginTop:"40px",
+                        width:"100%",
+                        height:"380px",
+                        overflow: 'auto',
+                    }}>
+                        {this.state.friends.length === 0 && 
+                            <NotOnlineMessage>
+                                There is no friend online
+                            </NotOnlineMessage>}
+                        {this.state.friends.map(friends => {
+                            return(
+                                <Element key = {friends.id} name={friends.user} style={{}}>
+                                    <Row>
+                                        <RowContainer
+                                            height="55px"
+                                            width="120px">
+                                            {friends.username}
+                                        </RowContainer>
+                                        {this.displaySentOrRequestButton(friends.id)}
+                                    </Row>
+                                </Element>);
+                        })}
+                        </Element>
+                        <PixelButton
+                            marginTop="5px"                                                
+                            onClick={() =>
+                            this.props.toggleInviteFriends()}>
+                            Back
+                        </PixelButton>
+                </PhoneScreen>
         );
     }
 };

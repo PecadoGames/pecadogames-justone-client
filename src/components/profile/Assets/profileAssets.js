@@ -161,9 +161,13 @@ export const Row = styled.div`
 `;
 
 export const RowContainer = styled.div`
-    background: transparent;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
     color: ${props => (props.color || "#c0c0c0")};
     width: ${props => (props.width || "40%")};
+    height: ${props => props.height}
     text-decoration: ${props => (props.textDecoration || null)};
     font-size:25px;
     text-align: center;

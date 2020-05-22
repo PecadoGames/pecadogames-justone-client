@@ -4,7 +4,7 @@ import { Element, Events, animateScroll } from 'react-scroll'
 import {withRouter} from "react-router-dom";
 import {api} from "../../helpers/api";
 import styled from "styled-components";
-import {Button} from "../../views/design/Button";
+import {PixelButton} from "../../views/design/PixelButton";
 import {InputField} from "../../views/design/InputField";
 
 
@@ -34,7 +34,7 @@ const CreationContainer = styled.div`
 `;
 
 const Words = styled.div`
-    padding-top: 5px;
+    margin-top: 20px;
     width: 80px;
     height: 40px;
     float: right;
@@ -42,9 +42,12 @@ const Words = styled.div`
     text-align: center;
 `;
 
-
-
-
+const ChatRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    height: 45px;
+    width 100%;
+`
 
 class ChatBox extends React.Component {
 
@@ -195,15 +198,15 @@ class ChatBox extends React.Component {
 
     render() {
         return (
-            <div style={{border: '2px solid #202120'}}>
+            <div>
                 <Element name="chatBox" className="chatBox" id="containerElement" style={{
+                    marginTop: '15px',
                     display: 'block',
                     position: 'relative',
-                    height: '300px',
+                    height: '395px',
                     overflow: 'auto',
                     padding: '2px'
                 }}>
-                    {/* start of messages */}
                     {this.state.messages.map(message => {return(
                         <Element key = {message.messageId} name={message.user} style={{marginTop: '5px'}}>
                             <Container>
@@ -214,24 +217,32 @@ class ChatBox extends React.Component {
                         </Element>
                     );
                     })}
-                    {/* end of messages */}
                 </Element>
-                <InputField
-                    placeholder="chat"
-                    width="220px"
-                    value={this.state.chatMessage}
-                    onChange={e => {
-                        this.handleInputChange('chatMessage', e.target.value);
-                    }}
-                    onKeyDown={this._handleKeyDown}
-                >
-                </InputField>
-                <Button
-                    disabled={!this.state.chatMessage.length}
-                    onClick={()=>this.sendMessage()}>Send</Button>
-                <Words>
-                    {this.displayCharacters()}
-                </Words>
+                <ChatRow>
+                    <InputField
+                        marginLeft="2px"
+                        marginTop="10px"
+                        placeholder="Chat with others"
+                        width="240px"
+                        value={this.state.chatMessage}
+                        onChange={e => {
+                            this.handleInputChange('chatMessage', e.target.value);
+                        }}
+                        onKeyDown={this._handleKeyDown}
+                    >
+                    </InputField>
+                    <Words>
+                        {this.displayCharacters()}
+                    </Words>
+                    <PixelButton
+                        marginTop="2px"
+                        marginLeft="1px"
+                        width="75px"
+                        disabled={!this.state.chatMessage.length}
+                        onClick={()=>this.sendMessage()}>
+                            Send
+                    </PixelButton>
+                </ChatRow>
             </div>
         );
     }

@@ -96,6 +96,14 @@ button {
   margin-top: 5px;
 }
 
+.phoneImageLobby{
+  background-image: url("phone.png");
+  background-size:  324px 560px, contain ;
+  background-repeat: no-repeat;
+  margin-left: calc(50% - 200px);
+  margin-top: 5px;
+}
+
 .handyImageSmall{
   background-image: url("phone.png");
   background-size:  contain ;
@@ -270,9 +278,8 @@ button {
 }
 
 .chatBox::-webkit-scrollbar-thumb {
-  background-color: #4CAF50;
+  background-color: #c0c0c0;
   outline: 1px solid slategrey;
-  border-radius: 10px;
 }
 
 .tv{
