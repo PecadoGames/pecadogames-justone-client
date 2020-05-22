@@ -121,7 +121,8 @@ class GameGetter extends React.Component{
     //gets Game half a second
     async getGame(){
         try{
-            this.state.interval = setInterval(async ()=>{const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/game?token=${localStorage.getItem('token')}`);
+            this.state.interval = setInterval(async ()=>{
+                const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/game?token=${localStorage.getItem('token')}`);
                 this.handleInputChange('game' ,response.data);
                 this.handleInputChange('currentGuesserId', response.data.currentGuesser.id);
                 this.handleInputChange('gameState', response.data.gameState);
@@ -149,7 +150,21 @@ class GameGetter extends React.Component{
 
 
 
-    componentDidMount() {
+    async componentDidMount() {
+        const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/game?token=${localStorage.getItem('token')}`);
+        this.handleInputChange('game' ,response.data);
+        this.handleInputChange('currentGuesserId', response.data.currentGuesser.id);
+        this.handleInputChange('gameState', response.data.gameState);
+        this.handleInputChange('players', response.data.players);
+        this.handleInputChange('lobbyName', response.data.lobbyName);
+        this.handleInputChange('currentWord', response.data.currentWord);
+        this.handleInputChange('clues', response.data.enteredClues);
+        this.handleInputChange('specialGame', response.data.specialGame);
+        this.handleInputChange('invalidClues', response.data.invalidClues);
+        this.handleInputChange('isGuessCorrect', response.data.guessCorrect);
+        this.handleInputChange('score', response.data.overallScore);
+        this.handleInputChange('rounds', response.data.roundsPlayed);
+        this.handleInputChange('currentGuess', response.data.currentGuess);
         this.getGame()
     }
 
@@ -260,6 +275,7 @@ class GameGetter extends React.Component{
                     <ChatBox></ChatBox>
                 </LeftContainer>
                 <RightContainer>
+                    <TopRightContainer></TopRightContainer>
                     <BottomRightContainer>
                         <InsideContainer>
                             {this.displayPickWordState() ? <PickWordState pickWordFunction={this.pickWord} currentGuesserId = {this.state.currentGuesserId}/>:null}
