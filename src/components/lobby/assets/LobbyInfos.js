@@ -9,6 +9,7 @@ import ShyGuyIconGreen from "../assets/ShyGuyIcon/green_icon.png"
 import ShyGuyIconYellow from "../assets/ShyGuyIcon/yellow_icon.png"
 import ShyGuyIconPink from "../assets/ShyGuyIcon/pink_icon.png"
 import ShyGuyIconPurple from "../assets/ShyGuyIcon/purple_icon.png"
+import ShyGuyIconBot from "../assets/ShyGuyIcon/bot_icon.png"
 
 
 const PlayersContainer = styled.div`
@@ -97,6 +98,9 @@ class LobbyInfos extends React.Component{
         }
         else if (color === "PINK"){
             return ShyGuyIconPink;
+        }
+        else if (color === "BOT"){
+            return ShyGuyIconBot;
         }
         else{
             return null;

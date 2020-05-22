@@ -242,7 +242,7 @@ class EditLobby extends React.Component{
                             </PlusButton>
                     </AddRow>
                     <RowTitle>
-                        Bots 
+                        Thereof Bots 
                     </RowTitle>
                     <AddRow>
                             <MinusButton

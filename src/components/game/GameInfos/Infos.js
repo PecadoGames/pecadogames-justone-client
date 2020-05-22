@@ -7,6 +7,7 @@ import ShyGuyIconGreen from "../../lobby/assets/ShyGuyIcon/green_icon_small.png"
 import ShyGuyIconYellow from "../../lobby/assets/ShyGuyIcon/yellow_icon_small.png";
 import ShyGuyIconBlue from "../../lobby/assets/ShyGuyIcon/blue_icon_small.png";
 import ShyGuyIconPink from "../../lobby/assets/ShyGuyIcon/pink_icon_small.png";
+import ShyGuyIconBot from "../../lobby/assets/ShyGuyIcon/bot_icon_small.png"
 import GuesserIcon from "./guesser_icon.png"
 import Timer from "./Timer";
 import Round from "./Round";
@@ -136,6 +137,9 @@ class Infos extends React.Component{
         }
         else if (color === "PINK"){
             return ShyGuyIconPink;
+        }
+        else if (color === "BOT"){
+            return ShyGuyIconBot;
         }
         else{
             return null;
