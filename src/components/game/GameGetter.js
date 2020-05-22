@@ -171,7 +171,6 @@ class GameGetter extends React.Component{
                 number: number,
             });
             await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/game/word?token=${localStorage.getItem("token")}`, requestBody)
-            this.props.history.push('/game')
         }
         catch(error){
         }
