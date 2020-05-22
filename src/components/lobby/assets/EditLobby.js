@@ -211,11 +211,17 @@ class EditLobby extends React.Component{
         isInvitingFriends: !prevState.isInvitingFriends
       }));}
 
-      shouldComponentUpdate(nextState) {
-        if(this.state.playerAmount !== nextState.playerAmount){
-            return true;
+      static getDerivedStateFromProps(props, state) {
+        if (props.lobby !== state.lobby) {
+            return {
+                lobby: props.lobby,
+                maxPlayersAndBots: props.lobby.maxPlayersAndBots,
+                playerAmount: props.lobby.currentNumPlayers,
+                botAmount: props.lobby.currentNumBots,
+            };
         }
-        return false;
+        // Return null if the state hasn't changed
+        return null;
     }
 
     render(){
