@@ -16,30 +16,38 @@ import CluerIcon from "./cluer_icon.png"
 
 const PlayersContainer = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: left;
   height: 300px;
   width: 400px
-  
-
  `
 
 const PlayerContainer = styled.div`
-  display: flex;
-  height: 30px;
-  width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 40px;
  `
 
 const ShyGuyIcon = styled.div`
     height: 18px;
     width: 22px;
     display: block;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 `;
 
 const UserNameText = styled.div`
-    float: left;
-    display: block;
     margin-left: 5px;
+    margin-right: 5px;
+    width: 120px;
+    display: flex;
+    flex-direction: row;
+    align-text: left;
 `;
 
 const ContentWrapper = styled.div`
@@ -49,10 +57,14 @@ const ContentWrapper = styled.div`
     height: 220px;
 `;
 
-const GuesserIconWrapper = styled.div`
+const IconWrapper = styled.div`
     height: 18px;
     width: 18px;
-    float: left;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-right: 5px;
 `;
 
 const PlayerInfo = styled.div`
@@ -146,13 +158,13 @@ class Infos extends React.Component{
                                         {player.username}
                                     </UserNameText>
                                     {this.state.currentGuesserId === player.id ?
-                                        <GuesserIconWrapper>
+                                        <IconWrapper>
                                             <img src={GuesserIcon} alt={"guesser"}/>
-                                        </GuesserIconWrapper>
+                                        </IconWrapper>
                                     :
-                                        <GuesserIconWrapper>
+                                        <IconWrapper>
                                             <img src={CluerIcon} alt={"cluer"}/>
-                                        </GuesserIconWrapper>
+                                        </IconWrapper>
                                     }
                             </PlayerContainer>
                         )})}
