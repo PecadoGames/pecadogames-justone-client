@@ -7,10 +7,8 @@ import ChatBox from "../ChatBox/ChatBox";
 import LobbyInfos from "./assets/LobbyInfos";
 import EditLobby from "./assets/EditLobby"
 import LobbyInvite from "./assets/LobbyInvite";
-import { AcceptButton, DeclineButton} from "../profile/Assets/RequestBox";
-import LargePhoneImg from '../../phone.png';
+import { DeclineButton} from "../profile/Assets/RequestBox";
 import { PixelButton } from "../../views/design/PixelButton";
-import { PhoneScreenContainer } from "../profile/Assets/profileAssets";
 
 const FormContainer = styled.div`
   display: flex;
@@ -70,6 +68,14 @@ const BottomRightContainer = styled.div`
     width: 240px;
     height: 480px;
  `;
+
+ export const ScreenHeader = styled.text`
+    margin-top: 10px;
+    text-align: center;
+    color: #c0c0c0;
+    font-size: 30px;
+    text-decoration: underline;
+`;
 
 
 class Lobby extends React.Component{
@@ -215,21 +221,10 @@ class Lobby extends React.Component{
         return(
             <FormContainer>
                 <LeftContainer>
-                    {/* <LogoutButton
-                        onClick={()=>this.logout()}>Logout
-                    </LogoutButton>
-                    <LogoutButton
-                        onClick={()=>this.leaveLobby()}>Leave
-                    </LogoutButton> */}
                     <LobbyInfos 
                         players={this.state.players} 
                         lobbyName={this.state.lobbyName} 
                         hostId={this.state.hostId}/>
-                    {/* {this.isHost() && 
-                    <PixelButton
-                        onClick={()=>this.startGame()}>Start Game
-                    </PixelButton> 
-                    } */}
                     <ChatBox className={"chatBox"}/>
                 </LeftContainer>
                 <RightContainer>
@@ -241,22 +236,22 @@ class Lobby extends React.Component{
                         className= 'phoneImageLobby'>
                             {!this.state.isEditingLobby ? 
                             <PhoneScreen>
-                                <DeclineButton
-                                    onClick={()=>this.leaveLobby()}>
-                                        Leave Lobby
-                                </DeclineButton>
-                                {this.isHost() &&
-                                    <PixelButton
-                                        onClick={()=>this.editLobby()}>
-                                            Edit Lobby
-                                    </PixelButton>}
-                                {this.isHost() && 
+                                    {this.isHost() && 
                                     <PixelButton
                                         width="180px"
                                         onClick={()=>this.startGame()}>
                                             Start Game
                                     </PixelButton>
                                     }
+                                {this.isHost() &&
+                                    <PixelButton
+                                        onClick={()=>this.editLobby()}>
+                                            Edit Lobby
+                                    </PixelButton>}
+                                <DeclineButton
+                                    onClick={()=>this.leaveLobby()}>
+                                        Leave Lobby
+                                </DeclineButton>
                             </PhoneScreen>                                    
                             :
                             <EditLobby

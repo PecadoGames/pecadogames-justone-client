@@ -21,7 +21,15 @@ const NotOnlineMessage = styled.div`
     text-align: center;
     font-size: 20px;
     color: #c0c0c0;
-`
+`;
+
+export const ScreenHeader = styled.text`
+margin-top: 10px;
+text-align: center;
+color: #c0c0c0;
+font-size: 30px;
+text-decoration: underline;
+`;
 
 class LobbyInvite extends React.Component {
 
@@ -111,8 +119,10 @@ class LobbyInvite extends React.Component {
     render() {
         return (
                 <PhoneScreen>
-                    <Element name="FriendsBox" className="element" id="containerElement" style={{
-                        marginTop:"40px",
+                    <ScreenHeader>../InviteFriends.js</ScreenHeader>
+                    <Element name="inviteFriends" className="inviteFriends" id="containerElement" style={{
+                        marginRight:"5px",
+                        marginTop:"20px",
                         width:"100%",
                         height:"380px",
                         overflow: 'auto',

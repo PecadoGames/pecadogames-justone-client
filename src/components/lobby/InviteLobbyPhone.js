@@ -49,6 +49,7 @@ class InviteLobbyPhone extends React.Component {
         this.state = {
             phone: null,
             lobbies: [],
+            inviteToDisplay: [],
             phoneCheck: false,
             alreadyChanged: true,
             accepted: false,
@@ -70,6 +71,7 @@ class InviteLobbyPhone extends React.Component {
         this.state.phone = setInterval(async()=>{
             const response = await api.get(`/users/${localStorage.getItem('id')}/invitations?token=${localStorage.getItem('token')}`);
             this.handleInputChange('lobbies', response.data)
+            this.setInviteToDisplay()
             this.checkPhone()
             if(this.state.accepted){
                 clearInterval(this.state.phone)
@@ -78,6 +80,13 @@ class InviteLobbyPhone extends React.Component {
             , 500)
     }
 
+    setInviteToDisplay(){
+        if(this.state.lobbies.length > 0){
+            let newInvite = []
+            newInvite.push(this.state.lobbies[0])
+            this.handleInputChange('inviteToDisplay', newInvite)
+        }
+    }
 
 
     checkPhone(){
@@ -206,7 +215,7 @@ class InviteLobbyPhone extends React.Component {
                         </DeclineButton>
                         </Row>
                         }
-                        {this.state.lobbies.map(lobby => {return(
+                        {this.state.inviteToDisplay.map(lobby => {return(
                             <InvitationWrapper>
                                 <InvitationText>
                                     Invitation to lobby "{lobby.lobbyName}"

@@ -11,7 +11,7 @@ export const PixelButton = styled.button`
     height: ${props => props.height || "50px"};
     color: ${props => props.color || "#32CD32"};
     background: ${props => props.background || "#000000"};
-    disabled: ${props => props.disabled};
+    cursor: ${props => props.disabled ? "default" : "pointer"};
     font-size: ${props => props.fontSize};
     &:hover {
       outline: ${props => props.hoverOutline || "2px solid #000000"};

@@ -282,6 +282,49 @@ button {
   outline: 1px solid slategrey;
 }
 
+.inviteFriends::-webkit-scrollbar {
+  width: 1em;
+}
+
+.inviteFriends::-webkit-scrollbar-track {
+  box-shadow: inset 5px 10px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.inviteFriends::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0;
+  outline: 1px solid slategrey;
+}
+
+.userBox::-webkit-scrollbar {
+  width: 1em;
+}
+
+.userBox::-webkit-scrollbar-track {
+  box-shadow: inset 5px 10px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.userBox::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0;
+  outline: 1px solid slategrey;
+}
+
+.friendBox::-webkit-scrollbar {
+  width: 1em;
+}
+
+.friendBox::-webkit-scrollbar-track {
+  box-shadow: inset 5px 10px 10px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.friendBox::-webkit-scrollbar-thumb {
+  background-color: #c0c0c0;
+  outline: 1px solid slategrey;
+}
+
+
 .tv{
   background-image: url("tvlobby.png");
   background-size: 400px 300px, contain;

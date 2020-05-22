@@ -58,7 +58,7 @@ class FriendBox extends React.Component {
     render() {
         return (
             <div>
-                <Element name="FriendBox" className="element" id="containerElement" style={{
+                <Element name="friendBox" className="friendBox" id="containerElement" style={{
                     margin: 'auto',
                     width: '85%',
                     height: '250px',

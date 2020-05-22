@@ -99,7 +99,7 @@ class UsersBox extends React.Component {
     render() {
         return (
             <div>
-                <Element name="UserBox" className="element" id="containerElement" style={{
+                <Element name="userBox" className="userBox" id="containerElement" style={{
                     margin:"auto",
                     height: '250px',
                     overflow: 'auto',
