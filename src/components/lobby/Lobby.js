@@ -156,27 +156,28 @@ class Lobby extends React.Component{
     }
 
     async getLobby(){
-        this.state.interval = setInterval(async()=>{const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}?token=${localStorage.getItem('token')}`);
-        this.setState({['lobby']: response.data});
-        this.setState({['players']:response.data.playersInLobby});
-        this.setState({['lobbyName']: response.data.lobbyName});
-        this.setState({['hostId']: response.data.hostId});
-        if(response.data.gameStarted === true){
-            localStorage.setItem('gameId', response.data.lobbyId)
-            this.props.history.push(window.location.pathname +'/game')
-        }
+        this.state.interval = setInterval(async()=>{
+            const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}?token=${localStorage.getItem('token')}`);
+            this.setState({['lobby']: response.data});
+            this.setState({['players']:response.data.playersInLobby});
+            this.setState({['lobbyName']: response.data.lobbyName});
+            this.setState({['hostId']: response.data.hostId});
+            if(response.data.gameStarted === true){
+                localStorage.setItem('gameId', response.data.lobbyId)
+                this.props.history.push(window.location.pathname +'/game')
+            }
 
-        this.getHostName(response.data.hostId);
-        let isInList = false;
-        for (let a in response.data.playersInLobby){
-            if (response.data.playersInLobby[a].id === parseInt(localStorage.getItem('id'))){
-                isInList = true;
+            this.getHostName(response.data.hostId);
+            let isInList = false;
+            for (let a in response.data.playersInLobby){
+                if (response.data.playersInLobby[a].id === parseInt(localStorage.getItem('id'))){
+                    isInList = true;
+                }
+                if (parseInt(a) === response.data.playersInLobby.length-1 && (isInList === false)){
+                    localStorage.removeItem('lobbyId');
+                    this.props.history.push('/game');
+                }
             }
-            if (parseInt(a) === response.data.playersInLobby.length-1 && (isInList === false)){
-                localStorage.removeItem('lobbyId');
-                this.props.history.push('/game');
-            }
-        }
         }
         , 700)
     }
@@ -202,7 +203,27 @@ class Lobby extends React.Component{
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
+        const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}?token=${localStorage.getItem('token')}`);
+        this.setState({['lobby']: response.data});
+        this.setState({['players']:response.data.playersInLobby});
+        this.setState({['lobbyName']: response.data.lobbyName});
+        this.setState({['hostId']: response.data.hostId});
+        if(response.data.gameStarted === true){
+            localStorage.setItem('gameId', response.data.lobbyId)
+            this.props.history.push(window.location.pathname +'/game')
+        }
+        this.getHostName(response.data.hostId);
+        let isInList = false;
+        for (let a in response.data.playersInLobby){
+            if (response.data.playersInLobby[a].id === parseInt(localStorage.getItem('id'))){
+                isInList = true;
+            }
+            if (parseInt(a) === response.data.playersInLobby.length-1 && (isInList === false)){
+                localStorage.removeItem('lobbyId');
+                this.props.history.push('/game');
+            }
+        }
         this.getLobby()
     }
 

@@ -37,8 +37,6 @@ const SmallContainer = styled.div`
 const AdjustableContainer = styled.div`
    margin-left: ${props=> props.marginLeft|| "0px"};
    margin-top: ${props=> props.marginTop|| "0px"};
- 
-   
 `;
 
 const SmallButton = styled.button`
