@@ -164,28 +164,6 @@ class InviteLobbyPhone extends React.Component {
 
     render(){
     return (        
-                // <PhoneContainerWithMessage className={"lobbyInvitePhone"}>
-                //   <Wrapper>
-                //     <Text style={{fontSize: "28px"}}>Invitations</Text>
-                //         {this.state.lobbies.map(lobby => {return(
-                //             <MessageWrapper>
-                //                     <Text>Lobby: {lobby.lobbyName}</Text>
-                //                     <Text>HostName: {lobby.hostName}</Text>
-                //                     <ButtonContainer>
-                //                         <AcceptButton
-                //                             onClick={() => {this.accept(lobby.lobbyId);}}
-                //                         >✓
-                //                         </AcceptButton>
-                //                         <DeclineButton
-                //                             onClick={() => {this.decline(lobby.lobbyId);}}
-                //                         >X
-                //                         </DeclineButton>
-                //                     </ButtonContainer>
-                //             </MessageWrapper>
-                //         )}
-                //         )}
-                //     </Wrapper>
-                // </PhoneContainerWithMessage>
                 <PhoneContainerWithMessage className={"lobbyInvitePhone"}
                     marginTop={this.props.marginTop}>
                     <PhoneScreenContainer>

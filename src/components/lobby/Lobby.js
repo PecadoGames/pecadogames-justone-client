@@ -277,7 +277,7 @@ class Lobby extends React.Component{
                                 hostId={this.state.hostId}/>
                                     {this.isHost() &&
                                     <PixelButton
-                                        marginTop="5px"
+                                        marginTop="1px"
                                         width="180px"
                                         onClick={()=>this.startGame()}>
                                             Start Game
@@ -285,12 +285,12 @@ class Lobby extends React.Component{
                                     }
                                 {this.isHost() &&
                                     <PixelButton
-                                        marginTop="5px"
+                                        marginTop="1px"
                                         onClick={()=>this.editLobby()}>
                                             Edit Lobby
                                     </PixelButton>}
                                 <DeclineButton
-                                    marginTop="5px"
+                                    marginTop="1px"
                                     onClick={()=>this.leaveLobby()}>
                                         Leave Lobby
                                 </DeclineButton>

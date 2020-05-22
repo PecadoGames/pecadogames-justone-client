@@ -41,15 +41,17 @@ const AddRow = styled.div`
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     height: 55px;
+    width: 225px;
 `;
 
 const Amount = styled.div`
+    display: flex;
     color: #c0c0c0;
     font-size: 25px;
     height: 30px;
-    width: 70px;
+    width: auto;
     margin-left: ${props => props.marginLeft || "10px"};
     text-align: center;
 `;
@@ -281,63 +283,7 @@ class EditLobby extends React.Component{
             <LobbyInvite
                 toggleInviteFriends={this.toggleInviteFriends}/>   
         }
-        </div> 
-
-        //     <Wrapper>
-        //         <Text>Edit Lobby</Text>
-        //         <ButtonContainer>
-        //             <SmallContainer>
-        //                 <AdjustableContainer
-        //                     marginLeft={"30px"}
-        //                     marginTop={"13px"}
-        //                 >
-        //                     <AddPlayerButton
-        //                         onClick={()=>this.removePlayer()}
-        //                         disabled={!this.canRemovePlayer()}
-        //                         background={"#b03739"}
-        //                     >
-        //                         -
-        //                     </AddPlayerButton>
-        //                         <Text2>
-        //                             {(this.state.lobby.currentNumBots + this.state.currentNumPlayers)/this.state.maxPlayersAndBots}
-        //                         </Text2>
-        //                     <AddPlayerButton
-        //                         onClick={()=>this.addPlayer()}
-        //                         disabled={!this.canAddPlayer()}
-        //                         background={"#5cb349"}
-        //                     >
-        //                         +
-        //                     </AddPlayerButton>
-        //                 </AdjustableContainer>
-        //             </SmallContainer>
-        //             <SmallContainer>
-        //                 <AdjustableContainer marginTop={"8px"}>
-        //                 <PixelButton
-        //                     onClick={
-        //                         () => 
-        //                         this.props.toggleInviteFriends()}>
-        //                     Invite Friend
-        //                 </PixelButton>
-        //                 </AdjustableContainer>
-        //             </SmallContainer>
-        //             <SmallContainer>
-        //                 <AdjustableContainer marginTop={"8px"}>
-        //                 <PixelButton>
-        //                     Add Bot
-        //                 </PixelButton>
-        //                 </AdjustableContainer>
-        //             </SmallContainer>
-        //         </ButtonContainer>
-        //         <SmallContainer>
-        //             <AdjustableContainer marginTop={"8px"}>
-        //                 <PixelButton>
-        //                     Kick Bot
-        //                 </PixelButton>
-        //             </AdjustableContainer>
-        //         </SmallContainer>
-        //         {this.updateLobbyButton()}
-        //     </Wrapper>
-        // )
+        </div>
         )}
 }
 

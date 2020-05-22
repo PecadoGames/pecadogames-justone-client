@@ -111,8 +111,10 @@ class Profile extends React.Component {
 
     checkBirthday(birthday){
         try{
+            if(birthday === null){
+                return null
+            }
             let birthdayDate = new Date(birthday);
-            this.handleInputChange("birthday", birthdayDate)
         }
         catch(error){
             alert("Invalid date")

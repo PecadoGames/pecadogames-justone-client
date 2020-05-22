@@ -25,13 +25,14 @@ const UsernameContainer = styled.div`
   flex-direction: row;
   width: 90px;
   overflow: hidden;
+  color: #32CD32;
 `;
 
 const CreationContainer = styled.div`
       display: flex;
       flex-direction: row;
       margin-left: 10px;
-      
+      color: #32CD32
 `;
 
 const Words = styled.div`
@@ -210,7 +211,7 @@ class ChatBox extends React.Component {
                     height: '395px',
                     overflow: 'auto',
                     padding: '2px',
-                    boxShadow: '0 0  5px #5ccc2f',
+                    boxShadow: '0 0  5px #32CD32',
                     color: 'rgba(192, 192, 192, 1)'
 
                 }}>
@@ -229,7 +230,7 @@ class ChatBox extends React.Component {
                     <InputField
                         color= '#c0c0c0'
                         placeholderColor='rgba(192, 192, 192, 0.5)'
-                        borderBottom= "1px solid #5ccc2f"
+                        borderBottom= "1px solid #32CD32"
                         marginLeft="2px"
                         marginTop="10px"
                         placeholder="Chat with others"
@@ -245,7 +246,7 @@ class ChatBox extends React.Component {
                         {this.displayCharacters()}
                     </Words>
                     <PixelButton
-                        color= 'rgba(92, 204, 47, 1)'
+                        color="#32CD32"
                         marginTop="2px"
                         marginLeft="1px"
                         width="75px"
