@@ -111,7 +111,8 @@ class EditLobby extends React.Component{
             this.handleInputChange('sentUpdate', true)
             const requestBody = JSON.stringify({
                 maxNumberOfPlayersAndBots: this.state.maxPlayersAndBots,
-                hostToken: localStorage.getItem("token")
+                hostToken: localStorage.getItem("token"),
+                numberOfBots: this.state.botAmount
             })
             //this disables the button temporarily to avoid too many updates
             setTimeout(() => {this.handleInputChange('sentUpdate', false)}, 2500);
@@ -209,6 +210,13 @@ class EditLobby extends React.Component{
         this.setState(prevState => ({
         isInvitingFriends: !prevState.isInvitingFriends
       }));}
+
+      shouldComponentUpdate() {
+        if(this.props.lobby.currentNumPlayers !== this.state.lobby.currentNumPlayers){
+            return true;
+        }
+        return false;
+    }
 
     render(){
         return(

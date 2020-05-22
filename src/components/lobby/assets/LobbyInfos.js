@@ -32,8 +32,9 @@ const ShyGuyIcon = styled.div`
 const LobbyName = styled.div`
     text-align: center;
     width: 100%;
-    font-size: 22px;
+    font-size: 25px;
     color: #c0c0c0;
+    text-decoration: underline
 `;
 
 const UserRow = styled.div`
@@ -144,7 +145,7 @@ class LobbyInfos extends React.Component{
         return(
             <PlayersContainer>
                 <LobbyName>
-                    Channel: {this.state.lobbyName}
+                    {this.state.lobbyName}
                 </LobbyName>
                     {this.state.players.map(player => {return(
                             <UserRow>
