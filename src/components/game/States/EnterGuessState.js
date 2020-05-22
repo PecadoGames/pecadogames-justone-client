@@ -11,7 +11,7 @@ const Wrapper = styled.div`
     background-color: none;
     padding: 10px;
     text-align: center;
-    margin-top: 450px;
+    margin-top: 432px;
     margin-left: 170px;
     display: flex;
     flex-direction: column;

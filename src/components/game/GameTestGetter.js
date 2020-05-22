@@ -15,7 +15,7 @@ import VoteOnClueState from "./States/VoteOnClueState";
 const FormContainer = styled.div`
   display: flex;
   flex-direction: row;
-  height: 800px;
+  height: 768px;
   width: 1200px;
   align-items: flex-start; 
   color: white;
@@ -26,14 +26,14 @@ const RightContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-  height: 800px;
+  height: 768px;
   width: 800px; `;
 
 const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-  height: 800px;
+  height: 768px;
   width: 400px
   justify-content: space-between
  
@@ -50,7 +50,7 @@ const BottomRightContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-  height: 700px;
+  height: 668px;
   width: 800px
  `
 const InsideContainer = styled.div`

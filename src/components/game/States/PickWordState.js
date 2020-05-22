@@ -8,7 +8,7 @@ const Wrapper = styled.div`
     background-color: none;
     padding: 10px;
     text-align: center;
-    margin-top: 450px;
+    margin-top: 412px;
     margin-left: 170px;
     display: flex;
     flex-direction: column;
@@ -49,7 +49,7 @@ const HandContainer = styled.div`
   margin-left:300px;
   height:450px;
   width:450px;
-  margin-top:250px;
+  margin-top:218px;
 `;
 
 const PickWordButton = styled.button`

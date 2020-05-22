@@ -6,13 +6,13 @@ import {api, handleError} from "../../../helpers/api";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-    height: 200px;
-    width: 470px;
+    height: 195px;
+    width: 460px;
     background-color: none;
     padding: 10px;
     text-align: center;
-    margin-top: 397px;
-    margin-left: 225px;
+    margin-top: 380px;
+    margin-left: 220px;
     display: flex;
     flex-direction: column;
 `;
@@ -155,7 +155,7 @@ class EnterCluesState extends React.Component{
     render(){
         return(
             this.renderForGuesser() || this.hasSend()?
-                <Wrapper style={{marginTop:"470px"}}>
+                <Wrapper style={{marginTop:"425px"}}>
                     <Wrapper1>
                         Your team mates are currently entering clues
                     </Wrapper1>

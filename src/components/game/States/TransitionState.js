@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {withRouter} from "react-router-dom";
 
 const Container = styled.div`
-    margin-top: 100px;
+    margin-top: 68px;
   
 `;
 
