@@ -29,8 +29,6 @@ const SubmitButton = styled.div`
      padding-top: 3px;
      margin-left: 7px;
      width: ${props => (props.width || "80px")}
-   
-   
 
 `;
 
