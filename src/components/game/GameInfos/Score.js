@@ -50,7 +50,7 @@ class Score extends React.Component{
             <Wrapper>
                 SCORE
                 <Box>
-                    {this.state.score}
+                    {this.state.score || 0}
                 </Box>
             </Wrapper>
         )

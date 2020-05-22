@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import React from "react";
 import {withRouter} from "react-router-dom";
-import {Button} from "../../../views/design/Button";
+import {DeclineButton} from "../../profile/Assets/RequestBox";
 import {api} from "../../../helpers/api";
 import ShyGuyIconRed from "../assets/ShyGuyIcon/red_icon.png"
 import ShyGuyIconBlue from "../assets/ShyGuyIcon/blue_icon.png"
@@ -14,37 +14,55 @@ import ShyGuyIconPurple from "../assets/ShyGuyIcon/purple_icon.png"
 const PlayersContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: left;
-  height: 300px;
-  width: 400px
-  margin: 0px;
-  margin-top: 10px;
- `
-
-const PlayerContainer = styled.div`
-  display: flex;
-  height: 30px;
+  height: 350px;
   width: 100%;
- `
-
-const ContentWrapper = styled.div`
-    margin-left: 31px;
-    margin-top: 31px;
-    width: 263px;
-    height: 220px;
-`;
+  margin: 0px;
+  margin-top: 5px;
+ `;
 
 const ShyGuyIcon = styled.div`
-    height: 18px;
-    width: 22px;
-    display: block;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 95%;
+    width: 50px;
 `;
 
-const UserNameText = styled.div`
-    float: left;
-    display: block;
-    margin-left: 5px;
+const LobbyName = styled.div`
+    text-align: center;
+    width: 100%;
+    font-size: 28px;
+    color: #c0c0c0;
 `;
+
+const UserRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 40px;
+`;
+
+const UserName = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    color: #c0c0c0;
+    font-size: 20px;
+    height: 35px;
+    width: 300px;
+`;
+
+const KickButtonContainer = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+`;
+
+
 
 class LobbyInfos extends React.Component{
     constructor() {
@@ -120,34 +138,35 @@ class LobbyInfos extends React.Component{
 
     render(){
         return(
-            <PlayersContainer className={"tv"}>
-                <ContentWrapper>
-                <div style={{fontSize: "28px", textAlign:"center"}}>{this.state.lobbyName}</div>
+            <PlayersContainer>
+                <LobbyName>
+                    {this.state.lobbyName}
+                </LobbyName>
                     {this.state.players.map(player => {return(
-                        <PlayerContainer>
-                            <ShyGuyIcon>
-                                <img src={this.displayIcon(player.avatarColor)}/>
-                            </ShyGuyIcon>
-                            <UserNameText>
-                                {player.username}
-                            </UserNameText>
-                            {this.valid(player.id) ?
-                            <Button
-                                    height='10px'
-                                    background='none'
-                                    boxShadow='none'
-                                    color='#FF0000'
-                                    fontSize='16px'
-                                    weight='bold'
-                                    onClick={() => {this.kick(player.id);}}>Kick</Button>
-                            :
-                            null
-                        }
-                            <div>
-                            </div>
-                        </PlayerContainer>
+                            <UserRow>
+                                <ShyGuyIcon>
+                                    <img src={this.displayIcon(player.avatarColor)}/>
+                                </ShyGuyIcon>
+                                <UserName>
+                                    {player.username}
+                                </UserName>
+                                <KickButtonContainer>
+                                    {this.valid(player.id) ?
+                                    <DeclineButton
+                                            marginTop="0px"
+                                            marginLeft="0px"
+                                            marginRight="0px"
+                                            width='50px'
+                                            height='35px'
+                                            color='red'
+                                            fontSize='20px'
+                                            onClick={() => {this.kick(player.id);}}>Kick
+                                    </DeclineButton>
+                                    : <div style={{height:'35px', width:'50px'}}/>
+                                    }
+                                </KickButtonContainer>
+                            </UserRow>
                     )})}
-                </ContentWrapper>
             </PlayersContainer>
         )
     }

@@ -45,6 +45,7 @@ const Words = styled.div`
 `;
 
 const ChatRow = styled.div`
+    margin-top: 10px;
     display: flex;
     flex-direction: row;
     height: 45px;
@@ -203,6 +204,7 @@ class ChatBox extends React.Component {
             <div>
                 <Element name="chatBox" className="chatBox" id="containerElement" style={{
                     marginTop: '15px',
+                    marginRight: '5px',
                     display: 'block',
                     position: 'relative',
                     height: '395px',

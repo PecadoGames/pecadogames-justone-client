@@ -271,8 +271,13 @@ class Lobby extends React.Component{
                         className= 'phoneImageLobby'>
                             {!this.state.isEditingLobby ? 
                             <PhoneScreen>
+                                <LobbyInfos
+                                players={this.state.players} 
+                                lobbyName={this.state.lobbyName} 
+                                hostId={this.state.hostId}/>
                                     {this.isHost() &&
                                     <PixelButton
+                                        marginTop="5px"
                                         width="180px"
                                         onClick={()=>this.startGame()}>
                                             Start Game
@@ -280,10 +285,12 @@ class Lobby extends React.Component{
                                     }
                                 {this.isHost() &&
                                     <PixelButton
+                                        marginTop="5px"
                                         onClick={()=>this.editLobby()}>
                                             Edit Lobby
                                     </PixelButton>}
                                 <DeclineButton
+                                    marginTop="5px"
                                     onClick={()=>this.leaveLobby()}>
                                         Leave Lobby
                                 </DeclineButton>
