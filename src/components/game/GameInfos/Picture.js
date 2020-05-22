@@ -96,7 +96,7 @@ const BackgroundContainer = styled.div`
    display: flex;
    flex-direction: column;
    align-items: flex-start;
-   height: 700px;
+   height: 668px;
    width: 800px
    margin: auto+400px;
    margin-top: 100px;
@@ -108,7 +108,7 @@ const ImageContainer = styled.img`
    display: flex;
    flex-direction: column;
    align-items: flex-start;
-   height: 700px;
+   height: 668px;
    width: 800px
    margin: auto+400px;
    margin-top: 100px;

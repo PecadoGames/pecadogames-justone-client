@@ -31,15 +31,17 @@ const CreationContainer = styled.div`
       display: flex;
       flex-direction: row;
       margin-left: 10px;
+      
 `;
 
 const Words = styled.div`
-    margin-top: 20px;
+    margin-top: 12px;
     width: 80px;
     height: 40px;
     float: right;
     font-size: 24px;
     text-align: center;
+    color: #c0c0c0
 `;
 
 const ChatRow = styled.div`
@@ -205,7 +207,10 @@ class ChatBox extends React.Component {
                     position: 'relative',
                     height: '395px',
                     overflow: 'auto',
-                    padding: '2px'
+                    padding: '2px',
+                    boxShadow: '0 0  5px #5ccc2f',
+                    color: 'rgba(192, 192, 192, 1)'
+
                 }}>
                     {this.state.messages.map(message => {return(
                         <Element key = {message.messageId} name={message.user} style={{marginTop: '5px'}}>
@@ -220,6 +225,9 @@ class ChatBox extends React.Component {
                 </Element>
                 <ChatRow>
                     <InputField
+                        color= '#c0c0c0'
+                        placeholderColor='rgba(192, 192, 192, 0.5)'
+                        borderBottom= "1px solid #5ccc2f"
                         marginLeft="2px"
                         marginTop="10px"
                         placeholder="Chat with others"
@@ -235,6 +243,7 @@ class ChatBox extends React.Component {
                         {this.displayCharacters()}
                     </Words>
                     <PixelButton
+                        color= 'rgba(92, 204, 47, 1)'
                         marginTop="2px"
                         marginLeft="1px"
                         width="75px"

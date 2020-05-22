@@ -18,7 +18,7 @@ import EndGameState from "./States/EndGameState";
 const FormContainer = styled.div`
   display: flex;
   flex-direction: row;
-  height: 800px;
+  height: 768px;
   width: 1200px;
   align-items: flex-start; 
   color: white;
@@ -29,14 +29,14 @@ const RightContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-  height: 800px;
+  height: 768px;
   width: 800px; `;
 
 const LeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-  height: 800px;
+  height: 768px;
   width: 400px
   justify-content: space-between
  
@@ -53,12 +53,12 @@ const BottomRightContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-  height: 700px;
+  height: 668px;
   width: 800px
  `
 const InsideContainer = styled.div`
   position: absolute
-  height: 700px;
+  height: 668px;
   width: 800px
  `
 
@@ -271,7 +271,6 @@ class GameGetter extends React.Component{
                         rounds = {this.state.rounds}
                     >
                     </Infos>
-                    <text>Chat</text>
                     <ChatBox></ChatBox>
                 </LeftContainer>
                 <RightContainer>

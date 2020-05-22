@@ -77,6 +77,22 @@ const BottomRightContainer = styled.div`
     text-decoration: underline;
 `;
 
+const ScreenOffline = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  height: 300px;
+  width: 400px
+ `
+const Screen = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  height: 300px;
+  width: 400px
+  margin-top: -300px;;
+ `
+
 
 class Lobby extends React.Component{
     constructor() {
@@ -242,22 +258,20 @@ class Lobby extends React.Component{
         return(
             <FormContainer>
                 <LeftContainer>
-                    <LobbyInfos 
-                        players={this.state.players} 
-                        lobbyName={this.state.lobbyName} 
-                        hostId={this.state.hostId}/>
+                    <ScreenOffline className='tvOffline'/>
+                    <Screen className='tv'>
+                    </Screen>
                     <ChatBox className={"chatBox"}/>
                 </LeftContainer>
                 <RightContainer>
                     <TopRightContainer>
-                        {/* {this.editLobby()} */}
                     </TopRightContainer>
                     <BottomRightContainer className = 'lobbyBackground'>
                         <PhoneContainer 
                         className= 'phoneImageLobby'>
                             {!this.state.isEditingLobby ? 
                             <PhoneScreen>
-                                    {this.isHost() && 
+                                    {this.isHost() &&
                                     <PixelButton
                                         width="180px"
                                         onClick={()=>this.startGame()}>
@@ -273,7 +287,7 @@ class Lobby extends React.Component{
                                     onClick={()=>this.leaveLobby()}>
                                         Leave Lobby
                                 </DeclineButton>
-                            </PhoneScreen>                                    
+                            </PhoneScreen>
                             :
                             <EditLobby
                                 lobby={this.state.lobby}

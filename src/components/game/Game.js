@@ -10,7 +10,7 @@ import styled from "styled-components";
 const FormContainer = styled.div`
   display: flex;
   flex-direction: row;
-  height: 800px;
+  height: 768px;
   width: 1200px;
   align-items: flex-start; 
   color: white;

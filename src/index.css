@@ -274,11 +274,12 @@ button {
 
 .chatBox::-webkit-scrollbar-track {
   box-shadow: inset 5px 10px 10px rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
+
+
 }
 
 .chatBox::-webkit-scrollbar-thumb {
-  background-color: #c0c0c0;
+  background-color: rgba(92, 204, 47, 0.7);
   outline: 1px solid slategrey;
 }
 
@@ -329,7 +330,13 @@ button {
   background-image: url("tvlobby.png");
   background-size: 400px 300px, contain;
   background-repeat: no-repeat;
-  margin: auto;
+}
+
+.tvOffline{
+  background-image: url("TvScreen.gif");
+  background-size: 400px;
+  background-repeat: no-repeat;
+
 }
 
 @keyframes blinkingAnimation {
