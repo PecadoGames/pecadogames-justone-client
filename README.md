@@ -63,7 +63,7 @@ Further ideas we haven't had time to implement
  - Mini game in lobby: A small mini game to pass the time: We thought something like google's dino runner
 
 ## Authors and aknockledgement
-### Authords
+### Authors
 Pecado games consists of 5 members, all studying informatics at the University of Zurich:
 Frontend:
  - Alain Küng
@@ -83,5 +83,6 @@ https://freemusicarchive.org/music/Checkie_Brown_1005/hey/Susie_the_Cat_-_Boss_C
 https://freemusicarchive.org/music/Tagirijus/Easy_2018/manuel_senfft_-_two_pianos
 https://freemusicarchive.org/music/Loyalty_Freak_Music/TO_CHILL_AND_STAY_AWAKE/Loyalty_Freak_Music_-_TO_CHILL_AND_STAY_AWAKE_-_07_Monarch_of_the_street
 https://freemusicarchive.org/music/Loyalty_Freak_Music/TO_CHILL_AND_STAY_AWAKE/Loyalty_Freak_Music_-_TO_CHILL_AND_STAY_AWAKE_-_05_Traveling_in_your_mind
+
 For some Music but not all: https://creativecommons.org/licenses/by-nc-nd/4.0/
 Sound effects: https://www.zapsplat.com/license-type/standard-license/
