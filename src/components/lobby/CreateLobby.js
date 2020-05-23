@@ -111,7 +111,7 @@ class CreateLobby extends React.Component {
         this.state = {
             lobbyName: null,
             numberOfPlayers: 4,
-            voiceChat: true,
+            voiceChat: false,
             isPrivate: false,
             phone: null
         }
@@ -257,7 +257,8 @@ class CreateLobby extends React.Component {
                 <TableContainer className={"paperLobby"}>
                     <MenuWrapper>
                         <Title>Create lobby</Title>
-                        <Row>
+                        <Row
+                            marginTop="100px">
                             <Text>Name</Text>
                             <Input
                                 placeholder={"Enter name"}
@@ -298,32 +299,8 @@ class CreateLobby extends React.Component {
                                     </YesNoButton>
                                 </TextWrapper>    
                         </Row>
-                        <Row>
-                            <Text>Voice-chat</Text>
-                            <TextWrapper>
-                                <YesNoButton
-                                    background={"#5cb349"}
-                                    disabled={this.state.voiceChat}
-                                    onClick={()=>{
-                                        this.setState({voiceChat:true})
-                                    }}
-                                >
-                                    ✓
-                                </YesNoButton>
-                                <YesNoButton
-                                    marginLeft="44px"
-                                    background={"#b03739"}
-                                    disabled={!this.state.voiceChat}
-                                    onClick={()=>{
-                                        this.setState({voiceChat:false})
-                                    }}
-                                >
-                                    X
-                                </YesNoButton>
-                            </TextWrapper>                
-                        </Row>
                         <ButtonRow
-                            marginTop="50px">
+                            marginTop="75px">
                             <NavigationButton                                
                                     onClick={()=>{
                                         this.props.history.push(`/game`)

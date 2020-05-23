@@ -56,6 +56,10 @@ class LobbyInvite extends React.Component {
         Events.scrollEvent.register('end', function () {
             console.log("end", arguments);
         });
+        this.getFriendList();
+    }
+
+    async getFriendList(){
         const friendsResponse = await api.get(`/users/${localStorage.getItem('id')}/friends?token=${localStorage.getItem('token')}`)
         let friendsListOnlyID = friendsResponse.data
         let fullFriendList = []
@@ -130,6 +134,16 @@ class LobbyInvite extends React.Component {
         }
         // Return null if the state hasn't changed
         return null;
+    }
+
+    shouldComponentUpdate(nextState){
+        if(this.state.friends !== nextState.friends){
+            this.getFriendList()
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     addSentRequest(userId){
