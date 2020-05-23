@@ -145,7 +145,7 @@ class RequestBox extends React.Component {
             </div>
         );
     }
-};
+}
 
 render(<RequestBox />, document.getElementById('root'));
 

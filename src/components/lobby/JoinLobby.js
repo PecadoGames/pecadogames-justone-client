@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { withRouter } from 'react-router-dom';
-import {LogoutButton} from "../../views/design/LogoutButton";
 import {api, handleError} from "../../helpers/api";
 import Lobbies from "./assets/Lobbies";
 import InviteLobbyPhone from "./InviteLobbyPhone";

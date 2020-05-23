@@ -112,7 +112,7 @@ class FriendBox extends React.Component {
             </div>
         );
     }
-};
+}
 
 render(<FriendBox />, document.getElementById('root'));
 

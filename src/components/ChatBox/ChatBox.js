@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Element, Events, animateScroll } from 'react-scroll'
+import { Element, Events } from 'react-scroll'
 import {withRouter} from "react-router-dom";
 import {api} from "../../helpers/api";
 import styled from "styled-components";
@@ -259,7 +259,7 @@ class ChatBox extends React.Component {
             </div>
         );
     }
-};
+}
 
 render(<ChatBox />, document.getElementById('root'));
 

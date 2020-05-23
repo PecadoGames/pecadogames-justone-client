@@ -185,7 +185,7 @@ class GameGetter extends React.Component{
             if (state1 === state2){
                 return true
             }
-            else {return false}
+            return false
         }
         else{return false}
     }
@@ -198,7 +198,7 @@ class GameGetter extends React.Component{
             if (state1 === state2){
                 return true
             }
-            else {return false}
+            return false
         }
         else{return false}
 
@@ -211,7 +211,7 @@ class GameGetter extends React.Component{
             if (state1 === state2){
                 return true
             }
-            else {return false}
+            return false
         }
         else{return false}
 
@@ -224,7 +224,7 @@ class GameGetter extends React.Component{
             if (state1 === state2){
                 return true
             }
-            else {return false}
+            return false
         }
         else{return false}
 
@@ -237,7 +237,7 @@ class GameGetter extends React.Component{
             if (state1 === state2){
                 return true
             }
-            else {return false}
+            return false
         }
         else{return false}
     }
@@ -249,7 +249,7 @@ class GameGetter extends React.Component{
             if (state1 === state2){
                 return true
             }
-            else {return false}
+            return false
         }
         else{return false}
     }

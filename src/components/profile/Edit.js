@@ -114,23 +114,11 @@ class Profile extends React.Component {
             if(birthday === null){
                 return null
             }
-            let birthdayDate = new Date(birthday);
+            new Date(birthday);
         }
         catch(error){
             alert("Invalid date")
         }
-    }
-
-    parseDate(toParse){
-        if(toParse === null){
-            return null
-        }
-        const milliseconds = Date.parse(toParse);
-        const date = new Date(milliseconds);
-        const day = date.getDate();
-        const month = date.getMonth()+1;
-        const year = date.getFullYear();
-        return day + "." + month + "."+year
     }
 
     //method checks if state's color matches color of button
@@ -247,7 +235,7 @@ class Profile extends React.Component {
                 .then(data => this.setState(
                     {user: data,
                         username: data.username,
-                        birthday: this.parseDate(data.birthday),
+                        birthday: data.birthday,
                         avatarColor : data.avatarColor,
                        })
                 );

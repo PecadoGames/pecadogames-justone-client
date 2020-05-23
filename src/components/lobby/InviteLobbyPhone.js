@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import {withRouter} from 'react-router-dom';
 import {api, handleError} from "../../helpers/api";
 import { PixelButton } from "../../views/design/PixelButton";
 import { AcceptButton, DeclineButton} from "../profile/Assets/RequestBox";

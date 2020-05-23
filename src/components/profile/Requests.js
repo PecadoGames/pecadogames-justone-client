@@ -7,7 +7,6 @@ import {AcceptButton, DeclineButton} from "../profile/Assets/RequestBox";
 import {InvitationText} from "../lobby/InviteLobbyPhone"
 import RequestBox from "./Assets/RequestBox";
 import {api} from "../../helpers/api";
-import styled from "styled-components";
 
 class Requests extends React.Component {
     constructor() {

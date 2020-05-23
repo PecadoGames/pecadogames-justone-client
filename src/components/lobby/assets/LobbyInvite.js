@@ -1,8 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Element, Events, animateScroll as scroll } from 'react-scroll';
-import {withRouter} from "react-router-dom";
-import {api, handleError} from "../../../helpers/api";
+import { Element, Events} from 'react-scroll';
+import {api} from "../../../helpers/api";
 import styled from "styled-components";
 import { Row, RowContainer } from "../../profile/Assets/profileAssets";
 import { PixelButton } from "../../../views/design/PixelButton";
@@ -195,9 +194,7 @@ class LobbyInvite extends React.Component {
                 </PhoneScreen>
         );
     }
-};
-
-
+}
 
 render(<LobbyInvite />, document.getElementById('root'));
 

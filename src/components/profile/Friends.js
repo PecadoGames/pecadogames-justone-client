@@ -9,7 +9,6 @@ import UsersBox from "./Assets/UsersBox";
 import {WindowHeader, ButtonRow, PhoneScreenContainer, InvitationContainer} from "./Assets/profileAssets";
 import {AcceptButton, DeclineButton} from "../profile/Assets/RequestBox";
 import {InvitationText} from "../lobby/InviteLobbyPhone";
-import styled from "styled-components";
 
 class Friends extends React.Component {
     constructor() {

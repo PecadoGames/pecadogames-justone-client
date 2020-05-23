@@ -14,7 +14,6 @@ import PinkShyguy from "./Assets/ProfilePictures/pink.png";
 import PurpleShyguy from "./Assets/ProfilePictures/purple.png";
 import YellowShyguy from "./Assets/ProfilePictures/yellow.png";
 import RedShyguy from "./Assets/ProfilePictures/red.png";
-import styled from "styled-components";
 
 
 class Profile extends React.Component {
@@ -193,7 +192,7 @@ class Profile extends React.Component {
         }
         try {
             await api.get('/users/'+this.state.id)
-                .then(response => {return new User(response.data)})
+                .then(allUsers => {return new User(allUsers.data)})
                 .then(data => this.setState(
                     {user: data,
                         username: data.username,
@@ -206,8 +205,8 @@ class Profile extends React.Component {
                 );
 
             //get requests to diplay how many are there
-            const response = await api.get(`/users/${localStorage.getItem('id')}/friendRequests?token=${localStorage.getItem('token')}`)
-            this.handleInputChange('friendsRequest', response.data)
+            const friendRequests = await api.get(`/users/${localStorage.getItem('id')}/friendRequests?token=${localStorage.getItem('token')}`)
+            this.handleInputChange('friendsRequest', friendRequests.data)
 
         }        catch (error) {
             alert(`Something went wrong while fetching the users or friends: \n${handleError(error)}`);

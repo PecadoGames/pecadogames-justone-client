@@ -330,7 +330,7 @@ class RuleBox extends React.Component {
             </RuleBoxWrapper>
         );
     }
-};
+}
 
 render(<RuleBox />, document.getElementById('root'));
 

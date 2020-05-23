@@ -149,7 +149,7 @@ class UsersBox extends React.Component {
             </div>
         );
     }
-};
+}
 
 render(<UsersBox />, document.getElementById('root'));
 

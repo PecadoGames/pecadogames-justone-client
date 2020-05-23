@@ -3,7 +3,6 @@ import React from "react";
 import styled from "styled-components";
 import {InputField} from "../../../views/design/InputField";
 import {api, handleError} from "../../../helpers/api";
-import {Button} from "../../../views/design/Button";
 
 const Wrapper = styled.div`
     height: 200px;
@@ -141,9 +140,9 @@ class EnterGuessState extends React.Component{
             if (guess.length <= 12){
                 return true;
             }
-            else return false;
+            return false;
         }
-        else return false;
+        return false;
     }
 
 
@@ -166,7 +165,7 @@ class EnterGuessState extends React.Component{
         if (guesser.toString() === currentPlayer.toString()){
             return true;
         }
-        else {return false;}
+        return false;
     }
 
     displayClue(clue){

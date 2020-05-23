@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import React from "react";
 import {withRouter} from "react-router-dom";
-import {LogoutButton} from "../../views/design/LogoutButton";
 import {api, handleError} from "../../helpers/api";
 import ChatBox from "../ChatBox/ChatBox";
 import LobbyInfos from "./assets/LobbyInfos";
 import EditLobby from "./assets/EditLobby"
-import LobbyInvite from "./assets/LobbyInvite";
 import { DeclineButton} from "../profile/Assets/RequestBox";
 import { PixelButton } from "../../views/design/PixelButton";
 

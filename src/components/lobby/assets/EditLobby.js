@@ -128,7 +128,7 @@ class EditLobby extends React.Component{
         if (this.state.maxPlayersAndBots > (this.totalPlayers()) && this.state.maxPlayersAndBots > 3){
             return true;
         }
-        else{return false;}
+        return false;
     }
 
     removePlayer(){
@@ -144,9 +144,7 @@ class EditLobby extends React.Component{
         if (this.state.maxPlayersAndBots < 7){
             return true;
         }
-        else{
             return false;
-        }
     }
 
     addPlayer(){
@@ -159,14 +157,14 @@ class EditLobby extends React.Component{
         if (this.state.botAmount > 0){
             return true;
         }
-        else{return false;}
+        return false;
     }
 
     canIncreaseBots(){
         if ((this.state.botAmount + this.state.playerAmount) < this.state.maxPlayersAndBots){
             return true;
         }
-        else{return false;}
+        return false;
     }
 
 
@@ -201,16 +199,6 @@ class EditLobby extends React.Component{
         this.setState(prevState => ({
         isInvitingFriends: !prevState.isInvitingFriends
       }));}
-
-      static getDerivedStateFromProps(props, state) {
-        if (props.lobby !== state.lobby) {
-            return {
-                lobby: props.lobby,
-            };
-        }
-        // Return null if the state hasn't changed
-        return null;
-    }
 
     render(){
         return(

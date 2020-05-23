@@ -1,7 +1,6 @@
 import {withRouter} from "react-router-dom";
 import React from "react";
 import {InputField} from "../../../views/design/InputField";
-import {Button} from "../../../views/design/Button";
 import {api, handleError} from "../../../helpers/api";
 import styled from "styled-components";
 
@@ -110,18 +109,18 @@ class EnterCluesState extends React.Component{
                 if (this.state.clue.length <= 12){
                     return true;
                 }
-                else return false;
+                return false;
             }
-            else return false;
+            return false;
         }
         else{
             if (this.state.clue.length > 0 && this.state.clue2.length > 0){
                 if (this.state.clue.length <= 12 && this.state.clue2.length <= 12){
                     return true;
                 }
-                else return false;
+                return false;
             }
-            else return false;
+            return false;
         }
     }
 

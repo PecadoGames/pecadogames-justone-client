@@ -1,4 +1,4 @@
-import {api, handleError} from "../../../helpers/api";
+import {api} from "../../../helpers/api";
 import styled from "styled-components";
 import React from "react";
 import {withRouter} from "react-router-dom";

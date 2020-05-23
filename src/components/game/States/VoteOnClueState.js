@@ -118,7 +118,7 @@ class VoteOnClueState extends React.Component{
         if (guesser.toString() === currentPlayer.toString()){
             return true;
         }
-        else {return false;}
+        return false;
     }
 
     async voteOnClues(){
