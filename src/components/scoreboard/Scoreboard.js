@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {api} from '../../helpers/api';
 import {withRouter} from 'react-router-dom';
 import InviteLobbyPhone from "../lobby/InviteLobbyPhone";
+import {PixelButton} from "../../views/design/PixelButton";
 
 const Background = styled.div`
   display: inline-block;
@@ -50,6 +51,7 @@ const ScoreTextRight = styled(ScoreTextLeft)`
 `;
 
 export const NeonButton = styled.button`
+    margin-top: ${props => props.marginTop || '0px'}
     outline: 2px solid ${props => props.outline || '#008000'}
     outline-offset: -7px
     height: 50px;
@@ -75,6 +77,18 @@ const Wrapper = styled.div`
     display: flex;
     width: 100%;
     height: 50px;
+    background: none
+    border-bottom: 2px solid white;
+    margin-bottom: 2px;
+    padding-bottom: 5px;
+`;
+
+const WrapperButton = styled.button`
+    display: inline-block;
+    width: 100%;
+    height: 50px;
+    border: none
+    background: none
     border-bottom: 2px solid white;
 `;
 
@@ -103,7 +117,9 @@ class Scoreboard extends React.Component{
         super();
         this.state = {
             users: [],
-            lobbies: []
+            lobbies: [],
+            lobby: false,
+            score: false
         };
         this.phone = null;
     }
@@ -136,6 +152,19 @@ class Scoreboard extends React.Component{
         clearInterval(this.phone)
     }
 
+    getName(id){
+        let x = null
+        for(let a in this.state.users){
+            if (this.state.users[a].id === id){
+                x = this.state.users[a].username
+            }
+        }
+        return <div>{x}</div>
+
+    }
+
+
+
     render() {
         return(
             <BackgroundWrapper>
@@ -154,12 +183,41 @@ class Scoreboard extends React.Component{
                     <ScoreContainer className={"scoreboardScroller"}
                         marginLeft={"720px"}>
                         <Title>Lobbies</Title>
+                        {!this.state.lobby ? <div>
                         {this.state.lobbies.map(lobbies => {return(
-                            <Wrapper>
+                            <WrapperButton onClick={() => {
+                                this.setState({['lobby']: lobbies})
+                                this.setState({['score']: lobbies.score})
+                            }}>
                                 <ScoreTextLeft>{lobbies.lobbyName}</ScoreTextLeft>
                                 <ScoreTextRight>{lobbies.score}</ScoreTextRight>
-                            </Wrapper>
+                            </WrapperButton>
                         )})}
+                        </div>: <div>
+                            <WrapperButton onClick={() => {
+                                this.setState({['lobby']: false})
+                                this.setState({['score']: false})
+                            }}>
+                            <ScoreTextLeft>{this.state.lobby.lobbyName}</ScoreTextLeft>
+                            <ScoreTextRight>{this.state.lobby.score}</ScoreTextRight>
+                        </WrapperButton>
+                            {this.state.lobby.playersIdInLobby.map( lobby=> {return(
+                           <Wrapper>
+                                <ScoreTextLeft>{lobby}</ScoreTextLeft>
+                                <ScoreTextRight>{this.getName(lobby)}</ScoreTextRight>
+                            </Wrapper>
+                            )})}
+                            <PixelButton
+
+                                onClick={() => {
+                                    this.setState({['lobby']: false})
+                                    this.setState({['score']: false})
+                                }}
+                            >
+                                Back
+                            </PixelButton>
+                        </div>}
+
                     </ScoreContainer>
                     <BackButtonContainer>
                         <NeonButton
@@ -167,7 +225,6 @@ class Scoreboard extends React.Component{
                             color="white"
                             hoverColor="black"
                             hoverBackground="#0a5c03"
-                            boxShadow="0 0 50px #0a5c03"
                             hoverBoxShadow="none"
                             hoverOutline="2px solid black"
                             onClick={() => {
