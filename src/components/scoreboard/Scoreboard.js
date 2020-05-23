@@ -75,21 +75,16 @@ export const NeonButton = styled.button`
 
 const Wrapper = styled.div`
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     width: 100%;
     height: 50px;
-    background: none
+    background: none;
     border-bottom: 2px solid white;
     margin-bottom: 2px;
-    padding-bottom: 5px;
-`;
-
-const WrapperButton = styled.button`
-    display: inline-block;
-    width: 100%;
-    height: 50px;
-    border: none
-    background: none
-    border-bottom: 2px solid white;
+    &:hover{
+        cursor: ${props => props.clickable ? "pointer" : "default"};
+    }
 `;
 
 const Title = styled.div`
@@ -185,22 +180,24 @@ class Scoreboard extends React.Component{
                         <Title>Lobbies</Title>
                         {!this.state.lobby ? <div>
                         {this.state.lobbies.map(lobbies => {return(
-                            <WrapperButton onClick={() => {
-                                this.setState({['lobby']: lobbies})
-                                this.setState({['score']: lobbies.score})
+                            <Wrapper
+                                clickable={true} 
+                                onClick={() => {
+                                    this.setState({'lobby': lobbies})
+                                    this.setState({'score': lobbies.score})
                             }}>
                                 <ScoreTextLeft>{lobbies.lobbyName}</ScoreTextLeft>
                                 <ScoreTextRight>{lobbies.score}</ScoreTextRight>
-                            </WrapperButton>
+                            </Wrapper>
                         )})}
                         </div>: <div>
-                            <WrapperButton onClick={() => {
-                                this.setState({['lobby']: false})
-                                this.setState({['score']: false})
+                            <Wrapper onClick={() => {
+                                this.setState({'lobby': false})
+                                this.setState({'score': false})
                             }}>
                             <ScoreTextLeft>{this.state.lobby.lobbyName}</ScoreTextLeft>
                             <ScoreTextRight>{this.state.lobby.score}</ScoreTextRight>
-                        </WrapperButton>
+                        </Wrapper>
                             {this.state.lobby.playersIdInLobby.map( lobby=> {return(
                            <Wrapper>
                                 <ScoreTextLeft>Player:</ScoreTextLeft>
@@ -210,8 +207,8 @@ class Scoreboard extends React.Component{
                             <PixelButton
 
                                 onClick={() => {
-                                    this.setState({['lobby']: false})
-                                    this.setState({['score']: false})
+                                    this.setState({'lobby': false})
+                                    this.setState({'score': false})
                                 }}
                             >
                                 Back
