@@ -83,9 +83,8 @@ class JoinLobby extends React.Component {
             lobbies: [],
             interval: null,
             number: 5,
-            phone: null
-        }
-        ;
+        };
+        this.phone = null;
     }
 
     getLobbyLength(){
@@ -150,7 +149,7 @@ class JoinLobby extends React.Component {
     }
 
     lobby(){
-        this.state.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
+        this.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
             this.props.changeTalkingToOff();this.props.history.push('/game');}
         },1000)
     }
@@ -158,7 +157,7 @@ class JoinLobby extends React.Component {
     componentWillUnmount() {
         this.props.flipOff()
         clearInterval(this.state.interval)
-        clearInterval(this.state.phone)
+        clearInterval(this.phone)
     }
 
     render() {

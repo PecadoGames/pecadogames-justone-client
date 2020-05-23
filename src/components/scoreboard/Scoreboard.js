@@ -100,10 +100,10 @@ class Scoreboard extends React.Component{
     constructor() {
         super();
         this.state = {
-            phone: null,
             users: [],
             lobbies: []
         };
+        this.phone = null;
     }
 
     componentDidMount() {
@@ -115,33 +115,23 @@ class Scoreboard extends React.Component{
     async getUsers(){
         const response = await api.get(`/users/scores?token=${localStorage.getItem('token')}`)
         let parsedUsers = response.data
-        /**
-         for (let user in parsedUsers){
-            let indexResponse = parsedUsers.findIndex(x => x.id === parsedUsers[user].id)
-            if (indexResponse !== undefined || indexResponse !== -1) parsedUsers.splice(indexResponse, 1);
-        }
-         parsedUsers.sort(function (a, b){
-            a = a.username.toLowerCase();
-            b = b.username.toLowerCase();
-            return a < b ? -1 : a > b ? 1 : 0;
-        });**/
-        this.setState({['users']: parsedUsers})
+        this.setState({'users': parsedUsers})
     }
 
     async getLobbies(){
         const response = await api.get(`lobbies/scores?token=${localStorage.getItem('token')}`)
         const lobbies = response.data;
-        this.setState({['lobbies']: lobbies})
+        this.setState({'lobbies': lobbies})
     }
 
     lobby(){
-        this.state.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
+        this.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
             this.props.changeTalkingToOff();this.props.history.push('/game');}
         },1000)
     }
 
     componentWillUnmount() {
-        clearInterval(this.state.phone)
+        clearInterval(this.phone)
     }
 
     render() {

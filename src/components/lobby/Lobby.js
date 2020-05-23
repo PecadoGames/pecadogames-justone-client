@@ -208,10 +208,10 @@ class Lobby extends React.Component{
     async getLobby(){
         this.state.interval = setInterval(async()=>{
             const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}?token=${localStorage.getItem('token')}`);
-            this.setState({['lobby']: response.data});
-            this.setState({['players']:response.data.playersInLobby});
-            this.setState({['lobbyName']: response.data.lobbyName});
-            this.setState({['hostId']: response.data.hostId});
+            this.setState({'lobby': response.data});
+            this.setState({'players':response.data.playersInLobby});
+            this.setState({'lobbyName': response.data.lobbyName});
+            this.setState({'hostId': response.data.hostId});
             if(response.data.gameStarted === true){
                 localStorage.setItem('gameId', response.data.lobbyId)
                 this.props.history.push(window.location.pathname +'/game')
@@ -256,10 +256,10 @@ class Lobby extends React.Component{
     async componentDidMount() {
         this.props.changeTvToOn()
         const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}?token=${localStorage.getItem('token')}`);
-        this.setState({['lobby']: response.data});
-        this.setState({['players']:response.data.playersInLobby});
-        this.setState({['lobbyName']: response.data.lobbyName});
-        this.setState({['hostId']: response.data.hostId});
+        this.setState({'lobby': response.data});
+        this.setState({'players':response.data.playersInLobby});
+        this.setState({'lobbyName': response.data.lobbyName});
+        this.setState({'hostId': response.data.hostId});
         if(response.data.gameStarted === true){
             localStorage.setItem('gameId', response.data.lobbyId)
             this.props.history.push('/game')

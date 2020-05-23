@@ -56,11 +56,6 @@ const Text = styled.div`
     font-size: 50px;
 `;
 
-const Player = styled.div`
-    height: 20px;
-    width: 20px;
-`;
-
 class EndGameState extends React.Component{
     constructor(props) {
         super(props);

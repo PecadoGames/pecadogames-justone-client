@@ -149,12 +149,8 @@ class Picture extends React.Component{
     }
 
     count(){
-        let counter = 0
-        for (let a in this.state.players){
-            counter = counter + 1
-        }
+        let counter = this.state.players.length
         this.handleInputChange('counter', counter)
-
     }
 
     //if we want to do something special with players or gameState

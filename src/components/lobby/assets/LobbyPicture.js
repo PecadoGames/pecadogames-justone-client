@@ -36,7 +36,7 @@ class LobbyPicture extends React.Component{
     }
 
     static getDerivedStateFromProps(props, state) {
-        if (props.selectName !== state.selectName || props.selectName !== state.selectName ) {
+        if (props.selectName !== state.selectName) {
             return {
                 selectName: props.selectName,
             };

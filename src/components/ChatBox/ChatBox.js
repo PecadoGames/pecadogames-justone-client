@@ -90,7 +90,7 @@ class ChatBox extends React.Component {
 
     async getMessages(){
         const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/chat?token=${localStorage.getItem('token')}`)
-        this.setState({['messages']: response.data.messages});
+        this.setState({'messages': response.data.messages});
         this.scrollDown()
     }
 

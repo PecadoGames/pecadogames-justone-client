@@ -124,16 +124,13 @@ class EnterCluesState extends React.Component{
         }
     }
 
-
-
-
     renderForGuesser(){
         const guesser = this.state.currentGuesserId;
         const currentPlayer = localStorage.getItem("id");
         if (guesser.toString() === currentPlayer.toString()){
             return true;
         }
-        else {return false;}
+        return false;
     }
 
     hasSend(){

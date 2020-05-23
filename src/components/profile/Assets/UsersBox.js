@@ -5,12 +5,7 @@ import {withRouter} from "react-router-dom";
 import {api} from "../../../helpers/api";
 import { Row, RowContainer } from "./profileAssets";
 import { PixelButton } from "../../../views/design/PixelButton";
-import styled from "styled-components";
 
-const Text = styled.div`
-  color: white
-  font-size:25px;
-`;
 
 class UsersBox extends React.Component {
 
@@ -47,7 +42,7 @@ class UsersBox extends React.Component {
             b = b.username.toLowerCase();
             return a < b ? -1 : a > b ? 1 : 0;
         });
-        this.setState({['users']: parsedResponse})
+        this.setState({'users': parsedResponse})
     }
 
     async addUser(userId){
@@ -89,7 +84,7 @@ class UsersBox extends React.Component {
     addSentRequest(userId){
         let sentFriendRequests = this.state.sentFriendRequests
         sentFriendRequests.push(userId)
-        this.setState({['setFriendRequests']: sentFriendRequests})
+        this.setState({'setFriendRequests': sentFriendRequests})
     }
 
     scrollToTop() {

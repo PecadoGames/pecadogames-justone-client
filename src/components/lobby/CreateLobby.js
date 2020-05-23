@@ -113,9 +113,8 @@ class CreateLobby extends React.Component {
             numberOfPlayers: 4,
             voiceChat: false,
             isPrivate: false,
-            phone: null
-        }
-        ;
+        };
+        this.phone = null;
     }
 
     //this checks if more players can be removed, sets the value and returns the corresponding button
@@ -216,13 +215,13 @@ class CreateLobby extends React.Component {
     }
 
     lobby(){
-        this.state.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
+        this.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
             this.props.changeTalkingToOff();this.props.history.push('/game');}
         },1000)
     }
 
     componentWillUnmount() {
-        clearInterval(this.state.phone)
+        clearInterval(this.phone)
         this.props.changeBottleToOff()
     }
 
@@ -240,10 +239,10 @@ class CreateLobby extends React.Component {
             let response = await api.post("lobbies", requestBody);
             let url = response.headers.location
             //gets lobbyId from the location url
-            this.state.lobbyId = url.substring(url.lastIndexOf('/')+1)
+            this.lobbyId = url.substring(url.lastIndexOf('/')+1)
             //pushes user to lobby
-            localStorage.setItem('lobbyId', this.state.lobbyId)
-            this.props.history.push('/game/lobbies/' + this.state.lobbyId)
+            localStorage.setItem('lobbyId', this.lobbyId)
+            this.props.history.push('/game/lobbies/' + this.lobbyId)
         }
         catch(error){
             alert(`Could not create a lobby. \n${handleError(error)}`)

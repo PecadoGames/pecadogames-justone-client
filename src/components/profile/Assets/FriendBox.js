@@ -26,7 +26,7 @@ class FriendBox extends React.Component {
             console.log("end", arguments);
         });
         const response = await api.get(`/users/${localStorage.getItem("id")}/friends?token=${localStorage.getItem('token')}`)
-        this.setState({['users']: response.data})
+        this.setState({'users': response.data})
         this.getStatusFromFriends()
     }
 

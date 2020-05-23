@@ -150,7 +150,7 @@ class LobbyInfos extends React.Component{
                     {this.state.players.map(player => {return(
                             <UserRow>
                                 <ShyGuyIcon>
-                                    <img src={this.displayIcon(player.avatarColor)}/>
+                                    <img src={this.displayIcon(player.avatarColor)} alt={"corresponding avatar"}/>
                                 </ShyGuyIcon>
                                 <UserName>
                                     {player.username}

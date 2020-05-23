@@ -20,23 +20,21 @@ const Background = styled.div`
 class Scoreboard extends React.Component{
     constructor() {
         super();
-        this.state = {
-            phone: null
-        };
+        this.phone = null;
     }
     
     async componentDidMount() {   this.lobby()
     }
 
     lobby(){
-        this.state.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
+        this.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
             this.props.changeTalkingToOff();this.props.history.push('/game');}
         },1000)
     }
 
     componentWillUnmount() {
         this.props.changeArcadeToOff()
-        clearInterval(this.state.phone)
+        clearInterval(this.phone)
     }
 
 

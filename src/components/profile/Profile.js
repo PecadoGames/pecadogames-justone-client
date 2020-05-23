@@ -29,15 +29,14 @@ class Profile extends React.Component {
             editable : true,
             score: 0,
             friendsRequest: [],
-            count: null,
             color: null,
-
-            phone: null,
             lobbies: [],
             phoneCheck: false,
             alreadyChanged: true,
             accepted: false,
         };
+        this.count = null;
+        this.phone = null;
     }
 
     handleInputChange(key, value) {
@@ -217,7 +216,7 @@ class Profile extends React.Component {
     }
 
     componentWillUnmount() {
-        clearInterval(this.state.phone)
+        clearInterval(this.phone)
         this.props.changePhoneToOff()
 
     }
@@ -228,7 +227,7 @@ class Profile extends React.Component {
             if(this.state.friendsRequest[i])
                 count++;
         }
-        this.state.count = count;
+        this.count = count;
     }
 
     render() {
@@ -273,7 +272,7 @@ class Profile extends React.Component {
                         <ProfileContainer className={"profileContainer"}>
                             <One>
                                 <ProfilePicContainer className={"profilePicContainer"}>
-                                    <img src={this.getProfilePic()} alt={"Profile picture"} className={"profilePicture"}/>
+                                    <img src={this.getProfilePic()} alt={"avatar"} className={"profilePicture"}/>
                                 </ProfilePicContainer>
                                 {this.state.editable ? (
                                 <FriendsButton

@@ -30,10 +30,6 @@ class App extends Component {
     this.setState({ musicUrl: Songs });
   }
 
-  changeMusicToDim=()=>{
-      this.setState({musicUrl: DimmedSongs})
-  }
-
   shouldComponentUpdate(nextProps, nextState, nextContext) {
       if((this.state.position !== nextState.position)){
           return false;}

@@ -148,7 +148,7 @@ class LobbyInvite extends React.Component {
     addSentRequest(userId){
         let sentInvites = this.state.sentInvites
         sentInvites.push(userId)
-        this.setState({['sentInvites']: sentInvites})
+        this.setState({[sentInvites]: sentInvites})
     }
 
     componentWillUnmount() {
