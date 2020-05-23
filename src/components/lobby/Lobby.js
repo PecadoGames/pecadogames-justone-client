@@ -256,6 +256,7 @@ class Lobby extends React.Component{
     }
 
     async componentDidMount() {
+        this.props.changeTvToOn()
         const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}?token=${localStorage.getItem('token')}`);
         this.setState({['lobby']: response.data});
         this.setState({['players']:response.data.playersInLobby});
@@ -263,7 +264,7 @@ class Lobby extends React.Component{
         this.setState({['hostId']: response.data.hostId});
         if(response.data.gameStarted === true){
             localStorage.setItem('gameId', response.data.lobbyId)
-            this.props.history.push(window.location.pathname +'/game')
+            this.props.history.push('/game')
         }
         this.getHostName(response.data.hostId);
         let isInList = false;
@@ -281,50 +282,63 @@ class Lobby extends React.Component{
 
     componentWillUnmount() {
         clearInterval(this.state.interval)
+        this.props.changeTvToOff()
     }
 
     switchUp(){
         let x = this.state.counter + 1
         if(x === 1){
             this.handleInputChange('tv', 'tvChannel1');
-            this.handleInputChange('counter', 1)}
+            this.handleInputChange('counter', 1)
+            this.props.changeTvToOff()}
         if(x === 2){
             this.handleInputChange('tv', 'tvChannel2');
-            this.handleInputChange('counter', 2)}
+            this.handleInputChange('counter', 2)
+            this.props.changeTvToOff()}
         if(x === 3){
             this.handleInputChange('tv', 'tvChannel3');
-            this.handleInputChange('counter', 3)}
+            this.handleInputChange('counter', 3)
+            this.props.changeTvToOff()}
         if(x === 4){
             this.handleInputChange('tv', 'tvChannel4');
-            this.handleInputChange('counter', 4)}
+            this.handleInputChange('counter', 4)
+            this.props.changeTvToOff()}
         if(x === 5){
             this.handleInputChange('tv', 'tvChannel5');
-            this.handleInputChange('counter', 5)}
+            this.handleInputChange('counter', 5)
+            this.props.changeTvToOff()}
         if(x === 6){
             this.handleInputChange('tv', 'tvOffline');
-            this.handleInputChange('counter', 0)}
+            this.handleInputChange('counter', 0)
+            this.props.changeTvToOn()}
     }
 
     switchDown(){
         let x = this.state.counter - 1
         if(x === 1){
             this.handleInputChange('tv', 'tvChannel1');
-            this.handleInputChange('counter', 1)}
+            this.handleInputChange('counter', 1)
+            this.props.changeTvToOff()}
         if(x === 2){
             this.handleInputChange('tv', 'tvChannel2');
-            this.handleInputChange('counter', 2)}
+            this.handleInputChange('counter', 2)
+            this.props.changeTvToOff()}
         if(x === 3){
             this.handleInputChange('tv', 'tvChannel3');
-            this.handleInputChange('counter', 3)}
+            this.handleInputChange('counter', 3)
+            this.props.changeTvToOff()}
         if(x === 4){
             this.handleInputChange('tv', 'tvChannel4');
-            this.handleInputChange('counter', 4)}
+            this.handleInputChange('counter', 4)
+            this.props.changeTvToOff()}
         if(x === -1){
             this.handleInputChange('tv', 'tvChannel5');
-            this.handleInputChange('counter', 5)}
+            this.handleInputChange('counter', 5)
+            this.props.changeTvToOff()}
         if(x === 0){
             this.handleInputChange('tv', 'tvOffline');
-            this.handleInputChange('counter', 0)}
+            this.handleInputChange('counter', 0)
+            this.props.changeTvToOn()}
 
     }
 

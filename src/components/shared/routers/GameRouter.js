@@ -23,6 +23,7 @@ import Rules from "../../Rules/Rules";
 import Bottle from "../../../Music/SoundEffects/Bottle.mp3"
 import Ice from "../../../Music/SoundEffects/Ice.mp3"
 import Arcade from "../../../Music/SoundEffects/ArcadeSound.mp3"
+import tv from "../../../Music/SoundEffects/TV.mp3"
 
 
 const Container = styled.div`
@@ -39,7 +40,8 @@ class GameRouter extends React.Component {
             phoneRing: Sound.status.STOPPED,
             talking: Sound.status.STOPPED,
             bottle: Sound.status.STOPPED,
-            arcade: Sound.status.STOPPED
+            arcade: Sound.status.STOPPED,
+            tv: Sound.status.STOPPED
 
         }
     }
@@ -74,7 +76,12 @@ class GameRouter extends React.Component {
     changeTalkingToOn=()=>{
         this.setState({ talking: Sound.status.PLAYING });
     }
-
+    changeTvToOff=()=>{
+        this.setState({ tv: Sound.status.STOPPED });
+    }
+    changeTvToOn=()=>{
+        this.setState({ tv: Sound.status.PLAYING });
+    }
 
 
     render() {
@@ -115,11 +122,13 @@ class GameRouter extends React.Component {
                  volume={40}
                  playFromPosition={0}
           />
-          <Sound url={Shyguy}
-                 playStatus={this.state.talking}
-                 volume={40}
-                 playFromPosition={15000}
+          <Sound url={tv}
+                 playStatus={this.state.tv}
+                 volume={1.5}
+                 loop={true}
+                 playFromPosition={0}
           />
+
 
 
           {/* This is just for looking at the state purpose */}
@@ -268,7 +277,8 @@ class GameRouter extends React.Component {
           path={`${this.props.base}/lobbies/:lobbyId`}
           render={() =>(
               <LobbyGuard>
-              <Lobby></Lobby>
+              <Lobby changeTvToOff={this.changeTvToOff} changeTvToOn={this.changeTvToOn}>
+              </Lobby>
               </LobbyGuard>)}
           />
           <Route

@@ -46,7 +46,7 @@ class App extends Component {
         <AppRouter changeMusicToNormal={this.changeMusicToNormal} changeMusicToDim={this.changeMusicToDim}/>
         <Sound url={this.state.musicUrl}
                playStatus={Sound.status.PLAYING}
-               volume={15}
+               volume={10}
                loop={true}
                position={this.state.position}
                onPlaying={({position}) => this.setState({position})}
