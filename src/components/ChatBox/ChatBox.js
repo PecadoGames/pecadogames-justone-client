@@ -164,8 +164,8 @@ class ChatBox extends React.Component {
     }
 
     displayUsername(username){
-        if (username.length > 8){
-            let adjustedName = username.slice(0, 8)
+        if (username.length > 10){
+            let adjustedName = username.slice(0, 10)
             return adjustedName + "..:"
         }
         else{
