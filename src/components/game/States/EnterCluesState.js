@@ -149,9 +149,6 @@ class EnterCluesState extends React.Component{
         }
     }
 
-
-
-
     render(){
         return(
             this.renderForGuesser() || this.hasSend()?
@@ -169,23 +166,26 @@ class EnterCluesState extends React.Component{
                             Enter two clues to help your mate
                             <br/>
                             <div style={{display: "block"}}>
-                                <InputField width = '80%'
-
-                                            marginTop = '5px'
-                                            placeholder= 'Your first clue...'
-                                            color={"white"}
-                                            onChange={e => {
-                                                this.handleInputChange('clue', e.target.value)
-                                            }}
+                                <InputField
+                                    width = '80%'
+                                    marginTop = '5px'
+                                    placeholder= 'Your first clue...'
+                                    color={"white"}
+                                    onChange={e => {
+                                        this.handleInputChange('clue', e.target.value)
+                                    }}
                                 >
                                 </InputField>
-                                <InputField width = '80%'
-                                            marginTop = '10px'
-                                            placeholder= 'Your second clue...'
-                                            color={"white"}
-                                            onChange={e => {
-                                                this.handleInputChange('clue2', e.target.value)
-                                            }}
+                                <InputField
+                                    id= "inputField"
+                                    width = '80%'
+                                    marginTop = '10px'
+                                    placeholder= 'Your second clue...'
+                                    color={"white"}
+                                    onKeyDown={this._handleKeyDown}
+                                    onChange={e => {
+                                        this.handleInputChange('clue2', e.target.value)
+                                    }}
                                 >
                                 </InputField>
                                 <SubmitButton

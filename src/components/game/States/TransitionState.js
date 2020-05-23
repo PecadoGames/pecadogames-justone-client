@@ -94,9 +94,15 @@ class TransitionState extends React.Component{
             this.renderForGuesser() ?
                 <Container>
                     {this.state.players.map(player => {
-                        return (<ScoreContainer>
-                            <TextLeft>{player.username}</TextLeft>
-                            <TextRight>{player.score}</TextRight></ScoreContainer>)})}
+                        return (<div>
+                            {player.score !== -1 ?
+                                <ScoreContainer>
+                                    <TextLeft>{player.username}</TextLeft>
+                                    <TextRight>{player.score}</TextRight>
+                                </ScoreContainer>: null
+                            }
+                        </div>
+                        )})}
                     <ScoreContainer>
                     <TextLeft>{this.state.isGuessCorrect ?
                         <div>Your guess was correct!</div>
@@ -110,9 +116,14 @@ class TransitionState extends React.Component{
                 :
                 <Container>
                     {this.state.players.map(player => {
-                        return (<ScoreContainer>
-                            <TextLeft>{player.username}</TextLeft>
-                            <TextRight>{player.score}</TextRight></ScoreContainer>)})}
+                        return (<div>
+                            {player.score !== -1 ?
+                                <ScoreContainer>
+                                    <TextLeft>{player.username}</TextLeft>
+                                    <TextRight>{player.score}</TextRight>
+                                </ScoreContainer>: null
+                            }
+                        </div>)})}
                     <ScoreContainer>
                     <TextLeft>{this.state.isGuessCorrect ?
                         <div>Your teammate guessed correct!</div>

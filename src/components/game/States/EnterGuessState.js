@@ -2,7 +2,7 @@ import {withRouter} from "react-router-dom";
 import React from "react";
 import styled from "styled-components";
 import {InputField} from "../../../views/design/InputField";
-import {api} from "../../../helpers/api";
+import {api, handleError} from "../../../helpers/api";
 import {Button} from "../../../views/design/Button";
 
 const Wrapper = styled.div`
@@ -102,10 +102,10 @@ class EnterGuessState extends React.Component{
         super(props);
         this.state = {
             clues: [],
-            guess: "",
+            guess: '',
             currentGuesserId: null,
             invalidClues: [],
-            disabled: false
+            sent: false
         };
     }
 
@@ -116,7 +116,6 @@ class EnterGuessState extends React.Component{
     }
 
     async submitGuess(){
-        this.handleInputChange('disabled', true)
         try {
             const requestBody = JSON.stringify({
                 playerId: localStorage.getItem('id'),
@@ -126,8 +125,9 @@ class EnterGuessState extends React.Component{
             await api.put(`lobbies/${localStorage.getItem('lobbyId')}/game/guess`, requestBody)
         }
         catch(error){
-
+            alert(`Something went wrong during the voting \n${handleError(error)}`)
         }
+        this.handleInputChange('sent', true)
     }
 
     handleInputChange(key, value) {
@@ -138,11 +138,7 @@ class EnterGuessState extends React.Component{
         this.handleInputChange('clues', this.props.clues)
     }
 
-    shouldComponentUpdate(nextProps, nextState, nextContext) {
-        if(this.state.guess !== nextState.guess){
-            return false;}
-        return true;
-    }
+
 
     //when the props from parent changes this is called to change states
     static getDerivedStateFromProps(props, state) {
@@ -174,7 +170,7 @@ class EnterGuessState extends React.Component{
             return <TextSignLeft style={{fontSize: 14, marginTop: 33}}>{clue}</TextSignLeft>
         }
         else{
-            return <TextSignLeft style={{fontSize: 10, marginTop: 35}}>{clue}</TextSignLeft>
+            return <TextSignLeft style={{fontSize: 12, marginTop: 35}}>{clue}</TextSignLeft>
         }
     }
 
@@ -197,12 +193,11 @@ class EnterGuessState extends React.Component{
                                 onKeyDown={this._handleKeyDown}>
 
                     </InputField>
-                    <SubmitButton
-                        guess={this.state.guess}
-                        disabled={this.state.disabled}
-                        onClick={()=>this.submitGuess()}
-                    >Submit
-                    </SubmitButton>
+                            <SubmitButton
+                                disabled={!this.state.guess}
+                                onClick={()=>{this.submitGuess()}}
+                            >Submit
+                            </SubmitButton>
                     </Wrapper1>
                     <div>
                         <SignContainer>

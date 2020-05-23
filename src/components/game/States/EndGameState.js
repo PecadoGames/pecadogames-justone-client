@@ -118,10 +118,16 @@ class EndGameState extends React.Component{
                 <Line/>
                 <Container>
                     {this.state.players.map(player => {
-                        return (<ScoreContainer>
-                            <TextLeft>{player.username}</TextLeft>
-                            <TextRight>{player.score}</TextRight>
-                        </ScoreContainer>)
+                        return (
+                            <div>
+                                {player.score !== -1 ?
+                                    <ScoreContainer>
+                                        <TextLeft>{player.username}</TextLeft>
+                                        <TextRight>{player.score}</TextRight>
+                                    </ScoreContainer>: null
+                                }
+                            </div>
+                        )
                     })}
                 </Container>
             </Wrapper>

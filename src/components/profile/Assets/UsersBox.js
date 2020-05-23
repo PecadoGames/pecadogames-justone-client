@@ -5,7 +5,12 @@ import {withRouter} from "react-router-dom";
 import {api} from "../../../helpers/api";
 import { Row, RowContainer } from "./profileAssets";
 import { PixelButton } from "../../../views/design/PixelButton";
+import styled from "styled-components";
 
+const Text = styled.div`
+  color: white
+  font-size:25px;
+`;
 
 class UsersBox extends React.Component {
 
@@ -99,35 +104,48 @@ class UsersBox extends React.Component {
     render() {
         return (
             <div>
-                <Element name="userBox" className="userBox" id="containerElement" style={{
-                    margin:"auto",
-                    height: '250px',
-                    overflow: 'auto',
-                }}>
-                    {this.state.users.map(users => {return(
-                        <Element key = {users.id} name={users.user} style={{
-                            marginTop: '30px'
-                        }}>
-                            <Row>
-                                <RowContainer
-                                    width="266px">
-                                    {users.username}
-                                </RowContainer>
-                                <RowContainer
-                                    width="266px">
-                                    <PixelButton 
-                                        marginTop="null"
-                                        onClick={() =>
-                                            this.props.history.push(`/game/users/${users.id}`)
-                                            }>
+                    <Element name="userBox" className="userBox" id="containerElement" style={{
+                        margin: "auto",
+                        height: '250px',
+                        overflow: 'auto',
+                    }}>
+                        {!this.state.users.length ?
+                        <Row>
+                            <RowContainer
+                                width="auto">
+                                You're lonely on this server :(
+                            </RowContainer>
+                        </Row>
+                            :
+                            null
+                        }
+                        {this.state.users.map(users => {
+                            return (
+                                <Element key={users.id} name={users.user} style={{
+                                    marginTop: '30px'
+                                }}>
+                                    <Row>
+                                        <RowContainer
+                                            width="266px">
+                                            {users.username}
+                                        </RowContainer>
+                                        <RowContainer
+                                            width="266px">
+                                            <PixelButton
+                                                marginTop="null"
+                                                onClick={() =>
+                                                    this.props.history.push(`/game/users/${users.id}`)
+                                                }>
                                                 View Profile
-                                    </PixelButton>
-                                </RowContainer>
-                                {this.displaySentOrRequestButton(users.id)}
-                            </Row>
-                        </Element>);
-                    })}
-                </Element>
+                                            </PixelButton>
+                                        </RowContainer>
+                                        {this.displaySentOrRequestButton(users.id)}
+                                    </Row>
+                                </Element>);
+                        })}
+                    </Element>
+
+                }
             </div>
         );
     }

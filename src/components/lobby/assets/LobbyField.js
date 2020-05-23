@@ -27,7 +27,7 @@ const LobbyField = ({ lobby }) => {
                     <div>
                         <Block>Name: <Data>{lobby.lobbyName}</Data></Block>
                         <Block>Players: <Data>{lobby.currentNumPlayersAndBots}/{lobby.maxPlayersAndBots}</Data></Block>
-                        <Block>Status: {!lobby.gameIsStarted ? <Data>{lobby.private ? <text>private</text> : <text>public</text>}</Data>
+                        <Block>Status: {!lobby.gameStarted ? <Data>{lobby.private ? <text>private</text> : <text>public</text>}</Data>
                             : <text>Game started</text>}</Block>
                     </div>
             </Container>

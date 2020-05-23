@@ -14,7 +14,7 @@ const Container = styled.div`
 `;
 const TextContainer = styled.div`
   display: flex;
-  width: 210px;
+  width: 230px;
   flex-direction: row;
   overflow: hidden;
   white-space:initial;
@@ -26,6 +26,7 @@ const UsernameContainer = styled.div`
   width: 90px;
   overflow: hidden;
   color: #32CD32;
+  margin-left: 3px
 `;
 
 const CreationContainer = styled.div`
