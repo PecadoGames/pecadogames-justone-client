@@ -124,7 +124,7 @@ class GameRouter extends React.Component {
           />
           <Sound url={tv}
                  playStatus={this.state.tv}
-                 volume={1.5}
+                 volume={2}
                  loop={true}
                  playFromPosition={0}
           />
