@@ -105,7 +105,7 @@ class EnterCluesState extends React.Component{
 
     canSubmitClue(){
         if (!this.state.specialGame){
-            if (this.state.clue.length){
+            if (this.state.clue){
                 if (this.state.clue.length <= 12){
                     return true;
                 }
@@ -114,7 +114,7 @@ class EnterCluesState extends React.Component{
             else return false;
         }
         else{
-            if (this.state.clue && this.state.clue2){
+            if (!this.state.clue && !this.state.clue2){
                 if (this.state.clue.length <= 12 && this.state.clue2.length <= 12){
                     return true;
                 }
