@@ -103,6 +103,26 @@ class EnterCluesState extends React.Component{
         return null;
     }
 
+    canSubmitClue(){
+        if (!this.state.specialGame){
+            if (this.state.clue.length){
+                if (this.state.clue.length <= 12){
+                    return true;
+                }
+                else return false;
+            }
+            else return false;
+        }
+        else{
+            if (this.state.clue && this.state.clue2){
+                if (this.state.clue.length <= 12){
+                    return true;
+                }
+                else return false;
+            }
+            else return false;
+        }
+    }
 
 
 
@@ -144,7 +164,7 @@ class EnterCluesState extends React.Component{
     }
 
     _handleKeyDown = (e) => {
-        if (e.key === 'Enter'){
+        if (e.key === 'Enter' && this.canSubmitClue()){
             this.submit()
         }
     }
@@ -191,7 +211,7 @@ class EnterCluesState extends React.Component{
                                 <SubmitButton
                                     marginLeft = '22px'
                                     width = '250px'
-                                    disabled={!(this.state.clue && this.state.clue2)}
+                                    disabled={this.canSubmitClue()}
                                     onClick={()=>{this.submit()}}>
                                     Submit
                                 </SubmitButton>
@@ -218,7 +238,7 @@ class EnterCluesState extends React.Component{
                                 </InputField>
                                 <SubmitButton
                                     width = '80px'
-                                    disabled={!this.state.clue}
+                                    disabled={!this.canSubmitClue()}
                                     onClick={()=>{this.submit()}}>
                                     Submit
                                 </SubmitButton>
