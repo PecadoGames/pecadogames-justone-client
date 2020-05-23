@@ -90,7 +90,7 @@ class Register extends React.Component {
     correctInput(){
         if (this.state.username && this.state.password && this.state.confirmation){
             console.log("There is a username, password and confirmation")
-            if (this.state.password.length >= 16){
+            if (this.state.password.length > 16){
                 console.log("password too long")
                 alert("Password can't be longer than 16 characters")
                 return false;
