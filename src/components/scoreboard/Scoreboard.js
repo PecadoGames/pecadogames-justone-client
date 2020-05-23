@@ -203,7 +203,7 @@ class Scoreboard extends React.Component{
                         </WrapperButton>
                             {this.state.lobby.playersIdInLobby.map( lobby=> {return(
                            <Wrapper>
-                                <ScoreTextLeft>{lobby}</ScoreTextLeft>
+                                <ScoreTextLeft>Player:</ScoreTextLeft>
                                 <ScoreTextRight>{this.getName(lobby)}</ScoreTextRight>
                             </Wrapper>
                             )})}
