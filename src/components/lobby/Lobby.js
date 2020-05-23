@@ -319,7 +319,7 @@ class Lobby extends React.Component{
         if(x === 4){
             this.handleInputChange('tv', 'tvChannel4');
             this.handleInputChange('counter', 4)}
-        if(x === 5){
+        if(x === -1){
             this.handleInputChange('tv', 'tvChannel5');
             this.handleInputChange('counter', 5)}
         if(x === 0){
