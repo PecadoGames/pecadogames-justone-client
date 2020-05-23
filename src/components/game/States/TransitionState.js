@@ -88,6 +88,21 @@ class TransitionState extends React.Component{
         else {return false;}
     }
 
+    /* displays guess
+    * param: string to be displayed
+    * */
+    showGuess(text){
+        if (!this.state.currentGuess){
+            return <div>{text} didn't enter a guess in time</div>
+        }
+        else if (this.state.isGuessCorrect){
+            return <div>{text} guessed: <Green>{this.state.currentGuess}</Green></div>
+        }
+        else{
+            return <div>{text} guessed: <Red>{this.state.currentGuess}</Red></div>
+        }
+    }
+
 
     render(){
         return(
@@ -111,7 +126,7 @@ class TransitionState extends React.Component{
                     </TextLeft>
                     </ScoreContainer>
                     <ScoreContainer> <TextLeft>The word was <Green>{this.state.currentWord}</Green></TextLeft> </ScoreContainer>
-                    <ScoreContainer><TextLeft><div>You guessed: {!this.state.isGuessCorrect ? <Red>{this.state.currentGuess}</Red> : <Green>{this.state.currentGuess}</Green>}</div></TextLeft></ScoreContainer>
+                    <ScoreContainer><TextLeft>{this.showGuess("You")}</TextLeft></ScoreContainer>
                 </Container>
                 :
                 <Container>
@@ -132,7 +147,7 @@ class TransitionState extends React.Component{
                     </TextLeft>
                     </ScoreContainer>
                     <ScoreContainer> <TextLeft>The word was <Green>{this.state.currentWord}</Green></TextLeft> </ScoreContainer>
-                    <ScoreContainer><TextLeft><div>Your teammate guessed: {!this.state.isGuessCorrect ? <Red>{this.state.currentGuess}</Red> : <Green>{this.state.currentGuess}</Green>}</div></TextLeft></ScoreContainer>
+                    <ScoreContainer><TextLeft>{this.showGuess("Your teammate")}</TextLeft></ScoreContainer>
                 </Container>
         )
     }

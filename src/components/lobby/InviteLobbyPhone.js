@@ -152,7 +152,10 @@ class InviteLobbyPhone extends React.Component {
             this.props.history.push('/login');
         }
         catch(error){
-            alert(`Something went wrong during the logout \n${handleError(error)}`)
+            alert(`We could not log you out of the server: \n${handleError(error)}`)
+            localStorage.removeItem('token');
+            localStorage.removeItem('id');
+            this.props.history.push('/login');
         }
     }
 

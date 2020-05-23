@@ -95,8 +95,6 @@ const SignContainer = styled.div`
 `;
 
 
-
-
 class EnterGuessState extends React.Component{
     constructor(props) {
         super(props);
@@ -110,7 +108,7 @@ class EnterGuessState extends React.Component{
     }
 
     _handleKeyDown = (e) => {
-        if (e.key === 'Enter'){
+        if (e.key === 'Enter' && this.canSubmitGuess(this.state.guess)){
             this.submitGuess()
         }
     }
@@ -138,6 +136,15 @@ class EnterGuessState extends React.Component{
         this.handleInputChange('clues', this.props.clues)
     }
 
+    canSubmitGuess(guess){
+        if (guess){
+            if (guess.length <= 12){
+                return true;
+            }
+            else return false;
+        }
+        else return false;
+    }
 
 
     //when the props from parent changes this is called to change states
@@ -194,7 +201,7 @@ class EnterGuessState extends React.Component{
 
                     </InputField>
                             <SubmitButton
-                                disabled={!this.state.guess}
+                                disabled={!this.canSubmitGuess(this.state.guess)}
                                 onClick={()=>{this.submitGuess()}}
                             >Submit
                             </SubmitButton>
