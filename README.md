@@ -75,15 +75,17 @@ Backend:
  - Ramon Solo de Zaldivar
 
 ### Music
-Music links, read linceses there:
-https://freemusicarchive.org/music/Loyalty_Freak_Music/ROLLER_DISCO_DANCE_DANCE/Loyalty_Freak_Music_-_ROLLER_DISCO_DANCE_DANCE_-_08_Last_Energy_For_The_Day
-https://freemusicarchive.org/music/Sweet_N_Juicy/Live_at_KBOO_for_Lighthouse_Lessons_3212018/Sweet_N_Juicy-Irresistable-Mar_2018-LIVE
-https://freemusicarchive.org/music/KieLoBot/Hounds_of_Darkmoor/Seniorita
-https://freemusicarchive.org/music/Checkie_Brown_1005/hey/Susie_the_Cat_-_Boss_CB_25
-https://freemusicarchive.org/music/Tagirijus/Easy_2018/manuel_senfft_-_two_pianos
-https://freemusicarchive.org/music/Loyalty_Freak_Music/TO_CHILL_AND_STAY_AWAKE/Loyalty_Freak_Music_-_TO_CHILL_AND_STAY_AWAKE_-_07_Monarch_of_the_street
-https://freemusicarchive.org/music/Loyalty_Freak_Music/TO_CHILL_AND_STAY_AWAKE/Loyalty_Freak_Music_-_TO_CHILL_AND_STAY_AWAKE_-_05_Traveling_in_your_mind
+Usage of music under Creative Commons:
+ - [Last Energy For The Day by Loyalty Freak Music](https://freemusicarchive.org/music/Loyalty_Freak_Music/ROLLER_DISCO_DANCE_DANCE/Loyalty_Freak_Music_-_ROLLER_DISCO_DANCE_DANCE_-_08_Last_Energy_For_The_Day)
+ - [Sweet N Juicy-Irresistable-LIVE by Sweet N Juicy](https://freemusicarchive.org/music/Sweet_N_Juicy/Live_at_KBOO_for_Lighthouse_Lessons_3212018/Sweet_N_Juicy-Irresistable-Mar_2018-LIVE
+)
+ - [Seniorita (K ID 28) by KieLoBot](https://freemusicarchive.org/music/KieLoBot/Hounds_of_Darkmoor/Seniorita)
+ - [Susie the Cat - Boss (CB 25) by Checkie Brown](https://freemusicarchive.org/music/Checkie_Brown_1005/hey/Susie_the_Cat_-_Boss_CB_25)
+ - [Two Pianos by Tagirijus](https://freemusicarchive.org/music/Tagirijus/Easy_2018/manuel_senfft_-_two_pianos)
+ - [Monarch of the street by Loyalty Freak Music](https://freemusicarchive.org/music/Loyalty_Freak_Music/TO_CHILL_AND_STAY_AWAKE/Loyalty_Freak_Music_-_TO_CHILL_AND_STAY_AWAKE_-_07_Monarch_of_the_street)
+ - [Traveling in your mind by Loyalty Freak Music](
+https://freemusicarchive.org/music/Loyalty_Freak_Music/TO_CHILL_AND_STAY_AWAKE/Loyalty_Freak_Music_-_TO_CHILL_AND_STAY_AWAKE_-_05_Traveling_in_your_mind)
 
-For some Music but not all: https://creativecommons.org/licenses/by-nc-nd/4.0/
+https://creativecommons.org/licenses/by-nc-nd/4.0/
 
 Sound effects: https://www.zapsplat.com/license-type/standard-license/
