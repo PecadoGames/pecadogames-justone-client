@@ -95,7 +95,7 @@ class Register extends React.Component {
                 alert("Password can't be longer than 16 characters")
                 return false;
             }
-            if (this.state.username.length >= 10){
+            if (this.state.username.length > 10){
                 console.log("username too long")
                 alert("Username can't be longer than 10 characters")
             }
