@@ -50,7 +50,7 @@ Users are then redircted to the application. In the main menu they can create or
 ## Roadmap
 Further ideas we haven't had time to implement
 
-⋅⋅*Voice chat: We were unable to find a free provider, we would most likely have to implement this with a web socket
+*Voice chat: We were unable to find a free provider, we would most likely have to implement this with a web socket
 
-⋅⋅*Mini game in lobby: A small mini game to pass the time: We thought something like google's dino runner
+*Mini game in lobby: A small mini game to pass the time: We thought something like google's dino runner
 
