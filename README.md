@@ -39,7 +39,16 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## Illustration of the main user flows
+## Illustration of the main user flow
+
 First a user has to regist in the log in screen:
 ![loginscreen](https://github.com/PecadoGames/pecadogames-justone-client/blob/master/picturesReadMe/LogInScreen.PNG?raw=true)
+Users are then redircted to the application. In the main menu they can create or join a lobby, edit their profile or access the public score board.
+![mainmenu](https://github.com/PecadoGames/pecadogames-justone-client/blob/master/picturesReadMe/MainMenu.PNG?raw=true)
+
+
+## Roadmap
+Further ideas we haven't had time to implement
+..*Voice chat: We were unable to find a free provider, we would most likely have to implement this with a web socket
+..*Mini game in lobby: A small mini game to pass the time: We thought something like google's dino runner
 
