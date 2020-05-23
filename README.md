@@ -46,11 +46,12 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 We deploy this app on heroku: [PecadoGames/pecadogames-justone-client](https://github.com/PecadoGames/pecadogames-justone-client "View on GitHub")[master](https://github.com/PecadoGames/pecadogames-justone-client/tree/master "Auto deploys master")
+
 ## Illustration of the main user flow
 
-First a user has to regist in the log in screen:
+First a user has to register in the log in screen:
 ![loginscreen](https://github.com/PecadoGames/pecadogames-justone-client/blob/master/picturesReadMe/LogInScreen.PNG?raw=true)
-Users are then redircted to the application. In the main menu they can create or join a lobby, edit their profile or access the public score board.
+Users are then redircted to the application. In the main menu they can create or join a lobby, edit their profile or access a public score board.
 ![mainmenu](https://github.com/PecadoGames/pecadogames-justone-client/blob/master/picturesReadMe/MainMenu.PNG?raw=true)
 
 Once a lobby is created a user can invite friends, add bots or start a game. 
