@@ -289,9 +289,11 @@ class GameRouter extends React.Component {
                   <Game></Game>
                   </GameGuard>)}
           />
-
-
-
+          <Route
+              exact
+              path={`${this.props.base}/lobbies/:lobbyId/game/game`}
+              render={() => <Redirect to={`${this.props.base}/lobbies/:lobbyId/game`} />}
+          />
         <Route
           exact
           path={`${this.props.base}`}
