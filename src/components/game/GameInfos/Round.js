@@ -3,18 +3,19 @@ import React from "react";
 import styled from "styled-components";
 
 const Box = styled.div`
-    border: 2px solid white;
+    border: 2px solid #c0c0c0;;
     width: 90px;
     height: auto;
     text-align: center;
     font-size: 18px;
-    color: white;
+    color: #c0c0c0;
 `;
 
 const Wrapper = styled.div`
     text-align: center;
     width: 90px;
     font-size: 18px;
+    color: #c0c0c0;
 `;
 
 

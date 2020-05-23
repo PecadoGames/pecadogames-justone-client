@@ -4,17 +4,16 @@ import React from "react";
 import {withRouter} from "react-router-dom";
 
 const Box = styled.div`
-    border: 2px solid white;
+    border: 2px solid #c0c0c0;;
     width: 90px;
     height: auto;
     text-align: center;
     font-size: 18px;
-    color: white;
 `;
 
 const NormalTime = styled.text`
     font-size: 32px;
-    color: white;
+    color: #c0c0c0;
 `;
 
 const TimerLow = styled(NormalTime)`
@@ -25,7 +24,9 @@ const Wrapper = styled.div`
     text-align: center;
     width: 90px;
     font-size: 18px;
+    color: #c0c0c0;
 `;
+
 
 class Timer extends React.Component{
     constructor() {

@@ -49,6 +49,16 @@ const UserNameText = styled.div`
     display: flex;
     flex-direction: row;
     align-text: left;
+    color: #c0c0c0;
+`;
+
+const LobbyName = styled.div`
+    font-size: 24px;
+    text-align:center;
+    color: #c0c0c0;
+    width: 255;
+    height: 31px;
+    overflow: hidden;
 `;
 
 const ContentWrapper = styled.div`
@@ -151,7 +161,7 @@ class Infos extends React.Component{
         return(
             <PlayersContainer className={"tv"}>
                 <ContentWrapper>
-                    <div style={{fontSize: "28px", textAlign:"center"}}>Channel: {this.state.lobbyName}</div>
+                    <LobbyName>Channel: {this.state.lobbyName}</LobbyName>
                     <PlayerInfo>
                         {this.state.players.map(player => {return(
                             <PlayerContainer>

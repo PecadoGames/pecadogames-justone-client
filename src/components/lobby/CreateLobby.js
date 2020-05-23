@@ -154,6 +154,19 @@ class CreateLobby extends React.Component {
         }
     }
 
+    //return false if valid lobby name
+    checkLobbyName(name){
+        if (name){
+            if (name.length <= 10 && !name.includes(" ")){
+                return false;
+            }
+            return true;
+        }
+        else{
+            return true;
+        }
+    }
+
     enableVoiceChat(){
         if (this.state.voiceChat){
             return <SmallButton
@@ -318,7 +331,7 @@ class CreateLobby extends React.Component {
                                     Main Menu
                             </NavigationButton>
                             <NavigationButton
-                                disabled={!this.state.lobbyName}
+                                disabled={this.checkLobbyName(this.state.lobbyName)}
                                 onClick={()=>{
                                     this.createLobby();
                                 }}>
