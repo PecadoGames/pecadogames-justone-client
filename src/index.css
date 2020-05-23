@@ -336,9 +336,38 @@ button {
   background-image: url("TvScreen.gif");
   background-size: 400px;
   background-repeat: no-repeat;
+}
+
+.tvChannel1{
+  background-image: url("Marion.gif");
+  background-size:300px, contain, contain;
+  background-repeat: no-repeat;
+}
+
+.tvChannel2{
+  background-image: url("Raffael.gif");
+  background-size: 300px, contain, contain;
+  background-repeat: no-repeat;
+}
+
+.tvChannel3{
+  background-image: url("RamonSolo.gif");
+  background-size: 300px, contain, contain;
+  background-repeat: no-repeat;
 
 }
 
+.tvChannel4{
+  background-image: url("Raphael.gif");
+  background-size: 300px, contain, contain;
+  background-repeat: no-repeat;
+}
+
+.tvChannel5{
+  background-image: url("Alain.png");
+  background-size: 300px 300px , contain, contain;
+  background-repeat: no-repeat;
+}
 @keyframes blinkingAnimation {
   0% {outline: 2px solid #ffff00;
     color: #ffff00;}

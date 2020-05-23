@@ -81,8 +81,8 @@ const ScreenOffline = styled.div`
   display: flex;
   flex-direction: column;
   align-items: left;
-  height: 300px;
-  width: 400px
+  height: 250px;
+  width: 300px
  `
 const Screen = styled.div`
   display: flex;
@@ -90,7 +90,35 @@ const Screen = styled.div`
   align-items: left;
   height: 300px;
   width: 400px
-  margin-top: -300px;;
+  margin-top: -250px;
+ `
+
+const TvButtonTop = styled.button`
+  height: 45px;
+  width: 45px
+  position: absolute
+  margin-left: 347px;
+  margin-top: 147px
+  background: none;
+  border:none;
+  
+ `
+const Counter = styled.div`
+  color: #32CD32;
+  font-size: 20px;
+  margin-top: 36px;
+  margin-left: 262px
+ 
+ `
+const TvButtonBottom = styled.button`
+  height: 45px;
+  width: 45px
+  position: absolute
+  margin-left:347px;
+  margin-top: 199px;
+  background: none;
+  border:none;
+ 
  `
 
 
@@ -104,7 +132,9 @@ class Lobby extends React.Component{
             interval: null,
             hostName: '',
             isEditingLobby: false,
-            hostId: null
+            hostId: null,
+            counter: 0,
+            tv: 'tvOffline'
         };
     }
 
@@ -201,7 +231,7 @@ class Lobby extends React.Component{
                 }
             }
         }
-        , 700)
+        , 500)
     }
 
     async getHostName(hostId){
@@ -253,14 +283,66 @@ class Lobby extends React.Component{
         clearInterval(this.state.interval)
     }
 
+    switchUp(){
+        let x = this.state.counter + 1
+        if(x === 1){
+            this.handleInputChange('tv', 'tvChannel1');
+            this.handleInputChange('counter', 1)}
+        if(x === 2){
+            this.handleInputChange('tv', 'tvChannel2');
+            this.handleInputChange('counter', 2)}
+        if(x === 3){
+            this.handleInputChange('tv', 'tvChannel3');
+            this.handleInputChange('counter', 3)}
+        if(x === 4){
+            this.handleInputChange('tv', 'tvChannel4');
+            this.handleInputChange('counter', 4)}
+        if(x === 5){
+            this.handleInputChange('tv', 'tvChannel5');
+            this.handleInputChange('counter', 5)}
+        if(x === 6){
+            this.handleInputChange('tv', 'tvOffline');
+            this.handleInputChange('counter', 0)}
+    }
+
+    switchDown(){
+        let x = this.state.counter - 1
+        if(x === 1){
+            this.handleInputChange('tv', 'tvChannel1');
+            this.handleInputChange('counter', 1)}
+        if(x === 2){
+            this.handleInputChange('tv', 'tvChannel2');
+            this.handleInputChange('counter', 2)}
+        if(x === 3){
+            this.handleInputChange('tv', 'tvChannel3');
+            this.handleInputChange('counter', 3)}
+        if(x === 4){
+            this.handleInputChange('tv', 'tvChannel4');
+            this.handleInputChange('counter', 4)}
+        if(x === 5){
+            this.handleInputChange('tv', 'tvChannel5');
+            this.handleInputChange('counter', 5)}
+        if(x === 0){
+            this.handleInputChange('tv', 'tvOffline');
+            this.handleInputChange('counter', 0)}
+
+    }
+
 
     render(){
         return(
             <FormContainer>
                 <LeftContainer>
-                    <ScreenOffline className='tvOffline'/>
+                    <ScreenOffline className={this.state.tv}/>
                     <Screen className='tv'>
+                        <Counter>0{this.state.counter}</Counter>
                     </Screen>
+                    <TvButtonTop
+                        onClick={()=>this.switchUp()}>
+                    </TvButtonTop>
+                    <TvButtonBottom
+                        onClick={()=>this.switchDown()}>
+                    </TvButtonBottom>
                     <ChatBox className={"chatBox"}/>
                 </LeftContainer>
                 <RightContainer>
