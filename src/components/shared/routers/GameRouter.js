@@ -11,7 +11,6 @@ import Requests from "../../profile/Requests";
 import Scoreboard from "../../scoreboard/Scoreboard.js"
 import Game from "../../game/Game"
 import Friends from "../../profile/Friends";
-import GameTest from "../../game/GameTest";
 import {LoggedInUser} from "../routeProtectors/LoggedInUser";
 import {LobbyGuard} from "../routeProtectors/LobbyGuard";
 import {GameGuard} from "../routeProtectors/GameGuard";
@@ -129,17 +128,6 @@ class GameRouter extends React.Component {
                  playFromPosition={0}
           />
 
-
-
-          {/* This is just for looking at the state purpose */}
-          <Route
-              exact
-              path={`${this.props.base}/states`}
-              render={() =>(
-                  <GameTest/>
-              )}
-          />
-          {/* Ends here */}
 
         <Route
           exact
