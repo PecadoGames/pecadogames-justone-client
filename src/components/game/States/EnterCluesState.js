@@ -115,7 +115,7 @@ class EnterCluesState extends React.Component{
         }
         else{
             if (this.state.clue && this.state.clue2){
-                if (this.state.clue.length <= 12){
+                if (this.state.clue.length <= 12 && this.state.clue2.length <= 12){
                     return true;
                 }
                 else return false;

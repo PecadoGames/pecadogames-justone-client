@@ -141,8 +141,9 @@ class EnterGuessState extends React.Component{
             if (guess.length <= 12){
                 return true;
             }
+            else return false;
         }
-        return false;
+        else return false;
     }
 
 
