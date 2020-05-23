@@ -292,7 +292,7 @@ class GameRouter extends React.Component {
           <Route
               exact
               path={`${this.props.base}/lobbies/:lobbyId/game/game`}
-              render={() => <Redirect to={`${this.props.base}/lobbies/:lobbyId/game`} />}
+              render={() => <Redirect to={`${this.props.base}/lobbies/${localStorage.getItem('lobbyId')}/game`} />}
           />
         <Route
           exact
