@@ -29,7 +29,7 @@ const PlayerContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    height: 40px;
+    height: 24px;
  `
 
 const ShyGuyIcon = styled.div`
