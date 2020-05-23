@@ -11,7 +11,7 @@ const Wrapper = styled.div`
     background-color: none;
     padding: 10px;
     text-align: center;
-    margin-top: 380px;
+    margin-top: 350px;
     margin-left: 220px;
     display: flex;
     flex-direction: column;
@@ -30,7 +30,7 @@ const Container = styled.div`
 `;
 
 const Wrapper1 = styled.div`
-    margin-top: 20px;
+    margin-top: 0px;
     height: auto;
     width: 300px;
     background-color: hsla(220, 3%, 19%, 0.8);

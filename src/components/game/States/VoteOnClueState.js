@@ -169,20 +169,6 @@ class VoteOnClueState extends React.Component{
             return <TextSignLeft style={{fontSize: 10, marginTop: 35}}>{clue}</TextSignLeft>
         }
     }
-
-    displayDarkClue(clue){
-        if (clue.length <= 8){
-            return <TextSignLeft style={{fontSize: 20}}>{clue}</TextSignLeft>
-        }
-        else if (clue.length <= 11){
-            return <TextSignLeft style={{fontSize: 14, marginTop: 33}}>{clue}</TextSignLeft>
-        }
-        else{
-            return <TextSignLeft style={{fontSize: 10, marginTop: 35}}>{clue}</TextSignLeft>
-        }
-    }
-
-
     render(){
         return(
             this.renderForGuesser()  || this.hasVoted() ?
@@ -221,10 +207,6 @@ class VoteOnClueState extends React.Component{
                                         color='#FF0000'
                                         fontSize='40px'
                                         weight='bold'>X</Button>}</SignLeft>)})}
-
-                        {/*{this.state.invalidClues.map(clue => {*/}
-                        {/*    return (<SignLeft className={"guess-sign-red"}>{this.displayDarkClue(clue.actualClue)}</SignLeft>)})}*/}
-
                     </SignContainer>
                 </Wrapper>
 

@@ -387,7 +387,7 @@ class Profile extends React.Component {
                                     </RowContainer>
                                     <RowContainer>
                                         <SaveButton
-                                            disabled={!this.state.username || this.state.username.length > 16}
+                                            disabled={!this.state.username || this.state.username.length >10}
                                             onClick={()=>{
                                                 this.updateProfile();
                                             }}
