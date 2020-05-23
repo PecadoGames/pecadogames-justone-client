@@ -382,8 +382,6 @@ class Lobby extends React.Component{
                                 lobby={this.state.lobby}
                                 isEditingLobby={this.editLobby}/>}
                         </PhoneContainer>
-                        {this.state.inviteFriends &&
-                        <LobbyInvite/>}
                     </BottomRightContainer>
                 </RightContainer>
             </FormContainer>

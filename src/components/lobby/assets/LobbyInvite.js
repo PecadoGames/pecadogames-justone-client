@@ -36,13 +36,19 @@ class LobbyInvite extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            lobby: [],
             id: null,
             friends: [],
             sentInvites:[]
         }
     }
 
+    handleInputChange(key, value) {
+        this.setState({ [key]: value });
+    }
+
     async componentDidMount() {
+        this.handleInputChange('lobby', this.props.lobby)
         Events.scrollEvent.register('begin', function () {
             console.log("begin", arguments);
         });
@@ -54,18 +60,29 @@ class LobbyInvite extends React.Component {
         let friendsListOnlyID = friendsResponse.data
         let fullFriendList = []
         for (let friend in friendsListOnlyID){
-            let friendUserProfile = await api.get(`/users/${friendsListOnlyID[friend].id}?token=${localStorage.getItem('token')}`)
+            let friendId = friendsListOnlyID[friend].id
+            let friendUserProfile = await api.get(`/users/${friendId}?token=${localStorage.getItem('token')}`)
             let friendUserDetails = friendUserProfile.data
-            if (friendUserDetails.logged_in){
-                fullFriendList.push(friendUserDetails);
+            let isUserAlreadyInGame = false
+            if(this.state.lobby != null){
+                for (let player in this.state.lobby.playersInLobby){
+                    if(this.state.lobby.playersInLobby[player].id === friendId){
+                        isUserAlreadyInGame = true;
+                        break;
+                    }
+                }        
+                if (friendUserDetails.logged_in && !isUserAlreadyInGame){
+                    fullFriendList.push(friendUserDetails);
+                }
             }
         }
+
         fullFriendList.sort(function (a, b){
             a = a.username.toLowerCase();
             b = b.username.toLowerCase();
             return a < b ? -1 : a > b ? 1 : 0;
         });
-        this.setState({['friends']: fullFriendList})
+        this.handleInputChange('friends', fullFriendList)
     }
 
     async sendInvite(userId){
@@ -105,6 +122,16 @@ class LobbyInvite extends React.Component {
         )
     }
 
+    static getDerivedStateFromProps(props, state) {
+        if (props.lobby !== state.lobby) {
+            return {
+                lobby: props.lobby,
+            };
+        }
+        // Return null if the state hasn't changed
+        return null;
+    }
+
     addSentRequest(userId){
         let sentInvites = this.state.sentInvites
         sentInvites.push(userId)
@@ -129,7 +156,7 @@ class LobbyInvite extends React.Component {
                     }}>
                         {this.state.friends.length === 0 && 
                             <NotOnlineMessage>
-                                There is no friend online
+                                No one to invite
                             </NotOnlineMessage>}
                         {this.state.friends.map(friends => {
                             return(

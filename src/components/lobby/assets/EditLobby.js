@@ -285,7 +285,8 @@ class EditLobby extends React.Component{
             </PhoneScreen> 
             :
             <LobbyInvite
-                toggleInviteFriends={this.toggleInviteFriends}/>   
+                toggleInviteFriends={this.toggleInviteFriends}
+                lobby={this.props.lobby}/>   
         }
         </div>
         )}
