@@ -28,7 +28,10 @@ const ScoreContainer = styled.div`
   overflow-y: scroll;
 `;
 
-const ScoreTextLeft = styled.body`
+const ScoreTextLeft = styled.div`
+    display: flex;
+    align-items: center;
+    height: 100%
     width: 60%
     overflow: hidden;
     text-align: left;
@@ -40,7 +43,8 @@ const ScoreTextLeft = styled.body`
 `;
 
 const ScoreTextRight = styled(ScoreTextLeft)`
-    text-align: right;
+    display: flex;
+    justify-content: flex-end;
     float: right;
     width: 30%
 `;
@@ -68,12 +72,10 @@ export const NeonButton = styled.button`
 `;
 
 const Wrapper = styled.div`
-    display: inline-block;
+    display: flex;
     width: 100%;
     height: 50px;
     border-bottom: 2px solid white;
-    margin-bottom: 2px;
-    padding-bottom: 5px;
 `;
 
 const Title = styled.div`
