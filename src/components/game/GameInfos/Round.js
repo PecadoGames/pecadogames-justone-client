@@ -24,7 +24,8 @@ class Round extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            rounds: null
+            rounds: null,
+            roundsPlayed: null
         };
     }
 
@@ -37,9 +38,10 @@ class Round extends React.Component{
 
     //when the props from parent changes this is called to change states
     static getDerivedStateFromProps(props, state) {
-        if (props.rounds !== state.rounds) {
+        if (props.rounds !== state.rounds || props.roundsPlayed !== state.roundsPlayed) {
             return {
                 rounds: props.rounds,
+                roundsPlayed: props.roundsPlayed
             };
         }
         // Return null if the state hasn't changed
@@ -52,7 +54,7 @@ class Round extends React.Component{
             <Wrapper>
                 ROUND
                 <Box>
-                    {this.state.rounds}/13
+                    {this.state.roundsPlayed}/{this.state.rounds}
                 </Box>
             </Wrapper>
         )

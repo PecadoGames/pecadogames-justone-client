@@ -102,6 +102,7 @@ class Infos extends React.Component{
             currentGuesser: null,
             score: 0,
             rounds: 0,
+            roundsPlayed: 0
         };
     }
 
@@ -116,9 +117,11 @@ class Infos extends React.Component{
     }
 
     static getDerivedStateFromProps(props, state) {
-        if (props.rounds !== state.rounds || props.score !== state.score || props.players !== state.players || props.lobbyName !== state.lobbyName ||  props.currentGuesserId !== state.currentGuesserId) {
+        if (props.rounds !== state.rounds || props.score !== state.score || props.players !== state.players || props.roundsPlayed !== state.roundsPlayed
+            || props.lobbyName !== state.lobbyName ||  props.currentGuesserId !== state.currentGuesserId) {
             return {
                 rounds: props.rounds,
+                roundsPlayed: props.roundsPlayed,
                 score: props.score,
                 players: props.players,
                 lobbyName: props.lobbyName,
@@ -185,7 +188,7 @@ class Infos extends React.Component{
                     </PlayerInfo>
                     <GameInfo>
                         <Timer/>
-                        <Round rounds = {this.state.rounds}/>
+                        <Round roundsPlayed = {this.state.roundsPlayed} rounds = {this.state.rounds}/>
                         <Score score = {this.state.score}/>
                     </GameInfo>
                 </ContentWrapper>

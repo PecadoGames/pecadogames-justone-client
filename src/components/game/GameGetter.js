@@ -163,6 +163,7 @@ class GameGetter extends React.Component{
         this.handleInputChange('score', response.data.overallScore);
         this.handleInputChange('rounds', response.data.roundsPlayed);
         this.handleInputChange('currentGuess', response.data.currentGuess);
+        this.handleInputChange('roundsPlayed', response.data.roundsPlayed);
         this.getGame()
     }
 
@@ -266,6 +267,7 @@ class GameGetter extends React.Component{
                         currentGuesserId = {this.state.currentGuesserId}
                         score = {this.state.score}
                         rounds = {this.state.rounds}
+                        roundsPlayed = {this.state.roundsPlayed}
                     >
                     </Infos>
                     <ChatBox></ChatBox>
