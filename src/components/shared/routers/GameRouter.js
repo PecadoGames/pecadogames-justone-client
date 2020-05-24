@@ -97,7 +97,7 @@ class GameRouter extends React.Component {
           />
           <Sound url={FlipNewspaper}
                  playStatus={this.state.flip}
-                 volume={15}
+                 volume={10}
                  playFromPosition={0}
           />
           <Sound url={PhoneRing}
@@ -113,12 +113,12 @@ class GameRouter extends React.Component {
           />
           <Sound url={Bottle}
                  playStatus={this.state.bottle}
-                 volume={20}
+                 volume={13}
                  playFromPosition={0}
           />
           <Sound url={Ice}
                  playStatus={this.state.bottle}
-                 volume={40}
+                 volume={30}
                  playFromPosition={0}
           />
           <Sound url={tv}
