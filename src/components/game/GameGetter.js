@@ -117,25 +117,29 @@ class GameGetter extends React.Component{
         this.setState({ [key]: value });
     }
 
+    async setGame(){
+        const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/game?token=${localStorage.getItem('token')}`);
+        this.handleInputChange('game' ,response.data);
+        this.handleInputChange('currentGuesserId', response.data.currentGuesser.id);
+        this.handleInputChange('gameState', response.data.gameState);
+        this.handleInputChange('players', response.data.players);
+        this.handleInputChange('lobbyName', response.data.lobbyName);
+        this.handleInputChange('currentWord', response.data.currentWord);
+        this.handleInputChange('clues', response.data.enteredClues);
+        this.handleInputChange('specialGame', response.data.specialGame);
+        this.handleInputChange('invalidClues', response.data.invalidClues);
+        this.handleInputChange('isGuessCorrect', response.data.guessCorrect);
+        this.handleInputChange('score', response.data.overallScore);
+        this.handleInputChange('rounds', response.data.rounds);
+        this.handleInputChange('roundsPlayed', response.data.roundsPlayed);
+        this.handleInputChange('currentGuess', response.data.currentGuess);
+    }
+
     //gets Game half a second
     async getGame(){
         try{
             let interval = setInterval(async ()=>{
-                const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/game?token=${localStorage.getItem('token')}`);
-                this.handleInputChange('game' ,response.data);
-                this.handleInputChange('currentGuesserId', response.data.currentGuesser.id);
-                this.handleInputChange('gameState', response.data.gameState);
-                this.handleInputChange('players', response.data.players);
-                this.handleInputChange('lobbyName', response.data.lobbyName);
-                this.handleInputChange('currentWord', response.data.currentWord);
-                this.handleInputChange('clues', response.data.enteredClues);
-                this.handleInputChange('specialGame', response.data.specialGame);
-                this.handleInputChange('invalidClues', response.data.invalidClues);
-                this.handleInputChange('isGuessCorrect', response.data.guessCorrect);
-                this.handleInputChange('score', response.data.overallScore);
-                this.handleInputChange('rounds', response.data.rounds);
-                this.handleInputChange('roundsPlayed', response.data.roundsPlayed);
-                this.handleInputChange('currentGuess', response.data.currentGuess);
+                    this.setGame()
                 },500)
                 this.setState({'interval': interval})
         }
@@ -152,21 +156,7 @@ class GameGetter extends React.Component{
 
 
     async componentDidMount() {
-        const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/game?token=${localStorage.getItem('token')}`);
-        this.handleInputChange('game' ,response.data);
-        this.handleInputChange('currentGuesserId', response.data.currentGuesser.id);
-        this.handleInputChange('gameState', response.data.gameState);
-        this.handleInputChange('players', response.data.players);
-        this.handleInputChange('lobbyName', response.data.lobbyName);
-        this.handleInputChange('currentWord', response.data.currentWord);
-        this.handleInputChange('clues', response.data.enteredClues);
-        this.handleInputChange('specialGame', response.data.specialGame);
-        this.handleInputChange('invalidClues', response.data.invalidClues);
-        this.handleInputChange('isGuessCorrect', response.data.guessCorrect);
-        this.handleInputChange('score', response.data.overallScore);
-        this.handleInputChange('rounds', response.data.rounds);
-        this.handleInputChange('currentGuess', response.data.currentGuess);
-        this.handleInputChange('roundsPlayed', response.data.roundsPlayed);
+        this.setGame()
         this.getGame()
     }
 
