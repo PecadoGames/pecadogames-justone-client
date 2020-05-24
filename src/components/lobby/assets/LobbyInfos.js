@@ -38,6 +38,12 @@ const LobbyName = styled.div`
     text-decoration: underline
 `;
 
+const PlayerInfos = styled.div`
+    display: flex; 
+    flex-direction: column;
+    width: 100%;
+`
+
 const UserRow = styled.div`
     display: flex;
     flex-direction: row;
@@ -63,21 +69,21 @@ const KickButtonContainer = styled.div`
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 100px;
+    width: ${props => props.autoWidth ? "auto" : "100px"};
 `;
 
 const GameInfoRow = styled.div`
-display: flex;
-flex-direction: row;
-justify-content: space-between;
-align-items: center;
-width: 95%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    height: ${props => props.height ? "50px" : ""}
 `;
 
 const GameInfoText = styled.div`
-display: flex;
-color: #c0c0c0;
-font-size: 20px;
+    color: #c0c0c0;
+    font-size: 20px;
 `
 
 
@@ -166,7 +172,8 @@ class LobbyInfos extends React.Component{
                     {this.state.lobbyName}
                 </LobbyName>                                
                 {this.state.lobby !== null &&
-                    <GameInfoRow>
+                    <GameInfoRow
+                        height={this.state.hostId != localStorage.getItem('id')}>
                         <GameInfoText>
                             {"Players: "+this.state.lobby.currentNumPlayersAndBots+"/"+this.state.lobby.maxPlayersAndBots}
                         </GameInfoText>
@@ -175,6 +182,7 @@ class LobbyInfos extends React.Component{
                         </GameInfoText>
                     </GameInfoRow>
                 }
+                <PlayerInfos>
                 {this.state.players.map(player => {return(
                         <UserRow>
                             <ShyGuyIcon>
@@ -183,8 +191,9 @@ class LobbyInfos extends React.Component{
                             <UserName>
                                 {player.username}
                             </UserName>
-                            <KickButtonContainer>
-                                {this.valid(player.id) ?
+                            <KickButtonContainer
+                                autoWidth={this.state.hostId != localStorage.getItem('id')}>
+                                {this.valid(player.id) &&
                                 <DeclineButton
                                         marginTop="0px"
                                         marginLeft="0px"
@@ -193,13 +202,14 @@ class LobbyInfos extends React.Component{
                                         height='35px'
                                         color='red'
                                         fontSize='20px'
-                                        onClick={() => {this.kick(player.id);}}>Kick
+                                        onClick={() => {this.kick(player.id);}}>
+                                            Kick
                                 </DeclineButton>
-                                : <div style={{height:'35px', width:'50px'}}/>
                                 }
                             </KickButtonContainer>
                         </UserRow>
                 )})}
+                </PlayerInfos>
             </PlayersContainer>
         )
     }
