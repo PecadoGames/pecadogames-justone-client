@@ -159,16 +159,11 @@ class RuleBox extends React.Component {
                                 the active player gets to see them.</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Text>After each round, your score will be calculated based on
-                                how fast you provided clues and the guess. At the end of the game there
-                                will be an overall game score, based on how good you performed.</Text>
-                        </Element>
-                        <Element style={{marginTop: '10px'}}>
                             <Subtitle>Setup:</Subtitle>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>• Create a lobby, therefore you have to choose the number of rounds you want to play
-                                and what the name of your lobby is. You can also invite your friends in the lobby!</Text>
+                                and what the name of your lobby is. You can also invite your friends into the lobby!</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>• Start the Game. There have to be at least 3 players! You can also add friendly bots!</Text>
@@ -187,8 +182,7 @@ class RuleBox extends React.Component {
                             <Subtitle>Clue selection:</Subtitle>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Text>Without communicating with each other and without
-                                showing it to anyone each player writes one clue on
+                            <Text>Without communicating with each other, each player writes one clue into
                                 their field. That clue must be composed of a single word.</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
@@ -203,7 +197,7 @@ class RuleBox extends React.Component {
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>• The Mystery word but written differently.
-                                Example: Shirt is not allowed when trying to make the
+                                Example: Shurt is not allowed when trying to make the
                                 player guess Shirt.
                             </Text>
                         </Element>
@@ -213,7 +207,7 @@ class RuleBox extends React.Component {
                                 is Shrub.</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Text> • A word from the same family as the Mystery word.
+                            <Text>• A word from the same family as the Mystery word.
                                 Example: Princess is not allowed if the word to be guessed
                                 is Prince.</Text>
                         </Element>
@@ -233,14 +227,14 @@ class RuleBox extends React.Component {
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>Once all players have written their clues, they also get to
-                                vote on there clue if it's a valid clue or not. There are some further rules below! The NLP-Bot might
-                                not catch them all, so vote wisely! A clue is dropped out if at least half of the persons
+                                vote on all entered clue to decide if they're valid clues or not. There are some further rules right below! The NLP-Bot might
+                                not catch them all, so vote wisely! A clue is deleted from the list of clues if at least half of the players
                                 giving clues vote it to be invalid.
-                                After this, the guessers will see all the valid clues provided.
+                                Afterwards, the guessers will see all the valid clues that are left.
                             </Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Subtitle>Identical clues:</Subtitle>
+                            <Subtitle>The following are considered identical clues:</Subtitle>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>• Two identical words.
@@ -258,16 +252,11 @@ class RuleBox extends React.Component {
                                 and Filosofie are identical.</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Text>Note: If all clues have been cancelled, place the Mystery
-                                word’s card back in the box and move directly to the End
-                                of turn phase.</Text>
-                        </Element>
-                        <Element style={{marginTop: '10px'}}>
                             <Subtitle>Guess:</Subtitle>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>Once the identical or invalid clues have been cancelled the guesser is allowed to send
-                                ONLY ONE GUESS.</Text>
+                                only one guess!</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Subtitle>Results:</Subtitle>
@@ -283,28 +272,29 @@ class RuleBox extends React.Component {
                                 If the active player makes a wrong guess.</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Text>End of Turn:</Text>
+                            <Subtitle>End of round:</Subtitle>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>A new randomly chosen player becomes the
-                                new active player. A new turn begins.
+                                new active player. A new round begins.
                             </Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Text>Variant For 3 players:</Text>
+                            <Subtitle>Variant For 3 players:</Subtitle>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Text>With 3 players, the game plays out according to the standard rules as previous stated,
-                                with the exception of the following change:
+                            <Text>With 3 players, the game plays out according to the standard rules as previously stated,
+                                with the following exception:
                                 The clue givers can give two clues.
-                                Identical clues are also cancelled during the comparison Phase of clue selection.</Text>
+                                Identical clues are also deleted in this game mode!</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Subtitle>Score Calculation:</Subtitle>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>The faster you are, the better the score. If your clues gets erased, so do
-                            your points for the respective round. The rest is our secret formula ;) Good luck! </Text>
+                            your points for the respective round. Of course, whether the active player guessed
+                                right or not has an impact on all of the scores as well. The rest is our secret formula ;) Good luck! </Text>
                         </Element>
                     </Element>
                 </ScreenContainer>
