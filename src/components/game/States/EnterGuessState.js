@@ -4,6 +4,7 @@ import styled from "styled-components";
 import {InputField} from "../../../views/design/InputField";
 import { PixelButton } from "../../../views/design/PixelButton";
 import {api, handleError} from "../../../helpers/api";
+import {SubmitButton} from "./EnterCluesState";
 
 const Wrapper = styled.div`
     height: 200px;
@@ -79,7 +80,6 @@ const SignContainer = styled.div`
     height: 100%
     align-items: flex-start;
 `;
-
 
 class EnterGuessState extends React.Component{
     constructor(props) {
@@ -187,22 +187,11 @@ class EnterGuessState extends React.Component{
                                 onKeyDown={this._handleKeyDown}>
 
                     </InputField>
-                    <PixelButton
-                                    marginTop="0px"
-                                    marginRight="0px"
-                                    background="transparent"
-                                    outline="2px solid white"
-                                    border="none"
-                                    color="white"
-                                    height="45px"
-                                    width = '90px'
-                                    hoverOutline='2px solid black'
-                                    hoverBackground="white"
-                                    hoverColor="black"
+                    <SubmitButton
                                 disabled={!this.canSubmitGuess(this.state.guess)}
                                 onClick={()=>{this.submitGuess()}}
                             >Submit
-                        </PixelButton>
+                        </SubmitButton>
                     </Wrapper1>
                     <div>
                         <SignContainer>

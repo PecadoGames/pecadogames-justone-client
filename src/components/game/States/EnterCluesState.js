@@ -48,6 +48,23 @@ const Text = styled.div`
     
 `;
 
+export const SubmitButton = styled(PixelButton)`
+    margin-top:0px;
+    margin-right:0px;
+    background:transparent;
+    outline:2px solid white;
+    border:none;
+    color:white;
+    width:90px;
+    cursor: ${props => (props.disabled ? "default" : "pointer")};
+    opacity: ${props => (props.opacity ? 0.4 : 1)};
+    &:hover {
+      outline: ${props => !props.disabled ? "2px solid #000000" : "2px solid #b5b5b5"};
+      background: ${props => !props.disabled ? "white" : "transparent"};
+      color: ${props => !props.disabled ? "black" : "#b5b5b5"};
+    }
+`;
+
 
 class EnterCluesState extends React.Component{
     constructor() {
@@ -191,20 +208,12 @@ class EnterCluesState extends React.Component{
                                     }}
                                 >
                                 </InputField>
-                                <PixelButton
+                                <SubmitButton
                                     marginTop="-8px"
-                                    marginRight="0px"
-                                    background="transparent"
-                                    outline="2px solid white"
-                                    border="none"
-                                    color="white"
-                                    hoverOutline='2px solid black'
-                                    hoverBackground="white"
-                                    hoverColor="black"
                                     disabled={!this.canSubmitClue()}
                                     onClick={()=>{this.submit()}}>
                                     Submit
-                                </PixelButton>
+                                </SubmitButton>
                             </div>
                         </Container>
                     </Wrapper>
@@ -228,16 +237,7 @@ class EnterCluesState extends React.Component{
                                 >
                                 </InputField>
                                 <PixelButton
-                                    marginTop="0px"
-                                    marginRight="0px"
-                                    background="transparent"
-                                    outline="2px solid white"
-                                    border="none"
-                                    color="white"
-                                    width = '90px'
-                                    hoverOutline='2px solid black'
-                                    hoverBackground="white"
-                                    hoverColor="black"
+
                                     disabled={!this.canSubmitClue()}
                                     onClick={()=>{this.submit()}}>
                                     Submit
