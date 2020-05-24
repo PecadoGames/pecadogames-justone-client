@@ -33,7 +33,7 @@ button {
   line-height: inherit;
   font-size: 24px;
   outline: none;
-  cursor: url("MafiaDoor.png"), pointer;
+  cursor: url("resources/MafiaDoor.png"), pointer;
 }
 
 *:focus {
@@ -52,21 +52,21 @@ button {
 }
 
 .backgroundLogin{
-  background-image: url("MafiaDoor.png");
+  background-image: url("resources/MafiaDoor.png");
   background-size: 800px 800px, contain;
   background-repeat: no-repeat;
   margin-left: calc(50% - 400px);
   margin-top: 30px;
 }
 .backgroundLoginGif{
-  background-image: url("MafiaDoor.gif");
+  background-image: url("resources/MafiaDoor.gif");
   background-size: 800px 800px, contain;
   background-repeat: no-repeat;
   margin-left: calc(50% - 400px);
   margin-top: 30px;
 }
 .backgroundLoginGif2{
-  background-image: url("MafiaDoor.gif");
+  background-image: url("resources/MafiaDoor.gif");
   background-size: 800px 800px, contain;
   background-repeat: no-repeat;
   margin-left: calc(50% - 400px);
@@ -74,7 +74,7 @@ button {
 }
 
 .buttonImage{
-  background-image: url("phone_small.png");
+  background-image: url("resources/phone_small.png");
   background-size:  200px 365px, contain ;
   background-repeat: no-repeat;
   background-color: transparent;
@@ -82,14 +82,14 @@ button {
 
 
 .backgroundMain{
-  background-image: url("main_background.png");
+  background-image: url("resources/main_background.png");
   background-size: 1200px 800px, contain;
   background-repeat: no-repeat;
   margin:auto;
 }
 
 .handyImage{
-  background-image: url("phone.png");
+  background-image: url("resources/phone.png");
   background-size:  400px 730px, contain ;
   background-repeat: no-repeat;
   margin-left: calc(50% - 200px);
@@ -97,7 +97,7 @@ button {
 }
 
 .phoneImageLobby{
-  background-image: url("phone.png");
+  background-image: url("resources/phone.png");
   background-size:  324px 560px, contain ;
   background-repeat: no-repeat;
   margin-left: calc(50% - 200px);
@@ -105,7 +105,7 @@ button {
 }
 
 .handyImageSmall{
-  background-image: url("phone.png");
+  background-image: url("resources/phone.png");
   background-size:  contain ;
   background-repeat: no-repeat;
   margin-left: calc(50% - 200px);
@@ -115,62 +115,62 @@ button {
 }
 
 .handWithCard{
-  background-image:url("handCard.png");
+  background-image:url("resources/handCard.png");
   background-size: 600px 700px, contain;
   background-repeat: no-repeat;
 }
 
 .smallHandWithCard{
-  background-image:url("handCard.png");
+  background-image:url("resources/handCard.png");
   background-size: 450px 525px, contain;
   background-repeat: no-repeat;
   margin:auto;
 }
 
 .blankNewsPaper{
-  background-image:url("BlankNewsPaper.png");
+  background-image:url("resources/BlankNewsPaper.png");
   background-size: 848px 620px, contain;
   background-repeat: no-repeat;
   margin:auto;
 }
 
 .backArrow{
-  background-image:url("BackArrow.png");
+  background-image:url("resources/BackArrow.png");
   background-size: 40px 27px, contain;
   background-repeat: no-repeat;
   margin:auto;
 }
 
 .phoneProfile{
-  background-image:url("phone_landscape.png");
+  background-image:url("resources/phone_landscape.png");
   background-size: 1150px 600px, contain;
   background-repeat: no-repeat;
   margin:auto;
 }
 
 .lobbyCreation{
-  background-image:url("table_with_whiskey.png");
+  background-image:url("resources/table_with_whiskey.png");
   background-size: 1200px 860px, contain;
   background-repeat: no-repeat;
   margin:auto;
 }
 
 .paperLobby{
-  background-image: url("paper_joinLobby.png");
+  background-image: url("resources/paper_joinLobby.png");
   background-size: 900px 900px, contain;
   background-repeat: no-repeat;
   margin:auto;
 }
 
 .phoneCall{
-  background-image: url("PhoneCall.png");
+  background-image: url("resources/PhoneCall.png");
   background-size: 20px 25px, contain;
   background-repeat: no-repeat;
   margin: auto;
 }
 
 .lobbyBackground{
-  background-image: url("table.png");
+  background-image: url("resources/table.png");
   background-size: 100% 100%, contain;
   background-repeat: no-repeat;
   margin: auto
@@ -179,14 +179,14 @@ button {
 
 
 .tablePlain{
-  background-image: url("TablePlain.png");
+  background-image: url("resources/TablePlain.png");
   background-size: 100% 100%, contain;
   background-repeat: no-repeat;
   margin: auto
 }
 
 .table{
-  background-image: url("OnlyTable.png");
+  background-image: url("resources/OnlyTable.png");
   background-size: 100% 100%, contain;
   background-repeat: no-repeat;
   margin: auto
@@ -207,7 +207,7 @@ button {
 }
 
 .scoreboard{
-  background-image: url("scoreboard.png");
+  background-image: url("resources/scoreboard.png");
   background-size: 1200px 750px, contain;
   background-repeat: no-repeat;
   margin: auto;
@@ -229,27 +229,27 @@ button {
 }
 
 .guess-sign-left{
-  background-image: url("guess-sign-left.png");
+  background-image: url("resources/guess-sign-left.png");
   background-size: 150px 80px, contain;
   background-repeat: no-repeat;
   margin: auto;
 }
 
 .guess-sign-red{
-  background-image: url("guess-sign-red.png");
+  background-image: url("resources/guess-sign-red.png");
   background-size: 150px 80px, contain;
   background-repeat: no-repeat;
   margin: auto;
 }
 
 .lobbyInvitePhone{
-  background-image: url("phone_small.png");
+  background-image: url("resources/phone_small.png");
   background-size: 200px 346px, contain;
   background-repeat: no-repeat;
 }
 
 .Arcade{
-  background-image: url("Arcade.png");
+  background-image: url("resources/Arcade.png");
   background-size: 1200px 800px, contain, contain;
   background-repeat: no-repeat;
 }
@@ -327,44 +327,44 @@ button {
 
 
 .tv{
-  background-image: url("tvlobby.png");
+  background-image: url("resources/tvlobby.png");
   background-size: 400px 300px, contain;
   background-repeat: no-repeat;
 }
 
 .tvOffline{
-  background-image: url("TvScreen.gif");
+  background-image: url("resources/TvScreen.gif");
   background-size: 400px;
   background-repeat: no-repeat;
 }
 
 .tvChannel1{
-  background-image: url("Marion.gif");
+  background-image: url("resources/Marion.gif");
   background-size:300px, contain, contain;
   background-repeat: no-repeat;
 }
 
 .tvChannel2{
-  background-image: url("Raffael.gif");
+  background-image: url("resources/Raffael.gif");
   background-size: 300px, contain, contain;
   background-repeat: no-repeat;
 }
 
 .tvChannel3{
-  background-image: url("RamonSolo.gif");
+  background-image: url("resources/RamonSolo.gif");
   background-size: 300px, contain, contain;
   background-repeat: no-repeat;
 
 }
 
 .tvChannel4{
-  background-image: url("Raphael.gif");
+  background-image: url("resources/Raphael.gif");
   background-size: 300px, contain, contain;
   background-repeat: no-repeat;
 }
 
 .tvChannel5{
-  background-image: url("Alain.gif");
+  background-image: url("resources/Alain.gif");
   background-size: 300px 250px, contain, contain;
   margin-left: 20px;
   background-repeat: no-repeat;
