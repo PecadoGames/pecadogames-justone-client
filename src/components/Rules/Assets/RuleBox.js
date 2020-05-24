@@ -162,10 +162,11 @@ class RuleBox extends React.Component {
                             <Text>Setup:</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Text>• Create a lobby and invite your friends!</Text>
+                            <Text>• Create a lobby, therefore you have to choose the number of rounds you want to play
+                                and what the name of your lobby is. You can also invite your friends in the lobby!</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Text>• Start the Game. There have to be at least 3 players!</Text>
+                            <Text>• Start the Game. There have to be at least 3 players! You can also add friendly bots!</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>Game flow:</Text>

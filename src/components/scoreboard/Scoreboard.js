@@ -33,7 +33,7 @@ const ScoreTextLeft = styled.div`
     display: flex;
     align-items: center;
     height: 100%
-    width: 60%
+    width: 50%
     overflow: hidden;
     text-align: left;
     font-size: 24px;
@@ -47,7 +47,7 @@ const ScoreTextRight = styled(ScoreTextLeft)`
     display: flex;
     justify-content: flex-end;
     float: right;
-    width: 30%
+    width: 50%
 `;
 
 export const NeonButton = styled.button`
