@@ -286,7 +286,7 @@ class Lobby extends React.Component{
     switchUp(){
         let x = this.state.counter + 1
         //normal case
-        if (x <= 5){
+        if (x <= 11){
             this.handleInputChange('tv', 'tvChannel' + x);
             this.handleInputChange('counter', x)
             this.props.changeTvToOff()
@@ -304,8 +304,8 @@ class Lobby extends React.Component{
         let x = this.state.counter - 1
         //overflow
         if(x < 0){
-            this.handleInputChange('tv', 'tvChannel5');
-            this.handleInputChange('counter', 5)
+            this.handleInputChange('tv', 'tvChannel11');
+            this.handleInputChange('counter', 11)
             this.props.changeTvToOff()
         }
         //null case

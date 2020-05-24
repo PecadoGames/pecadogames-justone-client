@@ -369,6 +369,42 @@ button {
   margin-left: 20px;
   background-repeat: no-repeat;
 }
+.tvChannel6{
+  background-image: url("resources/Sun.png");
+  background-size: 300px 250px, contain, contain;
+  margin-left: 20px;
+  background-repeat: no-repeat;
+}
+.tvChannel7{
+  background-image: url("resources/Problema.gif");
+  background-size: 300px 250px, contain, contain;
+  margin-left: 20px;
+  background-repeat: no-repeat;
+}
+.tvChannel8{
+  background-image: url("resources/Raffi.png");
+  background-size: 300px 250px, contain, contain;
+  margin-left: 20px;
+  background-repeat: no-repeat;
+}
+.tvChannel9{
+  background-image: url("resources/gorilla.png");
+  background-size: 300px 250px, contain, contain;
+  margin-left: 20px;
+  background-repeat: no-repeat;
+}
+.tvChannel10{
+  background-image: url("resources/Bois.png");
+  background-size: 300px 250px, contain, contain;
+  margin-left: 20px;
+  background-repeat: no-repeat;
+}
+.tvChannel11{
+  background-image: url("resources/Alaiin.png");
+  background-size: 300px 250px, contain, contain;
+  margin-left: 20px;
+  background-repeat: no-repeat;
+}
 @keyframes blinkingAnimation {
   0% {outline: 2px solid #ffff00;
     color: #ffff00;}
