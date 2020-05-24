@@ -285,61 +285,42 @@ class Lobby extends React.Component{
 
     switchUp(){
         let x = this.state.counter + 1
-        if(x === 1){
-            this.handleInputChange('tv', 'tvChannel1');
-            this.handleInputChange('counter', 1)
-            this.props.changeTvToOff()}
-        if(x === 2){
-            this.handleInputChange('tv', 'tvChannel2');
-            this.handleInputChange('counter', 2)
-            this.props.changeTvToOff()}
-        if(x === 3){
-            this.handleInputChange('tv', 'tvChannel3');
-            this.handleInputChange('counter', 3)
-            this.props.changeTvToOff()}
-        if(x === 4){
-            this.handleInputChange('tv', 'tvChannel4');
-            this.handleInputChange('counter', 4)
-            this.props.changeTvToOff()}
-        if(x === 5){
-            this.handleInputChange('tv', 'tvChannel5');
-            this.handleInputChange('counter', 5)
-            this.props.changeTvToOff()}
-        if(x === 6){
+        //normal case
+        if (x <= 5){
+            this.handleInputChange('tv', 'tvChannel' + x);
+            this.handleInputChange('counter', x)
+            this.props.changeTvToOff()
+        }
+        //overflow
+        else{
             this.handleInputChange('tv', 'tvOffline');
             this.handleInputChange('counter', 0)
-            this.props.changeTvToOn()}
+            this.props.changeTvToOn()
+        }
     }
+
 
     switchDown(){
         let x = this.state.counter - 1
-        if(x === 1){
-            this.handleInputChange('tv', 'tvChannel1');
-            this.handleInputChange('counter', 1)
-            this.props.changeTvToOff()}
-        if(x === 2){
-            this.handleInputChange('tv', 'tvChannel2');
-            this.handleInputChange('counter', 2)
-            this.props.changeTvToOff()}
-        if(x === 3){
-            this.handleInputChange('tv', 'tvChannel3');
-            this.handleInputChange('counter', 3)
-            this.props.changeTvToOff()}
-        if(x === 4){
-            this.handleInputChange('tv', 'tvChannel4');
-            this.handleInputChange('counter', 4)
-            this.props.changeTvToOff()}
-        if(x === -1){
+        //overflow
+        if(x < 0){
             this.handleInputChange('tv', 'tvChannel5');
             this.handleInputChange('counter', 5)
-            this.props.changeTvToOff()}
-        if(x === 0){
+            this.props.changeTvToOff()
+        }
+        //null case
+        else if (x === 0){
             this.handleInputChange('tv', 'tvOffline');
             this.handleInputChange('counter', 0)
-            this.props.changeTvToOn()}
-
+            this.props.changeTvToOn()
+        }
+        //normal case
+        else{
+            this.handleInputChange('tv', 'tvChannel' + x);
+            this.handleInputChange('counter', x)
+            this.props.changeTvToOff()
+        }
     }
-
 
     render(){
         return(
