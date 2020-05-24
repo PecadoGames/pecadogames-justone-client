@@ -53,9 +53,9 @@ First a user has to register in the log in screen:
 ![loginscreen](https://github.com/PecadoGames/pecadogames-justone-client/blob/master/picturesReadMe/LogInScreen.PNG?raw=true)
 Users are then redircted to the application. In the main menu they can create or join a lobby, edit their profile or access a public score board.
 ![mainmenu](https://github.com/PecadoGames/pecadogames-justone-client/blob/master/picturesReadMe/MainMenu.PNG?raw=true)
-
-Once a lobby is created a user can invite friends, add bots or start a game. 
-
+Once a lobby is created a user can invite friends, add bots or start a game. The game it self looks like this:
+![game](https://github.com/PecadoGames/pecadogames-justone-client/blob/master/picturesReadMe/Game.PNG?raw=true)
+We don't want to spoil any of the fun, so please go ahead and explore the game yourself!
 
 ## Roadmap
 Further ideas we haven't had time to implement
@@ -87,6 +87,9 @@ https://freemusicarchive.org/music/Loyalty_Freak_Music/TO_CHILL_AND_STAY_AWAKE/L
 https://creativecommons.org/licenses/by-nc-nd/4.0/
 
 Sound effects: https://www.zapsplat.com/license-type/standard-license/
+
+### Shy Guy
+We recognize that "Shy Guy" is intellectual property of Nintendo. We do not intend to infringe on this IP, as all images used were made created by us. The aim of this project was educational, there is no comercial purpose. For any questions or complains please contact [us](raffael.mogicato@uzh.ch)
 
 ## MIT Licence
 Copyright (c) [2020] [Alain Küng, Raffael Mogicato, Raphael Imfeld]
