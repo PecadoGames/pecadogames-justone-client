@@ -62,7 +62,7 @@ const BottomRightContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-around;
     width: 240px;
     height: 480px;
  `;
@@ -99,15 +99,15 @@ const TvButtonTop = styled.button`
   margin-top: 147px
   background: none;
   border:none;
-  
  `
+
 const Counter = styled.div`
   color: #32CD32;
   font-size: 20px;
   margin-top: 36px;
   margin-left: 262px
- 
  `
+
 const TvButtonBottom = styled.button`
   height: 45px;
   width: 45px
@@ -116,7 +116,6 @@ const TvButtonBottom = styled.button`
   margin-top: 199px;
   background: none;
   border:none;
- 
  `
 
 
@@ -184,10 +183,6 @@ class Lobby extends React.Component{
     handleInputChange(key, value) {
         this.setState({ [key]: value });
     }
-
-
-
-
 
     //starts the game
     async startGame(){
@@ -371,12 +366,14 @@ class Lobby extends React.Component{
                             {!this.state.isEditingLobby ? 
                             <PhoneScreen>
                                 <LobbyInfos
+                                lobby={this.state.lobby}
                                 players={this.state.players} 
                                 lobbyName={this.state.lobbyName} 
                                 hostId={this.state.hostId}/>
                                     {this.isHost() &&
                                     <PixelButton
                                         marginTop="1px"
+                                        height="47px"
                                         width="180px"
                                         onClick={()=>this.startGame()}>
                                             Start Game

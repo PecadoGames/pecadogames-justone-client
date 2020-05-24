@@ -15,9 +15,10 @@ import ShyGuyIconBot from "../assets/ShyGuyIcon/bot_icon.png"
 const PlayersContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 350px;
+  justify-content: flex-start;
+  align-items: center;
+  height: ${props => props.autoHeight ? "330px": "400px"};
   width: 100%;
-  margin: 0px;
   margin-top: 5px;
  `;
 
@@ -42,6 +43,7 @@ const UserRow = styled.div`
     flex-direction: row;
     align-items: center;
     height: 40px;
+    width: 99%
 `;
 
 const UserName = styled.div`
@@ -64,6 +66,20 @@ const KickButtonContainer = styled.div`
     width: 100px;
 `;
 
+const GameInfoRow = styled.div`
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+width: 95%;
+`;
+
+const GameInfoText = styled.div`
+display: flex;
+color: #c0c0c0;
+font-size: 20px;
+`
+
 
 
 class LobbyInfos extends React.Component{
@@ -71,7 +87,7 @@ class LobbyInfos extends React.Component{
         super();
         this.state = {
             players: [],
-            lobby: false,
+            lobby: null,
             lobbyName: '',
             hostId: null
         };
@@ -115,6 +131,7 @@ class LobbyInfos extends React.Component{
     static getDerivedStateFromProps(props, state) {
         if (props.players !== state.players || props.lobbyName !== state.lobbyName || props.hostId !== state.hostId) {
             return {
+                lobby: props.lobby,
                 players: props.players,
                 lobbyName: props.lobbyName,
                 hostId: props.hostId
@@ -143,35 +160,46 @@ class LobbyInfos extends React.Component{
 
     render(){
         return(
-            <PlayersContainer>
+            <PlayersContainer
+                autoHeight={this.state.hostId === localStorage.getItem('id')}>
                 <LobbyName>
                     {this.state.lobbyName}
-                </LobbyName>
-                    {this.state.players.map(player => {return(
-                            <UserRow>
-                                <ShyGuyIcon>
-                                    <img src={this.displayIcon(player.avatarColor)} alt={"corresponding avatar"}/>
-                                </ShyGuyIcon>
-                                <UserName>
-                                    {player.username}
-                                </UserName>
-                                <KickButtonContainer>
-                                    {this.valid(player.id) ?
-                                    <DeclineButton
-                                            marginTop="0px"
-                                            marginLeft="0px"
-                                            marginRight="0px"
-                                            width='50px'
-                                            height='35px'
-                                            color='red'
-                                            fontSize='20px'
-                                            onClick={() => {this.kick(player.id);}}>Kick
-                                    </DeclineButton>
-                                    : <div style={{height:'35px', width:'50px'}}/>
-                                    }
-                                </KickButtonContainer>
-                            </UserRow>
-                    )})}
+                </LobbyName>                                
+                {this.state.lobby !== null &&
+                    <GameInfoRow>
+                        <GameInfoText>
+                            {"Players: "+this.state.lobby.currentNumPlayersAndBots+"/"+this.state.lobby.maxPlayersAndBots}
+                        </GameInfoText>
+                        <GameInfoText>
+                            {"Rounds: "+this.state.lobby.rounds}
+                        </GameInfoText>
+                    </GameInfoRow>
+                }
+                {this.state.players.map(player => {return(
+                        <UserRow>
+                            <ShyGuyIcon>
+                                <img src={this.displayIcon(player.avatarColor)} alt={"corresponding avatar"}/>
+                            </ShyGuyIcon>
+                            <UserName>
+                                {player.username}
+                            </UserName>
+                            <KickButtonContainer>
+                                {this.valid(player.id) ?
+                                <DeclineButton
+                                        marginTop="0px"
+                                        marginLeft="0px"
+                                        marginRight="0px"
+                                        width='50px'
+                                        height='35px'
+                                        color='red'
+                                        fontSize='20px'
+                                        onClick={() => {this.kick(player.id);}}>Kick
+                                </DeclineButton>
+                                : <div style={{height:'35px', width:'50px'}}/>
+                                }
+                            </KickButtonContainer>
+                        </UserRow>
+                )})}
             </PlayersContainer>
         )
     }
