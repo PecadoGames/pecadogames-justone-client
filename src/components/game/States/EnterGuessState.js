@@ -2,7 +2,6 @@ import {withRouter} from "react-router-dom";
 import React from "react";
 import styled from "styled-components";
 import {InputField} from "../../../views/design/InputField";
-import { PixelButton } from "../../../views/design/PixelButton";
 import {api, handleError} from "../../../helpers/api";
 import {SubmitButton} from "./EnterCluesState";
 
@@ -23,8 +22,6 @@ const Text = styled.div`
     width: 300px;
     color: white;
     font-size: 25px;
-  
-  
 `;
 
 const Wrapper1 = styled.div`
@@ -37,7 +34,6 @@ const Wrapper1 = styled.div`
     border: 2px solid black;
     border-radius: 5px;
     margin-left: 65px;
-
 `;
 
 const Wrapper2 = styled.div`
@@ -54,17 +50,12 @@ const Wrapper2 = styled.div`
     align-items: center;  
 `;
 
-
-
-
 const SignLeft = styled.div`
   display: flex;
   height: 80px;
   width: 150px;
   align-items: flex-start;  
   float:left;
- 
-  
 `;
 
 const TextSignLeft = styled.div`
@@ -175,17 +166,16 @@ class EnterGuessState extends React.Component{
                 <Wrapper>
                     <Wrapper1>
                     <InputField
-                                height= '40px'
-                                marginTop="7px"
-                                paddingTop="5px"
-                                width={"60%"}
-                                placeholder= 'Your guess'
-                                onChange={e => {
-                                    this.handleInputChange('guess', e.target.value);
+                        height= '40px'
+                        marginTop="7px"
+                        paddingTop="5px"
+                        width={"60%"}
+                        placeholder= 'Your guess'
+                        onChange={e => {
+                            this.handleInputChange('guess', e.target.value);
 
-                                }}
-                                onKeyDown={this._handleKeyDown}>
-
+                        }}
+                        onKeyDown={this._handleKeyDown}>
                     </InputField>
                     <SubmitButton
                                 disabled={!this.canSubmitGuess(this.state.guess)}

@@ -38,7 +38,8 @@ class LobbyInvite extends React.Component {
             lobby: [],
             id: null,
             friends: [],
-            sentInvites:[]
+            sentInvites:[],
+            interval: null,
         }
     }
 
@@ -56,6 +57,11 @@ class LobbyInvite extends React.Component {
             console.log("end", arguments);
         });
         this.getFriendList();
+        let interval = setInterval(async()=>{
+            this.getFriendList();
+            }
+            , 500)
+        this.handleInputChange('interval', interval)
     }
 
     async getFriendList(){
@@ -137,12 +143,9 @@ class LobbyInvite extends React.Component {
 
     shouldComponentUpdate(nextState){
         if(this.state.friends !== nextState.friends){
-            this.getFriendList()
             return true;
         }
-        else{
-            return false;
-        }
+        return false;
     }
 
     addSentRequest(userId){
@@ -154,6 +157,7 @@ class LobbyInvite extends React.Component {
     componentWillUnmount() {
         Events.scrollEvent.remove('begin');
         Events.scrollEvent.remove('end');
+        clearInterval(this.state.interval);
     }
 
     render() {
