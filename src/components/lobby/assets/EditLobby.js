@@ -57,7 +57,7 @@ const Amount = styled.div`
 `;
 
 const Header = styled.div`
-    margin-top: -40px;
+    margin-top: -13px;
     text-align: center;
     color: #c0c0c0;
     font-size: 30px;
@@ -65,7 +65,6 @@ const Header = styled.div`
 `;
 
 const EditWrapper = styled.div`
-    margin-top: 20px
     display: flex;
     flex-direction: column;
     align-items: center;
