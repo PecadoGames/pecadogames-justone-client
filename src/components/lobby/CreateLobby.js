@@ -239,7 +239,7 @@ class CreateLobby extends React.Component {
                 hostId: localStorage.getItem("id"),
                 hostToken: localStorage.getItem("token"),
                 private: this.state.isPrivate,
-                voiceChat: this.state.voiceChat
+                rounds: this.state.rounds
             })
             //posts lobby
             let response = await api.post("lobbies", requestBody);
