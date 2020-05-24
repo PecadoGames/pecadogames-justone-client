@@ -78,7 +78,9 @@ class GameGetter extends React.Component{
             specialGame: false,
             isGuessCorrect: null,
             invalidClues: [],
-            currentGuess: null
+            currentGuess: null,
+            rounds: 0,
+            roundsPlayed: 0
         };
     }
 
@@ -131,7 +133,8 @@ class GameGetter extends React.Component{
                 this.handleInputChange('invalidClues', response.data.invalidClues);
                 this.handleInputChange('isGuessCorrect', response.data.guessCorrect);
                 this.handleInputChange('score', response.data.overallScore);
-                this.handleInputChange('rounds', response.data.roundsPlayed);
+                this.handleInputChange('rounds', response.data.rounds);
+                this.handleInputChange('roundsPlayed', response.data.roundsPlayed);
                 this.handleInputChange('currentGuess', response.data.currentGuess);
                 },500)
                 this.setState({'interval': interval})
