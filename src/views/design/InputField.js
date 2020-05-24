@@ -7,6 +7,7 @@ export const InputField = styled.input`
   }
   height:  ${props => props.height || "35px"};
   padding-left: 15px;
+  padding-top: ${props => props.paddingTop};
   border: ${props => props.border || "none"};
   border-bottom: ${props => props.borderBottom || "1px solid white"};
   border-radius: 0px;

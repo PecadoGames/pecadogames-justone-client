@@ -141,9 +141,9 @@ class TransitionState extends React.Component{
                         </div>)})}
                     <ScoreContainer>
                     <TextLeft>{this.state.isGuessCorrect ?
-                        <div>Your teammate guessed correct!</div>
+                        <div>Correct guess!</div>
                         :
-                        <div>Your teammate guessed wrong!</div>}
+                        <div>Wrong guess!</div>}
                     </TextLeft>
                     </ScoreContainer>
                     <ScoreContainer> <TextLeft>The word was <Green>{this.state.currentWord}</Green></TextLeft> </ScoreContainer>

@@ -12,19 +12,20 @@ const Wrapper = styled.div`
     margin-left: 170px;
     display: flex;
     flex-direction: column;
+    justify-content:center;
 `;
 
 const Wrapper1 = styled.div`
     display: flex;
     flex-direction: row;
     background-color: hsla(220, 3%, 19%, 0.8);
-    width: 60%;
+    width: 70%;
     border: 2px solid black;
     border-radius: 5px;
-    margin-left: 65px;
+    margin-left: 50px;
     padding-right:10px;
     padding-left: 10px;
-
+    margin-top: ${props => props.marginTop}
 `;
 const Container = styled.div`
     display: table;
@@ -40,9 +41,7 @@ const Text = styled.div`
     height: auto;
     width: 300px;
     color: white;
-    font-size: 25px;
-  
-  
+    font-size: 24px;
 `;
 
 const HandContainer = styled.div`
@@ -149,8 +148,9 @@ class PickWordState extends React.Component{
                 </div>
                 :
                 <Wrapper>
-                    <Wrapper1>
-                    <Text>The guesser is picking a word</Text>
+                    <Wrapper1
+                    marginTop="30px">
+                    <Text>Waiting for word to guess</Text>
                     </Wrapper1>
                 </Wrapper>
         )

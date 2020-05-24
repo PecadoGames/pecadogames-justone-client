@@ -1,5 +1,6 @@
 import {withRouter} from "react-router-dom";
 import React from "react";
+import {PixelButton} from "../../../views/design/PixelButton";
 import {Button} from "../../../views/design/Button";
 import styled from "styled-components";
 import {api, handleError} from "../../../helpers/api";
@@ -174,20 +175,29 @@ class VoteOnClueState extends React.Component{
             this.renderForGuesser()  || this.hasVoted() ?
                 <Wrapper>
                     <Wrapper2>
-                        <Text>Wait until your friends voted!</Text>
+                        <Text>Waiting for all votes</Text>
                     </Wrapper2>
                 </Wrapper>
                 :
                 <Wrapper>
                     <Wrapper1>
-                        <Button  background='hsla(220, 3%, 19%, 0.8);'
-                                 boxShadow='none'
-                                 width='100px'
-                                 color='white'
-                                 fontSize='30px'
-                                 border='2px,red'
-                                 height='47px'
-                                 onClick={()=>{this.voteOnClues()}}>Vote</Button>
+                        <PixelButton
+                            marginTop="0px"
+                            marginLeft="0px"
+                            marginRight="0px"  
+                            background='#ffefd5'
+                            backgroundPosition='top 7px right 7px bottom 7px left 7px'
+                            width='100px'
+                            color='black'
+                            fontSize='30px'
+                            outline='2px solid black'
+                            height='47px'
+                            hoverOutline="2px solid #ffefd5"
+                            hoverBackground="#000000"
+                            hoverColor="#ffefd5"
+                            onClick={()=>{this.voteOnClues()}}>
+                                Vote
+                        </PixelButton>
                     </Wrapper1>
                     <SignContainer>
                         {this.state.clues.map(clue => {

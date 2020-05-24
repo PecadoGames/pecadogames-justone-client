@@ -2,6 +2,7 @@ import {withRouter} from "react-router-dom";
 import React from "react";
 import {InputField} from "../../../views/design/InputField";
 import {api, handleError} from "../../../helpers/api";
+import { PixelButton } from "../../../views/design/PixelButton";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -18,7 +19,7 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
     padding-top: 10px;
-    margin-top: 20px;
+    margin-top: ${props => props.marginTop};
     height: auto;
     width: 300px;
     background-color: hsla(220, 3%, 19%, 0.8);
@@ -46,22 +47,6 @@ const Text = styled.div`
     color:white;
     
 `;
-
-const SubmitButton = styled.div`
-     height: 35px;
-     cursor: ${props => (props.disabled ? "default" : "pointer")};
-     opacity: ${props => (props.disabled ? 0.4 : 1)};
-     background-color: #2e2d2c;
-     border: 2px solid black;
-     margin-top: 10px;
-     padding-top: 5px;
-     color: white;
-     border-radius: 3px;
-     margin-left: ${props => (props.marginLeft || "0px")}
-     width: ${props => (props.width || "80px")}
-     margin-bottom: 20px;
-`;
-
 
 
 class EnterCluesState extends React.Component{
@@ -171,16 +156,17 @@ class EnterCluesState extends React.Component{
             this.renderForGuesser() || this.hasSend()?
                 <Wrapper style={{marginTop:"425px"}}>
                     <Wrapper1>
-                        Your team mates are currently entering clues
+                        Your fellow players are currently entering clues
                     </Wrapper1>
                 </Wrapper>
                 :
                 this.state.specialGame ?
                     <Wrapper>
-                        <Container>
+                        <Container
+                        marginTop="40px">
                             The word is:
                             <Text>{this.state.currentWord}</Text>
-                            Enter two clues to help your mate
+                            Enter two clues to help the guesser
                             <br/>
                             <div style={{display: "block"}}>
                                 <InputField
@@ -205,22 +191,30 @@ class EnterCluesState extends React.Component{
                                     }}
                                 >
                                 </InputField>
-                                <SubmitButton
-                                    marginLeft = '22px'
-                                    width = '250px'
+                                <PixelButton
+                                    marginTop="-8px"
+                                    marginRight="0px"
+                                    background="transparent"
+                                    outline="2px solid white"
+                                    border="none"
+                                    color="white"
+                                    hoverOutline='2px solid black'
+                                    hoverBackground="white"
+                                    hoverColor="black"
                                     disabled={!this.canSubmitClue()}
                                     onClick={()=>{this.submit()}}>
                                     Submit
-                                </SubmitButton>
+                                </PixelButton>
                             </div>
                         </Container>
                     </Wrapper>
                     :
                     <Wrapper>
-                        <Container>
+                        <Container
+                            marginTop="100px">
                             The word is:
                             <Text>{this.state.currentWord}</Text>
-                            Enter a clue to help your mate
+                            Enter a clue to help the guesser
                             <br/>
                                 <div style={{display: "flex"}}>
                                 <InputField width = '60%'
@@ -233,12 +227,21 @@ class EnterCluesState extends React.Component{
                                             onKeyDown={this._handleKeyDown}
                                 >
                                 </InputField>
-                                <SubmitButton
-                                    width = '80px'
+                                <PixelButton
+                                    marginTop="0px"
+                                    marginRight="0px"
+                                    background="transparent"
+                                    outline="2px solid white"
+                                    border="none"
+                                    color="white"
+                                    width = '90px'
+                                    hoverOutline='2px solid black'
+                                    hoverBackground="white"
+                                    hoverColor="black"
                                     disabled={!this.canSubmitClue()}
                                     onClick={()=>{this.submit()}}>
                                     Submit
-                                </SubmitButton>
+                                </PixelButton>
                                 </div>
                         </Container>
                     </Wrapper>

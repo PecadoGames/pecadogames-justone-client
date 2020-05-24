@@ -2,6 +2,7 @@ import {withRouter} from "react-router-dom";
 import React from "react";
 import styled from "styled-components";
 import {InputField} from "../../../views/design/InputField";
+import { PixelButton } from "../../../views/design/PixelButton";
 import {api, handleError} from "../../../helpers/api";
 
 const Wrapper = styled.div`
@@ -16,21 +17,6 @@ const Wrapper = styled.div`
     flex-direction: column;
 `;
 
-const SubmitButton = styled.div`
-     cursor: ${props => (props.disabled ? "default" : "pointer")};
-     opacity: ${props => (props.disabled ? 0.4 : 1)};
-     background-color: #2e2d2c;
-     border: 2px solid black;
-     color: white;
-     border-radius: 3px;
-     height: 30px;
-     margin-top: 10px;
-     padding-top: 3px;
-     margin-left: 7px;
-     width: ${props => (props.width || "80px")}
-
-`;
-
 const Text = styled.div`
     height: auto;
     width: 300px;
@@ -43,6 +29,7 @@ const Text = styled.div`
 const Wrapper1 = styled.div`
     display: flex;
     flex-direction: row;
+    align-items: center;
     background-color: hsla(220, 3%, 19%, 0.8);
     width: 60%;
     margin-top: -11px;
@@ -188,22 +175,34 @@ class EnterGuessState extends React.Component{
                 <Wrapper>
                     <Wrapper1>
                     <InputField
-                                height= '33px'
+                                height= '40px'
+                                marginTop="7px"
+                                paddingTop="5px"
                                 width={"60%"}
-                                placeholder= 'Your Guess...'
+                                placeholder= 'Your guess'
                                 onChange={e => {
                                     this.handleInputChange('guess', e.target.value);
 
                                 }}
-                                marginTop={'7px'}
                                 onKeyDown={this._handleKeyDown}>
 
                     </InputField>
-                            <SubmitButton
+                    <PixelButton
+                                    marginTop="0px"
+                                    marginRight="0px"
+                                    background="transparent"
+                                    outline="2px solid white"
+                                    border="none"
+                                    color="white"
+                                    height="45px"
+                                    width = '90px'
+                                    hoverOutline='2px solid black'
+                                    hoverBackground="white"
+                                    hoverColor="black"
                                 disabled={!this.canSubmitGuess(this.state.guess)}
                                 onClick={()=>{this.submitGuess()}}
                             >Submit
-                            </SubmitButton>
+                        </PixelButton>
                     </Wrapper1>
                     <div>
                         <SignContainer>
@@ -215,7 +214,8 @@ class EnterGuessState extends React.Component{
                 :
                 <Wrapper>
                     <Wrapper2>
-                        <Text>Your mate is guessing..
+                        <Text>
+                            Waiting for the guess
                         </Text>
                     </Wrapper2>
                     <div>
