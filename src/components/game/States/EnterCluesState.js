@@ -236,12 +236,11 @@ class EnterCluesState extends React.Component{
                                             onKeyDown={this._handleKeyDown}
                                 >
                                 </InputField>
-                                <PixelButton
-
+                                <SubmitButton
                                     disabled={!this.canSubmitClue()}
                                     onClick={()=>{this.submit()}}>
                                     Submit
-                                </PixelButton>
+                                </SubmitButton>
                                 </div>
                         </Container>
                     </Wrapper>

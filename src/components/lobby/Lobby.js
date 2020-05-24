@@ -215,8 +215,9 @@ class Lobby extends React.Component{
             localStorage.setItem('gameId', response.data.lobbyId)
             this.props.history.push(window.location.pathname +'/game')
         }
-
-        this.getHostName(response.data.hostId);
+        if (response.data.hostId !== this.state.hostId){
+            this.getHostName(response.data.hostId);
+        }
         let isInList = false;
         for (let a in response.data.playersInLobby){
             if (response.data.playersInLobby[a].id === parseInt(localStorage.getItem('id'))){
