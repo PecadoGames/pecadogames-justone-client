@@ -73,6 +73,7 @@ const SignContainer = styled.div`
 `;
 
 class EnterGuessState extends React.Component{
+    enterToggled = false;
     constructor(props) {
         super(props);
         this.state = {
@@ -80,29 +81,40 @@ class EnterGuessState extends React.Component{
             guess: '',
             currentGuesserId: null,
             invalidClues: [],
-            sent: false
+            sent: false,
+            toggled: false
         };
     }
 
     _handleKeyDown = (e) => {
-        if (e.key === 'Enter' && this.canSubmitGuess(this.state.guess)){
-            this.submitGuess()
+        if (e.key === 'Enter' && !this.enterToggled && this.canSubmitGuess(this.state.guess)){
+            console.log("Enter pressed down")
+            this.enterToggled = true;
+            this.submitGuess();
+        }
+    }
+
+    _handleKeyUp = (e) => {
+        if (e.key === 'Enter'){
+            this.enterToggled = false
+            console.log("Enter stopped being pressed")
         }
     }
 
     async submitGuess(){
-        try {
-            const requestBody = JSON.stringify({
-                playerId: localStorage.getItem('id'),
-                playerToken: localStorage.getItem('token'),
-                message: this.state.guess
-            })
-            await api.put(`lobbies/${localStorage.getItem('lobbyId')}/game/guess`, requestBody)
-        }
-        catch(error){
-            alert(`Something went wrong during the voting \n${handleError(error)}`)
-        }
-        this.handleInputChange('sent', true)
+            try {
+                const requestBody = JSON.stringify({
+                    playerId: localStorage.getItem('id'),
+                    playerToken: localStorage.getItem('token'),
+                    message: this.state.guess
+                })
+                await api.put(`lobbies/${localStorage.getItem('lobbyId')}/game/guess`, requestBody)
+            }
+            catch(error){
+                alert(`Something went wrong during the voting \n${handleError(error)}`)
+            }
+            this.handleInputChange('sent', true)
+
     }
 
     handleInputChange(key, value) {
@@ -175,7 +187,9 @@ class EnterGuessState extends React.Component{
                             this.handleInputChange('guess', e.target.value);
 
                         }}
-                        onKeyDown={this._handleKeyDown}>
+                        onKeyDown={this._handleKeyDown}
+                        onKeyUp={this._handleKeyUp}
+                    >
                     </InputField>
                     <SubmitButton
                                 disabled={!this.canSubmitGuess(this.state.guess)}
