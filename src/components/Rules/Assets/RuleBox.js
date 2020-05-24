@@ -234,7 +234,7 @@ class RuleBox extends React.Component {
                             </Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Subtitle>The following are considered identical clues:</Subtitle>
+                            <Text>The following are considered identical clues:</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>• Two identical words.
