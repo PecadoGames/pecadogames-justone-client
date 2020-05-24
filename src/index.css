@@ -364,8 +364,10 @@ button {
 }
 
 .tvChannel5{
-  background-image: url("Alain.png");
-  background-size: 300px 300px , contain, contain;
+  background-image: url("Alain.gif");
+  margin-top: 65px;
+  margin-left: 20px;
+  background-size: 300px, contain, contain;
   background-repeat: no-repeat;
 }
 @keyframes blinkingAnimation {
