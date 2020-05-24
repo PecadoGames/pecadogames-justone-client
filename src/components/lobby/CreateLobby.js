@@ -61,13 +61,14 @@ export const Row = styled.div`
 `;
 
 const TextWrapper = styled.div`
+    display: flex
+    flex-direction: row;
+    justify-content: space-between;
     background: transparent;
     height: 40px;
     width: 120px;
     margin-bottom: 30px;
     margin-left: 5px;
-    display: inline-block;
-    float: left;
     column-count: 3;
     padding:2px;
 `;
@@ -78,12 +79,15 @@ const Text = styled.div`
     color: #565553;
 `;
 
-const Number = styled.body`
+const Number = styled.div`
+    display: flex;
+    align-items: center;
     font-size: 24px;
     background: transparent;
     margin-left: 6px;
     margin-right: 6px;
     height: 100%
+    padding-bottom: 2px;
 `;
 
 const SmallButton = styled.button`
@@ -111,6 +115,7 @@ class CreateLobby extends React.Component {
         this.state = {
             lobbyName: null,
             numberOfPlayers: 4,
+            rounds: 3,
             voiceChat: false,
             isPrivate: false,
             interval: null,
@@ -166,39 +171,39 @@ class CreateLobby extends React.Component {
         }
     }
 
-    enableVoiceChat(){
-        if (this.state.voiceChat){
+    //this checks if more players can be removed, sets the value and returns the corresponding button
+    decreaseRounds(){
+        if (this.state.rounds > 1){
             return <SmallButton
-                background={"#88b57f"}
-
+                background={"#b03739"}
                 onClick={()=>{
-                    this.setState({voiceChat:true})
+                        let roundAmount = this.state.rounds - 1;
+                        this.setState({rounds: roundAmount})
                 }}
-            >
-                ✓
-            </SmallButton>
-
+            >-</SmallButton>
         }
         else{
-            return <SmallButton background={"#5cb349"}>✓</SmallButton>
+            return <SmallButton
+                background={"#cc7a7c"}
+            />
         }
     }
 
-    disableVoiceChat(){
-        if (this.state.voiceChat) {
+    //this checks if more players can be added, sets the value and returns the corresponding button
+    increaseRounds(){
+        if (this.state.rounds < 13){
             return <SmallButton
-                background={"#cc7a7c"}
-                onClick={() => {
-                    this.setState({voiceChat: false})
+                background={"#5cb349"}
+                onClick={()=>{
+                    let roundAmount = this.state.rounds + 1;
+                    this.setState({rounds: roundAmount})
                 }}
-            >
-                X
-            </SmallButton>
+            >+</SmallButton>
         }
         else{
             return <SmallButton
-                background={"#b03739"}
-            >X</SmallButton>
+                background={"#88b57f"}
+            />
         }
     }
 
@@ -258,7 +263,7 @@ class CreateLobby extends React.Component {
                     <MenuWrapper>
                         <Title>Create lobby</Title>
                         <Row
-                            marginTop="100px">
+                            marginTop="40px">
                             <Text>Name</Text>
                             <Input
                                 placeholder={"Enter name"}
@@ -276,26 +281,34 @@ class CreateLobby extends React.Component {
                             </TextWrapper>            
                         </Row>
                         <Row>
+                            <Text>Number of rounds</Text>
+                            <TextWrapper>
+                                {this.decreaseRounds()}
+                                    <Number>{this.state.rounds}</Number>
+                                {this.increaseRounds()}
+                            </TextWrapper>            
+                        </Row>                        
+                        <Row>
                             <Text>Private</Text>
                                 <TextWrapper>
+                                <YesNoButton
+                                        background={"#b03739"}
+                                        disabled={!this.state.isPrivate}
+                                        onClick={()=>{
+                                            this.setState({isPrivate:false})
+                                        }}
+                                    >
+                                        X
+                                    </YesNoButton>
                                     <YesNoButton
                                         background={"#5cb349"}
+                                        marginLeft="44px"
                                         disabled={this.state.isPrivate}
                                         onClick={()=>{
                                             this.setState({isPrivate:true})
                                         }}
                                     >
                                         ✓
-                                    </YesNoButton>
-                                    <YesNoButton
-                                        background={"#b03739"}
-                                        disabled={!this.state.isPrivate}
-                                        marginLeft="44px"
-                                        onClick={()=>{
-                                            this.setState({isPrivate:false})
-                                        }}
-                                    >
-                                        X
                                     </YesNoButton>
                                 </TextWrapper>    
                         </Row>
