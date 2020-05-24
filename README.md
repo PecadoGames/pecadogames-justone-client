@@ -64,16 +64,13 @@ Further ideas we haven't had time to implement
  - Mini game in lobby: A small mini game to pass the time: We thought something like google's dino runner
 
 ## Authors and aknockledgement
-### Authors
-Pecado games consists of 5 members, all studying informatics at the University of Zurich:
-Frontend:
- - Alain Küng
- - Raffael Mogicato
- - Raphael Imfeld
+### Front end developers
+Alain Küng, BSc Computer Science, University of Zurich
+Raffael Mogicato, BSc Computer Science, University of Zurich
+Raphael Imfeld, BSc Computer Science, University of Zurich
 
-Backend:
- - Marion Dübendorfer
- - Ramon Solo de Zaldivar
+### Supervision & Guidance
+Alina Marti, MSc Computer Science, University of Zurich
 
 ### Music
 Usage of music under Creative Commons:
@@ -90,3 +87,12 @@ https://freemusicarchive.org/music/Loyalty_Freak_Music/TO_CHILL_AND_STAY_AWAKE/L
 https://creativecommons.org/licenses/by-nc-nd/4.0/
 
 Sound effects: https://www.zapsplat.com/license-type/standard-license/
+
+## MIT Licence
+Copyright (c) [2020] [Alain Küng, Raffael Mogicato, Raphael Imfeld]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
