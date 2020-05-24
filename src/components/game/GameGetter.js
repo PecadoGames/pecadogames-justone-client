@@ -161,7 +161,7 @@ class GameGetter extends React.Component{
         this.handleInputChange('invalidClues', response.data.invalidClues);
         this.handleInputChange('isGuessCorrect', response.data.guessCorrect);
         this.handleInputChange('score', response.data.overallScore);
-        this.handleInputChange('rounds', response.data.roundsPlayed);
+        this.handleInputChange('rounds', response.data.rounds);
         this.handleInputChange('currentGuess', response.data.currentGuess);
         this.handleInputChange('roundsPlayed', response.data.roundsPlayed);
         this.getGame()

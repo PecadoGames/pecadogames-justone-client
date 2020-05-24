@@ -191,6 +191,9 @@ class Lobby extends React.Component{
 
     //starts the game
     async startGame(){
+        if(this.state.players.length <3){
+            alert('You have to be at least 3 players/bots to start the game')
+        }
         try{
             const requestBody = JSON.stringify({
                 hostId: localStorage.getItem("id"),
