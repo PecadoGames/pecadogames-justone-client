@@ -17,24 +17,34 @@ const Background = styled.div`
 
 
 
-class Scoreboard extends React.Component{
+class Rules extends React.Component{
     constructor() {
         super();
-        this.phone = null;
+        this.state = {
+            interval: null
+        };
     }
     
-    async componentDidMount() {   this.lobby()
+    async componentDidMount() {
+        this.lobby()
+        let interval = setInterval(async()=>{   
+            this.lobby()
+        },1000)
+        this.setState({interval: interval})
     }
 
     lobby(){
-        this.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
-            this.props.changeTalkingToOff();this.props.history.push('/game');}
-        },1000)
+
+        if(localStorage.getItem('lobbyId')){
+            this.props.changeTalkingToOff();
+            this.props.history.push('/game');
+        }
+
     }
 
     componentWillUnmount() {
         this.props.changeArcadeToOff()
-        clearInterval(this.phone)
+        clearInterval(this.state.interval)
     }
 
 
@@ -61,4 +71,4 @@ class Scoreboard extends React.Component{
     }
 }
 
-export default withRouter(Scoreboard);
+export default withRouter(Rules);

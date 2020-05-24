@@ -75,7 +75,8 @@ class ChatBox extends React.Component {
             console.log("end", arguments);
         });
         //ask ever second for chat
-        this.state.interval = setInterval(async()=>{this.getMessages()}, 500)
+        let interval = setInterval(async()=>{this.getMessages()}, 500)
+        this.handleInputChange('interval', interval)
 
         //scrolls down if page renders
         console.log("Reloaded page: scrolling down")

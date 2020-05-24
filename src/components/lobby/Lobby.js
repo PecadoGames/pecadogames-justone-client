@@ -206,7 +206,7 @@ class Lobby extends React.Component{
     }
 
     async getLobby(){
-        this.state.interval = setInterval(async()=>{
+        let interval = setInterval(async()=>{
             const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}?token=${localStorage.getItem('token')}`);
             this.setState({'lobby': response.data});
             this.setState({'players':response.data.playersInLobby});
@@ -230,6 +230,7 @@ class Lobby extends React.Component{
             }
         }
         , 500)
+        this.handleInputChange('interval', interval)
     }
 
     async getHostName(hostId){

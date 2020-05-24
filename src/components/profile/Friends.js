@@ -17,7 +17,6 @@ class Friends extends React.Component {
             friends: null,
             username: null,
             addUser: false,
-
             phone: null,
             lobbies: [],
             phoneCheck: false,
@@ -34,7 +33,7 @@ class Friends extends React.Component {
     }
 
     async getInvitation(){
-        this.state.phone = setInterval(async()=>{
+        let interval = setInterval(async()=>{
                 const response = await api.get(`/users/${localStorage.getItem('id')}/invitations?token=${localStorage.getItem('token')}`);
                 this.handleInputChange('lobbies', response.data)
                 this.checkPhone()
@@ -43,6 +42,7 @@ class Friends extends React.Component {
                 }
             }
             , 500)
+        this.handleInputChange('phone', interval)
     }
 
     checkPhone(){

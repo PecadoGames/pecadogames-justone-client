@@ -51,12 +51,12 @@ class RequestBox extends React.Component {
         super(props);
         this.scrollToTop = this.scrollToTop.bind(this);
         this.state = {
+            interval: null,
             requests: []
         }
     }
 
     async componentDidMount() {
-
         Events.scrollEvent.register('begin', function () {
             console.log("begin", arguments);
         });
@@ -64,7 +64,12 @@ class RequestBox extends React.Component {
         Events.scrollEvent.register('end', function () {
             console.log("end", arguments);
         });
-        this.updateFriendRequests()
+        this.updateFriendRequests();
+        let interval = setInterval(async()=>{
+            this.updateFriendRequests()
+        }
+        , 500)
+        this.setState({interval: interval})
     }
 
     async accept(userId){
@@ -88,8 +93,8 @@ class RequestBox extends React.Component {
     }
 
     async updateFriendRequests(){
-        const response = await api.get(`/users/${localStorage.getItem('id')}/friendRequests?token=${localStorage.getItem('token')}`)
-        this.setState({requests: response.data})
+            const response = await api.get(`/users/${localStorage.getItem('id')}/friendRequests?token=${localStorage.getItem('token')}`)
+            this.setState({requests: response.data})
     }
 
     scrollToTop() {
@@ -99,6 +104,7 @@ class RequestBox extends React.Component {
     componentWillUnmount() {
         Events.scrollEvent.remove('begin');
         Events.scrollEvent.remove('end');
+        clearInterval(this.state.interval)
     }
 
     render() {

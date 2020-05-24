@@ -113,8 +113,8 @@ class CreateLobby extends React.Component {
             numberOfPlayers: 4,
             voiceChat: false,
             isPrivate: false,
+            interval: null,
         };
-        this.phone = null;
     }
 
     //this checks if more players can be removed, sets the value and returns the corresponding button
@@ -215,13 +215,14 @@ class CreateLobby extends React.Component {
     }
 
     lobby(){
-        this.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
+        let interval = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
             this.props.changeTalkingToOff();this.props.history.push('/game');}
         },1000)
+        this.setState({'interval': interval})
     }
 
     componentWillUnmount() {
-        clearInterval(this.phone)
+        clearInterval(this.state.interval)
         this.props.changeBottleToOff()
     }
 

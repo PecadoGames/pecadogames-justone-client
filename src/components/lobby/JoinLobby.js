@@ -80,11 +80,11 @@ class JoinLobby extends React.Component {
     constructor() {
         super();
         this.state = {
+            phone: null,
             lobbies: [],
             interval: null,
             number: 5,
         };
-        this.phone = null;
     }
 
     getLobbyLength(){
@@ -132,12 +132,12 @@ class JoinLobby extends React.Component {
     }
 
     async getLobbies(){
-        this.state.interval = setInterval(async ()=> {
+        let interval = setInterval(async ()=> {
             const response = await api.get(`/lobbies?token=${localStorage.getItem('token')}`)
             const list = response.data
             this.setState({lobbies: list})
         }, 100)
-
+        this.setState({interval: interval})
     }
 
     async componentDidMount() {
@@ -149,15 +149,16 @@ class JoinLobby extends React.Component {
     }
 
     lobby(){
-        this.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
+        let phoneInterval = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
             this.props.changeTalkingToOff();this.props.history.push('/game');}
         },1000)
+        this.handleInputChange('phone', phoneInterval)
     }
 
     componentWillUnmount() {
         this.props.flipOff()
         clearInterval(this.state.interval)
-        clearInterval(this.phone)
+        clearInterval(this.state.phone)
     }
 
     render() {

@@ -118,7 +118,7 @@ class GameGetter extends React.Component{
     //gets Game half a second
     async getGame(){
         try{
-            this.state.interval = setInterval(async ()=>{
+            let interval = setInterval(async ()=>{
                 const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/game?token=${localStorage.getItem('token')}`);
                 this.handleInputChange('game' ,response.data);
                 this.handleInputChange('currentGuesserId', response.data.currentGuesser.id);
@@ -134,6 +134,7 @@ class GameGetter extends React.Component{
                 this.handleInputChange('rounds', response.data.roundsPlayed);
                 this.handleInputChange('currentGuess', response.data.currentGuess);
                 },500)
+                this.setState({'interval': interval})
         }
         catch(error){
         }

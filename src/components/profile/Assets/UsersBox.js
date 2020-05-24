@@ -14,35 +14,42 @@ class UsersBox extends React.Component {
         this.scrollToTop = this.scrollToTop.bind(this);
         this.state = {
             users: [],
-            sentFriendRequests: []
+            sentFriendRequests: [],
+            interval: null
         }
     }
 
     async componentDidMount() {
-
         Events.scrollEvent.register('begin', function () {
             console.log("begin", arguments);
         });
-
         Events.scrollEvent.register('end', function () {
             console.log("end", arguments);
         });
-        const response = await api.get(`/users?token=${localStorage.getItem('token')}`)
-        const friends = await api.get(`/users/${localStorage.getItem('id')}/friends?token=${localStorage.getItem('token')}`)
-        const parsedFriends = friends.data
-        const parsedResponse = response.data
-        const index = parsedResponse.findIndex(x => x.id.toString() === localStorage.getItem('id'));
-        if (index !== undefined) parsedResponse.splice(index, 1);
-        for (let friend in parsedFriends){
-            let indexResponse = parsedResponse.findIndex(x => x.id === parsedFriends[friend].id)
-            if (indexResponse !== undefined || indexResponse !== -1) parsedResponse.splice(indexResponse, 1);
-        }
-        parsedResponse.sort(function (a, b){
-            a = a.username.toLowerCase();
-            b = b.username.toLowerCase();
-            return a < b ? -1 : a > b ? 1 : 0;
-        });
-        this.setState({'users': parsedResponse})
+        this.updateUsers()
+        let interval = setInterval(async()=>{
+            this.updateUsers()
+        }, 500)
+        this.setState({interval: interval})
+    }
+
+    async updateUsers(){
+            const response = await api.get(`/users?token=${localStorage.getItem('token')}`)
+            const friends = await api.get(`/users/${localStorage.getItem('id')}/friends?token=${localStorage.getItem('token')}`)
+            const parsedFriends = friends.data
+            const parsedResponse = response.data
+            const index = parsedResponse.findIndex(x => x.id.toString() === localStorage.getItem('id'));
+            if (index !== undefined) parsedResponse.splice(index, 1);
+            for (let friend in parsedFriends){
+                let indexResponse = parsedResponse.findIndex(x => x.id === parsedFriends[friend].id)
+                if (indexResponse !== undefined) parsedResponse.splice(indexResponse, 1);
+            }
+            parsedResponse.sort(function (a, b){
+                a = a.username.toLowerCase();
+                b = b.username.toLowerCase();
+                return a < b ? -1 : a > b ? 1 : 0;
+            });
+            this.setState({'users': parsedResponse})
     }
 
     async addUser(userId){
@@ -94,6 +101,7 @@ class UsersBox extends React.Component {
     componentWillUnmount() {
         Events.scrollEvent.remove('begin');
         Events.scrollEvent.remove('end');
+        clearInterval(this.state.interval)
     }
 
     render() {

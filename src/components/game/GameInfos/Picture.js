@@ -156,7 +156,7 @@ class Picture extends React.Component{
     //if we want to do something special with players or gameState
     async getGame(){
         try{
-            this.state.interval = setInterval(async ()=>{const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/game?token=${localStorage.getItem('token')}`);
+            let interval = setInterval(async ()=>{const response = await api.get(`/lobbies/${localStorage.getItem('lobbyId')}/game?token=${localStorage.getItem('token')}`);
                 this.handleInputChange('currentGuesserId', response.data.currentGuesser.id);
                 this.handleInputChange('gameState', response.data.gameState);
                 const list = response.data.players
@@ -165,6 +165,7 @@ class Picture extends React.Component{
                 this.handleInputChange('players', list);
                 this.count()}
                 ,1000)
+                this.setState({'interval': interval})
         }
         catch(error){
         }

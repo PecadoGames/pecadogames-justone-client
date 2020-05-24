@@ -46,7 +46,7 @@ class InviteLobbyPhone extends React.Component {
     constructor() {
         super();
         this.state = {
-            phone: null,
+            interval: null,
             lobbies: [],
             inviteToDisplay: [],
             phoneCheck: false,
@@ -67,16 +67,17 @@ class InviteLobbyPhone extends React.Component {
     }
 
     async getInvitation(){
-        this.state.phone = setInterval(async()=>{
+        let interval = setInterval(async()=>{
             const response = await api.get(`/users/${localStorage.getItem('id')}/invitations?token=${localStorage.getItem('token')}`);
             this.handleInputChange('lobbies', response.data)
             this.setInviteToDisplay()
             this.checkPhone()
             if(this.state.accepted){
-                clearInterval(this.state.phone)
+                clearInterval(this.state.interval)
             }
-            }
+        }
             , 500)
+        this.handleInputChange('interval', interval)
     }
 
     setInviteToDisplay(){
@@ -159,7 +160,7 @@ class InviteLobbyPhone extends React.Component {
     }
 
     componentWillUnmount() {
-        clearInterval(this.state.phone)
+        clearInterval(this.state.interval)
         this.props.changePhoneToOff()
 
     }

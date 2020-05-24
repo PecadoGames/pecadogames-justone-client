@@ -34,6 +34,7 @@ class Profile extends React.Component {
             phoneCheck: false,
             alreadyChanged: true,
             accepted: false,
+            interval: null
         };
         this.count = null;
         this.phone = null;
@@ -81,7 +82,7 @@ class Profile extends React.Component {
     }
 
     async getInvitation(){
-        this.state.phone = setInterval(async()=>{
+        let interval = setInterval(async()=>{
                 const response = await api.get(`/users/${localStorage.getItem('id')}/invitations?token=${localStorage.getItem('token')}`);
                 this.handleInputChange('lobbies', response.data)
                 this.checkPhone()
@@ -92,6 +93,7 @@ class Profile extends React.Component {
                 }
             }
             , 500)
+            this.handleInputChange('interval', interval)
     }
 
     checkPhone(){
@@ -216,7 +218,7 @@ class Profile extends React.Component {
     }
 
     componentWillUnmount() {
-        clearInterval(this.phone)
+        clearInterval(this.state.interval)
         this.props.changePhoneToOff()
 
     }
@@ -285,7 +287,7 @@ class Profile extends React.Component {
                                 {!this.state.friendsRequest.length || (localStorage.getItem('id') !== this.state.id) ? (null):
                                     (<BlinkingPixelButton
                                         onClick={() => {this.props.history.push(window.location.pathname+ `/requests`)}}>
-                                        New Requests ({this.state.count})
+                                        New Requests ({this.count})
                                     </BlinkingPixelButton>)
                                 }
                             </One>

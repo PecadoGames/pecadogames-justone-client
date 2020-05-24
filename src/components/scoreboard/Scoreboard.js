@@ -114,15 +114,22 @@ class Scoreboard extends React.Component{
             users: [],
             lobbies: [],
             lobby: false,
-            score: false
+            score: false,
+            phone: null
         };
-        this.phone = null;
     }
 
     componentDidMount() {
-        this.lobby()
+        this.lobby()        
         this.getUsers()
         this.getLobbies()
+        let interval = setInterval(async()=>{
+            this.lobby()
+            this.getUsers()
+            this.getLobbies()
+        }
+        ,1000)
+        this.setState({phone: interval})
     }
 
     async getUsers(){
@@ -138,13 +145,13 @@ class Scoreboard extends React.Component{
     }
 
     lobby(){
-        this.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
-            this.props.changeTalkingToOff();this.props.history.push('/game');}
-        },1000)
+        if(localStorage.getItem('lobbyId')){
+        this.props.changeTalkingToOff();
+        this.props.history.push('/game');}
     }
 
     componentWillUnmount() {
-        clearInterval(this.phone)
+        clearInterval(this.state.phone)
     }
 
     getName(id){

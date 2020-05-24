@@ -12,7 +12,8 @@ class FriendBox extends React.Component {
         super(props);
         this.state = {
             users: [],
-            friendData: []
+            friendData: [],
+            interval: null
         }
     }
 
@@ -25,9 +26,17 @@ class FriendBox extends React.Component {
         Events.scrollEvent.register('end', function () {
             console.log("end", arguments);
         });
-        const response = await api.get(`/users/${localStorage.getItem("id")}/friends?token=${localStorage.getItem('token')}`)
-        this.setState({'users': response.data})
-        this.getStatusFromFriends()
+        this.updateFriends();
+        let interval = setInterval(async()=>{
+            this.updateFriends();
+        }, 500)
+        this.setState({interval: interval})
+    }
+
+    async updateFriends(){
+            const response = await api.get(`/users/${localStorage.getItem("id")}/friends?token=${localStorage.getItem('token')}`)
+            this.setState({'users': response.data})
+            this.getStatusFromFriends()
     }
 
     async getStatusFromFriends(){
@@ -53,6 +62,7 @@ class FriendBox extends React.Component {
     componentWillUnmount() {
         Events.scrollEvent.remove('begin');
         Events.scrollEvent.remove('end');
+        clearInterval(this.state.interval);
     }
 
     render() {

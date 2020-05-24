@@ -13,15 +13,12 @@ class Requests extends React.Component {
         super();
         this.state = {
             friendsRequest: [],
-
-            phone: null,
             lobbies: [],
             phoneCheck: false,
             alreadyChanged: true,
             accepted: false,
-
-
         };
+        this.phone = null;
     }
 
     handleInputChange(key, value) {
@@ -31,12 +28,12 @@ class Requests extends React.Component {
     }
 
     async getInvitation(){
-        this.state.phone = setInterval(async()=>{
+        this.phone = setInterval(async()=>{
                 const response = await api.get(`/users/${localStorage.getItem('id')}/invitations?token=${localStorage.getItem('token')}`);
                 this.handleInputChange('lobbies', response.data)
                 this.checkPhone()
                 if(this.state.accepted){
-                    clearInterval(this.state.phone)
+                    clearInterval(this.phone)
                 }
             }
             , 500)

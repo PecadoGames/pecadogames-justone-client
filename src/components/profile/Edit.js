@@ -80,7 +80,6 @@ class Profile extends React.Component {
             phoneCheck: false,
             alreadyChanged: true,
             accepted: false,
-
         };
     }
 
@@ -160,7 +159,7 @@ class Profile extends React.Component {
     }
 
     async getInvitation(){
-        this.state.phone = setInterval(async()=>{
+        let interval = setInterval(async()=>{
                 const response = await api.get(`/users/${localStorage.getItem('id')}/invitations?token=${localStorage.getItem('token')}`);
                 this.handleInputChange('lobbies', response.data)
                 this.checkPhone()
@@ -169,6 +168,7 @@ class Profile extends React.Component {
                 }
             }
             , 500)
+            this.handleInputChange('phone', interval)
     }
 
     checkPhone(){

@@ -59,8 +59,8 @@ class Main extends React.Component {
         super();
         this.state = {
             id : localStorage.getItem("id"),
+            interval: null
         };
-        this.phone = null;
     }
 
     componentDidMount() {
@@ -70,13 +70,14 @@ class Main extends React.Component {
     }
 
     lobby(){
-        this.phone = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
+        let phoneInterval = setInterval(async()=>{if(localStorage.getItem('lobbyId')){
             this.props.changeTalkingToOff();this.props.history.push('/game');}
         },1000)
+        this.handleInputChange('interval', phoneInterval)
     }
 
     componentWillUnmount() {
-        clearInterval(this.phone)
+        clearInterval(this.state.interval)
     }
 
 
