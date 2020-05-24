@@ -173,7 +173,7 @@ class LobbyInfos extends React.Component{
                 </LobbyName>                                
                 {this.state.lobby !== null &&
                     <GameInfoRow
-                        height={this.state.hostId != localStorage.getItem('id')}>
+                        height={this.state.hostId !== parseInt(localStorage.getItem('id'))}>
                         <GameInfoText>
                             {"Players: "+this.state.lobby.currentNumPlayersAndBots+"/"+this.state.lobby.maxPlayersAndBots}
                         </GameInfoText>
@@ -192,7 +192,7 @@ class LobbyInfos extends React.Component{
                                 {player.username}
                             </UserName>
                             <KickButtonContainer
-                                autoWidth={this.state.hostId != localStorage.getItem('id')}>
+                                autoWidth={this.state.hostId !== parseInt(localStorage.getItem('id'))}>
                                 {this.valid(player.id) &&
                                 <DeclineButton
                                         marginTop="0px"
