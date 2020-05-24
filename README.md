@@ -89,7 +89,7 @@ https://creativecommons.org/licenses/by-nc-nd/4.0/
 Sound effects: https://www.zapsplat.com/license-type/standard-license/
 
 ### Shy Guy
-We recognize that "Shy Guy" is intellectual property of Nintendo. We do not intend to infringe on this IP, as all images used were made created by us. The aim of this project was educational, there is no comercial purpose. For any questions or complains please contact [us](raffael.mogicato@uzh.ch)
+We recognize that "Shy Guy" is intellectual property of Nintendo. We do not intend to infringe on this IP, as all images used were made created by us. The aim of this project was educational, there is no comercial purpose. For any questions or complains please contact [us](raffael.mogicato@uzh.ch).
 
 ## MIT Licence
 Copyright (c) [2020] [Alain Küng, Raffael Mogicato, Raphael Imfeld]
