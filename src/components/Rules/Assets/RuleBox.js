@@ -24,6 +24,11 @@ const Title= styled.div`
   color: white
 `;
 
+const Subtitle = styled.div`
+    font-size: 30px;
+    color: white
+`;
+
 const RuleBoxWrapper = styled.div`
     display:flex;
     flex-direction: column;
@@ -159,7 +164,7 @@ class RuleBox extends React.Component {
                                 will be an overall game score, based on how good you performed.</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Text>Setup:</Text>
+                            <Subtitle>Setup:</Subtitle>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>• Create a lobby, therefore you have to choose the number of rounds you want to play
@@ -169,7 +174,7 @@ class RuleBox extends React.Component {
                             <Text>• Start the Game. There have to be at least 3 players! You can also add friendly bots!</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Text>Game flow:</Text>
+                            <Subtitle>Game flow:</Subtitle>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>Choose the mystery word</Text>
@@ -179,7 +184,7 @@ class RuleBox extends React.Component {
                                 chooses one mystery word by clicking on one of the '???'.</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Text>Clue selection:</Text>
+                            <Subtitle>Clue selection:</Subtitle>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>Without communicating with each other and without
@@ -194,7 +199,7 @@ class RuleBox extends React.Component {
                                 Telephone, and $ is allowed to help someone guess America.</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Text>Invalid clues:</Text>
+                            <Subtitle>Invalid clues:</Subtitle>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>• The Mystery word but written differently.
@@ -224,7 +229,7 @@ class RuleBox extends React.Component {
                                 guess Weather.</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Text>Comparing clues:</Text>
+                            <Subtitle>Comparing clues:</Subtitle>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>Once all players have written their clues, they also get to
@@ -235,7 +240,7 @@ class RuleBox extends React.Component {
                             </Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Text>Identical clues:</Text>
+                            <Subtitle>Identical clues:</Subtitle>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>• Two identical words.
@@ -258,14 +263,14 @@ class RuleBox extends React.Component {
                                 of turn phase.</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Text>Guess:</Text>
+                            <Subtitle>Guess:</Subtitle>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>Once the identical or invalid clues have been cancelled the guesser is allowed to send
                                 ONLY ONE GUESS.</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Text>Results:</Text>
+                            <Subtitle>Results:</Subtitle>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>Success:
@@ -295,7 +300,7 @@ class RuleBox extends React.Component {
                                 Identical clues are also cancelled during the comparison Phase of clue selection.</Text>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
-                            <Text>Score Calculation:</Text>
+                            <Subtitle>Score Calculation:</Subtitle>
                         </Element>
                         <Element style={{marginTop: '10px'}}>
                             <Text>The faster you are, the better the score. If your clues gets erased, so do
