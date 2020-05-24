@@ -1,5 +1,5 @@
 
-# SoPra FS20 - Peca Games - Just One Client
+# SoPra FS20 - Pecado Games - Just One Client
 
 ## Introduction
 
@@ -62,6 +62,7 @@ Further ideas we haven't had time to implement
 
  - Voice chat: We were unable to find a free provider, we would most likely have to implement this with a web socket
  - Mini game in lobby: A small mini game to pass the time: We thought something like google's dino runner
+ - Emoji only: A game mode where only emojis can be used as clues.
 
 ## Authors and aknockledgement
 ### Front end developers
@@ -89,7 +90,7 @@ https://creativecommons.org/licenses/by-nc-nd/4.0/
 Sound effects: https://www.zapsplat.com/license-type/standard-license/
 
 ### Shy Guy
-We recognize that "Shy Guy" is intellectual property of Nintendo. We do not intend to infringe on this IP, as all images used were made created by us. The aim of this project was educational, there is no comercial purpose. For any questions or complains please contact [us](raffael.mogicato@uzh.ch).
+We recognize that "Shy Guy" is intellectual property of Nintendo. We do not intend to infringe on this intellectual property, as all images used were made created by us. The aim of this project was educational and there is no comercial purpose. For any questions or complains please contact [us](raffael.mogicato@uzh.ch).
 
 ## MIT Licence
 Copyright (c) [2020] [Alain Küng, Raffael Mogicato, Raphael Imfeld]
