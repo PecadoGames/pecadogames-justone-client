@@ -37,7 +37,6 @@ const ScoreTextLeft = styled.div`
     overflow: hidden;
     text-align: left;
     font-size: 24px;
-    color: white;
     float: left;
     margin-left: 3px;
     margin-right: 3px;
@@ -47,7 +46,7 @@ const ScoreTextRight = styled(ScoreTextLeft)`
     display: flex;
     justify-content: flex-end;
     float: right;
-    width: 50%
+    width: 50%;
 `;
 
 export const NeonButton = styled.button`
@@ -78,12 +77,15 @@ const Wrapper = styled.div`
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    color: white;
     height: 50px;
     background: none;
     border-bottom: 2px solid white;
     margin-bottom: 2px;
     &:hover{
         cursor: ${props => props.clickable ? "pointer" : "default"};
+        background: ${props => props.clickable ? "white" : ""};
+        color: ${props => props.clickable ? "black" : ""};
     }
 `;
 
